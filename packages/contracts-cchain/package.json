@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "test:forge": "powershell -ExecutionPolicy Bypass -File ../../scripts/run-forge-test.ps1"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^5.6.1"
