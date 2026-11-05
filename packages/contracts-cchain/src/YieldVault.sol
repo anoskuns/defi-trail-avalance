@@ -221,11 +221,15 @@ contract YieldVault is AccessControl, ReentrancyGuard {
         uint256 grossReward = (pos.principal * pos.weightedAprBps * elapsed) /
             (BPS_DENOMINATOR * SECONDS_PER_YEAR);
 
-        pos.lastAccruedAt = uint64(block.timestamp);
-
         if (grossReward == 0) {
+            // Preserve lastAccruedAt so fractional elapsed seconds continue accumulating
             return 0;
         }
+
+        // Advance lastAccruedAt strictly by the exact seconds accounted for by grossReward
+        uint256 accountedSeconds = (grossReward * BPS_DENOMINATOR * SECONDS_PER_YEAR) /
+            (pos.principal * pos.weightedAprBps);
+        pos.lastAccruedAt += uint64(accountedSeconds);
 
         // Enforce rewardReserve solvency cap from SponsorPool
         uint256 poolReserve = sponsorPool.rewardReserve();
