@@ -125,10 +125,10 @@
     "ast_empty": true
   },
   "package.json": {
-    "mtime": 1793878165.5304725,
-    "seen": 1793879722.0741599,
-    "ast_hash": "9398b2100cd494ba62aaed34e4728127",
-    "semantic_hash": "9398b2100cd494ba62aaed34e4728127"
+    "mtime": 1793894098.0949726,
+    "seen": 1793896933.791677,
+    "ast_hash": "3a068bf047622e2b7677978781e9603b",
+    "semantic_hash": ""
   },
   "scripts/main.ts": {
     "mtime": 1793871166.2926474,
@@ -185,10 +185,10 @@
     "semantic_hash": "d6b71871732b08ec51d94cc5957454d1"
   },
   "packages/contracts-cchain/package.json": {
-    "mtime": 1793877133.0019598,
-    "seen": 1793879722.0743482,
-    "ast_hash": "a2c87912a674ffb98284ea134a436d3f",
-    "semantic_hash": "a2c87912a674ffb98284ea134a436d3f"
+    "mtime": 1793894197.8784423,
+    "seen": 1793896933.791711,
+    "ast_hash": "5517926a37819b04628b2602b9b6a3e1",
+    "semantic_hash": ""
   },
   "packages/contracts-l1/package.json": {
     "mtime": 1793877132.9958317,
@@ -215,10 +215,10 @@
     "semantic_hash": "496fe73f21a2d846d086114e3d1ab94f"
   },
   "packages/shared/package.json": {
-    "mtime": 1793877132.9918308,
-    "seen": 1793879722.0756016,
-    "ast_hash": "333dbb20b85d9856cd688c8c34bac2d7",
-    "semantic_hash": "333dbb20b85d9856cd688c8c34bac2d7"
+    "mtime": 1793880820.8119693,
+    "seen": 1793881350.74261,
+    "ast_hash": "72cf0434736a9754668812a150e8169c",
+    "semantic_hash": "72cf0434736a9754668812a150e8169c"
   },
   "packages/shared/src/env.ts": {
     "mtime": 1793877132.9938283,
@@ -227,21 +227,525 @@
     "semantic_hash": "04d95a81403cb471e1204238622e0e3e"
   },
   "packages/shared/src/index.ts": {
-    "mtime": 1793877132.992828,
-    "seen": 1793879722.076465,
-    "ast_hash": "5191157b3882999162546cd2582bd706",
-    "semantic_hash": "5191157b3882999162546cd2582bd706"
+    "mtime": 1793880870.088341,
+    "seen": 1793881350.7429922,
+    "ast_hash": "62763feff54c2e216d3772d2c87477e9",
+    "semantic_hash": "62763feff54c2e216d3772d2c87477e9"
   },
   "packages/shared/tsconfig.json": {
-    "mtime": 1793871166.2339299,
-    "seen": 1793879722.0767362,
-    "ast_hash": "496fe73f21a2d846d086114e3d1ab94f",
-    "semantic_hash": "496fe73f21a2d846d086114e3d1ab94f"
+    "mtime": 1793880999.5898888,
+    "seen": 1793881350.743011,
+    "ast_hash": "ae17405523b6d1375256957c9e04e507",
+    "semantic_hash": "ae17405523b6d1375256957c9e04e507"
   },
   "pnpm-workspace.yaml": {
     "mtime": 1793878376.8237617,
     "seen": 1793879722.0770075,
     "ast_hash": "0b3f1b49289f9e690bc1d285d45bd8eb",
     "semantic_hash": "0b3f1b49289f9e690bc1d285d45bd8eb"
+  },
+  "packages/shared/src/constants/index.ts": {
+    "mtime": 1793880972.2227068,
+    "seen": 1793881350.7426152,
+    "ast_hash": "f2e5fed3b1c199be0476ee3cc7fe9ef6",
+    "semantic_hash": "f2e5fed3b1c199be0476ee3cc7fe9ef6"
+  },
+  "packages/shared/src/constants/progression.ts": {
+    "mtime": 1793880972.3500593,
+    "seen": 1793881350.7426193,
+    "ast_hash": "25f1032168e7a0dff9f7939ab450538a",
+    "semantic_hash": "25f1032168e7a0dff9f7939ab450538a"
+  },
+  "packages/shared/src/eip712/index.ts": {
+    "mtime": 1793880972.4721181,
+    "seen": 1793881350.7426226,
+    "ast_hash": "91f09a6e7271a48e24a65d5755f13ada",
+    "semantic_hash": "91f09a6e7271a48e24a65d5755f13ada"
+  },
+  "packages/shared/src/eip712/schemas.ts": {
+    "mtime": 1793880972.5683548,
+    "seen": 1793881350.7426255,
+    "ast_hash": "4f42e8f7c311b1a35d0550d8c109ca31",
+    "semantic_hash": "4f42e8f7c311b1a35d0550d8c109ca31"
+  },
+  "packages/shared/src/math/index.ts": {
+    "mtime": 1793880972.7291028,
+    "seen": 1793881350.7429953,
+    "ast_hash": "f2e5fed3b1c199be0476ee3cc7fe9ef6",
+    "semantic_hash": "f2e5fed3b1c199be0476ee3cc7fe9ef6"
+  },
+  "packages/shared/src/math/progression.ts": {
+    "mtime": 1793880972.7960188,
+    "seen": 1793881350.7429981,
+    "ast_hash": "3fa815cfe5dc17ee9b536045596c8d86",
+    "semantic_hash": "3fa815cfe5dc17ee9b536045596c8d86"
+  },
+  "packages/shared/src/types/domain.ts": {
+    "mtime": 1793880972.9499965,
+    "seen": 1793881350.7430005,
+    "ast_hash": "5164146fadc851872590e6f42d1965c7",
+    "semantic_hash": "5164146fadc851872590e6f42d1965c7"
+  },
+  "packages/shared/src/types/index.ts": {
+    "mtime": 1793880973.0431948,
+    "seen": 1793881350.743003,
+    "ast_hash": "7bb3e7ac4ac78220750e28de1d201df2",
+    "semantic_hash": "7bb3e7ac4ac78220750e28de1d201df2"
+  },
+  "packages/shared/tests/eip712.test.ts": {
+    "mtime": 1793880973.1398325,
+    "seen": 1793881350.7430058,
+    "ast_hash": "3dcee90ce63a696e586d0fdcbfc39a0e",
+    "semantic_hash": "3dcee90ce63a696e586d0fdcbfc39a0e"
+  },
+  "packages/shared/tests/progression.test.ts": {
+    "mtime": 1793880973.4383893,
+    "seen": 1793881350.743008,
+    "ast_hash": "3dd3f2170952bbdfe21e990646a22873",
+    "semantic_hash": "3dd3f2170952bbdfe21e990646a22873"
+  },
+  "packages/contracts-cchain/lib/forge-std/.github/dependabot.yml": {
+    "mtime": 1793893735.99182,
+    "seen": 1793896933.7916834,
+    "ast_hash": "9c8a025bd0cb65dead88316cce925a71",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/.github/workflows/ci.yml": {
+    "mtime": 1793893735.9942052,
+    "seen": 1793896933.7916873,
+    "ast_hash": "1ab0dd47667385ff4bf93aa41338c77f",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/.github/workflows/scan-github-actions.yml": {
+    "mtime": 1793893735.9962127,
+    "seen": 1793896933.7916906,
+    "ast_hash": "a7c8275f3d0c00254d25240b859e307e",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/.github/workflows/sync.yml": {
+    "mtime": 1793893735.997207,
+    "seen": 1793896933.791694,
+    "ast_hash": "6035ce442e5a56cf69f2a8359edb02fe",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/package.json": {
+    "mtime": 1793893736.0043514,
+    "seen": 1793896933.7916975,
+    "ast_hash": "965810acec5e85d5c798780e0d0d3999",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/scripts/vm.py": {
+    "mtime": 1793893736.006005,
+    "seen": 1793896933.791701,
+    "ast_hash": "23e834a8179b0f2a5af9abecb7a86959",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/test/fixtures/broadcast.log.json": {
+    "mtime": 1793893736.0655286,
+    "seen": 1793896933.7917044,
+    "ast_hash": "751f52a4f2b282ad6588c56de2c7ec11",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/test/fixtures/test.json": {
+    "mtime": 1793893736.0675423,
+    "seen": 1793896933.791707,
+    "ast_hash": "70bf6f09042506f03e4705c27a242ef2",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/test/accounting.test.mjs": {
+    "mtime": 1793882290.9496138,
+    "seen": 1793896933.791714,
+    "ast_hash": "026b05f8d8271afa3a919a468ae82eef",
+    "semantic_hash": ""
+  },
+  "scripts/run-forge-test.ps1": {
+    "mtime": 1793894198.0706587,
+    "seen": 1793896933.7962854,
+    "ast_hash": "c75d590af95e662071b73268f7f28f30",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/CONTRIBUTING.md": {
+    "mtime": 1793893735.9992063,
+    "seen": 1793896933.7976794,
+    "ast_hash": "ef9c7c8730180689610e08d1160f2998",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/README.md": {
+    "mtime": 1793893736.0012298,
+    "seen": 1793896933.7976837,
+    "ast_hash": "34f6cf21ed28dce99bb357b92ac457ab",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/RELEASE_CHECKLIST.md": {
+    "mtime": 1793893736.0022328,
+    "seen": 1793896933.7976863,
+    "ast_hash": "8e9cc1c02c895f63c77d6bfdc4ba996c",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/remappings.txt": {
+    "mtime": 1793894197.931288,
+    "seen": 1793896933.7976892,
+    "ast_hash": "f595ce8208a66365a9f1539637816ac6",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/Base.sol": {
+    "mtime": 1793893736.0080335,
+    "seen": 1793896968.6389782,
+    "ast_hash": "b6f0ebd196dd5ec09d4c71aca6d9c993",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/Config.sol": {
+    "mtime": 1793893736.0090592,
+    "seen": 1793896968.6389852,
+    "ast_hash": "64f416d0fd14e022dc78ca4f2669a348",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/LibVariable.sol": {
+    "mtime": 1793893736.0102003,
+    "seen": 1793896968.6389883,
+    "ast_hash": "a16f5ddd2e3a0271b395ef5707517eab",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/Script.sol": {
+    "mtime": 1793893736.0112207,
+    "seen": 1793896968.638991,
+    "ast_hash": "fa005593ec9c6443f535843e378469c8",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/StdAssertions.sol": {
+    "mtime": 1793893736.0132382,
+    "seen": 1793896968.638994,
+    "ast_hash": "b63bcbcdbbbc10d6c9da6f9fe40f0664",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/StdChains.sol": {
+    "mtime": 1793893736.0142367,
+    "seen": 1793896968.6389968,
+    "ast_hash": "3896ff11f7c4d8a3a1ce23b05b108a37",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/StdCheats.sol": {
+    "mtime": 1793893736.0152342,
+    "seen": 1793896968.638999,
+    "ast_hash": "6cf03cb9a62c3c5920511f5b6d874399",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/StdConfig.sol": {
+    "mtime": 1793893736.0162342,
+    "seen": 1793896968.6390014,
+    "ast_hash": "29bf34e65495be37d086aa121eff3d57",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/StdConstants.sol": {
+    "mtime": 1793893736.0172336,
+    "seen": 1793896968.6390038,
+    "ast_hash": "4ffff166fe278200f83afb9df4152fc7",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/StdError.sol": {
+    "mtime": 1793893736.0184534,
+    "seen": 1793896968.6390061,
+    "ast_hash": "9caf640fa61a8546496426c177fbcc25",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/StdInvariant.sol": {
+    "mtime": 1793893736.0194523,
+    "seen": 1793896968.6390085,
+    "ast_hash": "272705a58c6946f03c305c068d1398bd",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/StdJson.sol": {
+    "mtime": 1793893736.021454,
+    "seen": 1793896968.639011,
+    "ast_hash": "c85bdc0b1589a6791904f2c7887bedff",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/StdMath.sol": {
+    "mtime": 1793893736.021454,
+    "seen": 1793896968.639013,
+    "ast_hash": "abb0c2958127b62d5915f10c6631aee5",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/StdSecp256k1.sol": {
+    "mtime": 1793893736.022818,
+    "seen": 1793896968.6390157,
+    "ast_hash": "01d901ae9a040f71992a7cc55bcf9779",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/StdStorage.sol": {
+    "mtime": 1793893736.0238678,
+    "seen": 1793896968.639018,
+    "ast_hash": "1f39650d966aa6472ed16e869cd321c3",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/StdStyle.sol": {
+    "mtime": 1793893736.0250814,
+    "seen": 1793896968.6390202,
+    "ast_hash": "1eaa467e0697ce012cf97a4f7e9b4c21",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/StdToml.sol": {
+    "mtime": 1793893736.026081,
+    "seen": 1793896968.6390228,
+    "ast_hash": "f041a18a33d9ed1251b15e4e29b3119a",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/StdUtils.sol": {
+    "mtime": 1793893736.027079,
+    "seen": 1793896968.6390254,
+    "ast_hash": "eddf95156fe85fb10a5ee69a14ad3642",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/Test.sol": {
+    "mtime": 1793893736.0280788,
+    "seen": 1793896968.6390276,
+    "ast_hash": "d54a3ec7cae446e634ad28a22854644e",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/Vm.sol": {
+    "mtime": 1793893736.030081,
+    "seen": 1793896968.63903,
+    "ast_hash": "6d09059b0bce176fa6ecafafc7532892",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/console.sol": {
+    "mtime": 1793893736.0320835,
+    "seen": 1793896968.6390324,
+    "ast_hash": "73c613a3ac049273e13580e2c40f79cb",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/console2.sol": {
+    "mtime": 1793893736.0320835,
+    "seen": 1793896968.6390352,
+    "ast_hash": "2536866202e3cace0ac05e790413a230",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/interfaces/IERC1155.sol": {
+    "mtime": 1793893736.0344577,
+    "seen": 1793896968.6390376,
+    "ast_hash": "37df8a0dfdc59e176fca2fd608a39562",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/interfaces/IERC165.sol": {
+    "mtime": 1793893736.0354576,
+    "seen": 1793896968.639044,
+    "ast_hash": "2580323ae3b0ce695ade45d8051d81a3",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/interfaces/IERC20.sol": {
+    "mtime": 1793893736.0366066,
+    "seen": 1793896968.639047,
+    "ast_hash": "38cfb7f07dee48241d32bbf3378791bd",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/interfaces/IERC4626.sol": {
+    "mtime": 1793893736.037844,
+    "seen": 1793896968.6390495,
+    "ast_hash": "4a3f3df1d6c35052eda7878033f9858a",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/interfaces/IERC6909.sol": {
+    "mtime": 1793893736.0392022,
+    "seen": 1793896968.6390517,
+    "ast_hash": "3bbbd473ce3efe91ec9903956abacd4e",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/interfaces/IERC721.sol": {
+    "mtime": 1793893736.0405624,
+    "seen": 1793896968.639054,
+    "ast_hash": "d0be58c3fc5eb93f801eeadb5a263d03",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/interfaces/IERC7540.sol": {
+    "mtime": 1793893736.0415754,
+    "seen": 1793896968.6390724,
+    "ast_hash": "be80c409b301c4e77b07021ae289ffba",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/interfaces/IERC7575.sol": {
+    "mtime": 1793893736.0428412,
+    "seen": 1793896968.6390762,
+    "ast_hash": "7fc9e43b2f06ebb5a4bd41a02bf74979",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/interfaces/IMulticall3.sol": {
+    "mtime": 1793893736.0428412,
+    "seen": 1793896968.6390808,
+    "ast_hash": "288c390862234b0f4345efb588a3d568",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/src/safeconsole.sol": {
+    "mtime": 1793893736.0449438,
+    "seen": 1793896968.639085,
+    "ast_hash": "457ad1de1585c1cba163c5b724aba80c",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/test/CommonBase.t.sol": {
+    "mtime": 1793893736.046275,
+    "seen": 1793896968.639089,
+    "ast_hash": "86d9be95ef2e7c91d60003d66d95f462",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/test/Config.t.sol": {
+    "mtime": 1793893736.0474188,
+    "seen": 1793896968.639093,
+    "ast_hash": "ee8232a0dfe72d493925d819c6cf089b",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/test/LibVariable.t.sol": {
+    "mtime": 1793893736.0487945,
+    "seen": 1793896968.6390975,
+    "ast_hash": "64e39715e17a225f506dc0f0db159616",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/test/StdAssertions.t.sol": {
+    "mtime": 1793893736.0487945,
+    "seen": 1793896968.6391013,
+    "ast_hash": "4e35af54522071e6770a56c5f57e30f1",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/test/StdChains.t.sol": {
+    "mtime": 1793893736.0501726,
+    "seen": 1793896968.639105,
+    "ast_hash": "ffe2722def5b6f7d90d74a5e01c1b74e",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/test/StdCheats.t.sol": {
+    "mtime": 1793893736.0511708,
+    "seen": 1793896968.639108,
+    "ast_hash": "5c1a32ed3b9af482085fcfb500de98cb",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/test/StdConstants.t.sol": {
+    "mtime": 1793893736.0522175,
+    "seen": 1793896968.639114,
+    "ast_hash": "1c27b5a8e79da15eeb303c33ea15a31d",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/test/StdError.t.sol": {
+    "mtime": 1793893736.0532207,
+    "seen": 1793896968.639135,
+    "ast_hash": "ecec6166115555b95ffeee23cffaa679",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/test/StdJson.t.sol": {
+    "mtime": 1793893736.0542157,
+    "seen": 1793896968.6391375,
+    "ast_hash": "1bfc1dfd99a246c864b314f52e210725",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/test/StdMath.t.sol": {
+    "mtime": 1793893736.0542157,
+    "seen": 1793896968.6391406,
+    "ast_hash": "c5830054e1acc31a7da2b388ab800299",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/test/StdSecp256k1.t.sol": {
+    "mtime": 1793893736.055495,
+    "seen": 1793896968.6391442,
+    "ast_hash": "3c6c10df6976a7597a4ca57b57b3ad19",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/test/StdStorage.t.sol": {
+    "mtime": 1793893736.0564978,
+    "seen": 1793896968.6391482,
+    "ast_hash": "f111eb21f2fdb8c4b2f71e8c631e4a6f",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/test/StdStyle.t.sol": {
+    "mtime": 1793893736.057495,
+    "seen": 1793896968.6391537,
+    "ast_hash": "844e743f1abd2a8a1b9ec552f450f99b",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/test/StdToml.t.sol": {
+    "mtime": 1793893736.0584974,
+    "seen": 1793896968.6391559,
+    "ast_hash": "cea87294c743cd11d19e6d973976cfcd",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/test/StdUtils.t.sol": {
+    "mtime": 1793893736.0590053,
+    "seen": 1793896968.6391587,
+    "ast_hash": "da250451e20f02d6d7a8bea5c7cb08f1",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/test/Vm.t.sol": {
+    "mtime": 1793893736.0600147,
+    "seen": 1793896968.6391618,
+    "ast_hash": "8bf7609fa74cee8df2d0097c25faf8e7",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/test/compilation/CompilationScript.sol": {
+    "mtime": 1793893736.061346,
+    "seen": 1793896968.6391644,
+    "ast_hash": "65f84c8afa15828ea2f80429c3f79e38",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/test/compilation/CompilationScriptBase.sol": {
+    "mtime": 1793893736.061346,
+    "seen": 1793896968.639167,
+    "ast_hash": "a8d80512f01cf88aa8a1d450a90765f6",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/test/compilation/CompilationStdSecp256k1.sol": {
+    "mtime": 1793893736.063406,
+    "seen": 1793896968.6391692,
+    "ast_hash": "8b640b1e59b23ea726147cdf708c1385",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/test/compilation/CompilationTest.sol": {
+    "mtime": 1793893736.0644057,
+    "seen": 1793896968.6391718,
+    "ast_hash": "a1b4613605c46ac5cb62dd031b70b892",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/lib/forge-std/test/compilation/CompilationTestBase.sol": {
+    "mtime": 1793893736.0644057,
+    "seen": 1793896968.6391745,
+    "ast_hash": "bcc903763acbd9b82f5528be57e8a751",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/src/Main.sol": {
+    "mtime": 1793881991.1597369,
+    "seen": 1793896968.639189,
+    "ast_hash": "954bfddf55606d3ea639546dab6ac6d9",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/src/MockUSDC.sol": {
+    "mtime": 1793882290.5311577,
+    "seen": 1793896968.6391914,
+    "ast_hash": "6e4f47e6fa4c471b03b45ea4fb0b2922",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/src/SponsorPool.sol": {
+    "mtime": 1793882290.628645,
+    "seen": 1793896968.6391935,
+    "ast_hash": "9b6f0b4d431cc2def519c1174657cf1d",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/src/YieldVault.sol": {
+    "mtime": 1793895710.941836,
+    "seen": 1793896968.639196,
+    "ast_hash": "5e3e65f994ca5dbca7104e1ff9cfcc25",
+    "semantic_hash": ""
+  },
+  "packages/contracts-cchain/test/Accounting.t.sol": {
+    "mtime": 1793896173.7159293,
+    "seen": 1793896968.6391985,
+    "ast_hash": "5a150ff1d0b11d3ab26c8b17f9ac021f",
+    "semantic_hash": ""
+  },
+  "packages/contracts-l1/src/Main.sol": {
+    "mtime": 1793871166.25666,
+    "seen": 1793896968.6392078,
+    "ast_hash": "68b329da9893e34099c7d8ad5cb9c940",
+    "semantic_hash": ""
+  },
+  "pnpm-lock.yaml": {
+    "mtime": 1793881888.243525,
+    "seen": 1793896933.7976918,
+    "ast_hash": "72c2fca21f3031328ad0f44797a787b8",
+    "semantic_hash": ""
   }
 }

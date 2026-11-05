@@ -7,6 +7,7 @@
     "dev": "pnpm --filter @defi-trail/web dev",
     "build": "pnpm -r --if-present run build",
     "test": "pnpm -r --if-present run test",
+    "test:forge": "powershell -ExecutionPolicy Bypass -File scripts/run-forge-test.ps1",
     "lint": "eslint . --max-warnings=0",
     "test:contracts": "pnpm --filter @defi-trail/contracts-l1 --filter @defi-trail/contracts-cchain run test",
     "typecheck": "pnpm -r --if-present run typecheck"

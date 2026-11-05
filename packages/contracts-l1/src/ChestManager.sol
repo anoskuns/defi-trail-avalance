@@ -251,6 +251,55 @@ contract ChestManager is AccessControl, ReentrancyGuard, EIP712 {
     // -----------------------------------------------------------------------
 
     /**
+     * @dev Verifies all constraints on a LocationProof.
+     */
+    function _verifyLocationProof(LocationProof calldata proof, uint64 epoch) internal view {
+        if (proof.player != msg.sender) revert InvalidSignature();
+        _validateTiming(proof.expiresAt);
+        if (proof.epoch != epoch) revert WrongEpoch(proof.epoch, epoch);
+        if (usedNonces[proof.nonce]) revert NonceAlreadyUsed(proof.nonce);
+        bytes32 claimKey = keccak256(abi.encodePacked(proof.chestId, msg.sender, epoch));
+        if (claimedKeys[claimKey]) revert AlreadyClaimed(claimKey);
+        bytes32 digest = _locationProofDigest(proof);
+        if (digest.recover(proof.signature) != proofSigner) revert InvalidSignature();
+    }
+
+    /**
+     * @dev Verifies all constraints on a SponsorProof.
+     */
+    function _verifySponsorProof(SponsorProof calldata proof, uint64 epoch) internal view {
+        if (proof.player != msg.sender) revert InvalidSignature();
+        _validateTiming(proof.expiresAt);
+        if (proof.epoch != epoch) revert WrongEpoch(proof.epoch, epoch);
+        if (usedNonces[proof.nonce]) revert NonceAlreadyUsed(proof.nonce);
+        bytes32 claimKey = keccak256(abi.encodePacked(proof.chestId, msg.sender, epoch));
+        if (claimedKeys[claimKey]) revert AlreadyClaimed(claimKey);
+        bytes32 digest = _sponsorProofDigest(proof);
+        if (digest.recover(proof.signature) != proofSigner) revert InvalidSignature();
+    }
+
+    /**
+     * @dev Deterministic requestId calculation (PRD §9.2).
+     */
+    function _generateRequestId(bytes32 nonce, address player) internal view returns (bytes32) {
+        return keccak256(abi.encodePacked(
+            block.chainid,
+            address(this),
+            player,
+            uint256(nonce),
+            block.timestamp
+        ));
+    }
+
+    /**
+     * @dev Fetches player's exploration score and converts to Rarity.
+     */
+    function _playerRarity(address player) internal view returns (Rarity) {
+        (,,,,, uint32 score,, ) = playerState.getStats(player);
+        return _rarityFromScore(score);
+    }
+
+    /**
      * @notice Open a chest using an EIP-712 LocationProof.
      * @dev Flow (PRD §4.2, §5.2, §5.3, §9.2):
      *   1. Validate proof signature (signer == proofSigner).
@@ -271,57 +320,20 @@ contract ChestManager is AccessControl, ReentrancyGuard, EIP712 {
         nonReentrant
         returns (bytes32 requestId)
     {
-        address player = msg.sender;
-
-        // 1. Player must match proof.player
-        if (proof.player != player) revert InvalidSignature();
-
-        // 2. Timing
-        _validateTiming(proof.expiresAt);
-
-        // 3. Epoch must match current epoch
         uint64 epoch = _currentEpoch();
-        if (proof.epoch != epoch) revert WrongEpoch(proof.epoch, epoch);
+        _verifyLocationProof(proof, epoch);
 
-        // 4. Nonce — must not be used
-        if (usedNonces[proof.nonce]) revert NonceAlreadyUsed(proof.nonce);
-
-        // 5. Claim key — one claim per wallet per chest per epoch (PRD §5.1)
-        bytes32 claimKey = keccak256(abi.encodePacked(proof.chestId, player, epoch));
-        if (claimedKeys[claimKey]) revert AlreadyClaimed(claimKey);
-
-        // 6. Signature verification
-        bytes32 digest = _locationProofDigest(proof);
-        address recovered = digest.recover(proof.signature);
-        if (recovered != proofSigner) revert InvalidSignature();
-
-        // 7. Mark nonce and claim as used (effects before interactions)
         usedNonces[proof.nonce] = true;
-        claimedKeys[claimKey] = true;
+        claimedKeys[keccak256(abi.encodePacked(proof.chestId, msg.sender, epoch))] = true;
 
-        // 8. Consume energy (PlayerState refills if new epoch)
-        playerState.consumeEnergy(player);
+        playerState.consumeEnergy(msg.sender);
+        playerState.recordH3Open(msg.sender, h3Cell);
 
-        // 9. Record H3 cell for exploration
-        playerState.recordH3Open(player, h3Cell);
+        requestId = _generateRequestId(proof.nonce, msg.sender);
+        Rarity rar = _playerRarity(msg.sender);
 
-        // 10. Create unique requestId (PRD §9.2)
-        uint256 nonce_ = uint256(proof.nonce);
-        requestId = keccak256(abi.encodePacked(
-            block.chainid,
-            address(this),
-            player,
-            nonce_,
-            block.timestamp
-        ));
-
-        // 11. Determine rarity from current exploration score
-        (,,,,, uint32 score,, ) = playerState.getStats(player);
-        Rarity rar = _rarityFromScore(score);
-
-        // 12. Store request
         requests[requestId] = ChestRequest({
-            player: player,
+            player: msg.sender,
             chestId: proof.chestId,
             chestType: chestType,
             rarity: rar,
@@ -332,7 +344,7 @@ contract ChestManager is AccessControl, ReentrancyGuard, EIP712 {
 
         emit ChestOpenRequested(
             requestId,
-            player,
+            msg.sender,
             proof.chestId,
             chestType,
             rar,
@@ -355,44 +367,20 @@ contract ChestManager is AccessControl, ReentrancyGuard, EIP712 {
         nonReentrant
         returns (bytes32 requestId)
     {
-        address player = msg.sender;
-
-        if (proof.player != player) revert InvalidSignature();
-
-        _validateTiming(proof.expiresAt);
-
         uint64 epoch = _currentEpoch();
-        if (proof.epoch != epoch) revert WrongEpoch(proof.epoch, epoch);
-
-        if (usedNonces[proof.nonce]) revert NonceAlreadyUsed(proof.nonce);
-
-        bytes32 claimKey = keccak256(abi.encodePacked(proof.chestId, player, epoch));
-        if (claimedKeys[claimKey]) revert AlreadyClaimed(claimKey);
-
-        bytes32 digest = _sponsorProofDigest(proof);
-        address recovered = digest.recover(proof.signature);
-        if (recovered != proofSigner) revert InvalidSignature();
+        _verifySponsorProof(proof, epoch);
 
         usedNonces[proof.nonce] = true;
-        claimedKeys[claimKey] = true;
+        claimedKeys[keccak256(abi.encodePacked(proof.chestId, msg.sender, epoch))] = true;
 
-        playerState.consumeEnergy(player);
-        playerState.recordH3Open(player, h3Cell);
+        playerState.consumeEnergy(msg.sender);
+        playerState.recordH3Open(msg.sender, h3Cell);
 
-        uint256 nonce_ = uint256(proof.nonce);
-        requestId = keccak256(abi.encodePacked(
-            block.chainid,
-            address(this),
-            player,
-            nonce_,
-            block.timestamp
-        ));
-
-        (,,,,, uint32 score,, ) = playerState.getStats(player);
-        Rarity rar = _rarityFromScore(score);
+        requestId = _generateRequestId(proof.nonce, msg.sender);
+        Rarity rar = _playerRarity(msg.sender);
 
         requests[requestId] = ChestRequest({
-            player: player,
+            player: msg.sender,
             chestId: proof.chestId,
             chestType: ChestType.SPONSOR,
             rarity: rar,
@@ -403,7 +391,7 @@ contract ChestManager is AccessControl, ReentrancyGuard, EIP712 {
 
         emit ChestOpenRequested(
             requestId,
-            player,
+            msg.sender,
             proof.chestId,
             ChestType.SPONSOR,
             rar,

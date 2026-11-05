@@ -646,17 +646,20 @@ contract GameLogicTest is Test {
             )
         );
         chestManager.updateRequestStatus(requestId, ChestManager.RequestStatus.RETRYABLE_FAILED);
+    }
 
-        // Also test FAILED_FINAL cannot be overwritten
-        bytes32 nonceF = keccak256("terminal-nonce-f");
-        bytes32 chestIdF = keccak256("terminal-chest-f");
-        ChestManager.LocationProof memory proofF =
-            _makeLocationProof(alice, chestIdF, nonceF, exp, signerPrivKey);
+    function test_UpdateRequestStatus_FailedFinalCannotBeOverwritten() public {
+        bytes32 chestId = keccak256("ff-chest");
+        bytes32 nonce   = keccak256("ff-nonce");
+        bytes32 h3Cell  = keccak256("ff-h3");
+        uint64 exp      = uint64(block.timestamp + 60);
+        ChestManager.LocationProof memory proof =
+            _makeLocationProof(alice, chestId, nonce, exp, signerPrivKey);
         vm.prank(alice);
-        bytes32 reqIdF = chestManager.openChest(ChestManager.ChestType.YIELD, h3Cell, proofF);
+        bytes32 reqId = chestManager.openChest(ChestManager.ChestType.YIELD, h3Cell, proof);
 
         vm.prank(gateway);
-        chestManager.updateRequestStatus(reqIdF, ChestManager.RequestStatus.FAILED_FINAL);
+        chestManager.updateRequestStatus(reqId, ChestManager.RequestStatus.FAILED_FINAL);
 
         vm.prank(gateway);
         vm.expectRevert(
@@ -666,7 +669,7 @@ contract GameLogicTest is Test {
                 ChestManager.RequestStatus.CONFIRMED
             )
         );
-        chestManager.updateRequestStatus(reqIdF, ChestManager.RequestStatus.CONFIRMED);
+        chestManager.updateRequestStatus(reqId, ChestManager.RequestStatus.CONFIRMED);
     }
 
     // -----------------------------------------------------------------------
@@ -935,7 +938,7 @@ contract GameLogicTest is Test {
         // Tier 0 balance (<1 USDC) & Streak 0 -> power = 0, rarity = COMMON
         PlayerState.PositionSnapshot memory snap;
         snap.player = bob;
-        snap.principal = 999_999; // 0.999999 USDC (< 1 USDC)
+        snap.principal = 999_999;
         snap.positionStreak = 0;
         snap.updatedAt = uint64(block.timestamp);
         vm.prank(admin);
@@ -944,7 +947,7 @@ contract GameLogicTest is Test {
         assertEq(power0, 0);
         assertEq(uint8(rar0), uint8(PlayerState.Rarity.COMMON));
 
-        // Tier 1 balance (1-5 USDC) & Streak 1 (tier 1) -> power = 1
+        // Tier 1 balance (1-5 USDC) & Streak 1 -> power = 1
         snap.principal = 1_000_000;
         snap.positionStreak = 1;
         vm.prank(admin);
@@ -959,7 +962,7 @@ contract GameLogicTest is Test {
         (,, uint8 power1b,,,,,) = playerState.getStats(bob);
         assertEq(power1b, 1);
 
-        // Tier 2 balance (5-10 USDC) & Streak 4 (tier 2) -> power = 2, score = 4 -> RARE
+        // Tier 2 balance (5-10 USDC) & Streak 4 -> power = 2, score = 4 -> RARE
         snap.principal = 5_000_000;
         snap.positionStreak = 4;
         vm.prank(admin);
@@ -968,15 +971,6 @@ contract GameLogicTest is Test {
         assertEq(power2, 2);
         assertEq(uint8(rar2), uint8(PlayerState.Rarity.RARE));
 
-        // Open chest with RARE rarity in ChestManager
-        uint64 exp = uint64(block.timestamp + 60);
-        ChestManager.LocationProof memory proofRare =
-            _makeLocationProof(bob, keccak256("rare-chest"), keccak256("rare-nonce"), exp, signerPrivKey);
-        vm.prank(bob);
-        bytes32 reqIdRare = chestManager.openChest(ChestManager.ChestType.YIELD, keccak256("rare-h3"), proofRare);
-        (,,, ChestManager.Rarity rarRare,,,) = chestManager.requests(reqIdRare);
-        assertEq(uint8(rarRare), uint8(ChestManager.Rarity.RARE));
-
         // Streak 6 (score 6) -> EPIC
         snap.positionStreak = 6;
         vm.prank(admin);
@@ -984,22 +978,14 @@ contract GameLogicTest is Test {
         (,,,,,, PlayerState.Rarity rarEpic,) = playerState.getStats(bob);
         assertEq(uint8(rarEpic), uint8(PlayerState.Rarity.EPIC));
 
-        // Open chest with EPIC rarity in ChestManager
-        ChestManager.LocationProof memory proofEpic =
-            _makeLocationProof(bob, keccak256("epic-chest"), keccak256("epic-nonce"), exp, signerPrivKey);
-        vm.prank(bob);
-        bytes32 reqIdEpic = chestManager.openChest(ChestManager.ChestType.YIELD, keccak256("epic-h3"), proofEpic);
-        (,,, ChestManager.Rarity rarEpicCM,,,) = chestManager.requests(reqIdEpic);
-        assertEq(uint8(rarEpicCM), uint8(ChestManager.Rarity.EPIC));
-
-        // Tier 3 balance (>=10 USDC) & Streak >= 7 (tier 3) -> power = 3
+        // Tier 3 balance (>=10 USDC) & Streak >= 7 (tier 3) -> power = 3, score = 7 (EPIC)
         snap.principal = 10_000_000;
-        snap.positionStreak = 10; // streak > 7 capped at 7
+        snap.positionStreak = 10;
         vm.prank(admin);
         playerState.applyPositionSnapshot(snap);
         (,, uint8 power3,,,, PlayerState.Rarity rar3,) = playerState.getStats(bob);
         assertEq(power3, 3);
-        assertEq(uint8(rar3), uint8(PlayerState.Rarity.EPIC)); // score = 0 + 7 = 7 (EPIC)
+        assertEq(uint8(rar3), uint8(PlayerState.Rarity.EPIC));
 
         // Give bob 3 unique H3 opens via admin -> explorationScore = 3 + 7 = 10 -> LEGENDARY
         vm.startPrank(admin);
@@ -1009,19 +995,60 @@ contract GameLogicTest is Test {
         vm.stopPrank();
 
         (,,,,, uint32 scoreLeg, PlayerState.Rarity rarLeg,) = playerState.getStats(bob);
-        assertEq(scoreLeg, 12); // 2 previous chest opens + 3 added = 5 unique H3; 5 + min(10, 7) = 12
+        assertEq(scoreLeg, 10);
         assertEq(uint8(rarLeg), uint8(PlayerState.Rarity.LEGENDARY));
+    }
 
-        // Also open chest with LEGENDARY rarity to cover _rarityFromScore in ChestManager
-        bytes32 chestId = keccak256("leg-chest");
-        bytes32 nonce   = keccak256("leg-nonce");
-        bytes32 h3Cell  = keccak256("leg-h3");
-        ChestManager.LocationProof memory proof =
-            _makeLocationProof(bob, chestId, nonce, exp, signerPrivKey);
-        vm.prank(bob);
-        bytes32 reqId = chestManager.openChest(ChestManager.ChestType.YIELD, h3Cell, proof);
-        (,,, ChestManager.Rarity reqRar,,,) = chestManager.requests(reqId);
-        assertEq(uint8(reqRar), uint8(ChestManager.Rarity.LEGENDARY));
+    function test_ChestManager_RarityFromScore_RareEpicLegendary() public {
+        address charlie = makeAddr("charlie");
+        PlayerState.PositionSnapshot memory snap;
+        snap.player = charlie;
+        snap.updatedAt = uint64(block.timestamp);
+
+        // 1. RARE chest (score = 4)
+        snap.principal = 5_000_000;
+        snap.positionStreak = 4;
+        vm.prank(admin);
+        playerState.applyPositionSnapshot(snap);
+
+        uint64 exp = uint64(block.timestamp + 60);
+        ChestManager.LocationProof memory proofRare =
+            _makeLocationProof(charlie, keccak256("c-rare"), keccak256("n-rare"), exp, signerPrivKey);
+        vm.prank(charlie);
+        bytes32 reqRare = chestManager.openChest(ChestManager.ChestType.YIELD, keccak256("h3-cr"), proofRare);
+        (,,, ChestManager.Rarity rRare,,,) = chestManager.requests(reqRare);
+        assertEq(uint8(rRare), uint8(ChestManager.Rarity.RARE));
+
+        // 2. EPIC chest (score = 6)
+        snap.positionStreak = 6;
+        vm.prank(admin);
+        playerState.applyPositionSnapshot(snap);
+
+        ChestManager.LocationProof memory proofEpic =
+            _makeLocationProof(charlie, keccak256("c-epic"), keccak256("n-epic"), exp, signerPrivKey);
+        vm.prank(charlie);
+        bytes32 reqEpic = chestManager.openChest(ChestManager.ChestType.YIELD, keccak256("h3-ce"), proofEpic);
+        (,,, ChestManager.Rarity rEpic,,,) = chestManager.requests(reqEpic);
+        assertEq(uint8(rEpic), uint8(ChestManager.Rarity.EPIC));
+
+        // 3. LEGENDARY chest (unique = 3 + streak 7 = 10)
+        snap.principal = 10_000_000;
+        snap.positionStreak = 7;
+        vm.prank(admin);
+        playerState.applyPositionSnapshot(snap);
+
+        vm.startPrank(admin);
+        playerState.recordH3Open(charlie, keccak256("h3-c-1"));
+        playerState.recordH3Open(charlie, keccak256("h3-c-2"));
+        playerState.recordH3Open(charlie, keccak256("h3-c-3"));
+        vm.stopPrank();
+
+        ChestManager.LocationProof memory proofLeg =
+            _makeLocationProof(charlie, keccak256("c-leg"), keccak256("n-leg"), exp, signerPrivKey);
+        vm.prank(charlie);
+        bytes32 reqLeg = chestManager.openChest(ChestManager.ChestType.YIELD, keccak256("h3-cl"), proofLeg);
+        (,,, ChestManager.Rarity rLeg,,,) = chestManager.requests(reqLeg);
+        assertEq(uint8(rLeg), uint8(ChestManager.Rarity.LEGENDARY));
     }
 
     // -----------------------------------------------------------------------
@@ -1089,11 +1116,221 @@ contract GameLogicTest is Test {
     // -----------------------------------------------------------------------
     // 28. PlayerState: getEnergyMax and currentEpoch views
     // -----------------------------------------------------------------------
-    function test_PlayerState_Views() public {
+    function test_PlayerState_Views() public view {
         uint8 eMax = playerState.getEnergyMax(alice);
         assertEq(eMax, 3);
 
         uint64 ep = playerState.currentEpoch();
         assertEq(ep, uint64(block.timestamp / EPOCH_SECS));
+    }
+
+    // -----------------------------------------------------------------------
+    // 29. Fuzz: Time warp epoch refill never overflows or jumps energy
+    // -----------------------------------------------------------------------
+    function testFuzz_TimeWarp_EpochRefillNeverSkipsOrOverflows(uint32 deltaSeconds) public {
+        // Alice starts in epoch 1 with 3 energy
+        // Consume 1 energy in epoch 1
+        vm.prank(admin);
+        playerState.consumeEnergy(alice); // energyCurrent = 2, lastEnergyEpoch = 1
+
+        uint64 startEpoch = playerState.currentEpoch(); // 1
+        uint256 startTs = block.timestamp;
+
+        // Warp forward by arbitrary deltaSeconds (up to ~10 years)
+        vm.warp(startTs + deltaSeconds);
+        uint64 newEpoch = playerState.currentEpoch();
+
+        // Gateway consumes energy
+        vm.prank(admin);
+        playerState.consumeEnergy(alice);
+
+        (uint8 energyCurrent, uint8 energyMax, uint8 powerLevel,,,,,) = playerState.getStats(alice);
+
+        if (newEpoch == startEpoch) {
+            // Still in same epoch: consumed 1 more, no refill -> energy was 2, now 1
+            assertEq(energyCurrent, 1);
+        } else {
+            // New epoch: refilled to energyMax (3), then consumed 1 -> energy is 2
+            assertEq(energyCurrent, energyMax - 1);
+            assertEq(energyCurrent, 2);
+        }
+
+        // Invariants
+        assertLe(energyCurrent, energyMax);
+        assertEq(powerLevel, 0);
+        assertEq(energyMax, 3);
+    }
+
+    // -----------------------------------------------------------------------
+    // 30. Fuzz: Snapshot stats & clamping invariants for arbitrary values
+    // -----------------------------------------------------------------------
+    function testFuzz_Snapshot_StatsAlwaysWithinBounds(
+        uint256 principal,
+        uint256 accruedReward,
+        uint32 streak
+    ) public {
+        // Prevent overflow on arithmetic sum (principal + accruedReward)
+        if (principal > type(uint256).max - accruedReward) return;
+
+        PlayerState.PositionSnapshot memory snap;
+        snap.player = bob;
+        snap.principal = principal;
+        snap.accruedReward = accruedReward;
+        snap.positionStreak = streak;
+        snap.weightedAprBps = 1000;
+        snap.updatedAt = uint64(block.timestamp);
+        snap.questCompleted = false;
+
+        vm.prank(admin);
+        playerState.applyPositionSnapshot(snap);
+
+        (
+            uint8 energyCurrent,
+            uint8 energyMax,
+            uint8 powerLevel,
+            uint32 openRadius,
+            uint8 compassLevel,
+            uint32 explorationScore,
+            PlayerState.Rarity rar,
+            uint64 lastSnapshotAt
+        ) = playerState.getStats(bob);
+
+        // Core progression invariants (PRD §5.4, §5.5)
+        assertTrue(powerLevel <= 3, "powerLevel must be <= 3");
+        assertTrue(energyMax >= 3 && energyMax <= 6, "energyMax in [3, 6]");
+        assertEq(energyMax, 3 + powerLevel, "energyMax == 3 + powerLevel");
+        assertEq(openRadius, 30 + uint32(5) * powerLevel, "openRadius formula");
+        assertTrue(openRadius >= 30 && openRadius <= 45, "openRadius in [30, 45]");
+        assertEq(compassLevel, 1 + powerLevel, "compassLevel formula");
+        assertTrue(compassLevel >= 1 && compassLevel <= 4, "compassLevel in [1, 4]");
+
+        // Energy clamping invariant (PRD §4.5)
+        assertTrue(energyCurrent <= energyMax, "energyCurrent must never exceed energyMax");
+
+        // Exploration score: uniqueH3 (0) + min(streak, 7)
+        uint32 expectedScore = streak > 7 ? 7 : streak;
+        assertEq(explorationScore, expectedScore, "explorationScore capped at 7");
+
+        // Rarity mapping invariant
+        if (explorationScore >= 10) {
+            assertEq(uint8(rar), uint8(PlayerState.Rarity.LEGENDARY));
+        } else if (explorationScore >= 6) {
+            assertEq(uint8(rar), uint8(PlayerState.Rarity.EPIC));
+        } else if (explorationScore >= 3) {
+            assertEq(uint8(rar), uint8(PlayerState.Rarity.RARE));
+        } else {
+            assertEq(uint8(rar), uint8(PlayerState.Rarity.COMMON));
+        }
+
+        assertEq(lastSnapshotAt, uint64(block.timestamp));
+    }
+
+    // -----------------------------------------------------------------------
+    // 31. Fuzz: Proof TTL timing boundaries (valid in [now, now+90s])
+    // -----------------------------------------------------------------------
+    function testFuzz_ProofTiming_TtlBoundaries(uint8 offsetSeconds) public {
+        vm.assume(offsetSeconds <= 90);
+
+        bytes32 chestId = keccak256(abi.encodePacked("fuzz-ttl-chest", offsetSeconds));
+        bytes32 nonce   = keccak256(abi.encodePacked("fuzz-ttl-nonce", offsetSeconds));
+        bytes32 h3Cell  = keccak256(abi.encodePacked("fuzz-ttl-h3", offsetSeconds));
+        uint64 exp      = uint64(block.timestamp + offsetSeconds);
+
+        ChestManager.LocationProof memory proof =
+            _makeLocationProof(alice, chestId, nonce, exp, signerPrivKey);
+
+        vm.prank(alice);
+        bytes32 reqId = chestManager.openChest(ChestManager.ChestType.YIELD, h3Cell, proof);
+        assertTrue(reqId != bytes32(0));
+    }
+
+    // -----------------------------------------------------------------------
+    // 32. Fuzz: Proof TTL exceeded (> 90s) always reverts
+    // -----------------------------------------------------------------------
+    function testFuzz_ProofTiming_ExceededAlwaysReverts(uint16 excessSeconds) public {
+        vm.assume(excessSeconds >= 91 && excessSeconds <= 10000);
+
+        bytes32 chestId = keccak256(abi.encodePacked("fuzz-exceed-chest", excessSeconds));
+        bytes32 nonce   = keccak256(abi.encodePacked("fuzz-exceed-nonce", excessSeconds));
+        bytes32 h3Cell  = keccak256(abi.encodePacked("fuzz-exceed-h3", excessSeconds));
+        uint64 exp      = uint64(block.timestamp + excessSeconds);
+
+        ChestManager.LocationProof memory proof =
+            _makeLocationProof(alice, chestId, nonce, exp, signerPrivKey);
+
+        vm.prank(alice);
+        vm.expectRevert(
+            abi.encodeWithSelector(ChestManager.ProofTtlExceeded.selector, exp, uint64(block.timestamp))
+        );
+        chestManager.openChest(ChestManager.ChestType.YIELD, h3Cell, proof);
+    }
+
+    // -----------------------------------------------------------------------
+    // 33. Fuzz: Expired proof in the past (< now) always reverts
+    // -----------------------------------------------------------------------
+    function testFuzz_ProofTiming_PastAlwaysReverts(uint16 pastSeconds) public {
+        vm.assume(pastSeconds >= 1 && pastSeconds <= uint64(block.timestamp));
+
+        bytes32 chestId = keccak256(abi.encodePacked("fuzz-past-chest", pastSeconds));
+        bytes32 nonce   = keccak256(abi.encodePacked("fuzz-past-nonce", pastSeconds));
+        bytes32 h3Cell  = keccak256(abi.encodePacked("fuzz-past-h3", pastSeconds));
+        uint64 exp      = uint64(block.timestamp - pastSeconds);
+
+        ChestManager.LocationProof memory proof =
+            _makeLocationProof(alice, chestId, nonce, exp, signerPrivKey);
+
+        vm.prank(alice);
+        vm.expectRevert(
+            abi.encodeWithSelector(ChestManager.ProofExpired.selector, exp, uint64(block.timestamp))
+        );
+        chestManager.openChest(ChestManager.ChestType.YIELD, h3Cell, proof);
+    }
+
+    // -----------------------------------------------------------------------
+    // 34. Gas Benchmark: Per-transaction costs (single action gas profile)
+    // -----------------------------------------------------------------------
+    function test_GasBenchmark_SingleActionProfiles() public {
+        // 1. Gas for single applyPositionSnapshot (fresh player, 4 slots)
+        PlayerState.PositionSnapshot memory snap;
+        snap.player = makeAddr("gasPlayer");
+        snap.principal = 10_000_000;
+        snap.positionStreak = 7;
+        snap.weightedAprBps = 1200;
+        snap.updatedAt = uint64(block.timestamp);
+
+        uint256 gasBeforeSnap = gasleft();
+        vm.prank(admin);
+        playerState.applyPositionSnapshot(snap);
+        uint256 gasUsedSnap = gasBeforeSnap - gasleft();
+        assertTrue(gasUsedSnap < 150_000, "applyPositionSnapshot should be < 150k gas");
+
+        // 2. Gas for energy refill on new epoch (O(1), zero loops)
+        address gasPlayer = snap.player;
+        uint256 gasBeforeRefill = gasleft();
+        vm.prank(admin);
+        playerState.consumeEnergy(gasPlayer); // refills to 6, consumes to 5
+        uint256 gasUsedRefill = gasBeforeRefill - gasleft();
+        assertTrue(gasUsedRefill < 100_000, "Refill consumeEnergy should be < 100k gas");
+
+        // 3. Gas for normal consumeEnergy without refill (same epoch)
+        uint256 gasBeforeNormal = gasleft();
+        vm.prank(admin);
+        playerState.consumeEnergy(gasPlayer); // 5 -> 4
+        uint256 gasUsedNormal = gasBeforeNormal - gasleft();
+        assertTrue(gasUsedNormal < 50_000, "Normal consumeEnergy should be < 50k gas");
+
+        // 4. Gas for single openChest (EIP-712 recovery + storage)
+        bytes32 chestId = keccak256("bench-chest");
+        bytes32 nonce   = keccak256("bench-nonce");
+        bytes32 h3Cell  = keccak256("bench-h3");
+        uint64 exp      = uint64(block.timestamp + 60);
+        ChestManager.LocationProof memory proof =
+            _makeLocationProof(gasPlayer, chestId, nonce, exp, signerPrivKey);
+
+        uint256 gasBeforeOpen = gasleft();
+        vm.prank(gasPlayer);
+        chestManager.openChest(ChestManager.ChestType.YIELD, h3Cell, proof);
+        uint256 gasUsedOpen = gasBeforeOpen - gasleft();
+        assertTrue(gasUsedOpen < 300_000, "openChest should be < 300k gas");
     }
 }

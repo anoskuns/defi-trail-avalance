@@ -71,7 +71,18 @@ importers:
         specifier: 0.8.28
         version: 0.8.28(debug@4.4.3)
 
-  packages/contracts-l1: {}
+  packages/contracts-l1:
+    dependencies:
+      '@openzeppelin/contracts':
+        specifier: ^5.6.1
+        version: 5.6.1
+    devDependencies:
+      forge-std:
+        specifier: ^1.1.2
+        version: 1.1.2
+      solc:
+        specifier: 0.8.28
+        version: 0.8.28(debug@4.4.3)
 
   packages/relayer:
     dependencies:
