@@ -1,0 +1,19 @@
+packages:
+  - "apps/web"
+  - "packages/contracts-l1"
+  - "packages/contracts-cchain"
+  - "packages/shared"
+  - "packages/relayer"
+
+# Native postinstall scripts pulled transitively by wallet dependencies are not
+# required for the repository-foundation task. Keep them disabled explicitly so
+# clean installs remain non-interactive and supply-chain policy is reproducible.
+allowBuilds:
+  bufferutil: false
+  keccak: false
+  utf-8-validate: false
+
+# thirdweb currently pulls an older 1.x shim through valtio. The latest 1.x
+# release explicitly supports React 19, which is the supported path for Next 16.
+overrides:
+  use-sync-external-store: 1.7.0

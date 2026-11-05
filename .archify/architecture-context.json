@@ -1,0 +1,494 @@
+{
+  "artifact": "architecture-context.json",
+  "status": "ready",
+  "phase": "analyze",
+  "targetPath": "C:\\Users\\Lenovo\\Documents\\3.1.Cu\u1ed9c Thi\\Cu\u1ed9c Thi Avalance Build Web3\\Yield Go Project",
+  "scanRoot": ".",
+  "system": {
+    "project_name": "Yield Go Project",
+    "target_path": "C:\\Users\\Lenovo\\Documents\\3.1.Cu\u1ed9c Thi\\Cu\u1ed9c Thi Avalance Build Web3\\Yield Go Project",
+    "dominant_top_level_directories": [
+      "apps",
+      "packages",
+      "scripts",
+      "services"
+    ],
+    "dependency_shape": "0 subsystem links, 0 ambiguous edges, 2 tagged entrypoints, 0 enriched docs",
+    "summary": "Yield Go Project contains 7 subsystems, 0 cross-subsystem flows, 0 processed documents, and 1 external dependency derived from 8 extracted code nodes."
+  },
+  "subsystems": [
+    {
+      "id": "subsystem-0-0-apps-web",
+      "name": "apps/web",
+      "summary": "apps/web is a infrastructure subsystem covering 1 paths and 1 symbols; strongest evidence: imports x1.",
+      "kind": "infrastructure",
+      "source_paths": [
+        "apps/web/next.config.ts"
+      ],
+      "key_symbols": [
+        "next"
+      ],
+      "responsibilities": [
+        "Primary symbols: import_reference x1.",
+        "Internal relations: imports x1."
+      ],
+      "depends_on": [],
+      "depended_on_by": [],
+      "public_interfaces": [],
+      "internal_signals": [
+        "imports:1",
+        "next"
+      ],
+      "evidence_node_ids": [
+        "ref_apps_web_next_config_ts_import_next",
+        "file_apps_web_next_config_ts"
+      ],
+      "evidence_edge_refs": [
+        "edge:file_apps_web_next_config_ts:imports:ref_apps_web_next_config_ts_import_next:apps/web/next.config.ts:1:0"
+      ],
+      "doc_evidence_node_ids": [],
+      "doc_rationale_snippets": [],
+      "confidence": "high"
+    },
+    {
+      "id": "subsystem-1-0-apps-web",
+      "name": "apps/web",
+      "summary": "apps/web is a module subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+      "kind": "module",
+      "source_paths": [
+        "apps/web/next-env.d.ts"
+      ],
+      "key_symbols": [],
+      "responsibilities": [],
+      "depends_on": [],
+      "depended_on_by": [],
+      "public_interfaces": [],
+      "internal_signals": [],
+      "evidence_node_ids": [
+        "file_apps_web_next_env_d_ts"
+      ],
+      "evidence_edge_refs": [],
+      "doc_evidence_node_ids": [],
+      "doc_rationale_snippets": [],
+      "confidence": "medium"
+    },
+    {
+      "id": "subsystem-2-0-apps-web",
+      "name": "apps/web",
+      "summary": "apps/web is a module subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+      "kind": "module",
+      "source_paths": [
+        "apps/web/src/app/layout.tsx"
+      ],
+      "key_symbols": [],
+      "responsibilities": [],
+      "depends_on": [],
+      "depended_on_by": [],
+      "public_interfaces": [],
+      "internal_signals": [],
+      "evidence_node_ids": [
+        "file_apps_web_src_app_layout_tsx"
+      ],
+      "evidence_edge_refs": [],
+      "doc_evidence_node_ids": [],
+      "doc_rationale_snippets": [],
+      "confidence": "medium"
+    },
+    {
+      "id": "subsystem-3-0-apps-web",
+      "name": "apps/web",
+      "summary": "apps/web is a ui subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+      "kind": "ui",
+      "source_paths": [
+        "apps/web/src/app/page.tsx"
+      ],
+      "key_symbols": [],
+      "responsibilities": [],
+      "depends_on": [],
+      "depended_on_by": [],
+      "public_interfaces": [],
+      "internal_signals": [],
+      "evidence_node_ids": [
+        "file_apps_web_src_app_page_tsx"
+      ],
+      "evidence_edge_refs": [],
+      "doc_evidence_node_ids": [],
+      "doc_rationale_snippets": [],
+      "confidence": "medium"
+    },
+    {
+      "id": "subsystem-4-0-packages-domain",
+      "name": "packages/domain",
+      "summary": "packages/domain is a module subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+      "kind": "module",
+      "source_paths": [
+        "packages/domain/src/index.ts"
+      ],
+      "key_symbols": [],
+      "responsibilities": [
+        "Exposes 1 interface candidate."
+      ],
+      "depends_on": [],
+      "depended_on_by": [],
+      "public_interfaces": [
+        "interface-subsystem-4-0-packages-domain-packages-domain-src-index-ts-cli"
+      ],
+      "internal_signals": [],
+      "evidence_node_ids": [
+        "file_packages_domain_src_index_ts"
+      ],
+      "evidence_edge_refs": [],
+      "doc_evidence_node_ids": [],
+      "doc_rationale_snippets": [],
+      "confidence": "medium"
+    },
+    {
+      "id": "subsystem-5-0-scripts",
+      "name": "scripts",
+      "summary": "scripts is a module subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+      "kind": "module",
+      "source_paths": [
+        "scripts/main.ts"
+      ],
+      "key_symbols": [],
+      "responsibilities": [
+        "Exposes 1 interface candidate."
+      ],
+      "depends_on": [],
+      "depended_on_by": [],
+      "public_interfaces": [
+        "interface-subsystem-5-0-scripts-scripts-main-ts-entrypoint"
+      ],
+      "internal_signals": [],
+      "evidence_node_ids": [
+        "file_scripts_main_ts"
+      ],
+      "evidence_edge_refs": [],
+      "doc_evidence_node_ids": [],
+      "doc_rationale_snippets": [],
+      "confidence": "medium"
+    },
+    {
+      "id": "subsystem-6-0-services-relayer",
+      "name": "services/relayer",
+      "summary": "services/relayer is a service subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+      "kind": "service",
+      "source_paths": [
+        "services/relayer/src/main.ts"
+      ],
+      "key_symbols": [],
+      "responsibilities": [
+        "Exposes 1 interface candidate."
+      ],
+      "depends_on": [],
+      "depended_on_by": [],
+      "public_interfaces": [
+        "interface-subsystem-6-0-services-relayer-services-relayer-src-main-ts-entrypoint"
+      ],
+      "internal_signals": [],
+      "evidence_node_ids": [
+        "file_services_relayer_src_main_ts"
+      ],
+      "evidence_edge_refs": [],
+      "doc_evidence_node_ids": [],
+      "doc_rationale_snippets": [],
+      "confidence": "medium"
+    }
+  ],
+  "interfaces": [
+    {
+      "id": "interface-subsystem-4-0-packages-domain-packages-domain-src-index-ts-cli",
+      "name": "packages/domain/src/index.ts",
+      "kind": "cli",
+      "subsystem_id": "subsystem-4-0-packages-domain",
+      "source_path": "packages/domain/src/index.ts",
+      "symbol": "packages/domain/src/index.ts",
+      "summary": "packages/domain/src/index.ts appears to be a cli boundary for packages/domain.",
+      "evidence_node_ids": [
+        "file_packages_domain_src_index_ts"
+      ],
+      "evidence_edge_refs": [],
+      "confidence": "medium",
+      "doc_evidence_node_ids": []
+    },
+    {
+      "id": "interface-subsystem-5-0-scripts-scripts-main-ts-entrypoint",
+      "name": "scripts/main.ts",
+      "kind": "entrypoint",
+      "subsystem_id": "subsystem-5-0-scripts",
+      "source_path": "scripts/main.ts",
+      "symbol": "scripts/main.ts",
+      "summary": "scripts/main.ts appears to be a entrypoint boundary for scripts.",
+      "evidence_node_ids": [
+        "file_scripts_main_ts"
+      ],
+      "evidence_edge_refs": [],
+      "confidence": "high",
+      "doc_evidence_node_ids": []
+    },
+    {
+      "id": "interface-subsystem-6-0-services-relayer-services-relayer-src-main-ts-entrypoint",
+      "name": "services/relayer/src/main.ts",
+      "kind": "entrypoint",
+      "subsystem_id": "subsystem-6-0-services-relayer",
+      "source_path": "services/relayer/src/main.ts",
+      "symbol": "services/relayer/src/main.ts",
+      "summary": "services/relayer/src/main.ts appears to be a entrypoint boundary for services/relayer.",
+      "evidence_node_ids": [
+        "file_services_relayer_src_main_ts"
+      ],
+      "evidence_edge_refs": [],
+      "confidence": "high",
+      "doc_evidence_node_ids": []
+    }
+  ],
+  "data_flows": [],
+  "cross_cutting_concerns": [
+    {
+      "id": "concern-config",
+      "name": "config",
+      "summary": "config signals appear across 2 subsystems via 3 matched nodes.",
+      "subsystem_ids": [
+        "subsystem-0-0-apps-web",
+        "subsystem-1-0-apps-web"
+      ],
+      "evidence_node_ids": [
+        "file_apps_web_next_config_ts",
+        "file_apps_web_next_env_d_ts",
+        "ref_apps_web_next_config_ts_import_next"
+      ],
+      "evidence_edge_refs": [
+        "edge:file_apps_web_next_config_ts:imports:ref_apps_web_next_config_ts_import_next:apps/web/next.config.ts:1:0"
+      ],
+      "confidence": "medium"
+    }
+  ],
+  "key_entrypoints": [
+    {
+      "id": "entrypoint-interface-subsystem-5-0-scripts-scripts-main-ts-entrypoint",
+      "name": "scripts/main.ts",
+      "kind": "entrypoint",
+      "subsystem_id": "subsystem-5-0-scripts",
+      "source_path": "scripts/main.ts",
+      "summary": "Ranked as an entrypoint because it is tagged or named like a runtime root and has degree 0.",
+      "evidence_node_ids": [
+        "file_scripts_main_ts"
+      ],
+      "evidence_edge_refs": [],
+      "confidence": "high"
+    },
+    {
+      "id": "entrypoint-interface-subsystem-6-0-services-relayer-services-relayer-src-main-ts-entrypoint",
+      "name": "services/relayer/src/main.ts",
+      "kind": "entrypoint",
+      "subsystem_id": "subsystem-6-0-services-relayer",
+      "source_path": "services/relayer/src/main.ts",
+      "summary": "Ranked as an entrypoint because it is tagged or named like a runtime root and has degree 0.",
+      "evidence_node_ids": [
+        "file_services_relayer_src_main_ts"
+      ],
+      "evidence_edge_refs": [],
+      "confidence": "high"
+    },
+    {
+      "id": "entrypoint-interface-subsystem-4-0-packages-domain-packages-domain-src-index-ts-cli",
+      "name": "packages/domain/src/index.ts",
+      "kind": "cli",
+      "subsystem_id": "subsystem-4-0-packages-domain",
+      "source_path": "packages/domain/src/index.ts",
+      "summary": "Ranked as an entrypoint because it is tagged or named like a runtime root and has degree 0.",
+      "evidence_node_ids": [
+        "file_packages_domain_src_index_ts"
+      ],
+      "evidence_edge_refs": [],
+      "confidence": "medium"
+    }
+  ],
+  "external_dependencies": [
+    {
+      "id": "external-next",
+      "name": "next",
+      "kind": "import_reference",
+      "source_paths": [
+        "apps/web/next.config.ts"
+      ],
+      "used_by_subsystems": [
+        "subsystem-0-0-apps-web"
+      ],
+      "evidence_node_ids": [
+        "ref_apps_web_next_config_ts_import_next"
+      ],
+      "evidence_edge_refs": [
+        "edge:file_apps_web_next_config_ts:imports:ref_apps_web_next_config_ts_import_next:apps/web/next.config.ts:1:0"
+      ],
+      "confidence": "low"
+    }
+  ],
+  "evidence": {
+    "edge:file_apps_web_next_config_ts:imports:ref_apps_web_next_config_ts_import_next:apps/web/next.config.ts:1:0": {
+      "type": "edge",
+      "source": "file_apps_web_next_config_ts",
+      "target": "ref_apps_web_next_config_ts_import_next",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/next.config.ts",
+      "source_location": {
+        "line": 1
+      }
+    },
+    "file:apps/web/next-env.d.ts": {
+      "type": "file",
+      "path": "apps/web/next-env.d.ts"
+    },
+    "file:apps/web/next.config.ts": {
+      "type": "file",
+      "path": "apps/web/next.config.ts"
+    },
+    "file:apps/web/src/app/layout.tsx": {
+      "type": "file",
+      "path": "apps/web/src/app/layout.tsx"
+    },
+    "file:apps/web/src/app/page.tsx": {
+      "type": "file",
+      "path": "apps/web/src/app/page.tsx"
+    },
+    "file:packages/domain/src/index.ts": {
+      "type": "file",
+      "path": "packages/domain/src/index.ts"
+    },
+    "file:scripts/main.ts": {
+      "type": "file",
+      "path": "scripts/main.ts"
+    },
+    "file:services/relayer/src/main.ts": {
+      "type": "file",
+      "path": "services/relayer/src/main.ts"
+    },
+    "node:file_apps_web_next_config_ts": {
+      "type": "node",
+      "id": "file_apps_web_next_config_ts",
+      "label": "apps/web/next.config.ts",
+      "kind": "file",
+      "source_file": "apps/web/next.config.ts",
+      "source_location": {
+        "line": 1,
+        "column": 0
+      }
+    },
+    "node:file_apps_web_next_env_d_ts": {
+      "type": "node",
+      "id": "file_apps_web_next_env_d_ts",
+      "label": "apps/web/next-env.d.ts",
+      "kind": "file",
+      "source_file": "apps/web/next-env.d.ts",
+      "source_location": {
+        "line": 1,
+        "column": 0
+      }
+    },
+    "node:file_apps_web_src_app_layout_tsx": {
+      "type": "node",
+      "id": "file_apps_web_src_app_layout_tsx",
+      "label": "apps/web/src/app/layout.tsx",
+      "kind": "file",
+      "source_file": "apps/web/src/app/layout.tsx",
+      "source_location": {
+        "line": 1,
+        "column": 0
+      }
+    },
+    "node:file_apps_web_src_app_page_tsx": {
+      "type": "node",
+      "id": "file_apps_web_src_app_page_tsx",
+      "label": "apps/web/src/app/page.tsx",
+      "kind": "file",
+      "source_file": "apps/web/src/app/page.tsx",
+      "source_location": {
+        "line": 1,
+        "column": 0
+      }
+    },
+    "node:file_packages_domain_src_index_ts": {
+      "type": "node",
+      "id": "file_packages_domain_src_index_ts",
+      "label": "packages/domain/src/index.ts",
+      "kind": "file",
+      "source_file": "packages/domain/src/index.ts",
+      "source_location": {
+        "line": 1,
+        "column": 0
+      }
+    },
+    "node:file_scripts_main_ts": {
+      "type": "node",
+      "id": "file_scripts_main_ts",
+      "label": "scripts/main.ts",
+      "kind": "file",
+      "source_file": "scripts/main.ts",
+      "source_location": {
+        "line": 1,
+        "column": 0
+      }
+    },
+    "node:file_services_relayer_src_main_ts": {
+      "type": "node",
+      "id": "file_services_relayer_src_main_ts",
+      "label": "services/relayer/src/main.ts",
+      "kind": "file",
+      "source_file": "services/relayer/src/main.ts",
+      "source_location": {
+        "line": 1,
+        "column": 0
+      }
+    },
+    "node:ref_apps_web_next_config_ts_import_next": {
+      "type": "node",
+      "id": "ref_apps_web_next_config_ts_import_next",
+      "label": "next",
+      "kind": "import_reference",
+      "source_file": "apps/web/next.config.ts",
+      "source_location": {
+        "line": 1
+      }
+    }
+  },
+  "open_questions": [
+    {
+      "id": "question-what-responsibilities-are-grouped-inside-community-0",
+      "question": "What responsibilities are grouped inside Community 0?",
+      "why": "Representative nodes: next.",
+      "related_subsystems": [
+        "subsystem-0-0-apps-web"
+      ],
+      "evidence_node_ids": [
+        "ref_apps_web_next_config_ts_import_next"
+      ],
+      "evidence_edge_refs": [],
+      "confidence": "low"
+    },
+    {
+      "id": "question-why-is-next-central-to-the-repository",
+      "question": "Why is `next` central to the repository?",
+      "why": "It has the highest grounded degree in community 0.",
+      "related_subsystems": [
+        "subsystem-0-0-apps-web"
+      ],
+      "evidence_node_ids": [
+        "ref_apps_web_next_config_ts_import_next"
+      ],
+      "evidence_edge_refs": [],
+      "confidence": "low"
+    }
+  ],
+  "summary": {
+    "subsystemCount": 7,
+    "interfaceCount": 3,
+    "dataFlowCount": 0,
+    "crossCuttingConcernCount": 1,
+    "entrypointCount": 3,
+    "externalDependencyCount": 1,
+    "openQuestionCount": 2,
+    "docEvidenceSubsystemCount": 0,
+    "processedDocumentCount": 0
+  }
+}

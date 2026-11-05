@@ -1,0 +1,16 @@
+{
+  "artifact": "database.json",
+  "status": "ready",
+  "phase": "analyze",
+  "targetPath": "C:\\Users\\Lenovo\\Documents\\3.1.Cu\u1ed9c Thi\\Cu\u1ed9c Thi Avalance Build Web3\\Yield Go Project",
+  "scanRoot": ".",
+  "tables": [],
+  "migrations": [],
+  "accessBoundaries": [],
+  "querySignals": [],
+  "summary": {
+    "tableCount": 0,
+    "migrationCount": 0,
+    "boundaryCount": 0
+  }
+}

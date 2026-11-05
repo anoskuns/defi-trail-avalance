@@ -1,0 +1,666 @@
+{
+  "artifact": "facts.json",
+  "status": "ready",
+  "phase": "analyze",
+  "targetPath": "C:\\Users\\Lenovo\\Documents\\3.1.Cu\u1ed9c Thi\\Cu\u1ed9c Thi Avalance Build Web3\\Yield Go Project",
+  "scanRoot": ".",
+  "confirmedFindings": [
+    {
+      "id": "fact:entrypoint_entrypoint_interface_subsystem_4_0_packages_domain_packages_domain_src_index_ts_cli",
+      "category": "entrypoint",
+      "statement": "packages/domain/src/index.ts is a detected cli entrypoint in packages/domain/src/index.ts.",
+      "kind": "confirmed",
+      "confidence": "medium",
+      "evidence": [
+        "node:file_packages_domain_src_index_ts"
+      ]
+    },
+    {
+      "id": "fact:entrypoint_entrypoint_interface_subsystem_5_0_scripts_scripts_main_ts_entrypoint",
+      "category": "entrypoint",
+      "statement": "scripts/main.ts is a detected entrypoint entrypoint in scripts/main.ts.",
+      "kind": "confirmed",
+      "confidence": "high",
+      "evidence": [
+        "node:file_scripts_main_ts"
+      ]
+    },
+    {
+      "id": "fact:entrypoint_entrypoint_interface_subsystem_6_0_services_relayer_services_relayer_src_main_ts_entrypoint",
+      "category": "entrypoint",
+      "statement": "services/relayer/src/main.ts is a detected entrypoint entrypoint in services/relayer/src/main.ts.",
+      "kind": "confirmed",
+      "confidence": "high",
+      "evidence": [
+        "node:file_services_relayer_src_main_ts"
+      ]
+    },
+    {
+      "id": "fact:subsystem_subsystem_0_0_apps_web",
+      "category": "subsystem",
+      "statement": "apps/web is a detected infrastructure subsystem.",
+      "kind": "confirmed",
+      "confidence": "high",
+      "evidence": [
+        "edge:file_apps_web_next_config_ts:imports:ref_apps_web_next_config_ts_import_next:apps/web/next.config.ts:1:0",
+        "node:file_apps_web_next_config_ts",
+        "node:ref_apps_web_next_config_ts_import_next"
+      ]
+    },
+    {
+      "id": "fact:subsystem_subsystem_1_0_apps_web",
+      "category": "subsystem",
+      "statement": "apps/web is a detected module subsystem.",
+      "kind": "confirmed",
+      "confidence": "high",
+      "evidence": [
+        "node:file_apps_web_next_env_d_ts"
+      ]
+    },
+    {
+      "id": "fact:subsystem_subsystem_2_0_apps_web",
+      "category": "subsystem",
+      "statement": "apps/web is a detected module subsystem.",
+      "kind": "confirmed",
+      "confidence": "high",
+      "evidence": [
+        "node:file_apps_web_src_app_layout_tsx"
+      ]
+    },
+    {
+      "id": "fact:subsystem_subsystem_3_0_apps_web",
+      "category": "subsystem",
+      "statement": "apps/web is a detected ui subsystem.",
+      "kind": "confirmed",
+      "confidence": "high",
+      "evidence": [
+        "node:file_apps_web_src_app_page_tsx"
+      ]
+    },
+    {
+      "id": "fact:subsystem_subsystem_4_0_packages_domain",
+      "category": "subsystem",
+      "statement": "packages/domain is a detected module subsystem.",
+      "kind": "confirmed",
+      "confidence": "high",
+      "evidence": [
+        "node:file_packages_domain_src_index_ts"
+      ]
+    },
+    {
+      "id": "fact:subsystem_subsystem_5_0_scripts",
+      "category": "subsystem",
+      "statement": "scripts is a detected module subsystem.",
+      "kind": "confirmed",
+      "confidence": "high",
+      "evidence": [
+        "node:file_scripts_main_ts"
+      ]
+    },
+    {
+      "id": "fact:subsystem_subsystem_6_0_services_relayer",
+      "category": "subsystem",
+      "statement": "services/relayer is a detected service subsystem.",
+      "kind": "confirmed",
+      "confidence": "high",
+      "evidence": [
+        "node:file_services_relayer_src_main_ts"
+      ]
+    }
+  ],
+  "inferredFindings": [
+    {
+      "id": "fact:question_question_what_responsibilities_are_grouped_inside_community_0",
+      "category": "open_question",
+      "statement": "What responsibilities are grouped inside Community 0?",
+      "kind": "inferred",
+      "confidence": "low",
+      "evidence": [
+        "node:ref_apps_web_next_config_ts_import_next"
+      ]
+    },
+    {
+      "id": "fact:question_question_why_is_next_central_to_the_repository",
+      "category": "open_question",
+      "statement": "Why is `next` central to the repository?",
+      "kind": "inferred",
+      "confidence": "low",
+      "evidence": [
+        "node:ref_apps_web_next_config_ts_import_next"
+      ]
+    }
+  ],
+  "totals": {
+    "files": 18,
+    "byFileType": {
+      "code": 7,
+      "document": 1,
+      "config": 10,
+      "asset": 0,
+      "unknown": 0
+    },
+    "byArchitectureTag": {
+      "entrypoint": 2,
+      "route": 0,
+      "migration": 0,
+      "database": 0,
+      "infra": 0,
+      "dependency_manifest": 6,
+      "test": 0,
+      "docs": 1,
+      "generated": 0
+    }
+  },
+  "extractionCandidates": [
+    "apps/web/next-env.d.ts",
+    "apps/web/next.config.ts",
+    "apps/web/src/app/layout.tsx",
+    "apps/web/src/app/page.tsx",
+    "packages/domain/src/index.ts",
+    "scripts/main.ts",
+    "services/relayer/src/main.ts"
+  ],
+  "skipped": {
+    "ignored": 0,
+    "sensitive": 0,
+    "hidden": 24,
+    "unsupported": 2,
+    "oversized": 0
+  },
+  "ignorePatternCount": 6,
+  "warning": null,
+  "inventory": [
+    {
+      "path": "DeFi-Trail-PRD.md",
+      "fileType": "document",
+      "architectureTags": [
+        "docs"
+      ],
+      "sizeBytes": 44409,
+      "mtime": 1793863554.348728,
+      "detectionReason": "extension:.md"
+    },
+    {
+      "path": "apps/web/next-env.d.ts",
+      "fileType": "code",
+      "architectureTags": [],
+      "sizeBytes": 82,
+      "mtime": 1793871166.1990845,
+      "detectionReason": "extension:.ts"
+    },
+    {
+      "path": "apps/web/next.config.ts",
+      "fileType": "code",
+      "architectureTags": [],
+      "sizeBytes": 104,
+      "mtime": 1793871166.1980863,
+      "detectionReason": "extension:.ts"
+    },
+    {
+      "path": "apps/web/package.json",
+      "fileType": "config",
+      "architectureTags": [
+        "dependency_manifest"
+      ],
+      "sizeBytes": 502,
+      "mtime": 1793871166.193084,
+      "detectionReason": "basename:package.json"
+    },
+    {
+      "path": "apps/web/src/app/layout.tsx",
+      "fileType": "code",
+      "architectureTags": [],
+      "sizeBytes": 1,
+      "mtime": 1793871166.205082,
+      "detectionReason": "extension:.tsx"
+    },
+    {
+      "path": "apps/web/src/app/page.tsx",
+      "fileType": "code",
+      "architectureTags": [],
+      "sizeBytes": 1,
+      "mtime": 1793871166.2060816,
+      "detectionReason": "extension:.tsx"
+    },
+    {
+      "path": "apps/web/tsconfig.json",
+      "fileType": "config",
+      "architectureTags": [],
+      "sizeBytes": 287,
+      "mtime": 1793871166.197085,
+      "detectionReason": "basename:tsconfig.json"
+    },
+    {
+      "path": "contracts/fuji-c-chain/package.json",
+      "fileType": "config",
+      "architectureTags": [
+        "dependency_manifest"
+      ],
+      "sizeBytes": 109,
+      "mtime": 1793871166.26266,
+      "detectionReason": "basename:package.json"
+    },
+    {
+      "path": "contracts/game-l1/package.json",
+      "fileType": "config",
+      "architectureTags": [
+        "dependency_manifest"
+      ],
+      "sizeBytes": 104,
+      "mtime": 1793871166.25366,
+      "detectionReason": "basename:package.json"
+    },
+    {
+      "path": "package.json",
+      "fileType": "config",
+      "architectureTags": [
+        "dependency_manifest"
+      ],
+      "sizeBytes": 555,
+      "mtime": 1793871166.1810842,
+      "detectionReason": "basename:package.json"
+    },
+    {
+      "path": "packages/domain/package.json",
+      "fileType": "config",
+      "architectureTags": [
+        "dependency_manifest"
+      ],
+      "sizeBytes": 179,
+      "mtime": 1793871166.2319424,
+      "detectionReason": "basename:package.json"
+    },
+    {
+      "path": "packages/domain/src/index.ts",
+      "fileType": "code",
+      "architectureTags": [],
+      "sizeBytes": 1,
+      "mtime": 1793871166.240705,
+      "detectionReason": "extension:.ts"
+    },
+    {
+      "path": "packages/domain/tsconfig.json",
+      "fileType": "config",
+      "architectureTags": [],
+      "sizeBytes": 74,
+      "mtime": 1793871166.2339299,
+      "detectionReason": "basename:tsconfig.json"
+    },
+    {
+      "path": "scripts/main.ts",
+      "fileType": "code",
+      "architectureTags": [
+        "entrypoint"
+      ],
+      "sizeBytes": 1,
+      "mtime": 1793871166.2926474,
+      "detectionReason": "extension:.ts"
+    },
+    {
+      "path": "services/relayer/package.json",
+      "fileType": "config",
+      "architectureTags": [
+        "dependency_manifest"
+      ],
+      "sizeBytes": 149,
+      "mtime": 1793871166.2756784,
+      "detectionReason": "basename:package.json"
+    },
+    {
+      "path": "services/relayer/src/main.ts",
+      "fileType": "code",
+      "architectureTags": [
+        "entrypoint"
+      ],
+      "sizeBytes": 1,
+      "mtime": 1793871166.279664,
+      "detectionReason": "extension:.ts"
+    },
+    {
+      "path": "services/relayer/tsconfig.json",
+      "fileType": "config",
+      "architectureTags": [],
+      "sizeBytes": 74,
+      "mtime": 1793871166.2776778,
+      "detectionReason": "basename:tsconfig.json"
+    },
+    {
+      "path": "tsconfig.base.json",
+      "fileType": "config",
+      "architectureTags": [],
+      "sizeBytes": 314,
+      "mtime": 1793871166.1910834,
+      "detectionReason": "basename:tsconfig.base.json"
+    }
+  ],
+  "extractionSummary": {
+    "extractedFiles": 7,
+    "changedFileCount": 7,
+    "reusedFileCount": 0,
+    "nodeCount": 8,
+    "edgeCount": 1,
+    "hyperedgeCount": 0,
+    "warningCount": 0
+  },
+  "graphSummary": {
+    "nodeCount": 8,
+    "edgeCount": 1,
+    "hyperedgeCount": 0,
+    "communityCount": 7,
+    "warningCount": 0
+  },
+  "dedupSummary": {
+    "duplicateNodeCount": 0,
+    "duplicateNodeIdCount": 0,
+    "duplicateEdgeCount": 0,
+    "mergedLabelGroupCount": 0,
+    "mergedLabelGroups": [],
+    "droppedSelfLoopCount": 0
+  },
+  "clusteringSummary": {
+    "backend": "deterministic_components",
+    "usedFallback": true,
+    "communityCount": 7,
+    "isolateCount": 6,
+    "maxCommunitySize": 2
+  },
+  "analysis": {
+    "godNodes": [
+      {
+        "id": "ref_apps_web_next_config_ts_import_next",
+        "label": "next",
+        "degree": 1,
+        "community": 0,
+        "sourceFile": "apps/web/next.config.ts",
+        "kind": "import_reference"
+      }
+    ],
+    "surprisingConnections": [],
+    "communitySummary": {
+      "communityCount": 7,
+      "thinCommunityCount": 7,
+      "communities": [
+        {
+          "id": 0,
+          "size": 2,
+          "cohesion": 1.0,
+          "sampleLabels": [
+            "next"
+          ],
+          "primaryKinds": [
+            {
+              "kind": "import_reference",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "size": 1,
+          "cohesion": 1.0,
+          "sampleLabels": [],
+          "primaryKinds": []
+        },
+        {
+          "id": 2,
+          "size": 1,
+          "cohesion": 1.0,
+          "sampleLabels": [],
+          "primaryKinds": []
+        },
+        {
+          "id": 3,
+          "size": 1,
+          "cohesion": 1.0,
+          "sampleLabels": [],
+          "primaryKinds": []
+        },
+        {
+          "id": 4,
+          "size": 1,
+          "cohesion": 1.0,
+          "sampleLabels": [],
+          "primaryKinds": []
+        },
+        {
+          "id": 5,
+          "size": 1,
+          "cohesion": 1.0,
+          "sampleLabels": [],
+          "primaryKinds": []
+        },
+        {
+          "id": 6,
+          "size": 1,
+          "cohesion": 1.0,
+          "sampleLabels": [],
+          "primaryKinds": []
+        }
+      ]
+    },
+    "ambiguitySummary": {
+      "ambiguousEdgeCount": 0,
+      "byRelation": {},
+      "samples": []
+    },
+    "knowledgeGaps": {
+      "isolatedNodeCount": 1,
+      "isolatedNodes": [
+        {
+          "id": "ref_apps_web_next_config_ts_import_next",
+          "label": "next",
+          "community": 0,
+          "sourceFile": "apps/web/next.config.ts"
+        }
+      ],
+      "thinCommunities": [
+        0
+      ]
+    },
+    "suggestedQuestions": [
+      {
+        "question": "Why is `next` central to the repository?",
+        "type": "hub",
+        "why": "It has the highest grounded degree in community 0."
+      },
+      {
+        "question": "What responsibilities are grouped inside Community 0?",
+        "type": "community",
+        "why": "Representative nodes: next."
+      }
+    ]
+  },
+  "architectureContextSummary": {
+    "subsystemCount": 7,
+    "interfaceCount": 3,
+    "dataFlowCount": 0,
+    "crossCuttingConcernCount": 1,
+    "entrypointCount": 3,
+    "externalDependencyCount": 1,
+    "openQuestionCount": 2,
+    "docEvidenceSubsystemCount": 0,
+    "processedDocumentCount": 0
+  },
+  "summary": {
+    "confirmedCount": 10,
+    "inferredCount": 2,
+    "subsystemCount": 7,
+    "entrypointCount": 3,
+    "nodeCount": 8,
+    "edgeCount": 1,
+    "ambiguousEdgeCount": 0,
+    "extractedFileCount": 7
+  },
+  "evidenceIndex": {
+    "edge:file_apps_web_next_config_ts:imports:ref_apps_web_next_config_ts_import_next:apps/web/next.config.ts:1:0": {
+      "type": "edge",
+      "source": "file_apps_web_next_config_ts",
+      "target": "ref_apps_web_next_config_ts_import_next",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/next.config.ts",
+      "source_location": {
+        "line": 1
+      }
+    },
+    "file:DeFi-Trail-PRD.md": {
+      "type": "file",
+      "path": "DeFi-Trail-PRD.md"
+    },
+    "file:apps/web/next-env.d.ts": {
+      "type": "file",
+      "path": "apps/web/next-env.d.ts"
+    },
+    "file:apps/web/next.config.ts": {
+      "type": "file",
+      "path": "apps/web/next.config.ts"
+    },
+    "file:apps/web/package.json": {
+      "type": "file",
+      "path": "apps/web/package.json"
+    },
+    "file:apps/web/src/app/layout.tsx": {
+      "type": "file",
+      "path": "apps/web/src/app/layout.tsx"
+    },
+    "file:apps/web/src/app/page.tsx": {
+      "type": "file",
+      "path": "apps/web/src/app/page.tsx"
+    },
+    "file:apps/web/tsconfig.json": {
+      "type": "file",
+      "path": "apps/web/tsconfig.json"
+    },
+    "file:contracts/fuji-c-chain/package.json": {
+      "type": "file",
+      "path": "contracts/fuji-c-chain/package.json"
+    },
+    "file:contracts/game-l1/package.json": {
+      "type": "file",
+      "path": "contracts/game-l1/package.json"
+    },
+    "file:package.json": {
+      "type": "file",
+      "path": "package.json"
+    },
+    "file:packages/domain/package.json": {
+      "type": "file",
+      "path": "packages/domain/package.json"
+    },
+    "file:packages/domain/src/index.ts": {
+      "type": "file",
+      "path": "packages/domain/src/index.ts"
+    },
+    "file:packages/domain/tsconfig.json": {
+      "type": "file",
+      "path": "packages/domain/tsconfig.json"
+    },
+    "file:scripts/main.ts": {
+      "type": "file",
+      "path": "scripts/main.ts"
+    },
+    "file:services/relayer/package.json": {
+      "type": "file",
+      "path": "services/relayer/package.json"
+    },
+    "file:services/relayer/src/main.ts": {
+      "type": "file",
+      "path": "services/relayer/src/main.ts"
+    },
+    "file:services/relayer/tsconfig.json": {
+      "type": "file",
+      "path": "services/relayer/tsconfig.json"
+    },
+    "file:tsconfig.base.json": {
+      "type": "file",
+      "path": "tsconfig.base.json"
+    },
+    "node:file_apps_web_next_config_ts": {
+      "type": "node",
+      "id": "file_apps_web_next_config_ts",
+      "label": "apps/web/next.config.ts",
+      "kind": "file",
+      "source_file": "apps/web/next.config.ts",
+      "source_location": {
+        "line": 1,
+        "column": 0
+      }
+    },
+    "node:file_apps_web_next_env_d_ts": {
+      "type": "node",
+      "id": "file_apps_web_next_env_d_ts",
+      "label": "apps/web/next-env.d.ts",
+      "kind": "file",
+      "source_file": "apps/web/next-env.d.ts",
+      "source_location": {
+        "line": 1,
+        "column": 0
+      }
+    },
+    "node:file_apps_web_src_app_layout_tsx": {
+      "type": "node",
+      "id": "file_apps_web_src_app_layout_tsx",
+      "label": "apps/web/src/app/layout.tsx",
+      "kind": "file",
+      "source_file": "apps/web/src/app/layout.tsx",
+      "source_location": {
+        "line": 1,
+        "column": 0
+      }
+    },
+    "node:file_apps_web_src_app_page_tsx": {
+      "type": "node",
+      "id": "file_apps_web_src_app_page_tsx",
+      "label": "apps/web/src/app/page.tsx",
+      "kind": "file",
+      "source_file": "apps/web/src/app/page.tsx",
+      "source_location": {
+        "line": 1,
+        "column": 0
+      }
+    },
+    "node:file_packages_domain_src_index_ts": {
+      "type": "node",
+      "id": "file_packages_domain_src_index_ts",
+      "label": "packages/domain/src/index.ts",
+      "kind": "file",
+      "source_file": "packages/domain/src/index.ts",
+      "source_location": {
+        "line": 1,
+        "column": 0
+      }
+    },
+    "node:file_scripts_main_ts": {
+      "type": "node",
+      "id": "file_scripts_main_ts",
+      "label": "scripts/main.ts",
+      "kind": "file",
+      "source_file": "scripts/main.ts",
+      "source_location": {
+        "line": 1,
+        "column": 0
+      }
+    },
+    "node:file_services_relayer_src_main_ts": {
+      "type": "node",
+      "id": "file_services_relayer_src_main_ts",
+      "label": "services/relayer/src/main.ts",
+      "kind": "file",
+      "source_file": "services/relayer/src/main.ts",
+      "source_location": {
+        "line": 1,
+        "column": 0
+      }
+    },
+    "node:ref_apps_web_next_config_ts_import_next": {
+      "type": "node",
+      "id": "ref_apps_web_next_config_ts_import_next",
+      "label": "next",
+      "kind": "import_reference",
+      "source_file": "apps/web/next.config.ts",
+      "source_location": {
+        "line": 1
+      }
+    }
+  }
+}

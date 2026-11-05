@@ -1,0 +1,41 @@
+{
+  "artifact": "docs-summary.json",
+  "status": "ready",
+  "phase": "analyze",
+  "targetPath": "C:\\Users\\Lenovo\\Documents\\3.1.Cu\u1ed9c Thi\\Cu\u1ed9c Thi Avalance Build Web3\\Yield Go Project",
+  "scanRoot": ".",
+  "semantic": {
+    "enabled": false,
+    "backend": "none",
+    "providerEnrichmentSkipped": true,
+    "message": "Semantic enrichment is disabled. This summary preserves document provenance for downstream synthesis."
+  },
+  "detectedDocs": [
+    {
+      "path": "DeFi-Trail-PRD.md",
+      "fileType": "document",
+      "detectionReason": "extension:.md",
+      "evidence": [
+        "file:DeFi-Trail-PRD.md"
+      ]
+    }
+  ],
+  "confirmedFacts": {
+    "processedDocuments": [],
+    "skippedDocuments": [],
+    "readmeLikeDocs": []
+  },
+  "inferredAlignments": {
+    "docToSubsystem": [],
+    "architectureThemes": [],
+    "unresolvedDocuments": []
+  },
+  "summary": {
+    "detectedDocumentCount": 1,
+    "processedDocumentCount": 0,
+    "skippedDocumentCount": 0,
+    "alignedDocumentCount": 0,
+    "themeCount": 0,
+    "unresolvedDocumentCount": 0
+  }
+}

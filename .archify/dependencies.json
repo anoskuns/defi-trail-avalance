@@ -1,0 +1,71 @@
+{
+  "artifact": "dependencies.json",
+  "status": "ready",
+  "phase": "analyze",
+  "targetPath": "C:\\Users\\Lenovo\\Documents\\3.1.Cu\u1ed9c Thi\\Cu\u1ed9c Thi Avalance Build Web3\\Yield Go Project",
+  "scanRoot": ".",
+  "internalDependencies": [],
+  "externalDependencies": [
+    {
+      "id": "external-next",
+      "name": "next",
+      "kind": "import_reference",
+      "usedBySubsystems": [
+        "subsystem-0-0-apps-web"
+      ],
+      "sourcePaths": [
+        "apps/web/next.config.ts"
+      ],
+      "confidence": "low",
+      "evidence": [
+        "edge:file_apps_web_next_config_ts:imports:ref_apps_web_next_config_ts_import_next:apps/web/next.config.ts:1:0",
+        "node:ref_apps_web_next_config_ts_import_next"
+      ]
+    }
+  ],
+  "dependencyManifests": [
+    {
+      "path": "apps/web/package.json",
+      "manifestType": "npm_manifest",
+      "evidence": [
+        "file:apps/web/package.json"
+      ]
+    },
+    {
+      "path": "contracts/fuji-c-chain/package.json",
+      "manifestType": "npm_manifest",
+      "evidence": [
+        "file:contracts/fuji-c-chain/package.json"
+      ]
+    },
+    {
+      "path": "contracts/game-l1/package.json",
+      "manifestType": "npm_manifest",
+      "evidence": [
+        "file:contracts/game-l1/package.json"
+      ]
+    },
+    {
+      "path": "package.json",
+      "manifestType": "npm_manifest",
+      "evidence": [
+        "file:package.json"
+      ]
+    },
+    {
+      "path": "packages/domain/package.json",
+      "manifestType": "npm_manifest",
+      "evidence": [
+        "file:packages/domain/package.json"
+      ]
+    },
+    {
+      "path": "services/relayer/package.json",
+      "manifestType": "npm_manifest",
+      "evidence": [
+        "file:services/relayer/package.json"
+      ]
+    }
+  ],
+  "hotspots": []
+}

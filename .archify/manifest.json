@@ -1,0 +1,490 @@
+{
+  "artifact": "manifest.json",
+  "status": "ready",
+  "phase": "analyze",
+  "manifestVersion": 2,
+  "graphArtifactVersion": 2,
+  "generatedAt": "2026-11-05T09:45:35.553182+00:00",
+  "targetPath": "C:\\Users\\Lenovo\\Documents\\3.1.Cu\u1ed9c Thi\\Cu\u1ed9c Thi Avalance Build Web3\\Yield Go Project",
+  "scanRoot": ".",
+  "semanticEnabled": false,
+  "semanticConfigFingerprint": "{\"detect\":{\"excludeGlobs\":[],\"followSymlinks\":false,\"includeGlobs\":[],\"includeHidden\":false,\"maxFileSizeBytes\":1048576},\"languageScope\":{\"exclude\":[],\"include\":[]},\"semantic\":{\"backend\":\"none\",\"enabled\":false,\"includeExtensions\":[\".md\",\".mdx\",\".txt\",\".rst\"],\"includeFileTypes\":[\"document\"],\"maxChunkBytes\":8192,\"maxChunksPerDocument\":32,\"maxDocumentBytes\":262144,\"mode\":\"docs_first\"},\"sourceRoot\":\".\"}",
+  "mode": "full",
+  "incremental": {
+    "incrementalEligible": false,
+    "new_or_changed_files": [
+      "DeFi-Trail-PRD.md",
+      "apps/web/next-env.d.ts",
+      "apps/web/next.config.ts",
+      "apps/web/package.json",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/app/page.tsx",
+      "apps/web/tsconfig.json",
+      "contracts/fuji-c-chain/package.json",
+      "contracts/game-l1/package.json",
+      "package.json",
+      "packages/domain/package.json",
+      "packages/domain/src/index.ts",
+      "packages/domain/tsconfig.json",
+      "scripts/main.ts",
+      "services/relayer/package.json",
+      "services/relayer/src/main.ts",
+      "services/relayer/tsconfig.json",
+      "tsconfig.base.json"
+    ],
+    "unchanged_files": [],
+    "deleted_files": [],
+    "changed_code_files": [
+      "apps/web/next-env.d.ts",
+      "apps/web/next.config.ts",
+      "apps/web/src/app/layout.tsx",
+      "apps/web/src/app/page.tsx",
+      "packages/domain/src/index.ts",
+      "scripts/main.ts",
+      "services/relayer/src/main.ts"
+    ],
+    "changed_semantic_files": [
+      "DeFi-Trail-PRD.md"
+    ],
+    "reused_code_files": [],
+    "reused_semantic_files": [],
+    "changedFileCount": 18,
+    "deletedFileCount": 0,
+    "reusedFileCount": 0,
+    "fallbackReason": "missing_prior_state",
+    "semanticSkipped": false
+  },
+  "staleLockRecovered": null,
+  "graphSummary": {
+    "nodeCount": 8,
+    "edgeCount": 1,
+    "hyperedgeCount": 0,
+    "communityCount": 7,
+    "warningCount": 0
+  },
+  "dedupSummary": {
+    "duplicateNodeCount": 0,
+    "duplicateNodeIdCount": 0,
+    "duplicateEdgeCount": 0,
+    "mergedLabelGroupCount": 0,
+    "mergedLabelGroups": [],
+    "droppedSelfLoopCount": 0
+  },
+  "clusteringSummary": {
+    "backend": "deterministic_components",
+    "usedFallback": true,
+    "communityCount": 7,
+    "isolateCount": 6,
+    "maxCommunitySize": 2
+  },
+  "analysisSummary": {
+    "godNodeCount": 1,
+    "surprisingConnectionCount": 0,
+    "suggestedQuestionCount": 2,
+    "ambiguousEdgeCount": 0
+  },
+  "semanticSummary": {
+    "enabled": false,
+    "mode": "docs_first",
+    "backend": "none",
+    "providerEnrichmentSkipped": true,
+    "selectedDocumentCount": 0,
+    "processedDocumentCount": 0,
+    "skippedDocumentCount": 0,
+    "nodeCount": 0,
+    "edgeCount": 0,
+    "hyperedgeCount": 0,
+    "warningCount": 0
+  },
+  "architectureContextSummary": {
+    "subsystemCount": 7,
+    "interfaceCount": 3,
+    "dataFlowCount": 0,
+    "crossCuttingConcernCount": 1,
+    "entrypointCount": 3,
+    "externalDependencyCount": 1,
+    "openQuestionCount": 2,
+    "docEvidenceSubsystemCount": 0,
+    "processedDocumentCount": 0
+  },
+  "files": {
+    "DeFi-Trail-PRD.md": {
+      "mtime": 1793863554.348728,
+      "sizeBytes": 44409,
+      "hash": "e8f05df109b89c45a739ab05b9c61513bef7a08b63f0fced23ff4e7ed5aa7517",
+      "fileType": "document",
+      "architectureTags": [
+        "docs"
+      ],
+      "extraction": {
+        "language": null,
+        "status": "skipped",
+        "nodeCount": 0,
+        "edgeCount": 0,
+        "warning": null
+      },
+      "semantic": {
+        "status": "disabled",
+        "reason": "semantic_disabled",
+        "backend": "none",
+        "providerStatus": "skipped"
+      }
+    },
+    "package.json": {
+      "mtime": 1793871166.1810842,
+      "sizeBytes": 555,
+      "hash": "4899516a0f5783fab507c8e85334b39f6dcb44af835c0118abd3fa17c2c26dbd",
+      "fileType": "config",
+      "architectureTags": [
+        "dependency_manifest"
+      ],
+      "extraction": {
+        "language": null,
+        "status": "skipped",
+        "nodeCount": 0,
+        "edgeCount": 0,
+        "warning": null
+      },
+      "semantic": {
+        "status": "disabled",
+        "reason": "semantic_disabled",
+        "backend": "none",
+        "providerStatus": "skipped"
+      }
+    },
+    "tsconfig.base.json": {
+      "mtime": 1793871166.1910834,
+      "sizeBytes": 314,
+      "hash": "73115676ac063ab93f83c3174973202ae3f849c49e7dabe0e4f4e08d8b4570b7",
+      "fileType": "config",
+      "architectureTags": [],
+      "extraction": {
+        "language": null,
+        "status": "skipped",
+        "nodeCount": 0,
+        "edgeCount": 0,
+        "warning": null
+      },
+      "semantic": {
+        "status": "disabled",
+        "reason": "semantic_disabled",
+        "backend": "none",
+        "providerStatus": "skipped"
+      }
+    },
+    "apps/web/next-env.d.ts": {
+      "mtime": 1793871166.1990845,
+      "sizeBytes": 82,
+      "hash": "04f71d342a4a5bfc120ebc1fd1eca5b18716c7929a16bcb2d29ed9bb9e248236",
+      "fileType": "code",
+      "architectureTags": [],
+      "extraction": {
+        "language": "typescript",
+        "status": "ready",
+        "nodeCount": 1,
+        "edgeCount": 0,
+        "warning": null
+      },
+      "semantic": {
+        "status": "disabled",
+        "reason": "semantic_disabled",
+        "backend": "none",
+        "providerStatus": "skipped"
+      }
+    },
+    "apps/web/next.config.ts": {
+      "mtime": 1793871166.1980863,
+      "sizeBytes": 104,
+      "hash": "ab4c61f6ee100ae43610a18512f1ebcec842bb2405431e1009266173f21cf772",
+      "fileType": "code",
+      "architectureTags": [],
+      "extraction": {
+        "language": "typescript",
+        "status": "ready",
+        "nodeCount": 2,
+        "edgeCount": 1,
+        "warning": null
+      },
+      "semantic": {
+        "status": "disabled",
+        "reason": "semantic_disabled",
+        "backend": "none",
+        "providerStatus": "skipped"
+      }
+    },
+    "apps/web/package.json": {
+      "mtime": 1793871166.193084,
+      "sizeBytes": 502,
+      "hash": "0ca474cc85534324d96c0ce9e631fdc2e8138c62cbc7f35402d9f718eb9f77f3",
+      "fileType": "config",
+      "architectureTags": [
+        "dependency_manifest"
+      ],
+      "extraction": {
+        "language": null,
+        "status": "skipped",
+        "nodeCount": 0,
+        "edgeCount": 0,
+        "warning": null
+      },
+      "semantic": {
+        "status": "disabled",
+        "reason": "semantic_disabled",
+        "backend": "none",
+        "providerStatus": "skipped"
+      }
+    },
+    "apps/web/tsconfig.json": {
+      "mtime": 1793871166.197085,
+      "sizeBytes": 287,
+      "hash": "f015498d89c9102ef66980a4648be052d9abac123d11634704c7a92b82fb6b03",
+      "fileType": "config",
+      "architectureTags": [],
+      "extraction": {
+        "language": null,
+        "status": "skipped",
+        "nodeCount": 0,
+        "edgeCount": 0,
+        "warning": null
+      },
+      "semantic": {
+        "status": "disabled",
+        "reason": "semantic_disabled",
+        "backend": "none",
+        "providerStatus": "skipped"
+      }
+    },
+    "apps/web/src/app/layout.tsx": {
+      "mtime": 1793871166.205082,
+      "sizeBytes": 1,
+      "hash": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "fileType": "code",
+      "architectureTags": [],
+      "extraction": {
+        "language": "typescript",
+        "status": "ready",
+        "nodeCount": 1,
+        "edgeCount": 0,
+        "warning": null
+      },
+      "semantic": {
+        "status": "disabled",
+        "reason": "semantic_disabled",
+        "backend": "none",
+        "providerStatus": "skipped"
+      }
+    },
+    "apps/web/src/app/page.tsx": {
+      "mtime": 1793871166.2060816,
+      "sizeBytes": 1,
+      "hash": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "fileType": "code",
+      "architectureTags": [],
+      "extraction": {
+        "language": "typescript",
+        "status": "ready",
+        "nodeCount": 1,
+        "edgeCount": 0,
+        "warning": null
+      },
+      "semantic": {
+        "status": "disabled",
+        "reason": "semantic_disabled",
+        "backend": "none",
+        "providerStatus": "skipped"
+      }
+    },
+    "contracts/fuji-c-chain/package.json": {
+      "mtime": 1793871166.26266,
+      "sizeBytes": 109,
+      "hash": "9b4d22ca5804a34ed1a246b51b9ce0e0ca6c691b373bf361d6a6a242f2cbda7e",
+      "fileType": "config",
+      "architectureTags": [
+        "dependency_manifest"
+      ],
+      "extraction": {
+        "language": null,
+        "status": "skipped",
+        "nodeCount": 0,
+        "edgeCount": 0,
+        "warning": null
+      },
+      "semantic": {
+        "status": "disabled",
+        "reason": "semantic_disabled",
+        "backend": "none",
+        "providerStatus": "skipped"
+      }
+    },
+    "contracts/game-l1/package.json": {
+      "mtime": 1793871166.25366,
+      "sizeBytes": 104,
+      "hash": "966f57f954edd92564a97fad2e72cf6f802f1b4b36ff2ac658ba4633453a3aa8",
+      "fileType": "config",
+      "architectureTags": [
+        "dependency_manifest"
+      ],
+      "extraction": {
+        "language": null,
+        "status": "skipped",
+        "nodeCount": 0,
+        "edgeCount": 0,
+        "warning": null
+      },
+      "semantic": {
+        "status": "disabled",
+        "reason": "semantic_disabled",
+        "backend": "none",
+        "providerStatus": "skipped"
+      }
+    },
+    "packages/domain/package.json": {
+      "mtime": 1793871166.2319424,
+      "sizeBytes": 179,
+      "hash": "471a0a46a7507b53d9156b932aa184a1a0494b021ae477758d8609c7819e88de",
+      "fileType": "config",
+      "architectureTags": [
+        "dependency_manifest"
+      ],
+      "extraction": {
+        "language": null,
+        "status": "skipped",
+        "nodeCount": 0,
+        "edgeCount": 0,
+        "warning": null
+      },
+      "semantic": {
+        "status": "disabled",
+        "reason": "semantic_disabled",
+        "backend": "none",
+        "providerStatus": "skipped"
+      }
+    },
+    "packages/domain/tsconfig.json": {
+      "mtime": 1793871166.2339299,
+      "sizeBytes": 74,
+      "hash": "88020c5d0c639e9fca3c8cc0425dc6233bbb30b14c5a0cb5dcb7d7530d4b788f",
+      "fileType": "config",
+      "architectureTags": [],
+      "extraction": {
+        "language": null,
+        "status": "skipped",
+        "nodeCount": 0,
+        "edgeCount": 0,
+        "warning": null
+      },
+      "semantic": {
+        "status": "disabled",
+        "reason": "semantic_disabled",
+        "backend": "none",
+        "providerStatus": "skipped"
+      }
+    },
+    "packages/domain/src/index.ts": {
+      "mtime": 1793871166.240705,
+      "sizeBytes": 1,
+      "hash": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "fileType": "code",
+      "architectureTags": [],
+      "extraction": {
+        "language": "typescript",
+        "status": "ready",
+        "nodeCount": 1,
+        "edgeCount": 0,
+        "warning": null
+      },
+      "semantic": {
+        "status": "disabled",
+        "reason": "semantic_disabled",
+        "backend": "none",
+        "providerStatus": "skipped"
+      }
+    },
+    "scripts/main.ts": {
+      "mtime": 1793871166.2926474,
+      "sizeBytes": 1,
+      "hash": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "fileType": "code",
+      "architectureTags": [
+        "entrypoint"
+      ],
+      "extraction": {
+        "language": "typescript",
+        "status": "ready",
+        "nodeCount": 1,
+        "edgeCount": 0,
+        "warning": null
+      },
+      "semantic": {
+        "status": "disabled",
+        "reason": "semantic_disabled",
+        "backend": "none",
+        "providerStatus": "skipped"
+      }
+    },
+    "services/relayer/package.json": {
+      "mtime": 1793871166.2756784,
+      "sizeBytes": 149,
+      "hash": "66d45d359cfd1d37c6aa0749fab58ba3efb613f94cf6deebc8847efd026b3cd8",
+      "fileType": "config",
+      "architectureTags": [
+        "dependency_manifest"
+      ],
+      "extraction": {
+        "language": null,
+        "status": "skipped",
+        "nodeCount": 0,
+        "edgeCount": 0,
+        "warning": null
+      },
+      "semantic": {
+        "status": "disabled",
+        "reason": "semantic_disabled",
+        "backend": "none",
+        "providerStatus": "skipped"
+      }
+    },
+    "services/relayer/tsconfig.json": {
+      "mtime": 1793871166.2776778,
+      "sizeBytes": 74,
+      "hash": "88020c5d0c639e9fca3c8cc0425dc6233bbb30b14c5a0cb5dcb7d7530d4b788f",
+      "fileType": "config",
+      "architectureTags": [],
+      "extraction": {
+        "language": null,
+        "status": "skipped",
+        "nodeCount": 0,
+        "edgeCount": 0,
+        "warning": null
+      },
+      "semantic": {
+        "status": "disabled",
+        "reason": "semantic_disabled",
+        "backend": "none",
+        "providerStatus": "skipped"
+      }
+    },
+    "services/relayer/src/main.ts": {
+      "mtime": 1793871166.279664,
+      "sizeBytes": 1,
+      "hash": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "fileType": "code",
+      "architectureTags": [
+        "entrypoint"
+      ],
+      "extraction": {
+        "language": "typescript",
+        "status": "ready",
+        "nodeCount": 1,
+        "edgeCount": 0,
+        "warning": null
+      },
+      "semantic": {
+        "status": "disabled",
+        "reason": "semantic_disabled",
+        "backend": "none",
+        "providerStatus": "skipped"
+      }
+    }
+  }
+}

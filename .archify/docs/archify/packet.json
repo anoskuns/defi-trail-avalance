@@ -1,0 +1,493 @@
+{
+  "artifact": "packet.json",
+  "status": "ready",
+  "phase": "generate",
+  "generatedAt": "2026-11-05T09:45:45.035951+00:00",
+  "targetPath": "C:\\Users\\Lenovo\\Documents\\3.1.Cu\u1ed9c Thi\\Cu\u1ed9c Thi Avalance Build Web3\\Yield Go Project",
+  "scanRoot": ".",
+  "artifacts": {
+    "graph": ".archify/graph.json",
+    "facts": ".archify/facts.json",
+    "modules": ".archify/modules.json",
+    "routes": ".archify/routes.json",
+    "database": ".archify/database.json",
+    "services": ".archify/services.json",
+    "dependencies": ".archify/dependencies.json",
+    "docsSummary": ".archify/docs-summary.json",
+    "architectureContext": ".archify/architecture-context.json",
+    "architectureContextMarkdown": ".archify/architecture-context.md"
+  },
+  "supportingDocuments": {
+    "primaryReadme": null,
+    "additionalDocs": []
+  },
+  "summaries": {
+    "system": {
+      "project_name": "Yield Go Project",
+      "target_path": "C:\\Users\\Lenovo\\Documents\\3.1.Cu\u1ed9c Thi\\Cu\u1ed9c Thi Avalance Build Web3\\Yield Go Project",
+      "dominant_top_level_directories": [
+        "apps",
+        "packages",
+        "scripts",
+        "services"
+      ],
+      "dependency_shape": "0 subsystem links, 0 ambiguous edges, 2 tagged entrypoints, 0 enriched docs",
+      "summary": "Yield Go Project contains 7 subsystems, 0 cross-subsystem flows, 0 processed documents, and 1 external dependency derived from 8 extracted code nodes."
+    },
+    "graph": {
+      "nodeCount": 8,
+      "edgeCount": 1,
+      "hyperedgeCount": 0,
+      "communityCount": 7,
+      "warningCount": 0
+    },
+    "facts": {
+      "confirmedCount": 10,
+      "inferredCount": 2,
+      "subsystemCount": 7,
+      "entrypointCount": 3,
+      "nodeCount": 8,
+      "edgeCount": 1,
+      "ambiguousEdgeCount": 0,
+      "extractedFileCount": 7
+    },
+    "docs": {
+      "detectedDocumentCount": 1,
+      "processedDocumentCount": 0,
+      "skippedDocumentCount": 0,
+      "alignedDocumentCount": 0,
+      "themeCount": 0,
+      "unresolvedDocumentCount": 0
+    },
+    "database": {
+      "tableCount": 0,
+      "migrationCount": 0,
+      "boundaryCount": 0
+    },
+    "services": {},
+    "dependencies": {},
+    "routes": {}
+  },
+  "confirmedFromCodebase": [
+    {
+      "id": "system-overview",
+      "title": "System Overview",
+      "summary": "Yield Go Project contains 7 subsystems, 0 cross-subsystem flows, 0 processed documents, and 1 external dependency derived from 8 extracted code nodes.",
+      "evidence": [
+        "artifact:.archify/architecture-context.json",
+        "artifact:.archify/facts.json"
+      ]
+    },
+    {
+      "id": "subsystems",
+      "title": "Subsystems",
+      "summary": "Detected 7 subsystem(s) and 7 service surface(s).",
+      "items": [
+        {
+          "name": "apps/web",
+          "kind": "infrastructure",
+          "summary": "apps/web is a infrastructure subsystem covering 1 paths and 1 symbols; strongest evidence: imports x1.",
+          "sourcePaths": [
+            "apps/web/next.config.ts"
+          ],
+          "evidence": []
+        },
+        {
+          "name": "apps/web",
+          "kind": "module",
+          "summary": "apps/web is a module subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+          "sourcePaths": [
+            "apps/web/next-env.d.ts"
+          ],
+          "evidence": []
+        },
+        {
+          "name": "apps/web",
+          "kind": "module",
+          "summary": "apps/web is a module subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+          "sourcePaths": [
+            "apps/web/src/app/layout.tsx"
+          ],
+          "evidence": []
+        },
+        {
+          "name": "apps/web",
+          "kind": "ui",
+          "summary": "apps/web is a ui subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+          "sourcePaths": [
+            "apps/web/src/app/page.tsx"
+          ],
+          "evidence": []
+        },
+        {
+          "name": "packages/domain",
+          "kind": "module",
+          "summary": "packages/domain is a module subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+          "sourcePaths": [
+            "packages/domain/src/index.ts"
+          ],
+          "evidence": []
+        },
+        {
+          "name": "scripts",
+          "kind": "module",
+          "summary": "scripts is a module subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+          "sourcePaths": [
+            "scripts/main.ts"
+          ],
+          "evidence": []
+        },
+        {
+          "name": "services/relayer",
+          "kind": "service",
+          "summary": "services/relayer is a service subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+          "sourcePaths": [
+            "services/relayer/src/main.ts"
+          ],
+          "evidence": []
+        }
+      ],
+      "evidence": []
+    },
+    {
+      "id": "entrypoints-and-interfaces",
+      "title": "Entrypoints And Interfaces",
+      "summary": "Detected 3 entrypoint candidate(s), 3 confirmed route(s), and 0 table(s).",
+      "items": [
+        {
+          "name": "scripts/main.ts",
+          "kind": "entrypoint",
+          "subsystemId": "subsystem-5-0-scripts",
+          "sourcePath": "scripts/main.ts",
+          "evidence": [
+            "file_scripts_main_ts"
+          ]
+        },
+        {
+          "name": "services/relayer/src/main.ts",
+          "kind": "entrypoint",
+          "subsystemId": "subsystem-6-0-services-relayer",
+          "sourcePath": "services/relayer/src/main.ts",
+          "evidence": [
+            "file_services_relayer_src_main_ts"
+          ]
+        },
+        {
+          "name": "packages/domain/src/index.ts",
+          "kind": "cli",
+          "subsystemId": "subsystem-4-0-packages-domain",
+          "sourcePath": "packages/domain/src/index.ts",
+          "evidence": [
+            "file_packages_domain_src_index_ts"
+          ]
+        }
+      ],
+      "evidence": [
+        "file_packages_domain_src_index_ts",
+        "file_scripts_main_ts",
+        "file_services_relayer_src_main_ts"
+      ]
+    }
+  ],
+  "inferredArchitecture": [
+    {
+      "id": "cross-subsystem-flows",
+      "title": "Cross-Subsystem Flows",
+      "summary": "Detected 0 inferred cross-subsystem flow(s).",
+      "items": [],
+      "evidence": []
+    },
+    {
+      "id": "documentation-alignments",
+      "title": "Documentation Alignments",
+      "summary": "Detected 0 architecture theme(s) from repository docs.",
+      "items": [],
+      "evidence": []
+    }
+  ],
+  "openQuestionsAndUncertainty": [
+    {
+      "id": "open-questions",
+      "title": "Open Questions",
+      "items": [
+        {
+          "question": "What responsibilities are grouped inside Community 0?",
+          "confidence": "low",
+          "relatedSubsystems": [
+            "subsystem-0-0-apps-web"
+          ],
+          "evidence": [
+            "ref_apps_web_next_config_ts_import_next"
+          ]
+        },
+        {
+          "question": "Why is `next` central to the repository?",
+          "confidence": "low",
+          "relatedSubsystems": [
+            "subsystem-0-0-apps-web"
+          ],
+          "evidence": [
+            "ref_apps_web_next_config_ts_import_next"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "coverage-gaps",
+      "title": "Coverage Gaps",
+      "items": [
+        {
+          "summary": "0 document(s) remain unresolved against subsystem evidence.",
+          "evidence": [
+            "artifact:.archify/docs-summary.json"
+          ]
+        },
+        {
+          "summary": "0 ambiguous edge(s) remain in the graph.",
+          "evidence": [
+            "artifact:.archify/facts.json"
+          ]
+        }
+      ]
+    }
+  ],
+  "evidenceIndex": {
+    "primary": [
+      "artifact:architecture-context.json",
+      "artifact:architecture-context.md",
+      "artifact:database.json",
+      "artifact:dependencies.json",
+      "artifact:docs-summary.json",
+      "artifact:facts.json",
+      "artifact:modules.json",
+      "artifact:routes.json",
+      "artifact:services.json"
+    ],
+    "architectureContextEvidence": {
+      "edge:file_apps_web_next_config_ts:imports:ref_apps_web_next_config_ts_import_next:apps/web/next.config.ts:1:0": {
+        "type": "edge",
+        "source": "file_apps_web_next_config_ts",
+        "target": "ref_apps_web_next_config_ts_import_next",
+        "relation": "imports",
+        "confidence": "EXTRACTED",
+        "source_file": "apps/web/next.config.ts",
+        "source_location": {
+          "line": 1
+        }
+      },
+      "file:apps/web/next-env.d.ts": {
+        "type": "file",
+        "path": "apps/web/next-env.d.ts"
+      },
+      "file:apps/web/next.config.ts": {
+        "type": "file",
+        "path": "apps/web/next.config.ts"
+      },
+      "file:apps/web/src/app/layout.tsx": {
+        "type": "file",
+        "path": "apps/web/src/app/layout.tsx"
+      },
+      "file:apps/web/src/app/page.tsx": {
+        "type": "file",
+        "path": "apps/web/src/app/page.tsx"
+      },
+      "file:packages/domain/src/index.ts": {
+        "type": "file",
+        "path": "packages/domain/src/index.ts"
+      },
+      "file:scripts/main.ts": {
+        "type": "file",
+        "path": "scripts/main.ts"
+      },
+      "file:services/relayer/src/main.ts": {
+        "type": "file",
+        "path": "services/relayer/src/main.ts"
+      },
+      "node:file_apps_web_next_config_ts": {
+        "type": "node",
+        "id": "file_apps_web_next_config_ts",
+        "label": "apps/web/next.config.ts",
+        "kind": "file",
+        "source_file": "apps/web/next.config.ts",
+        "source_location": {
+          "line": 1,
+          "column": 0
+        }
+      },
+      "node:file_apps_web_next_env_d_ts": {
+        "type": "node",
+        "id": "file_apps_web_next_env_d_ts",
+        "label": "apps/web/next-env.d.ts",
+        "kind": "file",
+        "source_file": "apps/web/next-env.d.ts",
+        "source_location": {
+          "line": 1,
+          "column": 0
+        }
+      },
+      "node:file_apps_web_src_app_layout_tsx": {
+        "type": "node",
+        "id": "file_apps_web_src_app_layout_tsx",
+        "label": "apps/web/src/app/layout.tsx",
+        "kind": "file",
+        "source_file": "apps/web/src/app/layout.tsx",
+        "source_location": {
+          "line": 1,
+          "column": 0
+        }
+      },
+      "node:file_apps_web_src_app_page_tsx": {
+        "type": "node",
+        "id": "file_apps_web_src_app_page_tsx",
+        "label": "apps/web/src/app/page.tsx",
+        "kind": "file",
+        "source_file": "apps/web/src/app/page.tsx",
+        "source_location": {
+          "line": 1,
+          "column": 0
+        }
+      },
+      "node:file_packages_domain_src_index_ts": {
+        "type": "node",
+        "id": "file_packages_domain_src_index_ts",
+        "label": "packages/domain/src/index.ts",
+        "kind": "file",
+        "source_file": "packages/domain/src/index.ts",
+        "source_location": {
+          "line": 1,
+          "column": 0
+        }
+      },
+      "node:file_scripts_main_ts": {
+        "type": "node",
+        "id": "file_scripts_main_ts",
+        "label": "scripts/main.ts",
+        "kind": "file",
+        "source_file": "scripts/main.ts",
+        "source_location": {
+          "line": 1,
+          "column": 0
+        }
+      },
+      "node:file_services_relayer_src_main_ts": {
+        "type": "node",
+        "id": "file_services_relayer_src_main_ts",
+        "label": "services/relayer/src/main.ts",
+        "kind": "file",
+        "source_file": "services/relayer/src/main.ts",
+        "source_location": {
+          "line": 1,
+          "column": 0
+        }
+      },
+      "node:ref_apps_web_next_config_ts_import_next": {
+        "type": "node",
+        "id": "ref_apps_web_next_config_ts_import_next",
+        "label": "next",
+        "kind": "import_reference",
+        "source_file": "apps/web/next.config.ts",
+        "source_location": {
+          "line": 1
+        }
+      }
+    }
+  },
+  "generationRules": {
+    "readOrder": [
+      ".archify/docs/archify/packet.json",
+      ".archify/architecture-context.json",
+      ".archify/facts.json",
+      ".archify/modules.json",
+      ".archify/services.json",
+      ".archify/dependencies.json",
+      ".archify/routes.json",
+      ".archify/database.json",
+      ".archify/docs-summary.json"
+    ],
+    "finalOutputFile": "archify.md",
+    "mustSeparate": [
+      "Confirmed From Codebase",
+      "Inferred Architecture",
+      "Open Questions / Uncertainty"
+    ],
+    "documentShape": "upload_ready_architecture_prompt_pack",
+    "mustNotDo": [
+      "Do not inspect the whole repository before reading the design packet and referenced artifacts.",
+      "Do not present inferred behavior as confirmed fact.",
+      "Do not use README or other supporting docs as a replacement for the .archify artifacts.",
+      "Do not treat README-only claims as confirmed codebase facts unless grounded evidence corroborates them.",
+      "Do not cite raw repository files unless the packet evidence is insufficient.",
+      "Do not treat archify_design.md, architecture.md, design.md, or root diagram-prompt.md as the primary product output."
+    ],
+    "requiredSections": [
+      "System Prompt",
+      "User Prompt",
+      "Grounded Repository Context",
+      "Confirmed From Codebase",
+      "Inferred Architecture",
+      "Questions Before Architecture Generation",
+      "Diagram / Image Generation Instructions",
+      "Open Questions / Uncertainty"
+    ],
+    "promptBehavior": {
+      "firstResponseMustAskArtifactType": true,
+      "artifactTypeOptions": [
+        "high-level architecture",
+        "low-level architecture",
+        "component breakdown",
+        "user flow diagram",
+        "sequence / interaction view",
+        "custom request"
+      ],
+      "firstResponseMustAskVisualStyle": true,
+      "visualStyleOptions": [
+        "clean architecture diagram",
+        "swimlane flow",
+        "sequence view",
+        "annotated component map",
+        "presentation-ready infographic",
+        "custom style"
+      ],
+      "mustAllowCustomAnswers": true,
+      "mustWaitForAnswersBeforeFinalOutput": true,
+      "mustSeparateConfirmedFactsFromInference": true
+    },
+    "diagramCapabilityPolicy": {
+      "mustAskForPreferredVisualStyleBeforeGeneratingVisuals": true,
+      "generateImageWhenAppSupportsIt": true,
+      "fallbackToRenderReadyDiagramSpecWhenImageGenerationUnavailable": true,
+      "mustNotAssumeSpecificAppFeatureSet": true
+    },
+    "questionnairePolicy": {
+      "mustAskBeforeFinalArchitecture": true,
+      "mayAdjustFromAnswers": [
+        "boundaries",
+        "flows",
+        "naming",
+        "assumptions",
+        "deliverable_type",
+        "diagram_style"
+      ],
+      "mustNotPresentInferredAsConfirmed": true,
+      "readmeMayEnrichWithoutOverridingGroundedEvidence": true
+    }
+  },
+  "questionnaireTemplate": {
+    "sectionTitle": "Questions Before Architecture Generation",
+    "instructions": [
+      "Ask every question in this section before generating or revising the final architecture.",
+      "Use the answers to adjust boundaries, flows, naming, assumptions, and diagram scope.",
+      "Keep inferred items explicitly marked as inferred until the answers confirm them."
+    ],
+    "questions": [
+      "What kind of architecture output do you want next: a high-level diagram, a deployment view, a sequence flow, or a deeper written architecture?",
+      "Which user journeys, business workflows, or API flows matter most for this architecture pass?",
+      "What operational constraints should shape the design, such as scale, latency, reliability, compliance, tenancy, or geographic requirements?",
+      "Which external systems, third-party integrations, or data providers are in scope and which are intentionally out of scope?",
+      "Are there planned changes, migrations, or target-state boundaries that differ from the current codebase structure?",
+      "Which inferred components, names, or boundaries should be treated as tentative until you confirm them?"
+    ]
+  },
+  "docType": "archify",
+  "outputFile": "archify.md"
+}

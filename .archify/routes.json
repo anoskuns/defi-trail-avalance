@@ -1,0 +1,49 @@
+{
+  "artifact": "routes.json",
+  "status": "ready",
+  "phase": "analyze",
+  "targetPath": "C:\\Users\\Lenovo\\Documents\\3.1.Cu\u1ed9c Thi\\Cu\u1ed9c Thi Avalance Build Web3\\Yield Go Project",
+  "scanRoot": ".",
+  "confirmedRoutes": [
+    {
+      "id": "route:entrypoint_scripts_main_ts_scripts_main_ts",
+      "name": "scripts/main.ts",
+      "entryType": "cli",
+      "boundaryKind": "entrypoint",
+      "sourcePath": "scripts/main.ts",
+      "subsystemId": "subsystem-5-0-scripts",
+      "summary": "scripts/main.ts appears to be a entrypoint boundary for scripts.",
+      "evidence": [
+        "node:file_scripts_main_ts"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "route:entrypoint_services_relayer_src_main_ts_services_relayer_src_main_ts",
+      "name": "services/relayer/src/main.ts",
+      "entryType": "cli",
+      "boundaryKind": "entrypoint",
+      "sourcePath": "services/relayer/src/main.ts",
+      "subsystemId": "subsystem-6-0-services-relayer",
+      "summary": "services/relayer/src/main.ts appears to be a entrypoint boundary for services/relayer.",
+      "evidence": [
+        "node:file_services_relayer_src_main_ts"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "route:cli_packages_domain_src_index_ts_packages_domain_src_index_ts",
+      "name": "packages/domain/src/index.ts",
+      "entryType": "cli",
+      "boundaryKind": "cli",
+      "sourcePath": "packages/domain/src/index.ts",
+      "subsystemId": "subsystem-4-0-packages-domain",
+      "summary": "packages/domain/src/index.ts appears to be a cli boundary for packages/domain.",
+      "evidence": [
+        "node:file_packages_domain_src_index_ts"
+      ],
+      "confidence": "medium"
+    }
+  ],
+  "inferredRoutes": []
+}

@@ -1,0 +1,155 @@
+{
+  "artifact": "modules.json",
+  "status": "ready",
+  "phase": "analyze",
+  "targetPath": "C:\\Users\\Lenovo\\Documents\\3.1.Cu\u1ed9c Thi\\Cu\u1ed9c Thi Avalance Build Web3\\Yield Go Project",
+  "scanRoot": ".",
+  "modules": [
+    {
+      "id": "subsystem-0-0-apps-web",
+      "name": "apps/web",
+      "kind": "infrastructure",
+      "summary": "apps/web is a infrastructure subsystem covering 1 paths and 1 symbols; strongest evidence: imports x1.",
+      "confidence": "high",
+      "sourcePaths": [
+        "apps/web/next.config.ts"
+      ],
+      "keySymbols": [
+        "next"
+      ],
+      "responsibilities": [
+        "Primary symbols: import_reference x1.",
+        "Internal relations: imports x1."
+      ],
+      "publicInterfaces": [],
+      "dependsOn": [],
+      "dependedOnBy": [],
+      "evidence": [
+        "edge:file_apps_web_next_config_ts:imports:ref_apps_web_next_config_ts_import_next:apps/web/next.config.ts:1:0",
+        "node:file_apps_web_next_config_ts",
+        "node:ref_apps_web_next_config_ts_import_next"
+      ]
+    },
+    {
+      "id": "subsystem-1-0-apps-web",
+      "name": "apps/web",
+      "kind": "module",
+      "summary": "apps/web is a module subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+      "confidence": "medium",
+      "sourcePaths": [
+        "apps/web/next-env.d.ts"
+      ],
+      "keySymbols": [],
+      "responsibilities": [],
+      "publicInterfaces": [],
+      "dependsOn": [],
+      "dependedOnBy": [],
+      "evidence": [
+        "node:file_apps_web_next_env_d_ts"
+      ]
+    },
+    {
+      "id": "subsystem-2-0-apps-web",
+      "name": "apps/web",
+      "kind": "module",
+      "summary": "apps/web is a module subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+      "confidence": "medium",
+      "sourcePaths": [
+        "apps/web/src/app/layout.tsx"
+      ],
+      "keySymbols": [],
+      "responsibilities": [],
+      "publicInterfaces": [],
+      "dependsOn": [],
+      "dependedOnBy": [],
+      "evidence": [
+        "node:file_apps_web_src_app_layout_tsx"
+      ]
+    },
+    {
+      "id": "subsystem-3-0-apps-web",
+      "name": "apps/web",
+      "kind": "ui",
+      "summary": "apps/web is a ui subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+      "confidence": "medium",
+      "sourcePaths": [
+        "apps/web/src/app/page.tsx"
+      ],
+      "keySymbols": [],
+      "responsibilities": [],
+      "publicInterfaces": [],
+      "dependsOn": [],
+      "dependedOnBy": [],
+      "evidence": [
+        "node:file_apps_web_src_app_page_tsx"
+      ]
+    },
+    {
+      "id": "subsystem-4-0-packages-domain",
+      "name": "packages/domain",
+      "kind": "module",
+      "summary": "packages/domain is a module subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+      "confidence": "medium",
+      "sourcePaths": [
+        "packages/domain/src/index.ts"
+      ],
+      "keySymbols": [],
+      "responsibilities": [
+        "Exposes 1 interface candidate."
+      ],
+      "publicInterfaces": [
+        "interface-subsystem-4-0-packages-domain-packages-domain-src-index-ts-cli"
+      ],
+      "dependsOn": [],
+      "dependedOnBy": [],
+      "evidence": [
+        "node:file_packages_domain_src_index_ts"
+      ]
+    },
+    {
+      "id": "subsystem-5-0-scripts",
+      "name": "scripts",
+      "kind": "module",
+      "summary": "scripts is a module subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+      "confidence": "medium",
+      "sourcePaths": [
+        "scripts/main.ts"
+      ],
+      "keySymbols": [],
+      "responsibilities": [
+        "Exposes 1 interface candidate."
+      ],
+      "publicInterfaces": [
+        "interface-subsystem-5-0-scripts-scripts-main-ts-entrypoint"
+      ],
+      "dependsOn": [],
+      "dependedOnBy": [],
+      "evidence": [
+        "node:file_scripts_main_ts"
+      ]
+    },
+    {
+      "id": "subsystem-6-0-services-relayer",
+      "name": "services/relayer",
+      "kind": "service",
+      "summary": "services/relayer is a service subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+      "confidence": "medium",
+      "sourcePaths": [
+        "services/relayer/src/main.ts"
+      ],
+      "keySymbols": [],
+      "responsibilities": [
+        "Exposes 1 interface candidate."
+      ],
+      "publicInterfaces": [
+        "interface-subsystem-6-0-services-relayer-services-relayer-src-main-ts-entrypoint"
+      ],
+      "dependsOn": [],
+      "dependedOnBy": [],
+      "evidence": [
+        "node:file_services_relayer_src_main_ts"
+      ]
+    }
+  ],
+  "dependencies": []
+}

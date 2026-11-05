@@ -1,0 +1,71 @@
+{
+  "project": {
+    "name": "",
+    "description": ""
+  },
+  "defaults": {
+    "sourceRoot": ".",
+    "outputDir": ".archify"
+  },
+  "skillInstall": {
+    "mode": "global",
+    "platform": "shared",
+    "platforms": [
+      "codex",
+      "claude-code"
+    ],
+    "installedAt": "2026-11-05T09:44:36.415Z",
+    "version": 1,
+    "target": {
+      "platform": "shared",
+      "path": "C:\\Users\\Lenovo\\.agents\\skills\\archify",
+      "projectRoot": "C:\\Users\\Lenovo\\Documents\\3.1.Cuộc Thi\\Cuộc Thi Avalance Build Web3\\Yield Go Project"
+    },
+    "targets": [
+      {
+        "platform": "shared",
+        "path": "C:\\Users\\Lenovo\\.agents\\skills\\archify",
+        "projectRoot": "C:\\Users\\Lenovo\\Documents\\3.1.Cuộc Thi\\Cuộc Thi Avalance Build Web3\\Yield Go Project"
+      }
+    ]
+  },
+  "analysis": {
+    "enabled": true,
+    "pipeline": {
+      "detect": true,
+      "extract": true,
+      "build": true,
+      "cluster": true,
+      "analyze": true,
+      "export": true
+    },
+    "detect": {
+      "followSymlinks": false,
+      "includeHidden": false,
+      "maxFileSizeBytes": 1048576,
+      "includeGlobs": [],
+      "excludeGlobs": []
+    },
+    "semantic": {
+      "enabled": false,
+      "mode": "docs_first",
+      "includeFileTypes": [
+        "document"
+      ],
+      "includeExtensions": [
+        ".md",
+        ".mdx",
+        ".txt",
+        ".rst"
+      ],
+      "maxDocumentBytes": 262144,
+      "maxChunksPerDocument": 32,
+      "maxChunkBytes": 8192,
+      "backend": "none"
+    }
+  },
+  "languageScope": {
+    "include": [],
+    "exclude": []
+  }
+}

@@ -1,0 +1,20 @@
+node_modules/
+.archify-tools/
+.next/
+dist/
+build/
+coverage/
+.env*
+!.env.example
+*.log
+
+# Contract build artifacts
+artifacts/
+cache/
+out/
+broadcast/
+
+# Local-only secrets and deployment state
+deployments/**/secrets.*
+deployments/**/private-keys.*
+

@@ -1,0 +1,152 @@
+{
+  "artifact": "services.json",
+  "status": "ready",
+  "phase": "analyze",
+  "targetPath": "C:\\Users\\Lenovo\\Documents\\3.1.Cu\u1ed9c Thi\\Cu\u1ed9c Thi Avalance Build Web3\\Yield Go Project",
+  "scanRoot": ".",
+  "services": [
+    {
+      "id": "subsystem-0-0-apps-web",
+      "name": "apps/web",
+      "serviceType": "adapter",
+      "summary": "apps/web is a infrastructure subsystem covering 1 paths and 1 symbols; strongest evidence: imports x1.",
+      "sourcePaths": [
+        "apps/web/next.config.ts"
+      ],
+      "publicInterfaces": [],
+      "responsibilities": [
+        "Primary symbols: import_reference x1.",
+        "Internal relations: imports x1."
+      ],
+      "confidence": "high",
+      "evidence": [
+        "edge:file_apps_web_next_config_ts:imports:ref_apps_web_next_config_ts_import_next:apps/web/next.config.ts:1:0",
+        "node:file_apps_web_next_config_ts",
+        "node:ref_apps_web_next_config_ts_import_next"
+      ]
+    },
+    {
+      "id": "subsystem-1-0-apps-web",
+      "name": "apps/web",
+      "serviceType": "module",
+      "summary": "apps/web is a module subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+      "sourcePaths": [
+        "apps/web/next-env.d.ts"
+      ],
+      "publicInterfaces": [],
+      "responsibilities": [],
+      "confidence": "medium",
+      "evidence": [
+        "node:file_apps_web_next_env_d_ts"
+      ]
+    },
+    {
+      "id": "subsystem-2-0-apps-web",
+      "name": "apps/web",
+      "serviceType": "module",
+      "summary": "apps/web is a module subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+      "sourcePaths": [
+        "apps/web/src/app/layout.tsx"
+      ],
+      "publicInterfaces": [],
+      "responsibilities": [],
+      "confidence": "medium",
+      "evidence": [
+        "node:file_apps_web_src_app_layout_tsx"
+      ]
+    },
+    {
+      "id": "subsystem-3-0-apps-web",
+      "name": "apps/web",
+      "serviceType": "entry_surface",
+      "summary": "apps/web is a ui subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+      "sourcePaths": [
+        "apps/web/src/app/page.tsx"
+      ],
+      "publicInterfaces": [],
+      "responsibilities": [],
+      "confidence": "medium",
+      "evidence": [
+        "node:file_apps_web_src_app_page_tsx"
+      ]
+    },
+    {
+      "id": "subsystem-4-0-packages-domain",
+      "name": "packages/domain",
+      "serviceType": "module",
+      "summary": "packages/domain is a module subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+      "sourcePaths": [
+        "packages/domain/src/index.ts"
+      ],
+      "publicInterfaces": [
+        "interface-subsystem-4-0-packages-domain-packages-domain-src-index-ts-cli"
+      ],
+      "responsibilities": [
+        "Exposes 1 interface candidate."
+      ],
+      "confidence": "medium",
+      "evidence": [
+        "node:file_packages_domain_src_index_ts"
+      ]
+    },
+    {
+      "id": "subsystem-5-0-scripts",
+      "name": "scripts",
+      "serviceType": "module",
+      "summary": "scripts is a module subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+      "sourcePaths": [
+        "scripts/main.ts"
+      ],
+      "publicInterfaces": [
+        "interface-subsystem-5-0-scripts-scripts-main-ts-entrypoint"
+      ],
+      "responsibilities": [
+        "Exposes 1 interface candidate."
+      ],
+      "confidence": "medium",
+      "evidence": [
+        "node:file_scripts_main_ts"
+      ]
+    },
+    {
+      "id": "subsystem-6-0-services-relayer",
+      "name": "services/relayer",
+      "serviceType": "service",
+      "summary": "services/relayer is a service subsystem covering 1 paths and 0 symbols; strongest evidence: structure-only edges.",
+      "sourcePaths": [
+        "services/relayer/src/main.ts"
+      ],
+      "publicInterfaces": [
+        "interface-subsystem-6-0-services-relayer-services-relayer-src-main-ts-entrypoint"
+      ],
+      "responsibilities": [
+        "Exposes 1 interface candidate."
+      ],
+      "confidence": "medium",
+      "evidence": [
+        "node:file_services_relayer_src_main_ts"
+      ]
+    }
+  ],
+  "backgroundJobs": [],
+  "integrations": [
+    {
+      "id": "external-next",
+      "name": "next",
+      "usedBySubsystems": [
+        "subsystem-0-0-apps-web"
+      ],
+      "usedBySubsystemNames": [
+        "apps/web"
+      ],
+      "sourcePaths": [
+        "apps/web/next.config.ts"
+      ],
+      "confidence": "low",
+      "evidence": [
+        "edge:file_apps_web_next_config_ts:imports:ref_apps_web_next_config_ts_import_next:apps/web/next.config.ts:1:0",
+        "node:ref_apps_web_next_config_ts_import_next"
+      ]
+    }
+  ]
+}
