@@ -6,11 +6,15 @@ import { ConnectWalletButton } from "@/components/wallet/ConnectWalletButton";
 import { NetworkSwitcher } from "@/components/wallet/NetworkSwitcher";
 import { GasBalance } from "@/components/wallet/GasBalance";
 import { formatShortAddress, fujiChain, gameL1Chain } from "@/lib/chains";
-import { InteractiveMap } from "@/components/map/InteractiveMap";
+import {
+  InteractiveMap,
+  type MapFocusRequest,
+} from "@/components/map/InteractiveMap";
 import { ICMProgressModal, useICMProgress, RequestStatus } from "@/components/cross-chain";
 import { QuestTutorialModal } from "@/components/quest";
 import { SponsorScannerModal } from "@/components/sponsor";
 import { PositionView } from "@/components/position";
+import { TodayTrailSection } from "@/features/gameplay/trails";
 
 export default function HomePage() {
   const account = useActiveAccount();
@@ -20,6 +24,8 @@ export default function HomePage() {
   const [questModalOpen, setQuestModalOpen] = React.useState<boolean>(false);
   const [sponsorModalOpen, setSponsorModalOpen] = React.useState<boolean>(false);
   const [selectedChestForModal, setSelectedChestForModal] = React.useState<any>(null);
+  const [mapFocusRequest, setMapFocusRequest] =
+    React.useState<MapFocusRequest | null>(null);
 
   // Active timers ref to prevent memory leaks and dangling intervals
   const simulationTimersRef = React.useRef<NodeJS.Timeout[]>([]);
@@ -68,6 +74,15 @@ export default function HomePage() {
   React.useEffect(() => {
     icmRef.current = icm;
   }, [icm]);
+
+  const trailEvidence = React.useMemo(
+    () => ({
+      state: icm.state,
+      requestId: icm.requestId || undefined,
+      chestSlot: icm.chestSlot,
+    }),
+    [icm.chestSlot, icm.requestId, icm.state],
+  );
 
   // Complete 5-Step Cross-Chain Simulation Pipeline (PRD §8.2, §9.3)
   const runIcmSimulation = React.useCallback(
@@ -335,6 +350,19 @@ export default function HomePage() {
           }}
           aria-label="Interactive Demo Campus Map"
         >
+          <TodayTrailSection
+            player={account?.address}
+            evidence={trailEvidence}
+            onFocusChest={(chestId, checkpointPosition) => {
+              setMapFocusRequest((current) => ({
+                chestId,
+                slot: checkpointPosition,
+                requestId: (current?.requestId ?? 0) + 1,
+              }));
+            }}
+            onResumeEvidence={() => icm.setIsOpen(true)}
+          />
+
           <div
             style={{
               display: "flex",
@@ -369,6 +397,7 @@ export default function HomePage() {
 
           <InteractiveMap
             initialPowerLevel={0}
+            focusChestRequest={mapFocusRequest}
             onChestOpened={(chest) => {
               if (chest.type === "QUEST") {
                 setSelectedChestForModal(chest);

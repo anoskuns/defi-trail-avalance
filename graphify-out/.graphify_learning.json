@@ -1,6 +1,56 @@
 {
-  "generated_at": "2026-11-06T16:17:13.490754+00:00",
+  "generated_at": "2026-11-06T16:39:14.764061+00:00",
   "nodes": {
+    "apps_web_src_app_api_gameplay_seasons_active_route": {
+      "code_fingerprint": "2f265865959d18012e92f349dfd4d3b4fbaf3d4981abc1665dc0433865be5af1",
+      "label": "active/route.ts",
+      "last": "2026-11-06T16:27:32.744359+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-06T16:27:32.744359+00:00",
+          "outcome": "useful",
+          "q": "gameplay config repository active season today trail campus slots"
+        }
+      ],
+      "score": 0.999812285,
+      "source_file": "apps/web/src/app/api/gameplay/seasons/active/route.ts",
+      "status": "tentative",
+      "uses": 1
+    },
+    "apps_web_src_app_api_gameplay_trails_today_route": {
+      "code_fingerprint": "6123ed3bf558d288904ae73b9e28abf66389d2e0dab3ac93c6d0017941a5c62f",
+      "label": "today/route.ts",
+      "last": "2026-11-06T16:27:32.744359+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-06T16:27:32.744359+00:00",
+          "outcome": "useful",
+          "q": "gameplay config repository active season today trail campus slots"
+        }
+      ],
+      "score": 0.999812285,
+      "source_file": "apps/web/src/app/api/gameplay/trails/today/route.ts",
+      "status": "tentative",
+      "uses": 1
+    },
+    "apps_web_src_app_api_map_config_route": {
+      "code_fingerprint": "b141126126e197d8072f6da4597b722da4893f35465458a9a462fcf0a6904fc5",
+      "label": "map-config/route.ts",
+      "last": "2026-11-06T16:27:32.011250+00:00",
+      "neg": 1,
+      "provenance": [
+        {
+          "date": "2026-11-06T16:27:30.634102+00:00",
+          "outcome": "useful",
+          "q": "map-config route campus slots validation API response"
+        }
+      ],
+      "score": -3.68e-07,
+      "source_file": "apps/web/src/app/api/map-config/route.ts",
+      "status": "contested",
+      "uses": 1,
+      "verdict": "dead end"
+    },
     "apps_web_src_app_layout": {
       "code_fingerprint": "9c9ca41693ddb498ddb13e60a7d20a0face23437dc2da03cfb29fc79a2d0b99f",
       "label": "layout.tsx",
@@ -12,8 +62,104 @@
           "q": "Nhận xét prompt triển khai B. Module Giao diện Ví 2. Tích hợp Layout và Trang chủ có ổn không?"
         }
       ],
-      "score": 0.993712229,
+      "score": 0.993361181,
       "source_file": "apps/web/src/app/layout.tsx",
+      "status": "tentative",
+      "uses": 1
+    },
+    "apps_web_src_lib_api_response": {
+      "code_fingerprint": "f328f3488012684254ff4986411b130431077b1c872e3349e9356c932b02d604",
+      "label": "api-response.ts",
+      "last": "2026-11-06T16:27:31.316992+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-06T16:27:31.316992+00:00",
+          "outcome": "useful",
+          "q": "server-env api-response rate-limiter"
+        }
+      ],
+      "score": 0.999811903,
+      "source_file": "apps/web/src/lib/api-response.ts",
+      "status": "tentative",
+      "uses": 1
+    },
+    "apps_web_src_lib_campus_demo_campus_slots": {
+      "code_fingerprint": "51d6ab6d17ea80383221b713874b89e3d4d96822a304f4d68eb44606aa66d0fa",
+      "label": "DEMO_CAMPUS_SLOTS",
+      "last": "2026-11-06T16:27:30.634102+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-06T16:27:30.634102+00:00",
+          "outcome": "useful",
+          "q": "map-config route campus slots validation API response"
+        }
+      ],
+      "score": 0.999811721,
+      "source_file": "apps/web/src/lib/campus.ts",
+      "status": "tentative",
+      "uses": 1
+    },
+    "apps_web_src_lib_gameplay_repository_gameplayconfigrepository": {
+      "code_fingerprint": "2afe09f0afb16b48fb4994aee1cbc0c4304846fb8d8dfd01e77e044563b87d0e",
+      "label": "GameplayConfigRepository",
+      "last": "2026-11-06T16:27:32.744359+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-06T16:27:32.744359+00:00",
+          "outcome": "useful",
+          "q": "gameplay config repository active season today trail campus slots"
+        }
+      ],
+      "score": 0.999812285,
+      "source_file": "apps/web/src/lib/gameplay/repository.ts",
+      "status": "tentative",
+      "uses": 1
+    },
+    "apps_web_src_lib_gameplay_repository_versionedgameplayconfigrepository": {
+      "code_fingerprint": "2afe09f0afb16b48fb4994aee1cbc0c4304846fb8d8dfd01e77e044563b87d0e",
+      "label": "VersionedGameplayConfigRepository",
+      "last": "2026-11-06T16:27:32.744359+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-06T16:27:32.744359+00:00",
+          "outcome": "useful",
+          "q": "gameplay config repository active season today trail campus slots"
+        }
+      ],
+      "score": 0.999812285,
+      "source_file": "apps/web/src/lib/gameplay/repository.ts",
+      "status": "tentative",
+      "uses": 1
+    },
+    "apps_web_src_lib_rate_limiter": {
+      "code_fingerprint": "4033b66deef7488123c30ebddd169055d3e2b8592a16ef3132de7a84af68c607",
+      "label": "rate-limiter.ts",
+      "last": "2026-11-06T16:27:31.316992+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-06T16:27:31.316992+00:00",
+          "outcome": "useful",
+          "q": "server-env api-response rate-limiter"
+        }
+      ],
+      "score": 0.999811903,
+      "source_file": "apps/web/src/lib/rate-limiter.ts",
+      "status": "tentative",
+      "uses": 1
+    },
+    "apps_web_src_lib_server_env": {
+      "code_fingerprint": "a8589ce933812c342721afaad81ee8b646fa9f952269b0f5c4df0b03405ee826",
+      "label": "server-env.ts",
+      "last": "2026-11-06T16:27:31.316992+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-06T16:27:31.316992+00:00",
+          "outcome": "useful",
+          "q": "server-env api-response rate-limiter"
+        }
+      ],
+      "score": 0.999811903,
+      "source_file": "apps/web/src/lib/server-env.ts",
       "status": "tentative",
       "uses": 1
     },
@@ -28,7 +174,7 @@
           "q": "Nhận xét prompt triển khai B. Module Giao diện Ví 2. Tích hợp Layout và Trang chủ có ổn không?"
         }
       ],
-      "score": 0.993712229,
+      "score": 0.993361181,
       "source_file": "DeFi-Trail-PRD.md",
       "status": "tentative",
       "uses": 1
@@ -49,7 +195,7 @@
           "q": "packages shared domain types progression exports"
         }
       ],
-      "score": 1.999791956,
+      "score": 1.99908549,
       "source_file": "packages/shared/src/index.ts",
       "status": "preferred",
       "uses": 2
@@ -70,7 +216,7 @@
           "q": "packages shared domain types progression exports"
         }
       ],
-      "score": 1.999791771,
+      "score": 1.999085305,
       "source_file": "packages/shared/src/types/domain.ts",
       "status": "preferred",
       "uses": 2
@@ -91,7 +237,7 @@
           "q": "packages shared domain types progression exports"
         }
       ],
-      "score": 1.999791771,
+      "score": 1.999085305,
       "source_file": "packages/shared/tests/progression.test.ts",
       "status": "preferred",
       "uses": 2

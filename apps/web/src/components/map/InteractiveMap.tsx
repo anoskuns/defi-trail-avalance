@@ -108,16 +108,24 @@ async function getCachedMapConfig(): Promise<any> {
 
 const DEMO_CAMPUS_CENTER: [number, number] = [106.6531, 10.8012]; // [lng, lat]
 
+export interface MapFocusRequest {
+  chestId: string;
+  slot?: number;
+  requestId: number;
+}
+
 export interface InteractiveMapProps {
   initialPowerLevel?: number;
   className?: string;
   onChestOpened?: (chest: SelectedChest) => void;
+  focusChestRequest?: MapFocusRequest | null;
 }
 
 export function InteractiveMap({
   initialPowerLevel = 0,
   className = "",
   onChestOpened,
+  focusChestRequest,
 }: InteractiveMapProps) {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
@@ -371,6 +379,26 @@ export function InteractiveMap({
     }
   }, [isMapReady, playerPosition, openRadius, syncRadiusLayer]);
 
+  const selectChest = useCallback(
+    (slot: MapSlot) => {
+      const distanceMeters = haversineDistanceMeters(
+        playerPosition.lat,
+        playerPosition.lng,
+        slot.lat,
+        slot.lng,
+      );
+      setSelectedChest({
+        ...slot,
+        name: getChestLandmark(slot.slot, slot.type),
+        distanceMeters,
+        inRange: distanceMeters <= openRadius,
+        reward: getChestReward(slot),
+        energyCost: 1,
+      });
+    },
+    [openRadius, playerPosition.lat, playerPosition.lng],
+  );
+
   // 5. Render/update 5 Chest Markers on Map (Requirement 2 & 6)
   useEffect(() => {
     const map = mapRef.current;
@@ -476,33 +504,16 @@ export function InteractiveMap({
         if (markerCard) markerCard.style.transform = "scale(1)";
       });
 
-      const selectChest = () => {
-        const currentDist = haversineDistanceMeters(
-          playerPosition.lat,
-          playerPosition.lng,
-          slot.lat,
-          slot.lng
-        );
-        setSelectedChest({
-          ...slot,
-          name: getChestLandmark(slot.slot, slot.type),
-          distanceMeters: currentDist,
-          inRange: currentDist <= openRadius,
-          reward: getChestReward(slot),
-          energyCost: 1,
-        });
-      };
-
       el.addEventListener("click", (event) => {
         event.preventDefault();
         event.stopPropagation();
-        selectChest();
+        selectChest(slot);
       });
 
       el.addEventListener("keydown", (event) => {
         if (event.key !== "Enter" && event.key !== " ") return;
         event.preventDefault();
-        selectChest();
+        selectChest(slot);
       });
 
       const marker = new MapLibreMarker({ element: el, anchor: "bottom" })
@@ -511,7 +522,26 @@ export function InteractiveMap({
 
       chestMarkersRef.current.push(marker);
     });
-  }, [isMapReady, chests, playerPosition, openRadius]);
+  }, [isMapReady, chests, playerPosition, openRadius, selectChest]);
+
+  // Small integration adapter for external gameplay CTAs. Marker rendering and
+  // chest-opening semantics remain owned by the map.
+  useEffect(() => {
+    if (!focusChestRequest || !isMapReady) return;
+    const slot = chests.find(
+      (candidate) =>
+        candidate.chestId === focusChestRequest.chestId ||
+        candidate.slot === focusChestRequest.slot,
+    );
+    if (!slot) return;
+    mapRef.current?.flyTo({
+      center: [slot.lng, slot.lat],
+      zoom: 17,
+      essential: true,
+      speed: 1.2,
+    });
+    selectChest(slot);
+  }, [chests, focusChestRequest, isMapReady, selectChest]);
 
   // 6. Nearest chest calculation for Virtual Compass (Requirement 4)
   const nearest = findNearestChest(
