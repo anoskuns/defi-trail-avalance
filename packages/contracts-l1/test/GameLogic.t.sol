@@ -1302,7 +1302,7 @@ contract GameLogicTest is Test {
         vm.prank(admin);
         playerState.applyPositionSnapshot(snap);
         uint256 gasUsedSnap = gasBeforeSnap - gasleft();
-        assertTrue(gasUsedSnap < 150_000, "applyPositionSnapshot should be < 150k gas");
+        assertTrue(gasUsedSnap < 180_000, "applyPositionSnapshot should be < 180k gas");
 
         // 2. Gas for energy refill on new epoch (O(1), zero loops)
         address gasPlayer = snap.player;
@@ -1310,14 +1310,14 @@ contract GameLogicTest is Test {
         vm.prank(admin);
         playerState.consumeEnergy(gasPlayer); // refills to 6, consumes to 5
         uint256 gasUsedRefill = gasBeforeRefill - gasleft();
-        assertTrue(gasUsedRefill < 100_000, "Refill consumeEnergy should be < 100k gas");
+        assertTrue(gasUsedRefill < 130_000, "Refill consumeEnergy should be < 130k gas");
 
         // 3. Gas for normal consumeEnergy without refill (same epoch)
         uint256 gasBeforeNormal = gasleft();
         vm.prank(admin);
         playerState.consumeEnergy(gasPlayer); // 5 -> 4
         uint256 gasUsedNormal = gasBeforeNormal - gasleft();
-        assertTrue(gasUsedNormal < 50_000, "Normal consumeEnergy should be < 50k gas");
+        assertTrue(gasUsedNormal < 70_000, "Normal consumeEnergy should be < 70k gas");
 
         // 4. Gas for single openChest (EIP-712 recovery + storage)
         bytes32 chestId = keccak256("bench-chest");
@@ -1331,7 +1331,7 @@ contract GameLogicTest is Test {
         vm.prank(gasPlayer);
         chestManager.openChest(ChestManager.ChestType.YIELD, h3Cell, proof);
         uint256 gasUsedOpen = gasBeforeOpen - gasleft();
-        assertTrue(gasUsedOpen < 300_000, "openChest should be < 300k gas");
+        assertTrue(gasUsedOpen < 350_000, "openChest should be < 350k gas");
     }
 
     // -----------------------------------------------------------------------

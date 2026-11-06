@@ -28,7 +28,7 @@ contract MockTeleporterMessenger is ITeleporterMessenger {
 }
 
 /**
- * @title QuestFlowTest
+ * @title QuestTest
  * @notice Tests the complete Quest Chest tutorial lifecycle on C-Chain:
  *  - registerQuest via CChainICMGateway (ICM)
  *  - claimQuestBudget (single claim enforcement)
@@ -36,7 +36,7 @@ contract MockTeleporterMessenger is ITeleporterMessenger {
  *  - edge cases: double-claim prevention, budget claimed without deposit never completes,
  *    expired quests, wrong amounts, unauthorized callers, all 4 quest tiers.
  */
-contract QuestFlowTest is Test {
+contract QuestTest is Test {
     MockUSDC public usdc;
     SponsorPool public sponsorPool;
     YieldVault public yieldVault;
@@ -93,16 +93,18 @@ contract QuestFlowTest is Test {
         yieldVault.grantRole(yieldVault.GATEWAY_ROLE(), address(gateway));
         yieldVault.grantRole(yieldVault.QUEST_ROUTER_ROLE(), address(questRouter));
 
-        // Fund SponsorPool quest budget
-        usdc.mint(funder, INITIAL_FUNDING);
+        // Fund SponsorPool quest budget and principal budget
+        usdc.mint(funder, INITIAL_FUNDING * 2);
         vm.stopPrank();
 
         vm.startPrank(funder);
-        usdc.approve(address(sponsorPool), INITIAL_FUNDING);
+        usdc.approve(address(sponsorPool), INITIAL_FUNDING * 2);
         sponsorPool.fundQuest(INITIAL_FUNDING);
+        sponsorPool.fundPrincipal(INITIAL_FUNDING);
         vm.stopPrank();
 
         assertEq(sponsorPool.questBudget(), INITIAL_FUNDING);
+        assertEq(sponsorPool.principalBudget(), INITIAL_FUNDING);
     }
 
     // =======================================================================
@@ -548,5 +550,339 @@ contract QuestFlowTest is Test {
         vm.stopPrank();
 
         assertTrue(qrNoGw.isQuestCompleted(questId));
+    }
+
+    function test_Branch_QuestRouter_ZeroQuestId() public {
+        vm.prank(address(gateway));
+        vm.expectRevert(abi.encodeWithSelector(QuestRouter.QuestNotFound.selector, bytes32(0)));
+        questRouter.registerQuest(bytes32(0), bytes32(0), alice, 1, 500_000, uint64(block.timestamp + 1 days));
+    }
+
+    function test_Branch_QuestRouter_SetGateway_RevokeOldRole() public {
+        address gw1 = makeAddr("gw1");
+        address gw2 = makeAddr("gw2");
+        vm.startPrank(admin);
+        questRouter.setGateway(gw1);
+        assertTrue(questRouter.hasRole(questRouter.GATEWAY_ROLE(), gw1));
+        questRouter.setGateway(gw2);
+        assertFalse(questRouter.hasRole(questRouter.GATEWAY_ROLE(), gw1));
+        assertTrue(questRouter.hasRole(questRouter.GATEWAY_ROLE(), gw2));
+        vm.stopPrank();
+    }
+
+    // =======================================================================
+    // 7. CChainICMGateway Full Branch Coverage
+    // =======================================================================
+
+    function test_CChainICMGateway_DepositRequest_YieldAndSponsor() public {
+        bytes32 reqYield = keccak256("REQ_YIELD_1");
+        bytes32 reqSponsor = keccak256("REQ_SPONSOR_1");
+
+        // 1. Yield Chest deposit (1 USDC, COMMON rarity = 500 bps)
+        CChainICMGateway.DepositRequest memory depYield = CChainICMGateway.DepositRequest({
+            requestId: reqYield,
+            player: alice,
+            sourceType: CChainICMGateway.ChestType.YIELD,
+            sourceId: keccak256("CHEST_YIELD"),
+            amount: 1_000_000,
+            rarity: CChainICMGateway.Rarity.COMMON,
+            epoch: 1
+        });
+
+        vm.prank(address(teleporter));
+        gateway.receiveTeleporterMessage(
+            remoteBlockchainID,
+            remoteL1Gateway,
+            abi.encode(uint8(1), depYield)
+        );
+
+        assertEq(yieldVault.getPosition(alice).principal, 1_000_000);
+        assertEq(yieldVault.getPosition(alice).weightedAprBps, 500);
+
+        // 2. Duplicate delivery (replay ACK without re-allocating)
+        uint256 allocatedBefore = sponsorPool.totalPrincipalAllocated();
+        vm.prank(address(teleporter));
+        gateway.receiveTeleporterMessage(
+            remoteBlockchainID,
+            remoteL1Gateway,
+            abi.encode(uint8(1), depYield)
+        );
+        assertEq(sponsorPool.totalPrincipalAllocated(), allocatedBefore);
+
+        // 3. Sponsor Chest deposit (2 USDC, EPIC rarity = 750 bps)
+        CChainICMGateway.DepositRequest memory depSponsor = CChainICMGateway.DepositRequest({
+            requestId: reqSponsor,
+            player: bob,
+            sourceType: CChainICMGateway.ChestType.SPONSOR,
+            sourceId: keccak256("CHEST_SPONSOR"),
+            amount: 2_000_000,
+            rarity: CChainICMGateway.Rarity.EPIC,
+            epoch: 1
+        });
+
+        vm.prank(address(teleporter));
+        gateway.receiveTeleporterMessage(
+            remoteBlockchainID,
+            remoteL1Gateway,
+            abi.encode(uint8(1), depSponsor)
+        );
+
+        assertEq(yieldVault.getPosition(bob).principal, 2_000_000);
+        assertEq(yieldVault.getPosition(bob).weightedAprBps, 750);
+
+        // 4. Test RARE (625 bps) and LEGENDARY (1000 bps)
+        bytes32 reqRare = keccak256("REQ_RARE");
+        bytes32 reqLeg = keccak256("REQ_LEG");
+        address rareUser = makeAddr("rareUser");
+        address legUser = makeAddr("legUser");
+
+        CChainICMGateway.DepositRequest memory depRare = CChainICMGateway.DepositRequest({
+            requestId: reqRare,
+            player: rareUser,
+            sourceType: CChainICMGateway.ChestType.YIELD,
+            sourceId: keccak256("CHEST_RARE"),
+            amount: 1_000_000,
+            rarity: CChainICMGateway.Rarity.RARE,
+            epoch: 1
+        });
+        vm.prank(address(teleporter));
+        gateway.receiveTeleporterMessage(remoteBlockchainID, remoteL1Gateway, abi.encode(uint8(1), depRare));
+        assertEq(yieldVault.getPosition(rareUser).weightedAprBps, 625);
+
+        CChainICMGateway.DepositRequest memory depLeg = CChainICMGateway.DepositRequest({
+            requestId: reqLeg,
+            player: legUser,
+            sourceType: CChainICMGateway.ChestType.YIELD,
+            sourceId: keccak256("CHEST_LEG"),
+            amount: 1_000_000,
+            rarity: CChainICMGateway.Rarity.LEGENDARY,
+            epoch: 1
+        });
+        vm.prank(address(teleporter));
+        gateway.receiveTeleporterMessage(remoteBlockchainID, remoteL1Gateway, abi.encode(uint8(1), depLeg));
+        assertEq(yieldVault.getPosition(legUser).weightedAprBps, 1000);
+
+        // Verify getProcessedRequest view
+        (bool processed, CChainICMGateway.PositionSnapshot memory snap) = gateway.getProcessedRequest(reqYield);
+        assertTrue(processed);
+        assertEq(snap.player, alice);
+        assertEq(snap.principal, 1_000_000);
+    }
+
+    function test_CChainICMGateway_SecurityReverts() public {
+        bytes32 reqId = keccak256("REQ_SEC_1");
+        CChainICMGateway.DepositRequest memory dep = CChainICMGateway.DepositRequest({
+            requestId: reqId,
+            player: alice,
+            sourceType: CChainICMGateway.ChestType.YIELD,
+            sourceId: keccak256("CHEST_1"),
+            amount: 1_000_000,
+            rarity: CChainICMGateway.Rarity.COMMON,
+            epoch: 1
+        });
+        bytes memory validMsg = abi.encode(uint8(1), dep);
+
+        // 1. Caller is not TeleporterMessenger
+        vm.prank(alice);
+        vm.expectRevert(abi.encodeWithSelector(CChainICMGateway.UnauthorizedTeleporter.selector, alice));
+        gateway.receiveTeleporterMessage(remoteBlockchainID, remoteL1Gateway, validMsg);
+
+        // 2. Origin blockchain ID mismatch
+        vm.prank(address(teleporter));
+        vm.expectRevert(
+            abi.encodeWithSelector(CChainICMGateway.InvalidRemoteSender.selector, bytes32("WRONG_CHAIN"), remoteL1Gateway)
+        );
+        gateway.receiveTeleporterMessage(bytes32("WRONG_CHAIN"), remoteL1Gateway, validMsg);
+
+        // 3. Origin sender mismatch
+        vm.prank(address(teleporter));
+        vm.expectRevert(
+            abi.encodeWithSelector(CChainICMGateway.InvalidRemoteSender.selector, remoteBlockchainID, alice)
+        );
+        gateway.receiveTeleporterMessage(remoteBlockchainID, alice, validMsg);
+
+        // 4. Invalid message kind
+        vm.prank(address(teleporter));
+        vm.expectRevert(abi.encodeWithSelector(CChainICMGateway.InvalidMessageKind.selector, 99));
+        gateway.receiveTeleporterMessage(remoteBlockchainID, remoteL1Gateway, abi.encode(uint8(99), dep));
+
+        // 5. Zero requestId or zero player in DepositRequest
+        dep.requestId = bytes32(0);
+        vm.prank(address(teleporter));
+        vm.expectRevert(abi.encodeWithSelector(CChainICMGateway.InvalidDepositRequest.selector, bytes32(0)));
+        gateway.receiveTeleporterMessage(remoteBlockchainID, remoteL1Gateway, abi.encode(uint8(1), dep));
+
+        dep.requestId = reqId;
+        dep.player = address(0);
+        vm.prank(address(teleporter));
+        vm.expectRevert(abi.encodeWithSelector(CChainICMGateway.InvalidDepositRequest.selector, reqId));
+        gateway.receiveTeleporterMessage(remoteBlockchainID, remoteL1Gateway, abi.encode(uint8(1), dep));
+
+        // 6. Wrong amount for sourceType
+        dep.player = alice;
+        dep.amount = 999_999;
+        vm.prank(address(teleporter));
+        vm.expectRevert(abi.encodeWithSelector(CChainICMGateway.InvalidDepositRequest.selector, reqId));
+        gateway.receiveTeleporterMessage(remoteBlockchainID, remoteL1Gateway, abi.encode(uint8(1), dep));
+
+        // 7. Unsupported chestType in DepositRequest
+        dep.amount = 1_000_000;
+        dep.sourceType = CChainICMGateway.ChestType.QUEST;
+        vm.prank(address(teleporter));
+        vm.expectRevert(abi.encodeWithSelector(CChainICMGateway.UnsupportedChestType.selector, CChainICMGateway.ChestType.QUEST));
+        gateway.receiveTeleporterMessage(remoteBlockchainID, remoteL1Gateway, abi.encode(uint8(1), dep));
+
+        // 8. Zero requestId or zero player in QuestRegistration
+        CChainICMGateway.QuestRegistration memory badReg = CChainICMGateway.QuestRegistration({
+            requestId: bytes32(0),
+            questId: reqId,
+            player: alice,
+            tier: 1,
+            requiredAmount: 500_000,
+            expiresAt: uint64(block.timestamp + 1 days)
+        });
+        vm.prank(address(teleporter));
+        vm.expectRevert(abi.encodeWithSelector(CChainICMGateway.InvalidDepositRequest.selector, bytes32(0)));
+        gateway.receiveTeleporterMessage(remoteBlockchainID, remoteL1Gateway, abi.encode(uint8(3), badReg));
+
+        badReg.requestId = reqId;
+        badReg.player = address(0);
+        vm.prank(address(teleporter));
+        vm.expectRevert(abi.encodeWithSelector(CChainICMGateway.InvalidDepositRequest.selector, reqId));
+        gateway.receiveTeleporterMessage(remoteBlockchainID, remoteL1Gateway, abi.encode(uint8(3), badReg));
+
+        // 9. Unauthorized sendQuestCompletion
+        vm.prank(alice);
+        vm.expectRevert(abi.encodeWithSelector(CChainICMGateway.UnauthorizedCaller.selector, alice));
+        gateway.sendQuestCompletion(reqId, alice);
+
+        // 10. setQuestRouter error branches
+        vm.prank(alice);
+        vm.expectRevert(abi.encodeWithSelector(CChainICMGateway.UnauthorizedAdmin.selector, alice));
+        gateway.setQuestRouter(alice);
+
+        vm.prank(admin);
+        vm.expectRevert(CChainICMGateway.ZeroAddress.selector);
+        gateway.setQuestRouter(address(0));
+
+        // 11. Constructor zero address branches
+        vm.expectRevert(CChainICMGateway.ZeroAddress.selector);
+        new CChainICMGateway(address(0), address(sponsorPool), address(yieldVault), localBlockchainID, remoteBlockchainID, remoteL1Gateway, 250_000);
+
+        vm.expectRevert(CChainICMGateway.ZeroAddress.selector);
+        new CChainICMGateway(address(teleporter), address(0), address(yieldVault), localBlockchainID, remoteBlockchainID, remoteL1Gateway, 250_000);
+
+        vm.expectRevert(CChainICMGateway.ZeroAddress.selector);
+        new CChainICMGateway(address(teleporter), address(sponsorPool), address(0), localBlockchainID, remoteBlockchainID, remoteL1Gateway, 250_000);
+
+        vm.expectRevert(CChainICMGateway.ZeroAddress.selector);
+        new CChainICMGateway(address(teleporter), address(sponsorPool), address(yieldVault), localBlockchainID, remoteBlockchainID, address(0), 250_000);
+
+        // 12. Quest registration when questRouter is address(0)
+        CChainICMGateway gwNoRouter = new CChainICMGateway(
+            address(teleporter),
+            address(sponsorPool),
+            address(yieldVault),
+            localBlockchainID,
+            remoteBlockchainID,
+            remoteL1Gateway,
+            250_000
+        );
+        CChainICMGateway.QuestRegistration memory okReg = CChainICMGateway.QuestRegistration({
+            requestId: reqId,
+            questId: reqId,
+            player: alice,
+            tier: 1,
+            requiredAmount: 500_000,
+            expiresAt: uint64(block.timestamp + 1 days)
+        });
+        vm.prank(address(teleporter));
+        gwNoRouter.receiveTeleporterMessage(remoteBlockchainID, remoteL1Gateway, abi.encode(uint8(3), okReg));
+    }
+
+    // =======================================================================
+    // 8. Fuzz Tests: Invariants & Robustness
+    // =======================================================================
+
+    function testFuzz_Quest_WrongDepositAmountAlwaysReverts(uint8 tier, uint256 wrongAmount) public {
+        tier = uint8(bound(tier, 1, 4));
+        uint256 expected = tier == 1 ? 500_000 : tier == 2 ? 1_000_000 : tier == 3 ? 2_000_000 : 3_000_000;
+        vm.assume(wrongAmount != expected);
+        wrongAmount = bound(wrongAmount, 1, 10_000_000);
+
+        bytes32 qId = keccak256(abi.encodePacked("FUZZ_Q", tier, wrongAmount));
+        bytes32 rId = keccak256(abi.encodePacked("FUZZ_R", tier, wrongAmount));
+        address fuzzer = makeAddr("fuzzer");
+
+        vm.prank(address(gateway));
+        questRouter.registerQuest(rId, qId, fuzzer, tier, expected, uint64(block.timestamp + 1 days));
+
+        vm.prank(fuzzer);
+        questRouter.claimQuestBudget(qId);
+
+        vm.prank(admin);
+        usdc.mint(fuzzer, wrongAmount + expected);
+
+        vm.startPrank(fuzzer);
+        usdc.approve(address(questRouter), wrongAmount + expected);
+        vm.expectRevert(abi.encodeWithSelector(QuestRouter.InvalidAmount.selector, wrongAmount, expected));
+        questRouter.depositForQuest(qId, wrongAmount);
+        vm.stopPrank();
+
+        assertFalse(questRouter.isQuestCompleted(qId));
+    }
+
+    function testFuzz_Quest_ExpiryBoundary(uint32 deltaSeconds) public {
+        deltaSeconds = uint32(bound(deltaSeconds, 1, 365 days));
+        bytes32 qId = keccak256(abi.encodePacked("EXP_Q", deltaSeconds));
+        bytes32 rId = keccak256(abi.encodePacked("EXP_R", deltaSeconds));
+        uint64 expiry = uint64(block.timestamp + 100);
+
+        vm.prank(address(gateway));
+        questRouter.registerQuest(rId, qId, charlie, 1, 500_000, expiry);
+
+        if (block.timestamp + deltaSeconds <= expiry) {
+            vm.warp(block.timestamp + deltaSeconds);
+            vm.prank(charlie);
+            questRouter.claimQuestBudget(qId);
+            assertTrue(questRouter.isBudgetClaimed(qId));
+        } else {
+            vm.warp(block.timestamp + deltaSeconds);
+            vm.prank(charlie);
+            vm.expectRevert(
+                abi.encodeWithSelector(QuestRouter.QuestExpired.selector, expiry, uint64(block.timestamp))
+            );
+            questRouter.claimQuestBudget(qId);
+            assertFalse(questRouter.isBudgetClaimed(qId));
+        }
+    }
+
+    // =======================================================================
+    // 9. Gas Benchmark
+    // =======================================================================
+
+    function test_GasBenchmark_QuestActions() public {
+        bytes32 qId = keccak256("BENCH_QUEST");
+        bytes32 rId = keccak256("BENCH_REQ");
+        address user = makeAddr("benchUser");
+
+        vm.prank(address(gateway));
+        questRouter.registerQuest(rId, qId, user, 1, 500_000, uint64(block.timestamp + 1 days));
+
+        // Benchmark claimQuestBudget
+        uint256 gasBeforeClaim = gasleft();
+        vm.prank(user);
+        questRouter.claimQuestBudget(qId);
+        uint256 gasUsedClaim = gasBeforeClaim - gasleft();
+        assertTrue(gasUsedClaim < 160_000, "claimQuestBudget should be < 160k gas");
+
+        // Benchmark depositForQuest
+        vm.startPrank(user);
+        usdc.approve(address(questRouter), 500_000);
+        uint256 gasBeforeDeposit = gasleft();
+        questRouter.depositForQuest(qId, 500_000);
+        uint256 gasUsedDeposit = gasBeforeDeposit - gasleft();
+        vm.stopPrank();
+        assertTrue(gasUsedDeposit < 800_000, "depositForQuest should be < 800k gas");
     }
 }
