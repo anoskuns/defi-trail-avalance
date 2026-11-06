@@ -7,7 +7,6 @@ import {
   type TrailProgress,
 } from "@defi-trail/shared";
 import {
-  applyConfirmedEvidence,
   createTrailProgress,
   type TrailEvidenceSignal,
 } from "./model";
@@ -17,6 +16,12 @@ import {
   saveLastTrailSession,
   saveTrailProgressCache,
 } from "./storage";
+import {
+  recoverTrailProgressFromStorage,
+  reconcileTrailProgressWithEvidence,
+  mapUIStateToLifecycle,
+} from "./evidence-adapter";
+import { getPendingRequest } from "@/components/cross-chain/icm-storage";
 import {
   TodayTrailCard,
   type TodayTrailCardState,
@@ -97,6 +102,14 @@ export function TodayTrailSection({
           parsedTrail.data,
           playerId,
         );
+        const storedRequest = getPendingRequest();
+        const recovered = recoverTrailProgressFromStorage({
+          trail: parsedTrail.data,
+          player: playerId,
+          cachedProgress,
+          storedRequest,
+        });
+
         saveLastTrailSession({
           trailId: parsedTrail.data.id,
           title: parsedTrail.data.title,
@@ -105,7 +118,7 @@ export function TodayTrailSection({
           cachedAt: new Date().toISOString(),
         });
         setTrail(parsedTrail.data);
-        setProgress(cachedProgress);
+        setProgress(recovered.progress);
         setViewState({ kind: "empty" });
       } catch (error) {
         if (!mounted || controller.signal.aborted) return;
@@ -129,20 +142,26 @@ export function TodayTrailSection({
   }, [playerId, reloadToken]);
 
   useEffect(() => {
-    if (!trail || !progress || evidence.state !== "confirmed") return;
-    const result = applyConfirmedEvidence({
+    if (!trail || !progress || evidence.state !== "confirmed" || !evidence.requestId) return;
+    const status = mapUIStateToLifecycle(evidence.state);
+    const result = reconcileTrailProgressWithEvidence({
       trail,
-      progress,
-      signal: evidence,
-      confirmedAt: new Date().toISOString(),
-      mode: "DEMO",
+      player: playerId,
+      baseProgress: progress,
+      evidenceItems: [
+        {
+          requestId: evidence.requestId,
+          chestSlot: evidence.chestSlot,
+          status,
+          mode: "DEMO",
+        },
+      ],
     });
-    if (result.status !== "APPLIED" && result.status !== "COMPLETED") {
-      return;
+    if (result.appliedCount > 0) {
+      saveTrailProgressCache(result.progress);
+      setProgress(result.progress);
     }
-    saveTrailProgressCache(result.progress);
-    setProgress(result.progress);
-  }, [evidence, progress, trail]);
+  }, [evidence, playerId, progress, trail]);
 
   const handleStart = useCallback(() => {
     if (!trail) return;

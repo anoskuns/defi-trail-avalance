@@ -74,10 +74,94 @@ export function recordFaucetClaim(
   }
 }
 
+// ---------------------------------------------------------------------------
+// Rate Limiter for Evidence Reconciliation (PRD GE-04)
+// Sliding window rate limiter per wallet and IP
+// ---------------------------------------------------------------------------
+
+const reconcileWalletTimestamps = new Map<string, number[]>();
+const reconcileIpTimestamps = new Map<string, number[]>();
+
+export const RECONCILE_WINDOW_MS = 10_000;
+export const MAX_RECONCILE_PER_WINDOW = 20;
+
+export interface ReconcileRateLimitResult {
+  allowed: boolean;
+  code?: string;
+  message?: string;
+  retryAfterMs?: number;
+}
+
+export function checkReconcileRateLimit(
+  wallet: string,
+  clientIp?: string,
+  windowMs: number = RECONCILE_WINDOW_MS,
+  maxPerWindow: number = MAX_RECONCILE_PER_WINDOW,
+): ReconcileRateLimitResult {
+  const now = Date.now();
+  const normalizedWallet = wallet.toLowerCase();
+
+  const walletTimes = (reconcileWalletTimestamps.get(normalizedWallet) || []).filter(
+    (t) => now - t < windowMs,
+  );
+  if (walletTimes.length >= maxPerWindow) {
+    const oldestInWindow = walletTimes[0]!;
+    const retryAfterMs = Math.max(0, windowMs - (now - oldestInWindow));
+    return {
+      allowed: false,
+      code: "RATE_LIMITED",
+      message: "Too many evidence reconciliation requests. Please wait before retrying.",
+      retryAfterMs,
+    };
+  }
+
+  if (clientIp) {
+    const ipTimes = (reconcileIpTimestamps.get(clientIp) || []).filter(
+      (t) => now - t < windowMs,
+    );
+    if (ipTimes.length >= maxPerWindow * 2) {
+      const oldestInWindow = ipTimes[0]!;
+      const retryAfterMs = Math.max(0, windowMs - (now - oldestInWindow));
+      return {
+        allowed: false,
+        code: "RATE_LIMITED",
+        message: "IP rate limit exceeded for evidence reconciliation.",
+        retryAfterMs,
+      };
+    }
+  }
+
+  return { allowed: true };
+}
+
+export function recordReconcileRequest(
+  wallet: string,
+  clientIp?: string,
+  windowMs: number = RECONCILE_WINDOW_MS,
+): void {
+  const now = Date.now();
+  const normalizedWallet = wallet.toLowerCase();
+  const walletTimes = (reconcileWalletTimestamps.get(normalizedWallet) || []).filter(
+    (t) => now - t < windowMs,
+  );
+  walletTimes.push(now);
+  reconcileWalletTimestamps.set(normalizedWallet, walletTimes);
+
+  if (clientIp) {
+    const ipTimes = (reconcileIpTimestamps.get(clientIp) || []).filter(
+      (t) => now - t < windowMs,
+    );
+    ipTimes.push(now);
+    reconcileIpTimestamps.set(clientIp, ipTimes);
+  }
+}
+
 /**
  * Resets all rate limit state (useful for tests).
  */
 export function resetRateLimits(): void {
   faucetClaims.clear();
   ipFaucetCounts.clear();
+  reconcileWalletTimestamps.clear();
+  reconcileIpTimestamps.clear();
 }
