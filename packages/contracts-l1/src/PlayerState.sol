@@ -61,8 +61,10 @@ contract PlayerState is AccessControl {
         uint8 energyCurrent;
         uint64 lastEnergyEpoch; // epoch number (block.timestamp / EPOCH_DURATION)
 
-        // Exploration
+        // Exploration & Progression
         uint32 uniqueH3Count;
+        uint32 xp;
+        uint32 questsCompleted;
 
         // Latest position snapshot from C-Chain
         uint256 principal;
@@ -89,6 +91,13 @@ contract PlayerState is AccessControl {
     /// @notice H3 cells opened per player (for uniqueH3Count tracking).
     mapping(address => mapping(bytes32 => bool)) public openedH3Cells;
 
+    /// @notice Tracks whether a quest completion snapshot has already awarded XP/exploration for a requestId.
+    mapping(bytes32 => bool) public completedQuestRequests;
+
+    /// @notice Quest completion rewards (PRD §4.3, §6 FR-008).
+    uint32 public constant QUEST_XP = 100;
+    uint32 public constant QUEST_EXPLORATION_POINTS = 1;
+
     /// @dev Epoch length override (admin-only during deploy; not changeable post-deploy in public mode).
     uint256 public immutable epochSeconds;
 
@@ -99,6 +108,13 @@ contract PlayerState is AccessControl {
     event EnergyRefilled(address indexed player, uint8 newEnergy, uint64 epoch);
     event EnergyConsumed(address indexed player, uint8 remainingEnergy);
     event H3CellOpened(address indexed player, bytes32 h3Cell, uint32 totalUnique);
+    event QuestRewardApplied(
+        address indexed player,
+        bytes32 indexed requestId,
+        uint32 xpAwarded,
+        uint32 totalXp,
+        uint32 totalQuestsCompleted
+    );
     event PlayerStatsUpdated(
         address indexed player,
         uint256 principal,
@@ -185,11 +201,15 @@ contract PlayerState is AccessControl {
     }
 
     /**
-     * @notice Compute exploration score = uniqueH3Count + min(streak, 7) (PRD §5.4).
+     * @notice Compute exploration score = uniqueH3Count + min(streak, 7) + questBonus (PRD §4.3, §5.4).
      */
-    function _explorationScore(uint32 uniqueH3, uint32 streak) internal pure returns (uint32) {
+    function _explorationScore(uint32 uniqueH3, uint32 streak, uint32 questBonus) internal pure returns (uint32) {
         uint32 streakCapped = streak > 7 ? 7 : streak;
-        return uniqueH3 + streakCapped;
+        return uniqueH3 + streakCapped + questBonus;
+    }
+
+    function _explorationScore(uint32 uniqueH3, uint32 streak) internal pure returns (uint32) {
+        return _explorationScore(uniqueH3, streak, 0);
     }
 
     /**
@@ -272,7 +292,15 @@ contract PlayerState is AccessControl {
             p.energyCurrent = newMax;
         }
 
-        uint32 score = _explorationScore(p.uniqueH3Count, snap.positionStreak);
+        // Credit XP and update exploration if this snapshot completes a quest (PRD §4.3: "XP và exploration chỉ cộng một lần")
+        if (snap.questCompleted && !completedQuestRequests[snap.requestId]) {
+            completedQuestRequests[snap.requestId] = true;
+            p.xp += QUEST_XP;
+            p.questsCompleted += QUEST_EXPLORATION_POINTS;
+            emit QuestRewardApplied(player, snap.requestId, QUEST_XP, p.xp, p.questsCompleted);
+        }
+
+        uint32 score = _explorationScore(p.uniqueH3Count, snap.positionStreak, p.questsCompleted);
         Rarity rar = _rarity(score);
 
         emit PlayerStatsUpdated(
@@ -382,9 +410,23 @@ contract PlayerState is AccessControl {
         powerLevel = power;
         openRadius = _openRadius(power);
         compassLevel = _compassLevel(power);
-        explorationScore = _explorationScore(p.uniqueH3Count, p.positionStreak);
+        explorationScore = _explorationScore(p.uniqueH3Count, p.positionStreak, p.questsCompleted);
         rar = _rarity(explorationScore);
         lastSnapshotAt = p.lastSnapshotAt;
+    }
+
+    /**
+     * @notice Returns total XP accumulated by player.
+     */
+    function getXp(address player) external view returns (uint32) {
+        return players[player].xp;
+    }
+
+    /**
+     * @notice Returns total quests completed by player.
+     */
+    function getQuestsCompleted(address player) external view returns (uint32) {
+        return players[player].questsCompleted;
     }
 
     /**

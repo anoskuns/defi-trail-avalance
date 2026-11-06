@@ -1333,4 +1333,70 @@ contract GameLogicTest is Test {
         uint256 gasUsedOpen = gasBeforeOpen - gasleft();
         assertTrue(gasUsedOpen < 300_000, "openChest should be < 300k gas");
     }
+
+    // -----------------------------------------------------------------------
+    // 35. PlayerState: Quest completion awards XP and updates exploration
+    // -----------------------------------------------------------------------
+    function test_PlayerState_QuestCompletion_AwardsXpAndExploration() public {
+        address player = makeAddr("questPlayer");
+        bytes32 reqId = keccak256("QUEST_REQ_1");
+
+        assertEq(playerState.getXp(player), 0);
+        assertEq(playerState.getQuestsCompleted(player), 0);
+
+        PlayerState.PositionSnapshot memory snap = PlayerState.PositionSnapshot({
+            requestId: reqId,
+            player: player,
+            principal: 500_000,
+            accruedReward: 0,
+            weightedAprBps: 500,
+            positionStreak: 0,
+            updatedAt: uint64(block.timestamp),
+            questCompleted: true
+        });
+
+        vm.prank(admin);
+        playerState.applyPositionSnapshot(snap);
+
+        // XP awarded (+100) and quests completed (+1)
+        assertEq(playerState.getXp(player), 100);
+        assertEq(playerState.getQuestsCompleted(player), 1);
+
+        (,,,,, uint32 explorationScore,,) = playerState.getStats(player);
+        assertEq(explorationScore, 1); // 0 uniqueH3 + 0 streak + 1 quest
+    }
+
+    // -----------------------------------------------------------------------
+    // 36. PlayerState: Duplicate snapshot delivery does not repeat XP
+    // -----------------------------------------------------------------------
+    function test_PlayerState_QuestCompletion_DuplicateAckDoesNotRepeatXp() public {
+        address player = makeAddr("questPlayer2");
+        bytes32 reqId = keccak256("QUEST_REQ_2");
+
+        PlayerState.PositionSnapshot memory snap = PlayerState.PositionSnapshot({
+            requestId: reqId,
+            player: player,
+            principal: 1_000_000,
+            accruedReward: 0,
+            weightedAprBps: 625,
+            positionStreak: 0,
+            updatedAt: uint64(block.timestamp),
+            questCompleted: true
+        });
+
+        // 1st delivery
+        vm.prank(admin);
+        playerState.applyPositionSnapshot(snap);
+        assertEq(playerState.getXp(player), 100);
+        assertEq(playerState.getQuestsCompleted(player), 1);
+
+        // 2nd delivery (duplicate ICM ack replay)
+        vm.prank(admin);
+        playerState.applyPositionSnapshot(snap);
+
+        // XP and exploration bonus must strictly remain 100 and 1 (no repeat!)
+        assertEq(playerState.getXp(player), 100);
+        assertEq(playerState.getQuestsCompleted(player), 1);
+        assertTrue(playerState.completedQuestRequests(reqId));
+    }
 }

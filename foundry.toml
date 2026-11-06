@@ -1,0 +1,15 @@
+[profile.default]
+src = "packages/contracts-l1/src"
+test = "test"
+out = "out"
+libs = ["packages/contracts-l1/lib", "packages/contracts-l1/node_modules", "packages/contracts-cchain/node_modules"]
+solc = "0.8.28"
+evm_version = "cancun"
+via_ir = true
+optimizer = true
+optimizer_runs = 200
+remappings = [
+    "@openzeppelin/=packages/contracts-l1/node_modules/@openzeppelin/",
+    "forge-std/=packages/contracts-l1/lib/forge-std/src/",
+    "contracts-cchain/=packages/contracts-cchain/"
+]

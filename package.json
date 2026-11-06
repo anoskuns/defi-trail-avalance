@@ -9,7 +9,8 @@
     "test": "pnpm -r --if-present run test",
     "test:forge": "powershell -ExecutionPolicy Bypass -File scripts/run-forge-test.ps1",
     "lint": "eslint . --max-warnings=0",
-    "test:contracts": "pnpm --filter @defi-trail/contracts-l1 --filter @defi-trail/contracts-cchain run test",
+    "test:icm": "forge test --root . --match-contract ICMGatewayRoundTripTest",
+    "test:contracts": "pnpm --filter @defi-trail/contracts-l1 --filter @defi-trail/contracts-cchain run test && pnpm test:icm",
     "typecheck": "pnpm -r --if-present run typecheck"
   },
   "engines": {

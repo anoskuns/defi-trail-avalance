@@ -138,7 +138,11 @@ contract YieldVault is AccessControl, ReentrancyGuard {
         uint256 amount,
         uint32 aprBps
     ) external onlyRole(QUEST_ROUTER_ROLE) nonReentrant {
-        usdc.safeTransferFrom(player, address(this), amount);
+        if (usdc.allowance(player, address(this)) >= amount) {
+            usdc.safeTransferFrom(player, address(this), amount);
+        } else {
+            usdc.safeTransferFrom(msg.sender, address(this), amount);
+        }
         _deposit(player, amount, aprBps);
     }
 
