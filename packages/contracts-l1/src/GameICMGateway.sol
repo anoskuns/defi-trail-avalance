@@ -119,7 +119,7 @@ contract GameICMGateway is ITeleporterReceiver {
         ) = chestManager.requests(requestId);
 
         if (player == address(0)) revert RequestNotFound(requestId);
-        if (msg.sender != player) revert UnauthorizedPlayer(msg.sender, player);
+        if (msg.sender != player && msg.sender != address(chestManager)) revert UnauthorizedPlayer(msg.sender, player);
         if (status != ChestManager.RequestStatus.CREATED) revert InvalidRequestStatus(status);
         if (chestType == ChestManager.ChestType.QUEST) revert UnsupportedChestType(chestType);
 

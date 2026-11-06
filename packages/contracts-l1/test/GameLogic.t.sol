@@ -8,6 +8,21 @@ import {ChestManager} from "../src/ChestManager.sol";
 import {ECDSA} from "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import {MessageHashUtils} from "@openzeppelin/contracts/utils/cryptography/MessageHashUtils.sol";
 
+contract MockForwardGateway {
+    bool public shouldRevert;
+    bytes32 public lastRequestId;
+
+    function setShouldRevert(bool revert_) external {
+        shouldRevert = revert_;
+    }
+
+    function sendDepositRequest(bytes32 requestId) external returns (bytes32) {
+        if (shouldRevert) revert("FORWARD_FAIL");
+        lastRequestId = requestId;
+        return keccak256(abi.encodePacked("msg", requestId));
+    }
+}
+
 /**
  * @title GameLogicTest
  * @notice Foundry tests for PlayerState + ChestManager game logic.
@@ -679,14 +694,13 @@ contract GameLogicTest is Test {
         bytes32 chestId    = keccak256("sponsor-chest");
         bytes32 campaignId = keccak256("demo-coffee-v1");
         bytes32 nonce      = keccak256("sponsor-nonce");
-        bytes32 h3Cell     = keccak256("sponsor-h3");
         uint64 exp         = uint64(block.timestamp + 60);
 
         ChestManager.SponsorProof memory proof =
             _makeSponsorProof(alice, chestId, campaignId, nonce, exp, signerPrivKey);
 
         vm.prank(alice);
-        bytes32 requestId = chestManager.openSponsorChest(h3Cell, proof);
+        bytes32 requestId = chestManager.openSponsorChest(chestId, proof);
 
         assertNotEq(requestId, bytes32(0));
 
@@ -695,6 +709,13 @@ contract GameLogicTest is Test {
         assertEq(player, alice);
         assertEq(uint8(chestType), uint8(ChestManager.ChestType.SPONSOR));
         assertEq(uint8(status), uint8(ChestManager.RequestStatus.CREATED));
+
+        // PRD §4.4 & §10.1: Fixed amount is 2 Mock USDC (2_000_000)
+        ChestManager.DepositRequest memory depReq = chestManager.getDepositRequest(requestId);
+        assertEq(depReq.amount, 2_000_000);
+        assertEq(uint8(depReq.sourceType), uint8(ChestManager.ChestType.SPONSOR));
+        assertEq(depReq.sourceId, chestId);
+        assertEq(depReq.player, alice);
     }
 
     // -----------------------------------------------------------------------
@@ -704,14 +725,13 @@ contract GameLogicTest is Test {
         bytes32 chestId    = keccak256("sponsor-replay");
         bytes32 campaignId = keccak256("demo-coffee-v1");
         bytes32 nonce      = keccak256("sponsor-replay-nonce");
-        bytes32 h3Cell     = keccak256("sponsor-replay-h3");
         uint64 exp         = uint64(block.timestamp + 60);
 
         ChestManager.SponsorProof memory proof =
             _makeSponsorProof(alice, chestId, campaignId, nonce, exp, signerPrivKey);
 
         vm.prank(alice);
-        chestManager.openSponsorChest(h3Cell, proof);
+        chestManager.openSponsorChest(chestId, proof);
 
         // Try same nonce again with different chestId
         bytes32 chestId2 = keccak256("sponsor-replay-2");
@@ -720,7 +740,7 @@ contract GameLogicTest is Test {
 
         vm.prank(alice);
         vm.expectRevert(abi.encodeWithSelector(ChestManager.NonceAlreadyUsed.selector, nonce));
-        chestManager.openSponsorChest(h3Cell, proof2);
+        chestManager.openSponsorChest(chestId2, proof2);
     }
 
     // -----------------------------------------------------------------------
@@ -794,65 +814,146 @@ contract GameLogicTest is Test {
     function test_SponsorProof_ErrorCases() public {
         bytes32 chestId    = keccak256("sponsor-err");
         bytes32 campaignId = keccak256("campaign-err");
-        bytes32 h3Cell     = keccak256("sponsor-err-h3");
         uint64 now_        = uint64(block.timestamp);
 
         // 1. Player mismatch
-        ChestManager.SponsorProof memory p1 = _makeSponsorProof(
-            alice, chestId, campaignId, keccak256("sp-non-1"), uint64(now_ + 60), signerPrivKey
-        );
-        vm.prank(bob);
-        vm.expectRevert(ChestManager.InvalidSignature.selector);
-        chestManager.openSponsorChest(h3Cell, p1);
+        {
+            ChestManager.SponsorProof memory p1 = _makeSponsorProof(
+                alice, chestId, campaignId, keccak256("sp-non-1"), uint64(now_ + 60), signerPrivKey
+            );
+            vm.prank(bob);
+            vm.expectRevert(ChestManager.InvalidSignature.selector);
+            chestManager.openSponsorChest(chestId, p1);
+        }
 
         // 2. Expired
-        ChestManager.SponsorProof memory p2 = _makeSponsorProof(
-            alice, chestId, campaignId, keccak256("sp-non-2"), uint64(now_ - 1), signerPrivKey
-        );
-        vm.prank(alice);
-        vm.expectRevert(abi.encodeWithSelector(ChestManager.ProofExpired.selector, uint64(now_ - 1), now_));
-        chestManager.openSponsorChest(h3Cell, p2);
+        {
+            ChestManager.SponsorProof memory p2 = _makeSponsorProof(
+                alice, chestId, campaignId, keccak256("sp-non-2"), uint64(now_ - 1), signerPrivKey
+            );
+            vm.prank(alice);
+            vm.expectRevert(abi.encodeWithSelector(ChestManager.ProofExpired.selector, uint64(now_ - 1), now_));
+            chestManager.openSponsorChest(chestId, p2);
+        }
 
         // 3. TTL exceeded (> 90s)
-        ChestManager.SponsorProof memory p3 = _makeSponsorProof(
-            alice, chestId, campaignId, keccak256("sp-non-3"), uint64(now_ + 91), signerPrivKey
-        );
-        vm.prank(alice);
-        vm.expectRevert(abi.encodeWithSelector(ChestManager.ProofTtlExceeded.selector, uint64(now_ + 91), now_));
-        chestManager.openSponsorChest(h3Cell, p3);
+        {
+            ChestManager.SponsorProof memory p3 = _makeSponsorProof(
+                alice, chestId, campaignId, keccak256("sp-non-3"), uint64(now_ + 91), signerPrivKey
+            );
+            vm.prank(alice);
+            vm.expectRevert(abi.encodeWithSelector(ChestManager.ProofTtlExceeded.selector, uint64(now_ + 91), now_));
+            chestManager.openSponsorChest(chestId, p3);
+        }
 
         // 4. Wrong epoch
-        ChestManager.SponsorProof memory p4 = _makeSponsorProofWithEpoch(
-            alice, chestId, campaignId, 999, keccak256("sp-non-4"), uint64(now_ + 60), signerPrivKey
-        );
-        vm.prank(alice);
-        vm.expectRevert(abi.encodeWithSelector(ChestManager.WrongEpoch.selector, uint64(999), uint64(now_ / EPOCH_SECS)));
-        chestManager.openSponsorChest(h3Cell, p4);
+        {
+            ChestManager.SponsorProof memory p4 = _makeSponsorProofWithEpoch(
+                alice, chestId, campaignId, 999, keccak256("sp-non-4"), uint64(now_ + 60), signerPrivKey
+            );
+            vm.prank(alice);
+            vm.expectRevert(abi.encodeWithSelector(ChestManager.WrongEpoch.selector, uint64(999), uint64(now_ / EPOCH_SECS)));
+            chestManager.openSponsorChest(chestId, p4);
+        }
 
         // 5. Invalid signature (signed with bob's key)
-        uint256 wrongKey = 0xBAD;
-        ChestManager.SponsorProof memory p5 = _makeSponsorProof(
-            alice, chestId, campaignId, keccak256("sp-non-5"), uint64(now_ + 60), wrongKey
-        );
-        vm.prank(alice);
-        vm.expectRevert(ChestManager.InvalidSignature.selector);
-        chestManager.openSponsorChest(h3Cell, p5);
+        {
+            uint256 wrongKey = 0xBAD;
+            ChestManager.SponsorProof memory p5 = _makeSponsorProof(
+                alice, chestId, campaignId, keccak256("sp-non-5"), uint64(now_ + 60), wrongKey
+            );
+            vm.prank(alice);
+            vm.expectRevert(ChestManager.InvalidSignature.selector);
+            chestManager.openSponsorChest(chestId, p5);
+        }
 
         // 6. Duplicate claim in same epoch
-        bytes32 claimChest = keccak256("sp-dup-chest");
-        ChestManager.SponsorProof memory p6a = _makeSponsorProof(
-            alice, claimChest, campaignId, keccak256("sp-non-6a"), uint64(now_ + 60), signerPrivKey
-        );
-        vm.prank(alice);
-        chestManager.openSponsorChest(h3Cell, p6a);
+        {
+            bytes32 claimChest = keccak256("sp-dup-chest");
+            ChestManager.SponsorProof memory p6a = _makeSponsorProof(
+                alice, claimChest, campaignId, keccak256("sp-non-6a"), uint64(now_ + 60), signerPrivKey
+            );
+            vm.prank(alice);
+            chestManager.openSponsorChest(claimChest, p6a);
 
-        ChestManager.SponsorProof memory p6b = _makeSponsorProof(
-            alice, claimChest, campaignId, keccak256("sp-non-6b"), uint64(now_ + 60), signerPrivKey
+            ChestManager.SponsorProof memory p6b = _makeSponsorProof(
+                alice, claimChest, campaignId, keccak256("sp-non-6b"), uint64(now_ + 60), signerPrivKey
+            );
+            bytes32 claimKey = keccak256(abi.encodePacked(claimChest, alice, uint64(now_ / EPOCH_SECS)));
+            vm.prank(alice);
+            vm.expectRevert(abi.encodeWithSelector(ChestManager.AlreadyClaimed.selector, claimKey));
+            chestManager.openSponsorChest(claimChest, p6b);
+        }
+    }
+
+    function test_SponsorProof_ChestIdMismatch() public {
+        bytes32 chestId = keccak256("sponsor-chest-mismatch");
+        bytes32 campaignId = keccak256("campaign-mismatch");
+        bytes32 mismatchChest = keccak256("mismatch-id");
+        ChestManager.SponsorProof memory p = _makeSponsorProof(
+            alice, chestId, campaignId, keccak256("sp-non-mismatch"), uint64(block.timestamp + 60), signerPrivKey
         );
-        bytes32 claimKey = keccak256(abi.encodePacked(claimChest, alice, uint64(now_ / EPOCH_SECS)));
         vm.prank(alice);
-        vm.expectRevert(abi.encodeWithSelector(ChestManager.AlreadyClaimed.selector, claimKey));
-        chestManager.openSponsorChest(h3Cell, p6b);
+        vm.expectRevert(abi.encodeWithSelector(ChestManager.ChestIdMismatch.selector, mismatchChest, chestId));
+        chestManager.openSponsorChest(mismatchChest, p);
+    }
+
+    function test_SponsorProof_InvalidCampaignId() public {
+        bytes32 chestId = keccak256("sponsor-chest-zero-camp");
+        ChestManager.SponsorProof memory p = _makeSponsorProof(
+            alice, chestId, bytes32(0), keccak256("sp-non-zero-camp"), uint64(block.timestamp + 60), signerPrivKey
+        );
+        vm.prank(alice);
+        vm.expectRevert(ChestManager.InvalidCampaignId.selector);
+        chestManager.openSponsorChest(chestId, p);
+    }
+
+    function test_ChestManager_ForwardToGateway_SuccessAndCatch() public {
+        MockForwardGateway mockGw = new MockForwardGateway();
+        vm.prank(admin);
+        chestManager.setGameICMGateway(address(mockGw));
+
+        bytes32 chestId = keccak256("fw-chest");
+        bytes32 campaignId = keccak256("fw-campaign");
+        bytes32 nonce = keccak256("fw-nonce-1");
+        ChestManager.SponsorProof memory p1 = _makeSponsorProof(
+            alice, chestId, campaignId, nonce, uint64(block.timestamp + 60), signerPrivKey
+        );
+
+        vm.prank(alice);
+        bytes32 req1 = chestManager.openSponsorChest(chestId, p1);
+        assertEq(mockGw.lastRequestId(), req1);
+
+        // Test catch block when gateway reverts
+        mockGw.setShouldRevert(true);
+        bytes32 chestId2 = keccak256("fw-chest-2");
+        bytes32 nonce2 = keccak256("fw-nonce-2");
+        ChestManager.SponsorProof memory p2 = _makeSponsorProof(
+            alice, chestId2, campaignId, nonce2, uint64(block.timestamp + 60), signerPrivKey
+        );
+        vm.prank(alice);
+        bytes32 req2 = chestManager.openSponsorChest(chestId2, p2);
+        (,,,, ChestManager.RequestStatus status,,) = chestManager.requests(req2);
+        assertEq(uint8(status), uint8(ChestManager.RequestStatus.CREATED));
+    }
+
+    function test_ChestManager_GetDepositRequest_Branches() public {
+        // 1. Yield chest deposit request view
+        bytes32 chestId = keccak256("dep-req-yield");
+        bytes32 nonce = keccak256("dep-req-nonce-1");
+        ChestManager.LocationProof memory proof = _makeLocationProof(
+            alice, chestId, nonce, uint64(block.timestamp + 60), signerPrivKey
+        );
+        vm.prank(alice);
+        bytes32 reqYield = chestManager.openChest(ChestManager.ChestType.YIELD, keccak256("h3"), proof);
+        ChestManager.DepositRequest memory depYield = chestManager.getDepositRequest(reqYield);
+        assertEq(depYield.amount, 1_000_000);
+        assertEq(uint8(depYield.sourceType), uint8(ChestManager.ChestType.YIELD));
+
+        // 2. RequestNotFound
+        bytes32 bogus = keccak256("bogus-req");
+        vm.expectRevert(abi.encodeWithSelector(ChestManager.RequestNotFound.selector, bogus));
+        chestManager.getDepositRequest(bogus);
     }
 
     // -----------------------------------------------------------------------

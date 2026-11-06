@@ -610,6 +610,8 @@ contract QuestTest is Test {
         assertEq(sponsorPool.totalPrincipalAllocated(), allocatedBefore);
 
         // 3. Sponsor Chest deposit (2 USDC, EPIC rarity = 750 bps)
+        // PRD §4.4: SponsorPool deducts exactly 2 Mock USDC from principalBudget and tops up YieldVault
+        uint256 budgetBeforeSponsor = sponsorPool.principalBudget();
         CChainICMGateway.DepositRequest memory depSponsor = CChainICMGateway.DepositRequest({
             requestId: reqSponsor,
             player: bob,
@@ -627,6 +629,9 @@ contract QuestTest is Test {
             abi.encode(uint8(1), depSponsor)
         );
 
+        // Verify SponsorPool deducted 2 Mock USDC and YieldVault position is topped up by 2 Mock USDC
+        assertEq(sponsorPool.principalBudget(), budgetBeforeSponsor - 2_000_000);
+        assertEq(sponsorPool.totalPrincipalAllocated(), allocatedBefore + 2_000_000);
         assertEq(yieldVault.getPosition(bob).principal, 2_000_000);
         assertEq(yieldVault.getPosition(bob).weightedAprBps, 750);
 

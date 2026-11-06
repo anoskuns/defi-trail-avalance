@@ -7,6 +7,10 @@ import {ECDSA} from "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import {EIP712} from "@openzeppelin/contracts/utils/cryptography/EIP712.sol";
 import {PlayerState} from "./PlayerState.sol";
 
+interface IGameICMGateway {
+    function sendDepositRequest(bytes32 requestId) external returns (bytes32 messageId);
+}
+
 /**
  * @title ChestManager
  * @notice Manages chest opening on the Avalanche Game L1.
@@ -44,6 +48,8 @@ contract ChestManager is AccessControl, ReentrancyGuard, EIP712 {
     // Constants
     // -----------------------------------------------------------------------
     uint64  public constant PROOF_MAX_TTL = 90; // seconds (PRD §5.2)
+    uint256 public constant YIELD_CHEST_AMOUNT = 1_000_000;   // 1 Mock USDC
+    uint256 public constant SPONSOR_CHEST_AMOUNT = 2_000_000; // 2 Mock USDC (PRD §4.4)
 
     // -----------------------------------------------------------------------
     // Data structures (PRD §10.1)
@@ -95,6 +101,16 @@ contract ChestManager is AccessControl, ReentrancyGuard, EIP712 {
         uint64 createdAt;
     }
 
+    struct DepositRequest {
+        bytes32 requestId;
+        address player;
+        ChestType sourceType;
+        bytes32 sourceId;
+        uint256 amount;
+        Rarity rarity;
+        uint64 epoch;
+    }
+
     // -----------------------------------------------------------------------
     // State
     // -----------------------------------------------------------------------
@@ -140,6 +156,16 @@ contract ChestManager is AccessControl, ReentrancyGuard, EIP712 {
         RequestStatus newStatus
     );
 
+    event DepositRequestCreated(
+        bytes32 indexed requestId,
+        address indexed player,
+        ChestType sourceType,
+        bytes32 sourceId,
+        uint256 amount,
+        Rarity rarity,
+        uint64 epoch
+    );
+
     // -----------------------------------------------------------------------
     // Errors
     // -----------------------------------------------------------------------
@@ -155,6 +181,8 @@ contract ChestManager is AccessControl, ReentrancyGuard, EIP712 {
     error Unauthorized();
     error InvalidStatusTransition(RequestStatus from, RequestStatus to);
     error RequestNotFound(bytes32 requestId);
+    error ChestIdMismatch(bytes32 provided, bytes32 proofChestId);
+    error InvalidCampaignId();
 
     // -----------------------------------------------------------------------
     // Constructor
@@ -265,14 +293,16 @@ contract ChestManager is AccessControl, ReentrancyGuard, EIP712 {
     }
 
     /**
-     * @dev Verifies all constraints on a SponsorProof.
+     * @dev Verifies all constraints on a SponsorProof (PRD §4.4, §5.2, §10.1).
      */
-    function _verifySponsorProof(SponsorProof calldata proof, uint64 epoch) internal view {
+    function _verifySponsorProof(bytes32 chestId, SponsorProof calldata proof, uint64 epoch) internal view {
         if (proof.player != msg.sender) revert InvalidSignature();
+        if (proof.chestId != chestId) revert ChestIdMismatch(chestId, proof.chestId);
+        if (proof.campaignId == bytes32(0)) revert InvalidCampaignId();
         _validateTiming(proof.expiresAt);
         if (proof.epoch != epoch) revert WrongEpoch(proof.epoch, epoch);
         if (usedNonces[proof.nonce]) revert NonceAlreadyUsed(proof.nonce);
-        bytes32 claimKey = keccak256(abi.encodePacked(proof.chestId, msg.sender, epoch));
+        bytes32 claimKey = keccak256(abi.encodePacked(chestId, msg.sender, epoch));
         if (claimedKeys[claimKey]) revert AlreadyClaimed(claimKey);
         bytes32 digest = _sponsorProofDigest(proof);
         if (digest.recover(proof.signature) != proofSigner) revert InvalidSignature();
@@ -354,13 +384,15 @@ contract ChestManager is AccessControl, ReentrancyGuard, EIP712 {
     }
 
     /**
-     * @notice Open a Sponsor chest using a SponsorProof (PRD §4.4).
-     * @dev Same security checks as openChest but uses SponsorProof.
-     * @param h3Cell    H3 cell for exploration tracking.
+     * @notice Open a Sponsor chest using a SponsorProof (PRD §4.4, §5.2, §10.1).
+     * @dev Same security checks as openChest but uses SponsorProof. Deducts 1 energy,
+     *      creates a fixed 2 Mock USDC DepositRequest with sourceType = SPONSOR, and
+     *      forwards the request to GameICMGateway.
+     * @param chestId   The identifier of the sponsor chest (must match proof.chestId).
      * @param proof     Signed SponsorProof from backend.
      */
     function openSponsorChest(
-        bytes32 h3Cell,
+        bytes32 chestId,
         SponsorProof calldata proof
     )
         external
@@ -368,20 +400,20 @@ contract ChestManager is AccessControl, ReentrancyGuard, EIP712 {
         returns (bytes32 requestId)
     {
         uint64 epoch = _currentEpoch();
-        _verifySponsorProof(proof, epoch);
+        _verifySponsorProof(chestId, proof, epoch);
 
         usedNonces[proof.nonce] = true;
-        claimedKeys[keccak256(abi.encodePacked(proof.chestId, msg.sender, epoch))] = true;
+        claimedKeys[keccak256(abi.encodePacked(chestId, msg.sender, epoch))] = true;
 
         playerState.consumeEnergy(msg.sender);
-        playerState.recordH3Open(msg.sender, h3Cell);
+        playerState.recordH3Open(msg.sender, chestId);
 
         requestId = _generateRequestId(proof.nonce, msg.sender);
         Rarity rar = _playerRarity(msg.sender);
 
         requests[requestId] = ChestRequest({
             player: msg.sender,
-            chestId: proof.chestId,
+            chestId: chestId,
             chestType: ChestType.SPONSOR,
             rarity: rar,
             status: RequestStatus.CREATED,
@@ -392,12 +424,61 @@ contract ChestManager is AccessControl, ReentrancyGuard, EIP712 {
         emit ChestOpenRequested(
             requestId,
             msg.sender,
-            proof.chestId,
+            chestId,
             ChestType.SPONSOR,
             rar,
             epoch,
             0 // mode not applicable for sponsor
         );
+
+        emit DepositRequestCreated(
+            requestId,
+            msg.sender,
+            ChestType.SPONSOR,
+            chestId,
+            SPONSOR_CHEST_AMOUNT,
+            rar,
+            epoch
+        );
+
+        _forwardToGateway(requestId);
+    }
+
+    /**
+     * @notice Attempt to forward a newly created deposit request to GameICMGateway.
+     * @dev If gateway is not deployed or call fails, the request remains in CREATED state.
+     */
+    function _forwardToGateway(bytes32 requestId) internal returns (bytes32 messageId) {
+        if (gameICMGateway != address(0) && gameICMGateway.code.length > 0) {
+            try IGameICMGateway(gameICMGateway).sendDepositRequest(requestId) returns (bytes32 mid) {
+                return mid;
+            } catch {
+                // If forwarding fails, request remains CREATED for client/relayer retry
+            }
+        }
+        return bytes32(0);
+    }
+
+    /**
+     * @notice View canonical DepositRequest representation for a request (PRD §10.1).
+     */
+    function getDepositRequest(bytes32 requestId)
+        external
+        view
+        returns (DepositRequest memory)
+    {
+        ChestRequest storage req = requests[requestId];
+        if (req.player == address(0)) revert RequestNotFound(requestId);
+        uint256 amount = req.chestType == ChestType.YIELD ? YIELD_CHEST_AMOUNT : SPONSOR_CHEST_AMOUNT;
+        return DepositRequest({
+            requestId: requestId,
+            player: req.player,
+            sourceType: req.chestType,
+            sourceId: req.chestId,
+            amount: amount,
+            rarity: req.rarity,
+            epoch: req.epoch
+        });
     }
 
     // -----------------------------------------------------------------------

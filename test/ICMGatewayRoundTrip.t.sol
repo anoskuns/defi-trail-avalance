@@ -71,6 +71,10 @@ contract ICMGatewayRoundTripTest is Test {
         "LocationProof(address player,bytes32 chestId,uint64 epoch,uint32 radiusMeters,"
         "bytes32 nonce,uint64 expiresAt,uint8 mode)"
     );
+    bytes32 private constant SPONSOR_PROOF_TYPEHASH = keccak256(
+        "SponsorProof(address player,bytes32 chestId,bytes32 campaignId,"
+        "uint64 epoch,bytes32 nonce,uint64 expiresAt)"
+    );
 
     address private admin;
     address private player;
@@ -163,6 +167,61 @@ contract ICMGatewayRoundTripTest is Test {
         // Delivering the replayed ACK leaves the terminal L1 state unchanged.
         teleporter.deliver(2);
         _assertStatus(requestId, ChestManager.RequestStatus.CONFIRMED);
+    }
+
+    function test_SponsorChest_RoundTrip_AllocatesTwoMockUSDC() public {
+        uint256 budgetBefore = sponsorPool.principalBudget();
+        uint256 allocatedBefore = sponsorPool.totalPrincipalAllocated();
+
+        bytes32 requestId = _openSponsorChest();
+        // Since GameICMGateway is deployed, openSponsorChest auto-forwards to Gateway, moving status to SENT
+        _assertStatus(requestId, ChestManager.RequestStatus.SENT);
+
+        // Get the teleporter message index (last envelope)
+        uint256 envIndex = teleporter.messageCount() - 1;
+
+        // Deliver L1 -> C-Chain message
+        teleporter.deliver(envIndex);
+
+        // Verify C-Chain SponsorPool deducted 2 Mock USDC from principalBudget and topped up YieldVault
+        assertEq(sponsorPool.principalBudget(), budgetBefore - gameGateway.SPONSOR_CHEST_AMOUNT());
+        assertEq(sponsorPool.totalPrincipalAllocated(), allocatedBefore + gameGateway.SPONSOR_CHEST_AMOUNT());
+        assertEq(_vaultPrincipal(), gameGateway.SPONSOR_CHEST_AMOUNT());
+
+        // Deliver C-Chain ACK -> L1
+        uint256 ackIndex = teleporter.messageCount() - 1;
+        teleporter.deliver(ackIndex);
+
+        // Verify L1 request confirmed and PlayerState updated with 2 Mock USDC
+        _assertStatus(requestId, ChestManager.RequestStatus.CONFIRMED);
+        (,,,,, uint256 principal,,,,) = playerState.players(player);
+        assertEq(principal, gameGateway.SPONSOR_CHEST_AMOUNT());
+    }
+
+    function _openSponsorChest() private returns (bytes32 requestId) {
+        bytes32 chestId = keccak256("sponsor-roundtrip-chest");
+        bytes32 campaignId = keccak256("sponsor-campaign-1");
+        bytes32 nonce = keccak256("sponsor-roundtrip-nonce");
+        uint64 epoch = uint64(block.timestamp / EPOCH_SECS);
+        uint64 expiresAt = uint64(block.timestamp + 60);
+        ChestManager.SponsorProof memory proof = ChestManager.SponsorProof({
+            player: player,
+            chestId: chestId,
+            campaignId: campaignId,
+            epoch: epoch,
+            nonce: nonce,
+            expiresAt: expiresAt,
+            signature: ""
+        });
+        bytes32 structHash = keccak256(
+            abi.encode(SPONSOR_PROOF_TYPEHASH, player, chestId, campaignId, epoch, nonce, expiresAt)
+        );
+        bytes32 digest = MessageHashUtils.toTypedDataHash(_domainSeparator(), structHash);
+        (uint8 v, bytes32 r, bytes32 s) = vm.sign(SIGNER_PRIVATE_KEY, digest);
+        proof.signature = abi.encodePacked(r, s, v);
+
+        vm.prank(player);
+        return chestManager.openSponsorChest(chestId, proof);
     }
 
     function _openYieldChest() private returns (bytes32 requestId) {
