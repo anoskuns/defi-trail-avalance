@@ -1,5 +1,15 @@
 import type { StyleSpecification } from "maplibre-gl";
 
+const cartoApiKey = process.env.NEXT_PUBLIC_CARTO_API_KEY?.trim();
+
+function cartoRasterTiles(style: string): string[] {
+  const query = cartoApiKey ? `?key=${encodeURIComponent(cartoApiKey)}` : "";
+  return ["a", "b", "c", "d"].map(
+    (subdomain) =>
+      `https://${subdomain}.basemaps.cartocdn.com/rastertiles/${style}/{z}/{x}/{y}.png${query}`
+  );
+}
+
 /**
  * Built-in Carto Dark Matter raster style specification.
  * Directly embedded as a StyleSpecification object so MapLibre does NOT need
@@ -10,16 +20,13 @@ export const CARTO_DARK_MATTER_STYLE: StyleSpecification = {
   sources: {
     "carto-dark": {
       type: "raster",
-      tiles: [
-        "https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
-        "https://b.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
-        "https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
-        "https://d.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
-      ],
+      tiles: cartoRasterTiles("dark_all"),
       tileSize: 256,
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      maxzoom: 20,
+      // CARTO raster tiles are currently served through zoom 18. MapLibre may
+      // overzoom that final level without requesting a forbidden z19 tile.
+      maxzoom: 18,
     },
   },
   layers: [
@@ -28,7 +35,7 @@ export const CARTO_DARK_MATTER_STYLE: StyleSpecification = {
       type: "raster",
       source: "carto-dark",
       minzoom: 0,
-      maxzoom: 20,
+      maxzoom: 18,
     },
   ],
 };
@@ -41,12 +48,7 @@ export const CARTO_VOYAGER_STYLE: StyleSpecification = {
   sources: {
     "carto-voyager": {
       type: "raster",
-      tiles: [
-        "https://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",
-        "https://b.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",
-        "https://c.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",
-        "https://d.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",
-      ],
+      tiles: cartoRasterTiles("voyager"),
       tileSize: 256,
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',

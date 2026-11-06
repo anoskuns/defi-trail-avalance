@@ -5,13 +5,13 @@ import {
   Map as MapLibreMap,
   Marker as MapLibreMarker,
   NavigationControl,
+  setWorkerUrl,
   type GeoJSONSource,
   type StyleSpecification,
 } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { LocationMode, MapSlot, PlayerPosition, SelectedChest } from "./types";
 import {
-  calculateBearing,
   calculateOpenRadius,
   createGeodesicCircle,
   findNearestChest,
@@ -23,8 +23,6 @@ import {
 import {
   CARTO_DARK_MATTER_STYLE,
   CARTO_VOYAGER_STYLE,
-  DEFAULT_MAP_STYLE,
-  OSM_STANDARD_STYLE,
 } from "./map-styles";
 import { DemoLocationBanner } from "./DemoLocationBanner";
 import { VirtualCompass } from "./VirtualCompass";
@@ -47,6 +45,7 @@ export function InteractiveMap({
   const mapRef = useRef<MapLibreMap | null>(null);
   const chestMarkersRef = useRef<MapLibreMarker[]>([]);
   const playerMarkerRef = useRef<MapLibreMarker | null>(null);
+  const workerConfiguredRef = useRef(false);
 
   // Gameplay state
   const [powerLevel, setPowerLevel] = useState<number>(initialPowerLevel);
@@ -182,19 +181,32 @@ export function InteractiveMap({
   useEffect(() => {
     if (!mapContainerRef.current || mapRef.current) return;
 
+    // MapLibre v6 needs an explicit worker URL when bundled by Next.js.
+    // Without this, Turbopack looks for the worker beside an app chunk and the
+    // map remains blank with "Worker failed to load" in the browser console.
+    if (!workerConfiguredRef.current) {
+      setWorkerUrl(
+        new URL("maplibre-gl/dist/maplibre-gl-worker.mjs", import.meta.url).toString()
+      );
+      workerConfiguredRef.current = true;
+    }
+
     // Use built-in direct raster style object (100% resilient against CORS, 404, or network blocking)
     const initialStyle: StyleSpecification =
       activeMapStyle === "dark" ? CARTO_DARK_MATTER_STYLE : CARTO_VOYAGER_STYLE;
 
+    // Leave attributionControl unset so MapLibre's visible default preserves
+    // the required CARTO and OpenStreetMap attribution.
     const map = new MapLibreMap({
       container: mapContainerRef.current,
       style: initialStyle,
       center: DEMO_CAMPUS_CENTER,
-      zoom: 17.5,
-      maxZoom: 20,
+      // A 256px raster source maps camera zoom 17 to CARTO's highest supported
+      // tile zoom (18). Higher values would request CARTO's unavailable z19+.
+      zoom: 16.5,
+      maxZoom: 17,
       minZoom: 13,
       pitch: 25,
-      attributionControl: false,
     });
 
     map.addControl(new NavigationControl({ showCompass: true }), "top-right");
@@ -292,7 +304,10 @@ export function InteractiveMap({
       const el = document.createElement("div");
       el.className = `chest-marker-${slot.slot}`;
       el.style.cursor = "pointer";
-      el.style.transform = "translate(-50%, -50%)";
+      el.style.touchAction = "manipulation";
+      el.setAttribute("role", "button");
+      el.setAttribute("tabindex", "0");
+      el.setAttribute("aria-label", `Open ${slot.type.toLowerCase()} chest ${slot.slot}`);
 
       // Style based on chest type
       let icon = "🪙";
@@ -313,7 +328,7 @@ export function InteractiveMap({
       }
 
       el.innerHTML = `
-        <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
+        <div class="chest-marker-card" style="position: relative; display: flex; flex-direction: column; align-items: center; transition: transform 0.15s ease;">
           ${
             inRange
               ? `<div style="
@@ -341,7 +356,6 @@ export function InteractiveMap({
                 : "0 6px 14px rgba(0, 0, 0, 0.6)"
             };
             font-size: 20px;
-            transition: transform 0.15s ease;
           ">
             ${icon}
           </div>
@@ -362,14 +376,19 @@ export function InteractiveMap({
         </div>
       `;
 
+      // MapLibre owns the transform on the outer marker element for geographic
+      // positioning. Animate the inner card instead, otherwise hover/click can
+      // overwrite that transform and make a marker appear to vanish.
+      const markerCard = el.firstElementChild as HTMLDivElement | null;
+
       el.addEventListener("mouseenter", () => {
-        el.style.transform = "translate(-50%, -50%) scale(1.15)";
+        if (markerCard) markerCard.style.transform = "scale(1.15)";
       });
       el.addEventListener("mouseleave", () => {
-        el.style.transform = "translate(-50%, -50%) scale(1)";
+        if (markerCard) markerCard.style.transform = "scale(1)";
       });
 
-      el.addEventListener("click", () => {
+      const selectChest = () => {
         const currentDist = haversineDistanceMeters(
           playerPosition.lat,
           playerPosition.lng,
@@ -384,9 +403,21 @@ export function InteractiveMap({
           reward: getChestReward(slot),
           energyCost: 1,
         });
+      };
+
+      el.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        selectChest();
       });
 
-      const marker = new MapLibreMarker({ element: el })
+      el.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        selectChest();
+      });
+
+      const marker = new MapLibreMarker({ element: el, anchor: "bottom" })
         .setLngLat([slot.lng, slot.lat])
         .addTo(map);
 
@@ -412,7 +443,7 @@ export function InteractiveMap({
     if (!nearestChest || !mapRef.current) return;
     mapRef.current.flyTo({
       center: [nearestChest.lng, nearestChest.lat],
-      zoom: 18.5,
+      zoom: 17,
       essential: true,
       speed: 1.2,
     });
@@ -423,7 +454,7 @@ export function InteractiveMap({
     if (!mapRef.current) return;
     mapRef.current.flyTo({
       center: [playerPosition.lng, playerPosition.lat],
-      zoom: 17.5,
+      zoom: 16.5,
       essential: true,
     });
   };

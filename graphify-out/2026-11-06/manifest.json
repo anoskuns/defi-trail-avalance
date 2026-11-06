@@ -727,16 +727,16 @@
     "semantic_hash": "9b6f0b4d431cc2def519c1174657cf1d"
   },
   "packages/contracts-cchain/src/YieldVault.sol": {
-    "mtime": 1793895710.941836,
-    "seen": 1793897090.6184165,
-    "ast_hash": "5e3e65f994ca5dbca7104e1ff9cfcc25",
-    "semantic_hash": "5e3e65f994ca5dbca7104e1ff9cfcc25"
+    "mtime": 1793927926.680819,
+    "seen": 1793929175.7350407,
+    "ast_hash": "295b16261f87d61d19c14dd2e9619c20",
+    "semantic_hash": "295b16261f87d61d19c14dd2e9619c20"
   },
   "packages/contracts-cchain/test/Accounting.t.sol": {
-    "mtime": 1793896173.7159293,
-    "seen": 1793897090.6186354,
-    "ast_hash": "5a150ff1d0b11d3ab26c8b17f9ac021f",
-    "semantic_hash": "5a150ff1d0b11d3ab26c8b17f9ac021f"
+    "mtime": 1793929010.7105343,
+    "seen": 1793929175.735232,
+    "ast_hash": "e8a14fbaa674b89091222ae842efd4ce",
+    "semantic_hash": "e8a14fbaa674b89091222ae842efd4ce"
   },
   "packages/contracts-l1/lib/forge-std/.github/dependabot.yml": {
     "mtime": 1793893735.99182,
@@ -1113,16 +1113,16 @@
     "semantic_hash": "4978310048226e2c0bf1f9bbbfa915a0"
   },
   "packages/contracts-l1/src/PlayerState.sol": {
-    "mtime": 1793898375.0997097,
-    "seen": 1793900190.0842216,
-    "ast_hash": "4e8af654fbe3a8e34b034394a227ed1c",
-    "semantic_hash": "4e8af654fbe3a8e34b034394a227ed1c"
+    "mtime": 1793927926.9368782,
+    "seen": 1793929175.7477546,
+    "ast_hash": "bd640ea35c674d55b2685d403564ba60",
+    "semantic_hash": "bd640ea35c674d55b2685d403564ba60"
   },
   "packages/contracts-l1/test/GameLogic.t.sol": {
-    "mtime": 1793900035.89798,
-    "seen": 1793900190.084393,
-    "ast_hash": "109108f8a33f3d80ca32ccf29aa8627e",
-    "semantic_hash": "109108f8a33f3d80ca32ccf29aa8627e"
+    "mtime": 1793929010.8537073,
+    "seen": 1793929175.7479434,
+    "ast_hash": "9050f7da538b99ff2b301822962d17a4",
+    "semantic_hash": "9050f7da538b99ff2b301822962d17a4"
   },
   "packages/contracts-l1/lib/forge-std/CONTRIBUTING.md": {
     "mtime": 1793893735.9992063,
@@ -1143,10 +1143,10 @@
     "semantic_hash": "8e9cc1c02c895f63c77d6bfdc4ba996c"
   },
   "packages/contracts-cchain/src/CChainICMGateway.sol": {
-    "mtime": 1793901569.5909336,
-    "seen": 1793902211.0944662,
-    "ast_hash": "429b5f8be9ed33059e1c2bbc93948bcd",
-    "semantic_hash": "429b5f8be9ed33059e1c2bbc93948bcd"
+    "mtime": 1793927926.5243175,
+    "seen": 1793929175.7344582,
+    "ast_hash": "3febbcd647a1c178c45194b7f051a578",
+    "semantic_hash": "3febbcd647a1c178c45194b7f051a578"
   },
   "packages/contracts-cchain/src/interfaces/ITeleporterMessenger.sol": {
     "mtime": 1793901569.5909336,
@@ -1167,9 +1167,21 @@
     "semantic_hash": "e7ee3494186311bd640146ca9fecb409"
   },
   "test/ICMGatewayRoundTrip.t.sol": {
-    "mtime": 1793901569.5909336,
-    "seen": 1793902211.1167758,
-    "ast_hash": "338b3f6d3c686e2afa317aa244d49a62",
-    "semantic_hash": "338b3f6d3c686e2afa317aa244d49a62"
+    "mtime": 1793927927.1555605,
+    "seen": 1793929175.7515967,
+    "ast_hash": "c3c77fd1d9d3669062e4f5fdcd627f74",
+    "semantic_hash": "c3c77fd1d9d3669062e4f5fdcd627f74"
+  },
+  "packages/contracts-cchain/src/QuestRouter.sol": {
+    "mtime": 1793902846.0032568,
+    "seen": 1793929175.7348557,
+    "ast_hash": "643f7704b10fa0726617bce4746d65b7",
+    "semantic_hash": "643f7704b10fa0726617bce4746d65b7"
+  },
+  "packages/contracts-cchain/test/QuestFlow.t.sol": {
+    "mtime": 1793929010.7877593,
+    "seen": 1793929175.735235,
+    "ast_hash": "258cfb117f8433dfd67f16ab5b85856e",
+    "semantic_hash": "258cfb117f8433dfd67f16ab5b85856e"
   }
 }
