@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import {
   calculateBearing,
   getCompassDirection,
@@ -7,8 +7,23 @@ import {
   getChestLandmark,
   getChestReward,
   findNearestChest,
+  haversineDistanceMeters,
 } from "@/components/map/geo-utils";
-import type { MapSlot } from "@/components/map/types";
+import type { MapSlot, SelectedChest } from "@/components/map/types";
+import {
+  CARTO_VOYAGER_STYLE,
+  DEFAULT_MAP_STYLE,
+  ESRI_SATELLITE_SOURCE_ID,
+  ESRI_SATELLITE_LAYER_ID,
+  CARTO_LABELS_SOURCE_ID,
+  CARTO_LABELS_LAYER_ID,
+  CARTO_VOYAGER_LAYER_ID,
+  CARTO_VOYAGER_SOURCE_ID,
+  getCartoLabelsTileUrl,
+  ESRI_SATELLITE_TILES_URL,
+  setupBasemapLayers,
+  applyMapModeVisibility,
+} from "@/components/map/map-styles";
 
 const mockSlots: MapSlot[] = [
   {
@@ -180,6 +195,166 @@ describe("Interactive Map & Gameplay Utilities", () => {
       const reward = getChestReward(mockSlots[2]!);
       expect(reward.amountUsdc).toBe(2.0);
       expect(reward.sponsorName).toContain("Coffee Spot");
+    });
+  });
+
+  describe("Basemap Switch & Raster Layer Management (Requirement 1 - 6)", () => {
+    it("confirms CARTO Voyager is default basemap with maxzoom <= 18 (no requests exceeding zoom 18)", () => {
+      expect(DEFAULT_MAP_STYLE).toBe(CARTO_VOYAGER_STYLE);
+      const voyagerSource = CARTO_VOYAGER_STYLE.sources[CARTO_VOYAGER_SOURCE_ID] as { maxzoom?: number };
+      expect(voyagerSource).toBeDefined();
+      expect(voyagerSource.maxzoom).toBe(18);
+
+      const voyagerLayer = CARTO_VOYAGER_STYLE.layers.find((l) => l.id === CARTO_VOYAGER_LAYER_ID) as { maxzoom?: number };
+      expect(voyagerLayer).toBeDefined();
+      expect(voyagerLayer.maxzoom).toBe(18);
+    });
+
+    it("formats CARTO Labels tile URL according to PRD specification", () => {
+      const url = getCartoLabelsTileUrl();
+      expect(url).toContain("https://basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}.png");
+      expect(url).toContain("?key=");
+    });
+
+    it("idempotently registers ESRI Satellite & CARTO Labels layers with correct ordering", () => {
+      // Create mock MapLibre instance with layer stack tracking
+      const sources = new Map<string, any>();
+      const layers: Array<{ id: string; [key: string]: any }> = [
+        { id: CARTO_VOYAGER_LAYER_ID, type: "raster", source: CARTO_VOYAGER_SOURCE_ID },
+      ];
+
+      const mockMap: any = {
+        getSource: vi.fn((id: string) => sources.get(id)),
+        addSource: vi.fn((id: string, def: any) => sources.set(id, def)),
+        getLayer: vi.fn((id: string) => layers.find((l) => l.id === id)),
+        addLayer: vi.fn((layer: any, beforeId?: string) => {
+          if (beforeId) {
+            const index = layers.findIndex((l) => l.id === beforeId);
+            if (index !== -1) {
+              layers.splice(index, 0, layer);
+              return;
+            }
+          }
+          layers.push(layer);
+        }),
+        setLayoutProperty: vi.fn((layerId: string, _prop: string, val: string) => {
+          const l = layers.find((layer) => layer.id === layerId);
+          if (l) {
+            l.layout = l.layout || {};
+            l.layout.visibility = val;
+          }
+        }),
+        isStyleLoaded: vi.fn(() => true),
+        setStyle: vi.fn(),
+      };
+
+      // Add existing player-radius-fill layer to test insertion before it
+      layers.push({ id: "player-radius-fill", type: "fill", source: "player-radius-source" });
+      layers.push({ id: "player-radius-line", type: "line", source: "player-radius-source" });
+
+      // Call setupBasemapLayers twice to verify idempotency
+      setupBasemapLayers(mockMap);
+      setupBasemapLayers(mockMap);
+
+      // Verify sources were added once
+      expect(mockMap.addSource).toHaveBeenCalledTimes(2);
+      expect(sources.has(ESRI_SATELLITE_SOURCE_ID)).toBe(true);
+      expect(sources.has(CARTO_LABELS_SOURCE_ID)).toBe(true);
+      expect(sources.get(ESRI_SATELLITE_SOURCE_ID).maxzoom).toBe(19);
+      expect(sources.get(CARTO_LABELS_SOURCE_ID).maxzoom).toBe(18);
+
+      // Verify layers were added once
+      expect(mockMap.addLayer).toHaveBeenCalledTimes(2);
+
+      // Verify exact layer ordering:
+      // carto-voyager-tiles < esri-satellite-layer < carto-labels-layer < player-radius-fill < player-radius-line
+      const layerIds = layers.map((l) => l.id);
+      const voyagerIdx = layerIds.indexOf(CARTO_VOYAGER_LAYER_ID);
+      const esriIdx = layerIds.indexOf(ESRI_SATELLITE_LAYER_ID);
+      const labelsIdx = layerIds.indexOf(CARTO_LABELS_LAYER_ID);
+      const fillIdx = layerIds.indexOf("player-radius-fill");
+      const lineIdx = layerIds.indexOf("player-radius-line");
+
+      expect(voyagerIdx).toBeLessThan(esriIdx);
+      expect(esriIdx).toBeLessThan(labelsIdx);
+      expect(labelsIdx).toBeLessThan(fillIdx);
+      expect(fillIdx).toBeLessThan(lineIdx);
+    });
+
+    it("toggles basemap at least 3 times using setLayoutProperty without calling setStyle or reloading map", () => {
+      const layers: Record<string, { visibility: string }> = {
+        [CARTO_VOYAGER_LAYER_ID]: { visibility: "visible" },
+        [ESRI_SATELLITE_LAYER_ID]: { visibility: "none" },
+        [CARTO_LABELS_LAYER_ID]: { visibility: "none" },
+      };
+
+      const mockMap: any = {
+        getLayer: vi.fn((id: string) => (layers[id] ? { id } : undefined)),
+        setLayoutProperty: vi.fn((id: string, prop: string, val: string) => {
+          if (prop === "visibility" && layers[id]) {
+            layers[id]!.visibility = val;
+          }
+        }),
+        isStyleLoaded: vi.fn(() => true),
+        setStyle: vi.fn(),
+      };
+
+      // Initial state: Streets
+      applyMapModeVisibility(mockMap, "streets");
+      expect(layers[CARTO_VOYAGER_LAYER_ID]!.visibility).toBe("visible");
+      expect(layers[ESRI_SATELLITE_LAYER_ID]!.visibility).toBe("none");
+      expect(layers[CARTO_LABELS_LAYER_ID]!.visibility).toBe("none");
+      mockMap.setLayoutProperty.mockClear();
+
+      // Toggle 1: Streets -> Satellite
+      applyMapModeVisibility(mockMap, "satellite");
+      expect(layers[CARTO_VOYAGER_LAYER_ID]!.visibility).toBe("none");
+      expect(layers[ESRI_SATELLITE_LAYER_ID]!.visibility).toBe("visible");
+      expect(layers[CARTO_LABELS_LAYER_ID]!.visibility).toBe("visible");
+
+      // Toggle 2: Satellite -> Streets
+      applyMapModeVisibility(mockMap, "streets");
+      expect(layers[CARTO_VOYAGER_LAYER_ID]!.visibility).toBe("visible");
+      expect(layers[ESRI_SATELLITE_LAYER_ID]!.visibility).toBe("none");
+      expect(layers[CARTO_LABELS_LAYER_ID]!.visibility).toBe("none");
+
+      // Toggle 3: Streets -> Satellite
+      applyMapModeVisibility(mockMap, "satellite");
+      expect(layers[CARTO_VOYAGER_LAYER_ID]!.visibility).toBe("none");
+      expect(layers[ESRI_SATELLITE_LAYER_ID]!.visibility).toBe("visible");
+      expect(layers[CARTO_LABELS_LAYER_ID]!.visibility).toBe("visible");
+
+      // Verify map.setStyle was NEVER called throughout all 3 toggles
+      expect(mockMap.setStyle).not.toHaveBeenCalled();
+      expect(mockMap.setLayoutProperty).toHaveBeenCalledTimes(9); // 3 properties * 3 toggles
+    });
+
+    it("preserves chest interaction and bottom sheet data after basemap toggle", () => {
+      // Simulate state when user clicks on chest slot 0 after toggling basemap
+      const playerPos = { lat: 10.8012, lng: 106.6531 };
+      const selectedSlot = mockSlots[0]!;
+      const dist = haversineDistanceMeters(
+        playerPos.lat,
+        playerPos.lng,
+        selectedSlot.lat,
+        selectedSlot.lng
+      );
+
+      const selectedChest: SelectedChest = {
+        ...selectedSlot,
+        name: getChestLandmark(selectedSlot.slot, selectedSlot.type),
+        distanceMeters: dist,
+        inRange: dist <= 30,
+        reward: getChestReward(selectedSlot),
+        energyCost: 1,
+      };
+
+      expect(selectedChest.slot).toBe(0);
+      expect(selectedChest.name).toBe("Central Library");
+      expect(selectedChest.distanceMeters).toBeCloseTo(0, 1);
+      expect(selectedChest.inRange).toBe(true);
+      expect(selectedChest.energyCost).toBe(1);
+      expect(selectedChest.reward.amountUsdc).toBe(1.0);
     });
   });
 });

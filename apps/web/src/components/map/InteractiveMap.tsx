@@ -21,9 +21,11 @@ import {
   haversineDistanceMeters,
 } from "./geo-utils";
 import {
-  CARTO_DARK_MATTER_STYLE,
   CARTO_VOYAGER_STYLE,
+  setupBasemapLayers,
+  applyMapModeVisibility,
 } from "./map-styles";
+export { setupBasemapLayers, applyMapModeVisibility };
 import { DemoLocationBanner } from "./DemoLocationBanner";
 import { VirtualCompass } from "./VirtualCompass";
 import { ChestBottomSheet } from "./ChestBottomSheet";
@@ -54,7 +56,12 @@ export function InteractiveMap({
   const [chests, setChests] = useState<MapSlot[]>([]);
   const [isLoadingChests, setIsLoadingChests] = useState<boolean>(true);
   const [selectedChest, setSelectedChest] = useState<SelectedChest | null>(null);
-  const [activeMapStyle, setActiveMapStyle] = useState<"dark" | "streets">("dark");
+  const [mapMode, setMapMode] = useState<"streets" | "satellite">("streets");
+  const mapModeRef = useRef<"streets" | "satellite">("streets");
+
+  useEffect(() => {
+    mapModeRef.current = mapMode;
+  }, [mapMode]);
 
   // Player position (starts at Demo Slot 0 by default: PRD §11.2)
   const [playerPosition, setPlayerPosition] = useState<PlayerPosition>({
@@ -191,20 +198,15 @@ export function InteractiveMap({
       workerConfiguredRef.current = true;
     }
 
-    // Use built-in direct raster style object (100% resilient against CORS, 404, or network blocking)
-    const initialStyle: StyleSpecification =
-      activeMapStyle === "dark" ? CARTO_DARK_MATTER_STYLE : CARTO_VOYAGER_STYLE;
-
-    // Leave attributionControl unset so MapLibre's visible default preserves
-    // the required CARTO and OpenStreetMap attribution.
+    // Retain CARTO Voyager street style as default basemap (Requirement 1)
     const map = new MapLibreMap({
       container: mapContainerRef.current,
-      style: initialStyle,
+      style: CARTO_VOYAGER_STYLE,
       center: DEMO_CAMPUS_CENTER,
       // A 256px raster source maps camera zoom 17 to CARTO's highest supported
       // tile zoom (18). Higher values would request CARTO's unavailable z19+.
       zoom: 16.5,
-      maxZoom: 17,
+      maxZoom: 18,
       minZoom: 13,
       pitch: 25,
     });
@@ -213,10 +215,14 @@ export function InteractiveMap({
 
     map.on("load", () => {
       map.resize();
+      setupBasemapLayers(map);
+      applyMapModeVisibility(map, mapModeRef.current);
       syncRadiusLayer(map, playerPosition.lng, playerPosition.lat, openRadius);
     });
 
     map.on("styledata", () => {
+      setupBasemapLayers(map);
+      applyMapModeVisibility(map, mapModeRef.current);
       syncRadiusLayer(map, playerPosition.lng, playerPosition.lat, openRadius);
     });
 
@@ -459,15 +465,24 @@ export function InteractiveMap({
     });
   };
 
-  // Toggle map basemap style
-  const handleToggleStyle = () => {
-    if (!mapRef.current) return;
-    const nextStyle = activeMapStyle === "dark" ? "streets" : "dark";
-    setActiveMapStyle(nextStyle);
-    mapRef.current.setStyle(
-      nextStyle === "dark" ? CARTO_DARK_MATTER_STYLE : CARTO_VOYAGER_STYLE
-    );
-  };
+  // Switch basemap layer visibility when mapMode changes without re-mounting or calling setStyle() (Requirement 4)
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+
+    if (map.isStyleLoaded()) {
+      applyMapModeVisibility(map, mapMode);
+    } else {
+      map.once("load", () => {
+        applyMapModeVisibility(map, mapMode);
+      });
+    }
+  }, [mapMode]);
+
+  // Toggle between Streets and Satellite mode without reloading map (Requirement 4 & 5)
+  const handleToggleBasemap = useCallback(() => {
+    setMapMode((prev) => (prev === "streets" ? "satellite" : "streets"));
+  }, []);
 
   return (
     <div
@@ -663,22 +678,30 @@ export function InteractiveMap({
 
             <div style={{ width: "1px", height: "20px", backgroundColor: "#334155" }} />
 
-            {/* Style Toggle */}
+            {/* Basemap Toggle Button (Requirement 5: Streets -> 🛰️ Satellite, Satellite -> 🏙️ Streets) */}
             <button
               type="button"
-              onClick={handleToggleStyle}
+              onClick={handleToggleBasemap}
+              data-testid="basemap-toggle-button"
+              aria-label={`Switch to ${mapMode === "streets" ? "Satellite" : "Streets"} view`}
               style={{
-                background: "none",
+                backgroundColor: "rgba(15, 23, 42, 0.94)",
                 border: "1px solid #334155",
-                borderRadius: "6px",
-                padding: "4px 8px",
-                fontSize: "0.6875rem",
-                color: "#94A3B8",
+                borderRadius: "8px",
+                padding: "6px 12px",
+                fontSize: "0.75rem",
+                fontWeight: 600,
+                color: "#F8FAFC",
                 cursor: "pointer",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
+                minHeight: "36px",
+                transition: "all 0.15s ease",
               }}
-              title="Toggle Map Style"
+              title={`Switch to ${mapMode === "streets" ? "Satellite" : "Streets"}`}
             >
-              {activeMapStyle === "dark" ? "🌙 Dark" : "☀️ Streets"}
+              {mapMode === "streets" ? "🛰️ Satellite" : "🏙️ Streets"}
             </button>
           </div>
         </div>
