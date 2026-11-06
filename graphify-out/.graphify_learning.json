@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-06T15:57:24.997272+00:00",
+  "generated_at": "2026-11-06T16:17:13.490754+00:00",
   "nodes": {
     "apps_web_src_app_layout": {
       "code_fingerprint": "9c9ca41693ddb498ddb13e60a7d20a0face23437dc2da03cfb29fc79a2d0b99f",
@@ -12,7 +12,7 @@
           "q": "Nhận xét prompt triển khai B. Module Giao diện Ví 2. Tích hợp Layout và Trang chủ có ổn không?"
         }
       ],
-      "score": 0.994028106,
+      "score": 0.993712229,
       "source_file": "apps/web/src/app/layout.tsx",
       "status": "tentative",
       "uses": 1
@@ -28,10 +28,73 @@
           "q": "Nhận xét prompt triển khai B. Module Giao diện Ví 2. Tích hợp Layout và Trang chủ có ổn không?"
         }
       ],
-      "score": 0.994028106,
+      "score": 0.993712229,
       "source_file": "DeFi-Trail-PRD.md",
       "status": "tentative",
       "uses": 1
+    },
+    "packages_shared_src_index": {
+      "code_fingerprint": "e69713571a5c0aff8b5703d660c0d8b9deb3ca805b5af641c1ae47a5d46f2c18",
+      "label": "src/index.ts",
+      "last": "2026-11-06T16:10:45.168220+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-06T16:10:45.168220+00:00",
+          "outcome": "useful",
+          "q": "Explain packages/shared/src/index.ts"
+        },
+        {
+          "date": "2026-11-06T16:10:43.800412+00:00",
+          "outcome": "useful",
+          "q": "packages shared domain types progression exports"
+        }
+      ],
+      "score": 1.999791956,
+      "source_file": "packages/shared/src/index.ts",
+      "status": "preferred",
+      "uses": 2
+    },
+    "packages_shared_src_types_domain": {
+      "code_fingerprint": "0e305f0cd662744d6c15610640a7a81c833580079705501908995a15053d9166",
+      "label": "domain.ts",
+      "last": "2026-11-06T16:10:44.475350+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-06T16:10:44.475350+00:00",
+          "outcome": "useful",
+          "q": "Path from domain.ts to progression.test.ts"
+        },
+        {
+          "date": "2026-11-06T16:10:43.800412+00:00",
+          "outcome": "useful",
+          "q": "packages shared domain types progression exports"
+        }
+      ],
+      "score": 1.999791771,
+      "source_file": "packages/shared/src/types/domain.ts",
+      "status": "preferred",
+      "uses": 2
+    },
+    "packages_shared_tests_progression_test": {
+      "code_fingerprint": "7a90632972cdfac175bb8368da4d56074b465d840e7767d135d589d5c6b30cf2",
+      "label": "progression.test.ts",
+      "last": "2026-11-06T16:10:44.475350+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-06T16:10:44.475350+00:00",
+          "outcome": "useful",
+          "q": "Path from domain.ts to progression.test.ts"
+        },
+        {
+          "date": "2026-11-06T16:10:43.800412+00:00",
+          "outcome": "useful",
+          "q": "packages shared domain types progression exports"
+        }
+      ],
+      "score": 1.999791771,
+      "source_file": "packages/shared/tests/progression.test.ts",
+      "status": "preferred",
+      "uses": 2
     }
   },
   "version": 1

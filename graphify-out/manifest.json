@@ -1587,6 +1587,60 @@
     "ast_hash": "67f727c5c098fe206a2664b781772e63",
     "semantic_hash": ""
   },
+  "apps/web/src/app/api/gameplay/seasons/active/route.ts": {
+    "mtime": 1793982351.6408665,
+    "seen": 1793982429.0665514,
+    "ast_hash": "71422c402c61bd2b668db9aa32530869",
+    "semantic_hash": ""
+  },
+  "apps/web/src/app/api/gameplay/trails/today/route.ts": {
+    "mtime": 1793982351.6438675,
+    "seen": 1793982429.0665574,
+    "ast_hash": "34503275468ec1ea29ca009beddfaf21",
+    "semantic_hash": ""
+  },
+  "apps/web/src/lib/gameplay/config.ts": {
+    "mtime": 1793982166.4170346,
+    "seen": 1793982429.074586,
+    "ast_hash": "9c61cf923fde244ce3a6f7065b75688f",
+    "semantic_hash": ""
+  },
+  "apps/web/src/lib/gameplay/errors.ts": {
+    "mtime": 1793982311.543982,
+    "seen": 1793982429.074592,
+    "ast_hash": "97e1fd99aa62a221eef3fef19806488f",
+    "semantic_hash": ""
+  },
+  "apps/web/src/lib/gameplay/repository.ts": {
+    "mtime": 1793982166.422016,
+    "seen": 1793982429.0745971,
+    "ast_hash": "2eaf9be242f653536b8c9b4d097d6000",
+    "semantic_hash": ""
+  },
+  "apps/web/tests/gameplay-config-api.test.ts": {
+    "mtime": 1793982166.4479442,
+    "seen": 1793982429.0775325,
+    "ast_hash": "78a0860d17565ca5b3bc1a53f55a7636",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20261106_161043_f865bd22_packages_shared_domain_types_progression_exports.md": {
+    "mtime": 1793981443.8040624,
+    "seen": 1793982429.1383038,
+    "ast_hash": "a98cbbb7466ca8d9c78c12d24b4cbf6b",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20261106_161044_1616230e_path_from_domain_ts_to_progression_test_ts.md": {
+    "mtime": 1793981444.4765873,
+    "seen": 1793982429.1383095,
+    "ast_hash": "fbbe61885756c059d87940ed9b0e3c82",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20261106_161045_7476c826_explain_packages_shared_src_index_ts.md": {
+    "mtime": 1793981445.1690433,
+    "seen": 1793982429.1383138,
+    "ast_hash": "81e2a10152cb0d26ea3b3b0033f2288e",
+    "semantic_hash": ""
+  },
   "pnpm-lock.yaml": {
     "mtime": 1793975876.16106,
     "seen": 1793981384.8421981,
