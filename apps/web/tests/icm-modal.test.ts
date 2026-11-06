@@ -207,6 +207,35 @@ describe("Cross-Chain ICM Progress System (PRD §8.2, §9.3, §10.1)", () => {
       clearPendingRequest(TEST_STORAGE_KEY);
       expect(getPendingRequest(TEST_STORAGE_KEY)).toBeNull();
     });
+
+    it("defensively handles 'undefined', 'null', and corrupted JSON strings without throwing", () => {
+      // Simulate buggy or malicious strings written to localStorage
+      mockStore[TEST_STORAGE_KEY] = "undefined";
+      expect(() => getPendingRequest(TEST_STORAGE_KEY)).not.toThrow();
+      expect(getPendingRequest(TEST_STORAGE_KEY)).toBeNull();
+
+      mockStore[TEST_STORAGE_KEY] = "null";
+      expect(() => getPendingRequest(TEST_STORAGE_KEY)).not.toThrow();
+      expect(getPendingRequest(TEST_STORAGE_KEY)).toBeNull();
+
+      mockStore[TEST_STORAGE_KEY] = "{malformed json...";
+      expect(() => getPendingRequest(TEST_STORAGE_KEY)).not.toThrow();
+      expect(getPendingRequest(TEST_STORAGE_KEY)).toBeNull();
+      // Verifies corrupted key was cleaned up
+      expect(mockStore[TEST_STORAGE_KEY]).toBeUndefined();
+
+      mockStore[TEST_STORAGE_KEY] = "[object Object]";
+      expect(() => getPendingRequest(TEST_STORAGE_KEY)).not.toThrow();
+      expect(getPendingRequest(TEST_STORAGE_KEY)).toBeNull();
+    });
+
+    it("prevents saving invalid or non-object payloads", () => {
+      savePendingRequest(undefined as any, TEST_STORAGE_KEY);
+      expect(mockStore[TEST_STORAGE_KEY]).toBeUndefined();
+
+      savePendingRequest(null as any, TEST_STORAGE_KEY);
+      expect(mockStore[TEST_STORAGE_KEY]).toBeUndefined();
+    });
   });
 });
 

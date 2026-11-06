@@ -103,14 +103,22 @@ export interface MapConfigResponse {
   demoLocationEnabled: boolean;
 }
 
+let cachedCampusConfig: MapConfigResponse | null = null;
+let lastEpochCached: number = -1;
+
 /**
  * Generates the full Demo Campus configuration with dynamically computed H3 cells and chestIds.
+ * Results are cached in memory by epoch for sub-millisecond response times.
  */
 export function getDemoCampusConfig(
   timestampSec: number = Math.floor(Date.now() / 1000),
   epochSeconds: number = DEFAULT_EPOCH_SECONDS
 ): MapConfigResponse {
   const currentEpoch = getCurrentEpoch(timestampSec, epochSeconds);
+
+  if (cachedCampusConfig && lastEpochCached === currentEpoch) {
+    return cachedCampusConfig;
+  }
 
   const computedSlots: ComputedSlotConfig[] = DEMO_CAMPUS_SLOTS.map((slot) => {
     const h3Cell = computeH3Cell(slot.lat, slot.lng, H3_RESOLUTION);
@@ -131,7 +139,7 @@ export function getDemoCampusConfig(
     };
   });
 
-  return {
+  const result: MapConfigResponse = {
     campusId: CAMPUS_ID,
     epochSeconds,
     currentEpoch,
@@ -158,6 +166,10 @@ export function getDemoCampusConfig(
     },
     demoLocationEnabled: true,
   };
+
+  cachedCampusConfig = result;
+  lastEpochCached = currentEpoch;
+  return result;
 }
 
 /**

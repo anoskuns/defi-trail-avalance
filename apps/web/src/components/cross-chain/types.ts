@@ -78,6 +78,8 @@ export interface StoredICMRequest {
 export interface ICMProgressModalProps {
   isOpen: boolean;
   onClose: () => void;
+  // Direct hook binding to reuse parent useICMProgress without duplicate instantiation
+  progress?: any;
   // State machine state
   state?: ICMUIState;
   requestId?: string;
@@ -86,7 +88,7 @@ export interface ICMProgressModalProps {
   chestType?: string;
   errorMessage?: string;
   // Callbacks
-  onCheckStatus?: (requestId: string) => Promise<void> | void;
+  onCheckStatus?: (requestId: string) => Promise<RequestStatus | void> | RequestStatus | void;
   onRetry?: (requestId: string) => Promise<void> | void;
   onSuccessDismiss?: () => void;
   // Configuration

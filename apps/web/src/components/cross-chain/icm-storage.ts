@@ -5,6 +5,7 @@
 
 import type { StoredICMRequest, ICMUIState } from "./types";
 import { RequestStatus } from "./types";
+import { parseSafeJSON } from "@/lib/json";
 
 export const DEFAULT_ICM_STORAGE_KEY = "defi_trail_pending_request";
 
@@ -45,9 +46,11 @@ export function savePendingRequest(
   storageKey: string = DEFAULT_ICM_STORAGE_KEY
 ): void {
   const storage = getStorage();
-  if (!storage || !isStorageAvailable()) return;
+  if (!storage || !isStorageAvailable() || !data || typeof data !== "object") return;
   try {
-    storage.setItem(storageKey, JSON.stringify(data));
+    const payload = JSON.stringify(data);
+    if (!payload || payload === "undefined" || payload === "null") return;
+    storage.setItem(storageKey, payload);
   } catch (err) {
     console.warn("[ICMStorage] Failed to save pending request:", err);
   }
@@ -55,6 +58,7 @@ export function savePendingRequest(
 
 /**
  * Retrieves the currently saved pending request from localStorage
+ * Defensively handles undefined, null, malformed JSON, and automatically cleans corrupted keys.
  */
 export function getPendingRequest(
   storageKey: string = DEFAULT_ICM_STORAGE_KEY
@@ -63,9 +67,17 @@ export function getPendingRequest(
   if (!storage || !isStorageAvailable()) return null;
   try {
     const raw = storage.getItem(storageKey);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw) as StoredICMRequest;
-    if (!parsed || !parsed.requestId) return null;
+    const parsed = parseSafeJSON<StoredICMRequest>(raw);
+
+    if (!parsed || typeof parsed !== "object" || !parsed.requestId) {
+      // Clean up corrupted or invalid data
+      if (raw && (raw === "undefined" || raw === "null" || raw === "[object Object]" || raw.startsWith("{"))) {
+        try {
+          storage.removeItem(storageKey);
+        } catch {}
+      }
+      return null;
+    }
     return parsed;
   } catch (err) {
     console.warn("[ICMStorage] Failed to read pending request:", err);

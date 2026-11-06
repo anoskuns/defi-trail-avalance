@@ -2,40 +2,40 @@
 
 import React, { useState, useEffect, useId } from "react";
 import type { ICMProgressModalProps } from "./types";
-import { useICMProgress } from "./useICMProgress";
+import { useICMProgress, type UseICMProgressReturn } from "./useICMProgress";
 
 export function ICMProgressModal(props: ICMProgressModalProps) {
-  const {
-    isOpen: controlledIsOpen,
-    onClose,
-    state: controlledState,
-    requestId: controlledRequestId,
-    txHash: controlledTxHash,
-    chestSlot: controlledChestSlot,
-    chestType: controlledChestType,
-    errorMessage: controlledErrorMessage,
-    onCheckStatus,
-    onRetry,
-    onSuccessDismiss,
-    storageKey,
-    autoRestoreOnMount = true,
-  } = props;
+  if (props.progress) {
+    return <ICMProgressModalView {...props} progress={props.progress} />;
+  }
+  return <UncontrolledICMProgressModal {...props} />;
+}
 
+function UncontrolledICMProgressModal(props: ICMProgressModalProps) {
   const hookProgress = useICMProgress({
-    storageKey,
-    autoRestore: autoRestoreOnMount,
-    onCheckStatus,
-    onRetry,
+    storageKey: props.storageKey,
+    autoRestore: props.autoRestoreOnMount ?? true,
+    onCheckStatus: props.onCheckStatus,
+    onRetry: props.onRetry,
   });
 
-  // Support controlled or hook-driven state
-  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : hookProgress.isOpen;
-  const state = controlledState || hookProgress.state;
-  const requestId = controlledRequestId || hookProgress.requestId;
-  const txHash = controlledTxHash || hookProgress.txHash;
-  const chestSlot = controlledChestSlot !== undefined ? controlledChestSlot : hookProgress.chestSlot;
-  const chestType = controlledChestType || hookProgress.chestType;
-  const errorMessage = controlledErrorMessage || hookProgress.errorMessage;
+  return <ICMProgressModalView {...props} progress={hookProgress} />;
+}
+
+interface ICMProgressModalViewProps extends ICMProgressModalProps {
+  progress: UseICMProgressReturn;
+}
+
+function ICMProgressModalView(props: ICMProgressModalViewProps) {
+  const { progress, onSuccessDismiss } = props;
+
+  const isOpen = props.isOpen !== undefined ? props.isOpen : progress.isOpen;
+  const state = props.state || progress.state;
+  const requestId = props.requestId || progress.requestId;
+  const txHash = props.txHash || progress.txHash;
+  const chestSlot = props.chestSlot !== undefined ? props.chestSlot : progress.chestSlot;
+  const chestType = props.chestType || progress.chestType;
+  const errorMessage = props.errorMessage || progress.errorMessage;
 
   const {
     elapsedSeconds,
@@ -47,35 +47,45 @@ export function ICMProgressModal(props: ICMProgressModalProps) {
     checkStatus,
     retry,
     closeModal,
-  } = hookProgress;
+  } = progress;
 
   const [copiedId, setCopiedId] = useState(false);
   const titleId = useId();
 
-  // Sync external state changes if controlled
-  useEffect(() => {
-    if (controlledState && controlledState !== hookProgress.state) {
-      hookProgress.setState(controlledState);
+  const handleClose = () => {
+    if (props.onClose) {
+      props.onClose();
     }
-  }, [controlledState, hookProgress]);
+    closeModal();
+  };
+
+  // Close immediately on Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        handleClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
 
   if (!isOpen || state === "idle") {
     return null;
   }
+
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      handleClose();
+    }
+  };
 
   const handleCopyRequestId = () => {
     if (!requestId) return;
     navigator.clipboard?.writeText(requestId);
     setCopiedId(true);
     setTimeout(() => setCopiedId(false), 2000);
-  };
-
-  const handleClose = () => {
-    if (onClose) {
-      onClose();
-    } else {
-      closeModal();
-    }
   };
 
   const formatSeconds = (sec: number) => {
@@ -94,6 +104,7 @@ export function ICMProgressModal(props: ICMProgressModalProps) {
       role="dialog"
       aria-modal="true"
       aria-labelledby={titleId}
+      onClick={handleBackdropClick}
       style={{
         position: "fixed",
         inset: 0,
@@ -108,6 +119,7 @@ export function ICMProgressModal(props: ICMProgressModalProps) {
       }}
     >
       <div
+        onClick={(e) => e.stopPropagation()}
         style={{
           position: "relative",
           width: "100%",

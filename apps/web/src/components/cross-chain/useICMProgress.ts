@@ -46,30 +46,45 @@ export function useICMProgress(options: UseICMProgressOptions = {}) {
   const [onChainStatus, setOnChainStatus] = useState<RequestStatus>(RequestStatus.NONE);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const hasHydratedRef = useRef(false);
+  const lastCheckTimeRef = useRef<number>(0);
+
+  // Keep latest callback references without triggering effect re-runs
+  const onCheckStatusRef = useRef(onCheckStatus);
+  useEffect(() => {
+    onCheckStatusRef.current = onCheckStatus;
+  }, [onCheckStatus]);
+
+  const onRetryRef = useRef(onRetry);
+  useEffect(() => {
+    onRetryRef.current = onRetry;
+  }, [onRetry]);
 
   // 1. Elapsed timer during active pending states (Requirement 3: Graceful Waiting)
   useEffect(() => {
     const isPending = state === "icm_pending" || state === "submitted";
 
-    if (isPending) {
-      if (!startedAt) {
-        setStartedAt(Date.now());
-      }
-
-      timerRef.current = setInterval(() => {
-        if (startedAt) {
-          const secs = Math.max(0, Math.floor((Date.now() - startedAt) / 1000));
-          setElapsedSeconds(secs);
-        } else {
-          setElapsedSeconds((prev) => prev + 1);
-        }
-      }, 1000);
-    } else {
+    if (!isPending) {
       if (timerRef.current) {
         clearInterval(timerRef.current);
         timerRef.current = null;
       }
+      return;
     }
+
+    const currentStart = startedAt || Date.now();
+    if (!startedAt) {
+      setStartedAt(currentStart);
+    }
+
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+
+    timerRef.current = setInterval(() => {
+      const secs = Math.max(0, Math.floor((Date.now() - currentStart) / 1000));
+      setElapsedSeconds(secs);
+    }, 1000);
 
     return () => {
       if (timerRef.current) {
@@ -82,6 +97,8 @@ export function useICMProgress(options: UseICMProgressOptions = {}) {
   // 2. Hydrate pending request from localStorage on mount (Requirement 4)
   useEffect(() => {
     if (!autoRestore) return;
+    if (hasHydratedRef.current) return;
+    hasHydratedRef.current = true;
 
     const stored = getPendingRequest(storageKey);
     if (stored && stored.requestId) {
@@ -99,26 +116,32 @@ export function useICMProgress(options: UseICMProgressOptions = {}) {
 
       if (stored.status === "confirmed") {
         setState("confirmed");
+        setOnChainStatus(RequestStatus.CONFIRMED);
         setIsOpen(true);
       } else if (stored.status === "final_error") {
         setState("final_error");
+        setOnChainStatus(RequestStatus.FAILED_FINAL);
         setErrorMessage(stored.error || "Transaction rejected");
         setIsOpen(true);
       } else {
-        // Pending state: restore modal and trigger reconciliation
+        // Pending state: restore modal and trigger single background reconciliation
         setState(stored.status || "icm_pending");
+        if (stored.onChainStatus !== undefined) {
+          setOnChainStatus(stored.onChainStatus);
+        }
         setIsOpen(true);
 
-        // Immediate background reconciliation with chain
-        if (onCheckStatus) {
-          Promise.resolve(onCheckStatus(stored.requestId)).then((resStatus) => {
+        const cb = onCheckStatusRef.current;
+        if (cb) {
+          Promise.resolve(cb(stored.requestId)).then((resStatus) => {
             if (resStatus !== undefined && typeof resStatus === "number") {
               setOnChainStatus(resStatus);
               const mapped = mapOnChainStatusToUIState(resStatus);
               setState(mapped);
-              updatePendingRequest({ status: mapped, onChainStatus: resStatus }, storageKey);
               if (mapped === "confirmed") {
                 clearPendingRequest(storageKey);
+              } else {
+                updatePendingRequest({ status: mapped, onChainStatus: resStatus }, storageKey);
               }
             }
           }).catch((err) => {
@@ -127,7 +150,7 @@ export function useICMProgress(options: UseICMProgressOptions = {}) {
         }
       }
     }
-  }, [autoRestore, storageKey, onCheckStatus]);
+  }, [autoRestore, storageKey]);
 
   // 3. Construct 2-Chain Visual Timeline Steps (Requirement 2)
   const timelineSteps = useMemo<ICMTimelineStep[]>(() => {
@@ -318,10 +341,18 @@ export function useICMProgress(options: UseICMProgressOptions = {}) {
 
   const checkStatus = useCallback(async () => {
     if (!requestId || isCheckingStatus) return;
+    const now = Date.now();
+    // Enforce 3s throttle between checks to prevent RPC spam
+    if (now - lastCheckTimeRef.current < 3000) {
+      return;
+    }
+    lastCheckTimeRef.current = now;
+
     try {
       setIsCheckingStatus(true);
-      if (onCheckStatus) {
-        const result = await onCheckStatus(requestId);
+      const cb = onCheckStatusRef.current;
+      if (cb) {
+        const result = await cb(requestId);
         if (result !== undefined && typeof result === "number") {
           setOnChainStatus(result);
           const mapped = mapOnChainStatusToUIState(result);
@@ -338,7 +369,7 @@ export function useICMProgress(options: UseICMProgressOptions = {}) {
     } finally {
       setIsCheckingStatus(false);
     }
-  }, [requestId, isCheckingStatus, onCheckStatus, storageKey]);
+  }, [requestId, isCheckingStatus, storageKey]);
 
   const retry = useCallback(async () => {
     if (!requestId || isRetrying) return;
@@ -350,15 +381,16 @@ export function useICMProgress(options: UseICMProgressOptions = {}) {
       setElapsedSeconds(0);
       updatePendingRequest({ status: "icm_pending", startedAt: Date.now() }, storageKey);
 
-      if (onRetry) {
-        await onRetry(requestId);
+      const cb = onRetryRef.current;
+      if (cb) {
+        await cb(requestId);
       }
     } catch (err: any) {
       setRetryableError(err?.message || "Retry failed to dispatch message");
     } finally {
       setIsRetrying(false);
     }
-  }, [requestId, isRetrying, onRetry, setRetryableError, storageKey]);
+  }, [requestId, isRetrying, setRetryableError, storageKey]);
 
   const closeModal = useCallback(() => {
     if (state === "confirmed" || state === "final_error") {
@@ -386,6 +418,7 @@ export function useICMProgress(options: UseICMProgressOptions = {}) {
     isCheckingStatus,
     isRetrying,
     onChainStatus,
+    setOnChainStatus,
     // Methods
     startRequest,
     setSubmitted,
@@ -398,4 +431,6 @@ export function useICMProgress(options: UseICMProgressOptions = {}) {
     closeModal,
   };
 }
+
+export type UseICMProgressReturn = ReturnType<typeof useICMProgress>;
 

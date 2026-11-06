@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { getDemoCampusConfig } from "@/lib/campus";
 import { errorResponse } from "@/lib/api-response";
 
+export const revalidate = 3600; // Cache 1 hour (PRD static config)
+
 /**
  * GET /api/map-config
  * Returns non-secret deployment/campus config, computed H3 cells at resolution 10,
@@ -13,7 +15,7 @@ export async function GET() {
     return NextResponse.json(config, {
       status: 200,
       headers: {
-        "Cache-Control": "public, s-maxage=30, stale-while-revalidate=60",
+        "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=59",
       },
     });
   } catch (err: unknown) {

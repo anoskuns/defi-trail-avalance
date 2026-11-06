@@ -16,6 +16,7 @@ import {
   getChestManagerAddress,
 } from "./server-env";
 import { computeCampaignIdHash } from "./campus";
+import { parseSafeJSON } from "./json";
 
 const thirdwebClient = createThirdwebClient({
   clientId: process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID || "defi-trail-backend",
@@ -168,23 +169,28 @@ export function verifySponsorQrPayload(
     return { valid: false, error: "Missing QR payload" };
   }
 
-  let parsed: {
+  type QrPayload = {
     campaignId?: string;
     chestId?: string;
     expiresAt?: number;
     sig?: string;
   };
 
-  try {
-    if (typeof rawQrPayload === "string") {
-      parsed = JSON.parse(rawQrPayload);
-    } else if (typeof rawQrPayload === "object" && rawQrPayload !== null) {
-      parsed = rawQrPayload as typeof parsed;
-    } else {
-      return { valid: false, error: "Invalid QR payload format" };
+  let parsed: QrPayload | null = null;
+
+  if (typeof rawQrPayload === "string") {
+    parsed = parseSafeJSON<QrPayload>(rawQrPayload);
+    if (!parsed) {
+      return { valid: false, error: "Failed to parse QR payload JSON" };
     }
-  } catch {
-    return { valid: false, error: "Failed to parse QR payload JSON" };
+  } else if (typeof rawQrPayload === "object" && rawQrPayload !== null) {
+    parsed = rawQrPayload as unknown as QrPayload;
+  } else {
+    return { valid: false, error: "Invalid QR payload format" };
+  }
+
+  if (!parsed) {
+    return { valid: false, error: "Invalid QR payload data" };
   }
 
   const { campaignId, chestId, expiresAt, sig } = parsed;

@@ -77,39 +77,32 @@ export function DemoLocationBanner({
         <span style={{ fontSize: "0.75rem", color: "#FDE047" }}>
           Current Seed:
         </span>
-        <div style={{ display: "inline-flex", gap: "4px" }}>
-          <button
-            type="button"
-            onClick={() => onSlotChange?.(0)}
-            style={{
-              padding: "2px 8px",
-              borderRadius: "4px",
-              fontSize: "0.6875rem",
-              fontWeight: 600,
-              cursor: "pointer",
-              border: activeSlot === 0 ? "1px solid #EAB308" : "1px solid rgba(234, 179, 8, 0.3)",
-              backgroundColor: activeSlot === 0 ? "#EAB308" : "transparent",
-              color: activeSlot === 0 ? "#000000" : "#FEF08A",
-            }}
-          >
-            Chest #0 (Library)
-          </button>
-          <button
-            type="button"
-            onClick={() => onSlotChange?.(1)}
-            style={{
-              padding: "2px 8px",
-              borderRadius: "4px",
-              fontSize: "0.6875rem",
-              fontWeight: 600,
-              cursor: "pointer",
-              border: activeSlot === 1 ? "1px solid #EAB308" : "1px solid rgba(234, 179, 8, 0.3)",
-              backgroundColor: activeSlot === 1 ? "#EAB308" : "transparent",
-              color: activeSlot === 1 ? "#000000" : "#FEF08A",
-            }}
-          >
-            Chest #1 (Engineering)
-          </button>
+        <div style={{ display: "inline-flex", gap: "4px", flexWrap: "wrap" }}>
+          {[
+            { slot: 0, label: "0 (Library)", type: "🪙" },
+            { slot: 1, label: "1 (Engineering)", type: "📜" },
+            { slot: 2, label: "2 (Cafe)", type: "☕" },
+            { slot: 3, label: "3 (Center)", type: "🪙" },
+            { slot: 4, label: "4 (Sports)", type: "📜" },
+          ].map(({ slot, label, type }) => (
+            <button
+              key={slot}
+              type="button"
+              onClick={() => onSlotChange?.(slot)}
+              style={{
+                padding: "2px 8px",
+                borderRadius: "4px",
+                fontSize: "0.6875rem",
+                fontWeight: 600,
+                cursor: "pointer",
+                border: activeSlot === slot ? "1px solid #EAB308" : "1px solid rgba(234, 179, 8, 0.3)",
+                backgroundColor: activeSlot === slot ? "#EAB308" : "transparent",
+                color: activeSlot === slot ? "#000000" : "#FEF08A",
+              }}
+            >
+              {type} #{label}
+            </button>
+          ))}
         </div>
 
         {onDisableDemo && (

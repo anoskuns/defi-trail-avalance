@@ -29,6 +29,82 @@ export { setupBasemapLayers, applyMapModeVisibility };
 import { DemoLocationBanner } from "./DemoLocationBanner";
 import { VirtualCompass } from "./VirtualCompass";
 import { ChestBottomSheet } from "./ChestBottomSheet";
+import { parseSafeJSON } from "@/lib/json";
+
+// Default 5 Demo Campus Chests (PRD §11.2) - loaded instantly from frame 1
+export const DEFAULT_DEMO_CHESTS: MapSlot[] = [
+  {
+    slot: 0,
+    type: "YIELD",
+    lat: 10.8012,
+    lng: 106.6531,
+    h3Cell: "8a65b5641957fff",
+    chestId: "0x1111111111111111111111111111111111111111111111111111111111111111",
+    sponsorCampaign: null,
+  },
+  {
+    slot: 1,
+    type: "QUEST",
+    lat: 10.80152,
+    lng: 106.65342,
+    h3Cell: "8a65b564190ffff",
+    chestId: "0x2222222222222222222222222222222222222222222222222222222222222222",
+    sponsorCampaign: null,
+  },
+  {
+    slot: 2,
+    type: "SPONSOR",
+    lat: 10.80092,
+    lng: 106.65362,
+    h3Cell: "8a65b5641947fff",
+    chestId: "0x3333333333333333333333333333333333333333333333333333333333333333",
+    sponsorCampaign: "demo-coffee-v1",
+  },
+  {
+    slot: 3,
+    type: "YIELD",
+    lat: 10.8007,
+    lng: 106.65298,
+    h3Cell: "8a65b5641977fff",
+    chestId: "0x4444444444444444444444444444444444444444444444444444444444444444",
+    sponsorCampaign: null,
+  },
+  {
+    slot: 4,
+    type: "QUEST",
+    lat: 10.80178,
+    lng: 106.65282,
+    h3Cell: "8a65b5641967fff",
+    chestId: "0x5555555555555555555555555555555555555555555555555555555555555555",
+    sponsorCampaign: null,
+  },
+];
+
+// Module-level cached map config and in-flight promise to eliminate duplicate parallel fetches
+let cachedMapConfig: any = null;
+let mapConfigInFlightPromise: Promise<any> | null = null;
+
+async function getCachedMapConfig(): Promise<any> {
+  if (cachedMapConfig) {
+    return cachedMapConfig;
+  }
+  if (!mapConfigInFlightPromise) {
+    mapConfigInFlightPromise = (async () => {
+      try {
+        const res = await fetch("/api/map-config");
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const text = await res.text();
+        const data = parseSafeJSON(text);
+        if (!data) throw new Error("Invalid JSON response from /api/map-config");
+        cachedMapConfig = data;
+        return data;
+      } finally {
+        mapConfigInFlightPromise = null;
+      }
+    })();
+  }
+  return mapConfigInFlightPromise;
+}
 
 const DEMO_CAMPUS_CENTER: [number, number] = [106.6531, 10.8012]; // [lng, lat]
 
@@ -49,12 +125,13 @@ export function InteractiveMap({
   const playerMarkerRef = useRef<MapLibreMarker | null>(null);
   const workerConfiguredRef = useRef(false);
 
-  // Gameplay state
+  // Gameplay state - initial chests pre-populated so UI elements and compass are never blank
   const [powerLevel, setPowerLevel] = useState<number>(initialPowerLevel);
   const [demoMode, setDemoMode] = useState<LocationMode>("DEMO");
   const [demoSlotIndex, setDemoSlotIndex] = useState<number>(0);
-  const [chests, setChests] = useState<MapSlot[]>([]);
-  const [isLoadingChests, setIsLoadingChests] = useState<boolean>(true);
+  const [chests, setChests] = useState<MapSlot[]>(DEFAULT_DEMO_CHESTS);
+  const [isLoadingChests, setIsLoadingChests] = useState<boolean>(false);
+  const [isMapReady, setIsMapReady] = useState<boolean>(false);
   const [selectedChest, setSelectedChest] = useState<SelectedChest | null>(null);
   const [mapMode, setMapMode] = useState<"streets" | "satellite">("streets");
   const mapModeRef = useRef<"streets" | "satellite">("streets");
@@ -73,44 +150,47 @@ export function InteractiveMap({
 
   const openRadius = calculateOpenRadius(powerLevel);
 
-  // 1. Fetch map config from /api/map-config (Requirement 2)
+  // 1. Fetch map config from /api/map-config with safe hydration (Requirement 2)
   useEffect(() => {
-    let isCancelled = false;
+    let isMounted = true;
     async function loadMapConfig() {
       try {
         setIsLoadingChests(true);
-        const res = await fetch("/api/map-config");
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
-        if (!isCancelled && data.slots) {
+        const data = await getCachedMapConfig();
+        if (isMounted && data?.slots && Array.isArray(data.slots) && data.slots.length > 0) {
           setChests(data.slots);
         }
-      } catch (err) {
-        console.warn("Failed to load /api/map-config, falling back to local seed:", err);
+      } catch (err: any) {
+        console.warn("Failed to load /api/map-config, falling back to local seed:", err?.message || err);
       } finally {
-        if (!isCancelled) setIsLoadingChests(false);
+        if (isMounted) setIsLoadingChests(false);
       }
     }
     loadMapConfig();
     return () => {
-      isCancelled = true;
+      isMounted = false;
     };
   }, []);
 
-  // 2. Handle Demo Location toggle (Requirement 5)
+  // 2. Handle Demo Location toggle (Requirement 5) - Supports all 5 slots
   useEffect(() => {
     if (demoMode === "DEMO") {
-      if (demoSlotIndex === 0) {
-        setPlayerPosition({
-          lat: 10.8012,
-          lng: 106.6531,
-          accuracyMeters: 5,
-        });
-      } else {
-        setPlayerPosition({
-          lat: 10.80152,
-          lng: 106.65342,
-          accuracyMeters: 5,
+      const targetSlot =
+        chests.find((s) => s.slot === demoSlotIndex) ||
+        DEFAULT_DEMO_CHESTS.find((s) => s.slot === demoSlotIndex) ||
+        DEFAULT_DEMO_CHESTS[0]!;
+
+      setPlayerPosition({
+        lat: targetSlot.lat,
+        lng: targetSlot.lng,
+        accuracyMeters: 5,
+      });
+
+      if (mapRef.current) {
+        mapRef.current.flyTo({
+          center: [targetSlot.lng, targetSlot.lat],
+          zoom: 17,
+          essential: true,
         });
       }
     } else {
@@ -133,7 +213,7 @@ export function InteractiveMap({
         return () => navigator.geolocation.clearWatch(watchId);
       }
     }
-  }, [demoMode, demoSlotIndex]);
+  }, [demoMode, demoSlotIndex, chests]);
 
   // Helper to ensure OpenRadius GeoJSON layer is created and kept in sync (Requirement 3)
   const syncRadiusLayer = useCallback(
@@ -214,6 +294,7 @@ export function InteractiveMap({
     map.addControl(new NavigationControl({ showCompass: true }), "top-right");
 
     map.on("load", () => {
+      setIsMapReady(true);
       map.resize();
       setupBasemapLayers(map);
       applyMapModeVisibility(map, mapModeRef.current);
@@ -240,6 +321,7 @@ export function InteractiveMap({
     mapRef.current = map;
 
     return () => {
+      setIsMapReady(false);
       clearTimeout(timer1);
       clearTimeout(timer2);
       window.removeEventListener("resize", handleResize);
@@ -257,7 +339,7 @@ export function InteractiveMap({
   // 4. Update player marker and openRadius circle when position or radius changes
   useEffect(() => {
     const map = mapRef.current;
-    if (!map) return;
+    if (!map || !isMapReady) return;
 
     // Synchronize GeoJSON radius circle
     syncRadiusLayer(map, playerPosition.lng, playerPosition.lat, openRadius);
@@ -287,12 +369,12 @@ export function InteractiveMap({
     } else {
       playerMarkerRef.current.setLngLat([playerPosition.lng, playerPosition.lat]);
     }
-  }, [playerPosition, openRadius, syncRadiusLayer]);
+  }, [isMapReady, playerPosition, openRadius, syncRadiusLayer]);
 
   // 5. Render/update 5 Chest Markers on Map (Requirement 2 & 6)
   useEffect(() => {
     const map = mapRef.current;
-    if (!map || !chests.length) return;
+    if (!map || !isMapReady || !chests.length) return;
 
     // Clean up old markers
     chestMarkersRef.current.forEach((m) => m.remove());
@@ -429,7 +511,7 @@ export function InteractiveMap({
 
       chestMarkersRef.current.push(marker);
     });
-  }, [chests, playerPosition, openRadius]);
+  }, [isMapReady, chests, playerPosition, openRadius]);
 
   // 6. Nearest chest calculation for Virtual Compass (Requirement 4)
   const nearest = findNearestChest(
@@ -714,6 +796,7 @@ export function InteractiveMap({
         powerLevel={powerLevel}
         onClose={() => setSelectedChest(null)}
         onOpenChest={(chest) => {
+          setSelectedChest(null);
           onChestOpened?.(chest);
         }}
       />
