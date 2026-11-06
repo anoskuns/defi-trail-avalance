@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import "maplibre-gl/dist/maplibre-gl.css";
 import "./globals.css";
 import { WalletProvider } from "@/components/wallet/WalletProvider";
 import { WalletHeader } from "@/components/wallet/WalletHeader";

@@ -6,6 +6,7 @@ import { ConnectWalletButton } from "@/components/wallet/ConnectWalletButton";
 import { NetworkSwitcher } from "@/components/wallet/NetworkSwitcher";
 import { GasBalance } from "@/components/wallet/GasBalance";
 import { formatShortAddress, fujiChain, gameL1Chain } from "@/lib/chains";
+import { InteractiveMap } from "@/components/map/InteractiveMap";
 
 export default function HomePage() {
   const account = useActiveAccount();
@@ -175,6 +176,55 @@ export default function HomePage() {
           </div>
         )}
       </div>
+
+      {/* Interactive Map Section (PRD §4.1, 5.2, 8.3, 11.2) */}
+      <section
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "12px",
+        }}
+        aria-label="Interactive Demo Campus Map"
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: "8px",
+          }}
+        >
+          <div>
+            <h2
+              style={{
+                fontSize: "1.25rem",
+                fontWeight: 700,
+                color: "#F8FAFC",
+                letterSpacing: "-0.01em",
+              }}
+            >
+              Demo Campus Map (PRD §11.2)
+            </h2>
+            <p
+              style={{
+                fontSize: "0.8125rem",
+                color: "#94A3B8",
+                marginTop: "2px",
+              }}
+            >
+              5 active chests • Virtual Compass HUD • Open radius 30m–45m • Dev Demo Location toggle
+            </p>
+          </div>
+        </div>
+
+        <InteractiveMap
+          initialPowerLevel={0}
+          onChestOpened={(chest) => {
+            console.log("Chest selected to open:", chest.chestId);
+          }}
+        />
+      </section>
 
       {/* Network Specifications Card */}
       <div
