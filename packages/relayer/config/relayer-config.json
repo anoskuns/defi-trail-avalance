@@ -1,0 +1,71 @@
+{
+  "log-level": "info",
+  "p2p-port": 0,
+  "api-port": 8080,
+  "metrics-port": 8080,
+  "info-api": {
+    "base-url": "https://api.avax-test.network"
+  },
+  "p-chain-api": {
+    "base-url": "https://api.avax-test.network"
+  },
+  "source-blockchains": [
+    {
+      "subnet-id": "11111111111111111111111111111111LpoYY",
+      "blockchain-id": "yH8D7ThNJkxmtkuv2jgBa4P1Rn3Qpr4pPr7QYNfcdoS6k6HWp",
+      "vm": "evm",
+      "rpc-endpoint": {
+        "base-url": "https://api.avax-test.network/ext/bc/C/rpc"
+      },
+      "ws-endpoint": {
+        "base-url": "wss://api.avax-test.network/ext/bc/C/ws"
+      },
+      "message-contracts": {
+        "0x253b2784c75e510dD0fF1da844684a1aC0aa5fcf": {
+          "message-format": "teleporter",
+          "settings": {
+            "reward-address": "0x0000000000000000000000000000000000000000"
+          }
+        }
+      }
+    },
+    {
+      "subnet-id": "7WtoAMPhrmh5KosDUsFL9yTcvw7YSxiKHPpdfs4JsgW47oZT5",
+      "blockchain-id": "2D8RG4UpSXbPbvPCAWppNJyqTG2i2CAXSkTgmTBBvs7GKNZjsY",
+      "vm": "evm",
+      "rpc-endpoint": {
+        "base-url": "http://127.0.0.1:9650/ext/bc/game-l1/rpc"
+      },
+      "ws-endpoint": {
+        "base-url": "ws://127.0.0.1:9650/ext/bc/game-l1/ws"
+      },
+      "message-contracts": {
+        "0x253b2784c75e510dD0fF1da844684a1aC0aa5fcf": {
+          "message-format": "teleporter",
+          "settings": {
+            "reward-address": "0x0000000000000000000000000000000000000000"
+          }
+        }
+      }
+    }
+  ],
+  "destination-blockchains": [
+    {
+      "subnet-id": "11111111111111111111111111111111LpoYY",
+      "blockchain-id": "yH8D7ThNJkxmtkuv2jgBa4P1Rn3Qpr4pPr7QYNfcdoS6k6HWp",
+      "rpc-endpoint": {
+        "base-url": "https://api.avax-test.network/ext/bc/C/rpc"
+      },
+      "account-private-key": "0x0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "subnet-id": "7WtoAMPhrmh5KosDUsFL9yTcvw7YSxiKHPpdfs4JsgW47oZT5",
+      "blockchain-id": "2D8RG4UpSXbPbvPCAWppNJyqTG2i2CAXSkTgmTBBvs7GKNZjsY",
+      "rpc-endpoint": {
+        "base-url": "http://127.0.0.1:9650/ext/bc/game-l1/rpc"
+      },
+      "account-private-key": "0x0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ]
+}
+

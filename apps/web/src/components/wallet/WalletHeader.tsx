@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { useActiveAccount } from "thirdweb/react";
 import { TestnetBanner } from "./TestnetBanner";
 import { GasBalance } from "./GasBalance";
@@ -108,6 +109,14 @@ export function WalletHeader({
               >
                 AVALANCHE
               </span>
+              <Link
+                href="/admin/health"
+                title="System Health & Operations"
+                className="text-[10px] font-mono text-slate-400 hover:text-amber-400 bg-slate-900 hover:bg-slate-800 px-1.5 py-0.5 rounded border border-slate-800 transition flex items-center gap-1 ml-1"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                Health
+              </Link>
             </div>
             <div style={{ fontSize: "0.6875rem", color: "#64748B" }}>
               Explore • Earn • Learn
