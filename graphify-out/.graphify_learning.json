@@ -1,0 +1,38 @@
+{
+  "generated_at": "2026-11-06T15:57:24.997272+00:00",
+  "nodes": {
+    "apps_web_src_app_layout": {
+      "code_fingerprint": "9c9ca41693ddb498ddb13e60a7d20a0face23437dc2da03cfb29fc79a2d0b99f",
+      "label": "layout.tsx",
+      "last": "2026-11-06T09:44:06.356222+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-06T09:44:06.356222+00:00",
+          "outcome": "useful",
+          "q": "Nhận xét prompt triển khai B. Module Giao diện Ví 2. Tích hợp Layout và Trang chủ có ổn không?"
+        }
+      ],
+      "score": 0.994028106,
+      "source_file": "apps/web/src/app/layout.tsx",
+      "status": "tentative",
+      "uses": 1
+    },
+    "defi_trail_prd_fuji_c_chain": {
+      "code_fingerprint": "e8f05df109b89c45a739ab05b9c61513bef7a08b63f0fced23ff4e7ed5aa7517",
+      "label": "Fuji C-Chain",
+      "last": "2026-11-06T09:44:06.356222+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-06T09:44:06.356222+00:00",
+          "outcome": "useful",
+          "q": "Nhận xét prompt triển khai B. Module Giao diện Ví 2. Tích hợp Layout và Trang chủ có ổn không?"
+        }
+      ],
+      "score": 0.994028106,
+      "source_file": "DeFi-Trail-PRD.md",
+      "status": "tentative",
+      "uses": 1
+    }
+  },
+  "version": 1
+}

@@ -29,7 +29,10 @@
     ".archify/dependencies.json",
     ".archify/routes.json",
     ".archify/database.json",
-    ".archify/docs-summary.json"
+    ".archify/docs-summary.json",
+    "packages/contracts-cchain/lib/forge-std/README.md",
+    "packages/contracts-l1/lib/forge-std/README.md",
+    "packages/relayer/README.md"
   ],
   "sectionPlan": [
     {
@@ -227,7 +230,20 @@
     "Run section-level validation using each section's `validationChecks`.",
     "Run final document validation using `validationChecks` before finalizing output."
   ],
-  "fallbackRepoReads": [],
+  "fallbackRepoReads": [
+    {
+      "path": "packages/contracts-cchain/lib/forge-std/README.md",
+      "reason": "Optional supporting context referenced by the design packet."
+    },
+    {
+      "path": "packages/contracts-l1/lib/forge-std/README.md",
+      "reason": "Optional supporting context referenced by the design packet."
+    },
+    {
+      "path": "packages/relayer/README.md",
+      "reason": "Optional supporting context referenced by the design packet."
+    }
+  ],
   "forbiddenBehaviors": [
     "Do not inspect the whole repository before reading the guide and the referenced `.archify` artifacts.",
     "Do not present README-only or supporting-doc-only claims as confirmed codebase facts.",

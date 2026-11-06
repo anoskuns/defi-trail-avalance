@@ -17,6 +17,9 @@ Guide the agent to write `archify.md` from grounded `.archify` artifacts with mi
 - `.archify/routes.json`
 - `.archify/database.json`
 - `.archify/docs-summary.json`
+- `packages/contracts-cchain/lib/forge-std/README.md`
+- `packages/contracts-l1/lib/forge-std/README.md`
+- `packages/relayer/README.md`
 
 ## Drafting Workflow
 - Read `.archify/docs/archify/packet.json`.

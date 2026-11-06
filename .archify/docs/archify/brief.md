@@ -5,21 +5,28 @@ Target: `C:\Users\Lenovo\Documents\3.1.Cuộc Thi\Cuộc Thi Avalance Build Web3
 This brief is internal grounding for the Archify skill. The skill should use it to write root-level `archify.md` as an upload-ready multi-role architecture prompt document.
 
 ## Grounded Summary
-Yield Go Project contains 7 subsystems, 0 cross-subsystem flows, 0 processed documents, and 1 external dependency derived from 8 extracted code nodes.
+Yield Go Project contains 81 subsystems, 243 cross-subsystem flows, 0 processed documents, and 726 external dependencies derived from 1661 extracted code nodes.
 
 ## Confirmed Priorities
+- Subsystem: `packages/contracts-cchain`
+- Subsystem: `apps/web`
+- Subsystem: `packages/relayer`
 - Subsystem: `apps/web`
 - Subsystem: `apps/web`
-- Subsystem: `apps/web`
-- Subsystem: `apps/web`
-- Subsystem: `packages/domain`
 
 ## Inferred Priorities
-- No inferred cross-subsystem flows were available.
+- calls x2
+- calls x2
+- calls x1
+- calls x5
+- calls x187, imports x1
 
 ## Open Questions
-- What responsibilities are grouped inside Community 0?
-- Why is `next` central to the repository?
+- Does `subsystem-10-0-apps-web` really depend on `subsystem-11-0-apps-web` through `calls`?
+- Does `subsystem-10-0-apps-web` really depend on `subsystem-13-0-apps-web` through `calls`?
+- Does `subsystem-10-0-apps-web` really depend on `subsystem-17-0-apps-web` through `calls`?
+- Does `subsystem-10-0-apps-web` really depend on `subsystem-19-0-apps-web` through `calls`?
+- Does `subsystem-10-0-apps-web` really depend on `subsystem-23-0-apps-web` through `calls`?
 
 ## Writing Rules
 - Start from `.archify/docs/archify/packet.json` and only read the referenced artifacts.

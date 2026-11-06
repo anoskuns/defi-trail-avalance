@@ -18,12 +18,165 @@
       "evidence": [
         "file:DeFi-Trail-PRD.md"
       ]
+    },
+    {
+      "path": "apps/web/AGENTS.md",
+      "fileType": "document",
+      "detectionReason": "extension:.md",
+      "evidence": [
+        "file:apps/web/AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/ARCHITECTURE_AI.md",
+      "fileType": "document",
+      "detectionReason": "extension:.md",
+      "evidence": [
+        "file:docs/ARCHITECTURE_AI.md"
+      ]
+    },
+    {
+      "path": "docs/DEFI_TRAIL_GAME_EVOLUTION_PRD.md",
+      "fileType": "document",
+      "detectionReason": "extension:.md",
+      "evidence": [
+        "file:docs/DEFI_TRAIL_GAME_EVOLUTION_PRD.md"
+      ]
+    },
+    {
+      "path": "docs/DEFI_TRAIL_GAME_EVOLUTION_VIBE_CODING_PLAYBOOK.md",
+      "fileType": "document",
+      "detectionReason": "extension:.md",
+      "evidence": [
+        "file:docs/DEFI_TRAIL_GAME_EVOLUTION_VIBE_CODING_PLAYBOOK.md"
+      ]
+    },
+    {
+      "path": "graphify-out/2026-11-05/GRAPH_REPORT.md",
+      "fileType": "document",
+      "detectionReason": "extension:.md",
+      "evidence": [
+        "file:graphify-out/2026-11-05/GRAPH_REPORT.md"
+      ]
+    },
+    {
+      "path": "graphify-out/2026-11-06/GRAPH_REPORT.md",
+      "fileType": "document",
+      "detectionReason": "extension:.md",
+      "evidence": [
+        "file:graphify-out/2026-11-06/GRAPH_REPORT.md"
+      ]
+    },
+    {
+      "path": "graphify-out/GRAPH_REPORT.md",
+      "fileType": "document",
+      "detectionReason": "extension:.md",
+      "evidence": [
+        "file:graphify-out/GRAPH_REPORT.md"
+      ]
+    },
+    {
+      "path": "graphify-out/memory/query_20261106_094406_05feede1_nh\u1eadn_x\u00e9t_prompt_tri\u1ec3n_khai_b__module_giao_di\u1ec7n_v\u00ed.md",
+      "fileType": "document",
+      "detectionReason": "extension:.md",
+      "evidence": [
+        "file:graphify-out/memory/query_20261106_094406_05feede1_nh\u1eadn_x\u00e9t_prompt_tri\u1ec3n_khai_b__module_giao_di\u1ec7n_v\u00ed.md"
+      ]
+    },
+    {
+      "path": "packages/contracts-cchain/lib/forge-std/CONTRIBUTING.md",
+      "fileType": "document",
+      "detectionReason": "extension:.md",
+      "evidence": [
+        "file:packages/contracts-cchain/lib/forge-std/CONTRIBUTING.md"
+      ]
+    },
+    {
+      "path": "packages/contracts-cchain/lib/forge-std/README.md",
+      "fileType": "document",
+      "detectionReason": "extension:.md",
+      "evidence": [
+        "file:packages/contracts-cchain/lib/forge-std/README.md"
+      ]
+    },
+    {
+      "path": "packages/contracts-cchain/lib/forge-std/RELEASE_CHECKLIST.md",
+      "fileType": "document",
+      "detectionReason": "extension:.md",
+      "evidence": [
+        "file:packages/contracts-cchain/lib/forge-std/RELEASE_CHECKLIST.md"
+      ]
+    },
+    {
+      "path": "packages/contracts-cchain/remappings.txt",
+      "fileType": "document",
+      "detectionReason": "extension:.txt",
+      "evidence": [
+        "file:packages/contracts-cchain/remappings.txt"
+      ]
+    },
+    {
+      "path": "packages/contracts-l1/lib/forge-std/CONTRIBUTING.md",
+      "fileType": "document",
+      "detectionReason": "extension:.md",
+      "evidence": [
+        "file:packages/contracts-l1/lib/forge-std/CONTRIBUTING.md"
+      ]
+    },
+    {
+      "path": "packages/contracts-l1/lib/forge-std/README.md",
+      "fileType": "document",
+      "detectionReason": "extension:.md",
+      "evidence": [
+        "file:packages/contracts-l1/lib/forge-std/README.md"
+      ]
+    },
+    {
+      "path": "packages/contracts-l1/lib/forge-std/RELEASE_CHECKLIST.md",
+      "fileType": "document",
+      "detectionReason": "extension:.md",
+      "evidence": [
+        "file:packages/contracts-l1/lib/forge-std/RELEASE_CHECKLIST.md"
+      ]
+    },
+    {
+      "path": "packages/relayer/README.md",
+      "fileType": "document",
+      "detectionReason": "extension:.md",
+      "evidence": [
+        "file:packages/relayer/README.md"
+      ]
     }
   ],
   "confirmedFacts": {
     "processedDocuments": [],
     "skippedDocuments": [],
-    "readmeLikeDocs": []
+    "readmeLikeDocs": [
+      {
+        "path": "packages/contracts-cchain/lib/forge-std/README.md",
+        "fileType": "document",
+        "detectionReason": "extension:.md",
+        "evidence": [
+          "file:packages/contracts-cchain/lib/forge-std/README.md"
+        ]
+      },
+      {
+        "path": "packages/contracts-l1/lib/forge-std/README.md",
+        "fileType": "document",
+        "detectionReason": "extension:.md",
+        "evidence": [
+          "file:packages/contracts-l1/lib/forge-std/README.md"
+        ]
+      },
+      {
+        "path": "packages/relayer/README.md",
+        "fileType": "document",
+        "detectionReason": "extension:.md",
+        "evidence": [
+          "file:packages/relayer/README.md"
+        ]
+      }
+    ]
   },
   "inferredAlignments": {
     "docToSubsystem": [],
@@ -31,7 +184,7 @@
     "unresolvedDocuments": []
   },
   "summary": {
-    "detectedDocumentCount": 1,
+    "detectedDocumentCount": 17,
     "processedDocumentCount": 0,
     "skippedDocumentCount": 0,
     "alignedDocumentCount": 0,

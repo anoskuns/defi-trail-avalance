@@ -112,36 +112,27 @@ Chỉ tiếp tục khi packet `ready` và không stale.
 
 ### 3.2 Thứ tự đọc bắt buộc cho AI
 
-1. `.archify/docs/archify/packet.json`
-2. `.archify/docs/archify/guide.json`
-3. `.archify/architecture-context.json`
-4. `.archify/facts.json`
-5. `.archify/modules.json`
-6. `.archify/services.json`
-7. `.archify/dependencies.json`
-8. `.archify/routes.json`
-9. `.archify/database.json`
-10. `.archify/docs-summary.json`
+Trước khi phân tích kiến trúc hoặc sửa code:
+1. Chạy `npx archify-cli status --doc-type archify`.
+2. Chỉ tiếp tục khi knowledge và design packet không stale.
+3. Đọc `.archify/docs/archify/packet.json` trước.
+4. Đọc `.archify/docs/archify/guide.json` thứ hai.
+5. Đọc các artifact tiếp theo theo trường `readOrder` trong `guide.json`.
+6. Xem `.archify/` là nguồn chính cho các fact đã xác nhận.
+7. Tách biệt rõ:
+  - Confirmed From Codebase;
+  - Inferred Architecture;
+  - Open Questions / Uncertainty.
+8. README và tài liệu phụ chỉ dùng để bổ sung ngữ cảnh, không được ghi đè bằng chứng từ `.archify/`.
 
-### 3.3 Khi nào phải tạo ADR
+### 3.3 Quy tắc ADR (Architecture Decision Record)
 
-Tạo ADR trước khi:
-
-- thêm engagement database;
-- thêm background indexer;
-- thêm authentication mới cho gameplay API;
-- thay module boundary;
-- thêm third-party coupon/notification provider;
-- đề xuất sửa contract;
-- thay canonical schema hoặc scoring semantics.
-
-Tên gợi ý:
-
-```text
-docs/adr/ADR-00X-engagement-state-boundary.md
-docs/adr/ADR-00X-gameplay-evidence-indexing.md
-docs/adr/ADR-00X-sponsor-perk-redemption.md
-```
+Chỉ tạo ADR khi task chạm vào một trong các trigger kiến trúc lớn (sửa contract, thêm DB, đổi API auth, đổi canonical schema...). Quy trình:
+1. Phát hiện task chạm trigger ADR -> Dừng triển khai code.
+2. Tạo file ADR mới ở trạng thái `Proposed` (bắt đầu từ `docs/adr/ADR-001-...`).
+3. Ghi rõ: Context, Decision, Alternatives, Consequences, Security/Data Impact, Migration Plan, Rollback Plan.
+4. Chỉ triển khai code sau khi ADR được chấp thuận.
+5. Triển khai xong, chuyển trạng thái sang `Accepted`.
 
 ---
 

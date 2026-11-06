@@ -2,13 +2,12 @@
   ".archify/architecture-context.json": {
     "mtime": 1793871935.5462034,
     "seen": 1793872820.169513,
-    "ast_hash": "7940107bde6d03430decdb5b9aebf307",
-    "semantic_hash": "7940107bde6d03430decdb5b9aebf307",
-    "ast_empty": true
+    "ast_hash": "",
+    "semantic_hash": ""
   },
   ".archify/database.json": {
-    "mtime": 1793871935.5295763,
-    "seen": 1793872820.1695251,
+    "mtime": 1793979312.4342065,
+    "seen": 1793980194.5761085,
     "ast_hash": "e332f2fab26e28a69f8c44789d128e07",
     "semantic_hash": "e332f2fab26e28a69f8c44789d128e07",
     "ast_empty": true
@@ -16,74 +15,69 @@
   ".archify/dependencies.json": {
     "mtime": 1793871935.535875,
     "seen": 1793872820.169531,
-    "ast_hash": "b3efbe7872b97ccd5e06ee1d8483e6b4",
-    "semantic_hash": "b3efbe7872b97ccd5e06ee1d8483e6b4",
-    "ast_empty": true
+    "ast_hash": "",
+    "semantic_hash": ""
   },
   ".archify/docs-summary.json": {
-    "mtime": 1793871935.5392058,
-    "seen": 1793872820.1695342,
-    "ast_hash": "3035ffff27243b29e30aeceecb262e91",
-    "semantic_hash": "3035ffff27243b29e30aeceecb262e91",
+    "mtime": 1793979312.4811194,
+    "seen": 1793980194.576571,
+    "ast_hash": "950583f59d884e119e1d3b1199b3b465",
+    "semantic_hash": "950583f59d884e119e1d3b1199b3b465",
     "ast_empty": true
   },
   ".archify/docs/archify/guide.json": {
-    "mtime": 1793871945.0521193,
-    "seen": 1793872820.169537,
-    "ast_hash": "0df55105fb6022031e8964553ceefbee",
-    "semantic_hash": "0df55105fb6022031e8964553ceefbee",
+    "mtime": 1793979392.659387,
+    "seen": 1793980194.5765786,
+    "ast_hash": "0b7ac8bc07b4caff50e80a9769abd0df",
+    "semantic_hash": "0b7ac8bc07b4caff50e80a9769abd0df",
     "ast_empty": true
   },
   ".archify/docs/archify/packet.json": {
     "mtime": 1793871945.048022,
     "seen": 1793872820.1695392,
-    "ast_hash": "aed6ebce0dab151f1085f01e683cb14f",
-    "semantic_hash": "aed6ebce0dab151f1085f01e683cb14f",
-    "ast_empty": true
+    "ast_hash": "",
+    "semantic_hash": ""
   },
   ".archify/facts.json": {
     "mtime": 1793871935.520427,
     "seen": 1793872820.1695418,
-    "ast_hash": "8b9848c68d8eb63ffa73b181d7504a39",
-    "semantic_hash": "8b9848c68d8eb63ffa73b181d7504a39",
-    "ast_empty": true
+    "ast_hash": "",
+    "semantic_hash": ""
   },
   ".archify/graph.json": {
     "mtime": 1793871935.5422044,
     "seen": 1793872820.169544,
-    "ast_hash": "62e8eef975c4bbe84d95c0b0fecbcfc4",
-    "semantic_hash": "62e8eef975c4bbe84d95c0b0fecbcfc4",
-    "ast_empty": true
+    "ast_hash": "",
+    "semantic_hash": ""
   },
   ".archify/manifest.json": {
-    "mtime": 1793871935.5548296,
-    "seen": 1793872820.1695457,
-    "ast_hash": "16d9819b637787ab8d4a32da3247bd17",
-    "semantic_hash": "16d9819b637787ab8d4a32da3247bd17"
+    "mtime": 1793979312.6195955,
+    "seen": 1793980194.576583,
+    "ast_hash": "3ba38ac4f7dfe633c8d1e973e563f3a7",
+    "semantic_hash": "3ba38ac4f7dfe633c8d1e973e563f3a7"
   },
   ".archify/modules.json": {
     "mtime": 1793871935.5234294,
     "seen": 1793872820.1695478,
-    "ast_hash": "dcdd89ada2a4123d0ba7440ee089d8d1",
-    "semantic_hash": "dcdd89ada2a4123d0ba7440ee089d8d1"
+    "ast_hash": "",
+    "semantic_hash": ""
   },
   ".archify/routes.json": {
-    "mtime": 1793871935.525573,
-    "seen": 1793872820.16955,
-    "ast_hash": "37542c2361d5a23d52de94ba36d4b762",
-    "semantic_hash": "37542c2361d5a23d52de94ba36d4b762",
+    "mtime": 1793979312.4292085,
+    "seen": 1793980194.5767903,
+    "ast_hash": "6af3d45f3760614cc8a2ed8b38f2b435",
+    "semantic_hash": "6af3d45f3760614cc8a2ed8b38f2b435",
     "ast_empty": true
   },
   ".archify/services.json": {
     "mtime": 1793871935.532797,
     "seen": 1793872820.1695523,
-    "ast_hash": "7a4363e05718aaa26ebc013f600b05b3",
-    "semantic_hash": "7a4363e05718aaa26ebc013f600b05b3",
-    "ast_empty": true
+    "ast_hash": "",
+    "semantic_hash": ""
   },
   "apps/web/next-env.d.ts": {
-    "mtime": 1793974436.7240062,
-    "seen": 1793975243.0006304,
+    "mtime": 1793978147.1193295,
+    "seen": 1793978677.4910014,
     "ast_hash": "8195d2c60ce847a459ae9d308d6a5724",
     "semantic_hash": "8195d2c60ce847a459ae9d308d6a5724"
   },
@@ -143,28 +137,28 @@
     "semantic_hash": "b3457813624a6758abd3ca662c3e79b7"
   },
   ".archify/GRAPH_REPORT.md": {
-    "mtime": 1793871935.5512066,
-    "seen": 1793872820.1695955,
-    "ast_hash": "54628a1a2eb9fc8741551553771eeb5b",
-    "semantic_hash": "54628a1a2eb9fc8741551553771eeb5b"
+    "mtime": 1793979312.6064942,
+    "seen": 1793981384.839331,
+    "ast_hash": "525257940ce854b1e4b3f8dd44a5dea6",
+    "semantic_hash": ""
   },
   ".archify/architecture-context.md": {
-    "mtime": 1793871935.5482032,
-    "seen": 1793872820.1695974,
-    "ast_hash": "163e368c77d7b4712c881d32ed16aabd",
-    "semantic_hash": "163e368c77d7b4712c881d32ed16aabd"
+    "mtime": 1793979312.6014707,
+    "seen": 1793981384.8393347,
+    "ast_hash": "f8acc905607f6ee0e7acff6d20a20262",
+    "semantic_hash": ""
   },
   ".archify/docs/archify/brief.md": {
-    "mtime": 1793871945.0500686,
-    "seen": 1793872820.1695995,
-    "ast_hash": "fbbc050b77dcbc21bd7873863ad8d55a",
-    "semantic_hash": "fbbc050b77dcbc21bd7873863ad8d55a"
+    "mtime": 1793979392.653559,
+    "seen": 1793981384.8393376,
+    "ast_hash": "c0bbb19ae343726257de64826cab2006",
+    "semantic_hash": ""
   },
   ".archify/docs/archify/guide.md": {
-    "mtime": 1793871945.0546298,
-    "seen": 1793872820.1696012,
-    "ast_hash": "65453f933746814627ec941ee5484dff",
-    "semantic_hash": "65453f933746814627ec941ee5484dff"
+    "mtime": 1793979392.6634047,
+    "seen": 1793981384.8393414,
+    "ast_hash": "9f33ebf4a14d5a02f24b5ff8a75c9603",
+    "semantic_hash": ""
   },
   "DeFi-Trail-PRD.md": {
     "mtime": 1793863554.348728,
@@ -197,22 +191,22 @@
     "semantic_hash": "e5168da1ea9eb2679f1e72060657c446"
   },
   "packages/relayer/package.json": {
-    "mtime": 1793877132.994828,
-    "seen": 1793879722.0747502,
-    "ast_hash": "cc905c9be6a18010060438f96411fcf0",
-    "semantic_hash": "cc905c9be6a18010060438f96411fcf0"
+    "mtime": 1793976486.0169065,
+    "seen": 1793978677.5908244,
+    "ast_hash": "b558423005a80b64a92d25762077ac30",
+    "semantic_hash": "b558423005a80b64a92d25762077ac30"
   },
   "packages/relayer/src/main.ts": {
-    "mtime": 1793871166.279664,
-    "seen": 1793879722.074957,
-    "ast_hash": "68b329da9893e34099c7d8ad5cb9c940",
-    "semantic_hash": "68b329da9893e34099c7d8ad5cb9c940"
+    "mtime": 1793976037.6797752,
+    "seen": 1793978677.5911856,
+    "ast_hash": "a4416d9cdd3c61916c64a23856eb5af0",
+    "semantic_hash": "a4416d9cdd3c61916c64a23856eb5af0"
   },
   "packages/relayer/tsconfig.json": {
-    "mtime": 1793871166.2776778,
-    "seen": 1793879722.075181,
-    "ast_hash": "496fe73f21a2d846d086114e3d1ab94f",
-    "semantic_hash": "496fe73f21a2d846d086114e3d1ab94f"
+    "mtime": 1793976486.287754,
+    "seen": 1793978677.5913658,
+    "ast_hash": "26b6a985179624764b88603410083a34",
+    "semantic_hash": "26b6a985179624764b88603410083a34"
   },
   "packages/shared/package.json": {
     "mtime": 1793880820.8119693,
@@ -227,10 +221,10 @@
     "semantic_hash": "04d95a81403cb471e1204238622e0e3e"
   },
   "packages/shared/src/index.ts": {
-    "mtime": 1793880870.088341,
-    "seen": 1793881350.7429922,
-    "ast_hash": "62763feff54c2e216d3772d2c87477e9",
-    "semantic_hash": "62763feff54c2e216d3772d2c87477e9"
+    "mtime": 1793980964.4434557,
+    "seen": 1793981384.8369255,
+    "ast_hash": "0c69a508af815db28d9cc6ffe012b531",
+    "semantic_hash": ""
   },
   "packages/shared/tsconfig.json": {
     "mtime": 1793880999.5898888,
@@ -1287,10 +1281,10 @@
     "semantic_hash": "76fe9635a36c5bfa5e1f441902a322d4"
   },
   "apps/web/src/components/wallet/WalletHeader.tsx": {
-    "mtime": 1793939455.7688704,
-    "seen": 1793963365.1748116,
-    "ast_hash": "4607d5563e0e1ade83ef4b5c0e27c077",
-    "semantic_hash": "4607d5563e0e1ade83ef4b5c0e27c077"
+    "mtime": 1793976159.5704033,
+    "seen": 1793978677.5088313,
+    "ast_hash": "8c4b4180b2746e65087ccd455a9b1c2c",
+    "semantic_hash": "8c4b4180b2746e65087ccd455a9b1c2c"
   },
   "apps/web/src/components/wallet/WalletProvider.tsx": {
     "mtime": 1793974488.7299316,
@@ -1483,5 +1477,120 @@
     "seen": 1793975243.0119922,
     "ast_hash": "5d0981326a434308505d93cbec01f31f",
     "semantic_hash": "5d0981326a434308505d93cbec01f31f"
+  },
+  "apps/web/src/app/admin/health/page.tsx": {
+    "mtime": 1793978192.8130047,
+    "seen": 1793978677.4930923,
+    "ast_hash": "46bf5b3713efe1cf67ca5af07a443ec8",
+    "semantic_hash": "46bf5b3713efe1cf67ca5af07a443ec8"
+  },
+  "apps/web/src/app/api/admin/health/route.ts": {
+    "mtime": 1793976464.6324193,
+    "seen": 1793978677.4933183,
+    "ast_hash": "34265657ceef47a3226e48d07c2beaa8",
+    "semantic_hash": "34265657ceef47a3226e48d07c2beaa8"
+  },
+  "apps/web/tests/admin-health.test.ts": {
+    "mtime": 1793976485.8160396,
+    "seen": 1793978677.5153143,
+    "ast_hash": "13a0512fe2791a57494c7cf86439796e",
+    "semantic_hash": "13a0512fe2791a57494c7cf86439796e"
+  },
+  "packages/relayer/config/relayer-config.json": {
+    "mtime": 1793976465.3036299,
+    "seen": 1793978677.590603,
+    "ast_hash": "07b153ef5e6cafa8de9a97b18ef7bc99",
+    "semantic_hash": "07b153ef5e6cafa8de9a97b18ef7bc99",
+    "ast_empty": true
+  },
+  "packages/relayer/docker-compose.yml": {
+    "mtime": 1793976465.3906705,
+    "seen": 1793978677.590611,
+    "ast_hash": "2b1c34de4d1e5b099fbdceb9ed1bb297",
+    "semantic_hash": "2b1c34de4d1e5b099fbdceb9ed1bb297"
+  },
+  "packages/relayer/scripts/seed.ts": {
+    "mtime": 1793976486.1085494,
+    "seen": 1793978677.5910025,
+    "ast_hash": "f8eaa1f5b8cc2ba90e65856de8529251",
+    "semantic_hash": "f8eaa1f5b8cc2ba90e65856de8529251"
+  },
+  "docs/DEFI_TRAIL_GAME_EVOLUTION_PRD.md": {
+    "mtime": 1793977510.889826,
+    "seen": 1793978677.5990841,
+    "ast_hash": "17dfa96bcefc5443d440647838308dde",
+    "semantic_hash": "17dfa96bcefc5443d440647838308dde"
+  },
+  "docs/DEFI_TRAIL_GAME_EVOLUTION_VIBE_CODING_PLAYBOOK.md": {
+    "mtime": 1793979989.7109563,
+    "seen": 1793981384.8401196,
+    "ast_hash": "3b683fcbf7ec3d299ed71b777ba7d1fe",
+    "semantic_hash": ""
+  },
+  "packages/relayer/README.md": {
+    "mtime": 1793976465.2295165,
+    "seen": 1793978677.599473,
+    "ast_hash": "baaea65284b2b5c8afceb430e2719ad4",
+    "semantic_hash": "baaea65284b2b5c8afceb430e2719ad4"
+  },
+  "packages/shared/src/gameplay/index.ts": {
+    "mtime": 1793980964.4409788,
+    "seen": 1793981384.8369057,
+    "ast_hash": "59e9bb67a70a33daea6c317ddd88caa9",
+    "semantic_hash": ""
+  },
+  "packages/shared/src/gameplay/rules.ts": {
+    "mtime": 1793980964.4368515,
+    "seen": 1793981384.8369117,
+    "ast_hash": "5559d430070955355ef035c36336b95c",
+    "semantic_hash": ""
+  },
+  "packages/shared/src/gameplay/schemas.ts": {
+    "mtime": 1793980964.4328523,
+    "seen": 1793981384.8369157,
+    "ast_hash": "969fab68aed03bfc4b538edb4506d670",
+    "semantic_hash": ""
+  },
+  "packages/shared/src/gameplay/scoring.ts": {
+    "mtime": 1793981061.4150057,
+    "seen": 1793981384.836919,
+    "ast_hash": "605d86fe386c8093ac4655c85a4150a2",
+    "semantic_hash": ""
+  },
+  "packages/shared/src/gameplay/types.ts": {
+    "mtime": 1793980964.431423,
+    "seen": 1793981384.836922,
+    "ast_hash": "00c3103dcc3d36ad321ef66841155449",
+    "semantic_hash": ""
+  },
+  "packages/shared/tests/gameplay-rules.test.ts": {
+    "mtime": 1793981092.5286336,
+    "seen": 1793981384.8379571,
+    "ast_hash": "74263af5cfb31427d6a7a5e90434a338",
+    "semantic_hash": ""
+  },
+  "packages/shared/tests/gameplay-schemas.test.ts": {
+    "mtime": 1793981061.417225,
+    "seen": 1793981384.8379607,
+    "ast_hash": "3be8c0d63b1b54c9ba626339d210f8ec",
+    "semantic_hash": ""
+  },
+  "packages/shared/tests/gameplay-scoring.test.ts": {
+    "mtime": 1793981061.4226875,
+    "seen": 1793981384.837963,
+    "ast_hash": "45570361ae7d2b697df157efd7e3b2f0",
+    "semantic_hash": ""
+  },
+  "archify.md": {
+    "mtime": 1793979449.383554,
+    "seen": 1793981384.8397236,
+    "ast_hash": "67f727c5c098fe206a2664b781772e63",
+    "semantic_hash": ""
+  },
+  "pnpm-lock.yaml": {
+    "mtime": 1793975876.16106,
+    "seen": 1793981384.8421981,
+    "ast_hash": "ab5d04d102ab6cdd661c83a1bb0ec2e5",
+    "semantic_hash": ""
   }
 }
