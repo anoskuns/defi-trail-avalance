@@ -1,17 +1,17 @@
 # Graph Report - Yield Go Project  (2026-11-07)
 
 ## Corpus Check
-- 306 files · ~1,064,523 words
+- 316 files · ~1,428,097 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 51 file(s) not represented in the graph (top: (none) 34, .toml 9, .css 3)
 
 ## Summary
-- 8607 nodes · 12757 edges · 420 communities (361 shown, 59 thin omitted)
-- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 22 edges (avg confidence: 0.85)
+- 8738 nodes · 12966 edges · 429 communities (358 shown, 71 thin omitted)
+- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 34 edges (avg confidence: 0.87)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c8caee07`
+- Built from commit: `c1403e97`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -81,7 +81,7 @@
 - ICMGatewayRoundTripTest
 - contracts-cchain/lib/forge-std/scripts/vm.py
 - CheatcodesPrinter
-- Test
+- CommonBaseTest
 - assertTrue
 - LibVariable
 - StdErrorsTest
@@ -94,7 +94,7 @@
 - LibVariableTest
 - IERC721
 - StdChains
-- LibVariableTest
+- Test
 - backend
 - StdChainsTest
 - StdUtils
@@ -115,7 +115,7 @@
 - sync-release-branch
 - IERC6909
 - engine.ts
-- proof-signer.ts
+- apps/web/AGENTS.md
 - ConfigTest
 - IERC7575
 - StdAssertionsTest
@@ -165,14 +165,14 @@
 - RawReceipt
 - Receipt
 - StdTomlTest
-- evidence-adapter.ts
+- rate-limiter.ts
 - RawReceipt
 - Receipt
 - vitest
 - manifest.json
 - jobs
 - jobs
-- _verifySponsorProof
+- src/index.ts
 - semanticSummary
 - contracts-cchain/lib/forge-std/package.json
 - _styleConcat
@@ -194,7 +194,7 @@
 - Q: page InteractiveMap SelectedChest ChestBottomSheet dependencies
 - ReceiptLog
 - ForgeContext
-- checked_write
+- analytics.ts
 - MockUSDC
 - ReceiptLog
 - ForgeContext
@@ -214,7 +214,7 @@
 - Tx1559Detail
 - RequestStatus
 - openSponsorChest
-- LocationProof
+- ADR-001: Engagement Storage Architecture & Repository Boundary
 - PositionSnapshot
 - _refillIfNewEpoch
 - repository.ts
@@ -242,7 +242,7 @@
 - EthGetProof
 - FsMetadata
 - Bar
-- StdConstantsTest
+- contracts-l1/lib/forge-std/test/StdCheats.t.sol
 - scoring.ts
 - DepositRequest
 - EIP1559ScriptArtifact
@@ -264,16 +264,15 @@
 - _read
 - StdUtilsMock
 - DebugStep
-- Gas
-- StorageAccess
-- QuestRegistration
+- files
+- StdUtilsTest
+- StdSecp256k1
 - Forge Standard Library README
 - _read
-- DebugStep
-- Gas
-- StorageAccess
-- clusteringSummary
-- graphSummary
+- GameplayTracker
+- assertTrue
+- CommonBaseTest
+- stdError
 - build-matrix
 - CmpCheatcode
 - AddressType
@@ -291,11 +290,11 @@
 - ItemOrder
 - CmpCheatcode
 - AddressType
-- StdConstantsTest
+- StdSecp256k1Test
 - BarERC1155
 - StdUtilsTest
 - sendDepositRequest
-- SignedDelegation
+- env.ts
 - BarERC1155
 - BarERC721
 - MockUSDC
@@ -305,10 +304,10 @@
 - ci-success
 - Chain
 - Wallet
-- TestMockCall
-- BarERC721
+- gameplay-analytics.test.ts
+- StdStyleTest
 - PositionView.tsx
-- StorageTestTarget
+- _read
 - StdTomlTest
 - build
 - ci-success
@@ -324,7 +323,7 @@
 - Rarity
 - next-env.d.ts
 - codeql
-- _read
+- StdUtilsMock
 - FindCallData
 - BroadcastTxType
 - EthStorageProof
@@ -341,7 +340,7 @@
 - FfiResult
 - Log
 - PotentialRevert
-- ChestType
+- apps/graphify-out/cache/stat-index.json
 - AGENTS.md
 - assertEq
 - Account
@@ -350,7 +349,7 @@
 - AccessListItem
 - ChainInfo
 - Rpc
-- ProcessedRequest
+- apps/graphify-out/graph.json
 - assertEq
 - sigs
 - AccessListItem
@@ -360,7 +359,7 @@
 - logMemory
 - fail
 - root
-- VmInternal
+- apps/graphify-out/manifest.json
 - ErrorsTest
 - readNonBoolValue
 - contracts-l1/lib/forge-std/test/LibVariable.t.sol
@@ -372,7 +371,7 @@
 - readNonBoolValue
 - relayer/package.json
 - _refillIfNewEpoch
-- _read
+- checked_write
 - StdUtilsMock
 - StdConfig
 - stdError
@@ -383,10 +382,10 @@
 - CommonBase
 - Config
 - assertEq
-- health/page.tsx
+- apps/web/next.config.ts
 - MockUSDC
 - MockUSDT
-- MockUSDC
+- apps/web/src/app/api/admin/analytics/route.ts
 - Q: packages shared domain types progression exports
 - gameplay-schemas.test.ts
 - receiveTeleporterMessage
@@ -395,21 +394,29 @@
 - MockContractWithConstructorArgs
 - ReflectionTokenTarget
 - Q: progression exploration score unique H3 rarity
-- ReflectionTokenTarget
-- sigs
+- apps/web/src/app/api/gameplay/seasons/active/route.ts
+- apps/web/src/app/api/gameplay/trails/reconcile/route.ts
 - Q: PositionView player stats display
-- root
+- yParity
 - VmInternal
 - Q: Explain GE-05 Passport badge engine
-- findSlot
+- layout.tsx
 - Q: Path from PlayerState to PositionView
-- app/page.tsx
-- readNonBoolValue
+- QuestTutorialModal.tsx
+- MemoryEvidenceReader
 - MemoryStorage
 - Q: map-config route campus slots validation API response
 - Q: server-env api-response rate-limiter
 - Q: path map-config/route.ts InteractiveMap
 - Q: gameplay config repository active season today trail campus slots
+- sigs
+- fail
+- root
+- findSlot
+- readNonBoolValue
+- fail
+- boundPrivateKey
+- bytesToUint
 
 ## God Nodes (most connected - your core abstractions)
 1. `VmSafe` - 446 edges
@@ -424,16 +431,16 @@
 10. `_sendLogPayload()` - 342 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Grounded Architecture Synthesis` --semantically_similar_to--> `Confirmed Repository Context`  [INFERRED] [semantically similar]
-  .archify/docs/archify/brief.md → docs/ARCHITECTURE_AI.md
-- `Archify Fact Policy` --semantically_similar_to--> `Confirmed Repository Context`  [INFERRED] [semantically similar]
-  .archify/docs/archify/guide.md → docs/ARCHITECTURE_AI.md
-- `apps/web Subsystem` --semantically_similar_to--> `Walk-to-DeFi PWA`  [INFERRED] [semantically similar]
-  .archify/architecture-context.md → DeFi-Trail-PRD.md
-- `services/relayer Subsystem` --semantically_similar_to--> `Self-Hosted ICM Relayer`  [INFERRED] [semantically similar]
-  .archify/architecture-context.md → DeFi-Trail-PRD.md
-- `vitest@^5.1.0` --declares--> `vitest`  [EXTRACTED]
-  apps/web/package.json → packages/shared/package.json
+- `Invariant Rules` --references--> `SponsorPool`  [INFERRED]
+  docs/adr/ADR-001-engagement-storage-and-repository-boundary.md → packages/contracts-cchain/src/SponsorPool.sol
+- `Invariant Rules` --references--> `YieldVault`  [INFERRED]
+  docs/adr/ADR-001-engagement-storage-and-repository-boundary.md → packages/contracts-cchain/src/YieldVault.sol
+- `5.1 Data Classification: Authoritative vs. Derived` --references--> `SponsorPool`  [INFERRED]
+  docs/adr/ADR-001-engagement-storage-and-repository-boundary.md → packages/contracts-cchain/src/SponsorPool.sol
+- `5.1 Data Classification: Authoritative vs. Derived` --references--> `YieldVault`  [INFERRED]
+  docs/adr/ADR-001-engagement-storage-and-repository-boundary.md → packages/contracts-cchain/src/YieldVault.sol
+- `5.1 Data Classification: Authoritative vs. Derived` --references--> `ChestManager`  [INFERRED]
+  docs/adr/ADR-001-engagement-storage-and-repository-boundary.md → packages/contracts-l1/src/ChestManager.sol
 
 ## Import Cycles
 - None detected.
@@ -449,7 +456,7 @@
 - **Wallet UI Components** — rootlayout, testnetbanner, walletheader, connectwalletbutton, addressbadge, networkswitcher, gasbalance, walletprovider [EXTRACTED 1.00]
 - **Grounded Architecture Prompt Pipeline** — _archify_docs_archify_brief_grounded_architecture, _archify_docs_archify_guide_fact_policy, docs_architecture_ai_architecture_prompt_pack [INFERRED 0.85]
 
-## Communities (420 total, 59 thin omitted)
+## Communities (429 total, 71 thin omitted)
 
 ### Community 2 - "console"
 Cohesion: 0.01
@@ -485,11 +492,11 @@ Nodes (170): safeconsole, log(), log(), log(), log(), log(), log(), log() (+162 
 
 ### Community 12 - "Next Type Environment"
 Cohesion: 0.02
-Nodes (22): StdAssertions, log_address, log_array, log_bytes32, log_bytes, log_int, log_named_address, log_named_array (+14 more)
+Nodes (20): StdAssertions, log_address, log_array, log_bytes32, log_bytes, log_int, log_named_address, log_named_array (+12 more)
 
 ### Community 13 - "Web Package Metadata"
 Cohesion: 0.02
-Nodes (22): StdAssertions, log_address, log_array, log_bytes32, log_bytes, log_int, log_named_address, log_named_array (+14 more)
+Nodes (20): StdAssertions, log_address, log_array, log_bytes32, log_bytes, log_int, log_named_address, log_named_array (+12 more)
 
 ### Community 14 - "Domain Config Metadata"
 Cohesion: 0.03
@@ -504,8 +511,8 @@ Cohesion: 0.06
 Nodes (34): GameLogicTest, _makeLocationProof(), _makeLocationProofWithEpoch(), test_ApplySnapshot_ClampsEnergy(), test_ChestManager_GetDepositRequest_Branches(), test_ChestManager_RarityFromScore_RareEpicLegendary(), test_DuplicateClaimSameEpoch(), test_EnergyRefillNewEpoch() (+26 more)
 
 ### Community 17 - "app/page.tsx"
-Cohesion: 0.12
-Nodes (30): metadata, RootLayout(), HomePage(), ConnectWalletButton(), ConnectWalletButtonProps, GasBalance(), GasBalanceProps, NetworkSwitcher() (+22 more)
+Cohesion: 0.08
+Nodes (42): AdminHealthPage(), FaucetHealth, RpcHealth, SponsorPoolHealth, SystemHealthReport, WalletHealth, HomePage(), MapFocusRequest (+34 more)
 
 ### Community 18 - "Domain Package Configuration"
 Cohesion: 0.14
@@ -513,7 +520,7 @@ Nodes (27): ChestBottomSheet(), ChestBottomSheetProps, DemoLocationBanner(), Dem
 
 ### Community 19 - "Relayer Package Configuration"
 Cohesion: 0.04
-Nodes (6): StdStorageTest, findSlot(), readNonBoolValue(), test_RevertIf_ReadingNonBoolValue(), test_RevertStorageFindRestoresFailedShortBytesProbe(), test
+Nodes (3): StdStorageTest, test_StorageCheckedWriteMapBool(), test
 
 ### Community 20 - "Fuji Contract Package"
 Cohesion: 0.04
@@ -521,11 +528,11 @@ Nodes (14): AccountingTest, admin, alice, bob, eve, funder, gateway, INITIAL_PRI
 
 ### Community 21 - "Game L1 Contract Package"
 Cohesion: 0.04
-Nodes (3): StdStorageTest, test_StorageCheckedWriteMapBool(), test
+Nodes (6): StdStorageTest, findSlot(), readNonBoolValue(), test_RevertIf_ReadingNonBoolValue(), test_RevertStorageFindRestoresFailedShortBytesProbe(), test
 
 ### Community 22 - "proof-signer.ts"
-Cohesion: 0.08
-Nodes (43): nextConfig, FAUCET_AMOUNTS, FaucetRequestBody, POST(), GET(), revalidate, LocationProofRequestBody, POST() (+35 more)
+Cohesion: 0.07
+Nodes (46): nextConfig, FAUCET_AMOUNTS, FaucetRequestBody, POST(), GET(), revalidate, LocationProofRequestBody, POST() (+38 more)
 
 ### Community 23 - "Relayer TypeScript Configuration"
 Cohesion: 0.05
@@ -549,11 +556,11 @@ Nodes (43): StdCheatsSafe, assumeAddressIsNot(), assumeAddressIsNot(), assumeAdd
 
 ### Community 28 - "Web Page Entry"
 Cohesion: 0.07
-Nodes (43): StdCheatsSafe, assumeAddressIsNot(), assumeAddressIsNot(), assumeAddressIsNot(), assumeAddressIsNot(), assumeNotForgeAddress(), assumeNotPayable(), assumeNotPrecompile() (+35 more)
+Nodes (45): StdCheatsSafe, assumeAddressIsNot(), assumeAddressIsNot(), assumeAddressIsNot(), assumeAddressIsNot(), assumeNotForgeAddress(), assumeNotPayable(), assumeNotPrecompile() (+37 more)
 
 ### Community 29 - "StdUtils"
-Cohesion: 0.06
-Nodes (24): StdUtils, boundPrivateKey(), bytesToUint(), _castLogPayloadViewToPure(), computeCreate2Address(), computeCreate2Address(), computeCreateAddress(), _console2_log_StdUtils() (+16 more)
+Cohesion: 0.12
+Nodes (19): StdUtils, _castLogPayloadViewToPure(), computeCreate2Address(), computeCreate2Address(), computeCreateAddress(), _console2_log_StdUtils(), _console2_log_StdUtils(), _console2_log_StdUtils() (+11 more)
 
 ### Community 30 - "Operations Script Entry"
 Cohesion: 0.15
@@ -564,7 +571,7 @@ Cohesion: 0.08
 Nodes (38): StdConfig, constructor(), AlreadyInitialized, ChainNotInitialized, InvalidChainKey, MissingRpcEndpoint, UnableToParseVariable, WriteToFileInForbiddenCtxt (+30 more)
 
 ### Community 32 - "stdJson"
-Cohesion: 0.08
+Cohesion: 0.07
 Nodes (17): __dirname, @defi-trail/relayer README, FUNDER_PRIVATE_KEY, gameL1Chain, main(), MIN_GAS_THRESHOLD, MOCK_USDC_ABI, MOCK_USDC_ADDRESS (+9 more)
 
 ### Community 33 - "stdToml"
@@ -620,20 +627,20 @@ Cohesion: 0.05
 Nodes (31): StorageTest, _getMask(), getRandomPacked(), setRandomPacking(), basic, deep_map, deep_map_struct, edgeCaseArray (+23 more)
 
 ### Community 47 - "SponsorPool"
-Cohesion: 0.15
-Nodes (22): parent(), root(), stdStorageSafe, SlotFound, WARNING_UninitedSlot, _bytesToBytes32(), callTarget(), callTargetRaw() (+14 more)
+Cohesion: 0.18
+Nodes (18): stdStorageSafe, SlotFound, WARNING_UninitedSlot, _bytesToBytes32(), callTarget(), callTargetRaw(), _checkShortBytesSlot(), checkSlotMutatesCall() (+10 more)
 
 ### Community 48 - "web/package.json"
-Cohesion: 0.11
-Nodes (5): CompilationScriptBase, CompilationTestBase, MockContractPayable, RevertingContract, Dummy
+Cohesion: 0.12
+Nodes (4): TestBase, CompilationScriptBase, CompilationTestBase, Dummy
 
 ### Community 49 - "gameplay/types.ts"
 Cohesion: 0.13
-Nodes (14): BadgeRule, BadgeWindow, CheckpointMode, DemoModePolicyDecision, GameplayEvidenceEventType, GameplayMode, IsoDateTime, PassportStamp (+6 more)
+Nodes (14): BadgeWindow, CheckpointMode, DemoModePolicyDecision, GameplayEvidenceEventType, GameplayMode, IsoDateTime, PassportStamp, PassportStampCategory (+6 more)
 
 ### Community 51 - "QuestRouter"
 Cohesion: 0.09
-Nodes (46): clearPendingRequest(), DEFAULT_ICM_STORAGE_KEY, getPendingRequest(), getStorage(), isStorageAvailable(), mapOnChainStatusToUIState(), savePendingRequest(), updatePendingRequest() (+38 more)
+Nodes (47): clearPendingRequest(), DEFAULT_ICM_STORAGE_KEY, getPendingRequest(), getStorage(), isStorageAvailable(), mapOnChainStatusToUIState(), savePendingRequest(), updatePendingRequest() (+39 more)
 
 ### Community 52 - "IERC4626"
 Cohesion: 0.08
@@ -644,8 +651,8 @@ Cohesion: 0.14
 Nodes (4): stdStorage, MockContractPayable, RevertingContract, Dummy
 
 ### Community 54 - "IMulticall3"
-Cohesion: 0.10
-Nodes (33): SponsorPool, constructor(), InsufficientPrincipalBudget, InsufficientQuestBudget, InsufficientRewardReserve, InvariantViolation, ZeroAddress, ZeroAmount (+25 more)
+Cohesion: 0.09
+Nodes (37): SponsorPool, constructor(), BudgetType, PRINCIPAL, QUEST, REWARD, InsufficientPrincipalBudget, InsufficientQuestBudget (+29 more)
 
 ### Community 55 - "package.json"
 Cohesion: 0.11
@@ -664,8 +671,8 @@ Cohesion: 0.06
 Nodes (6): IERC20, Approval, Transfer, IERC4626, Deposit, Withdraw
 
 ### Community 59 - "StdSecp256k1"
-Cohesion: 0.11
-Nodes (29): StdSecp256k1, generatorAffine(), generatorProjective(), identityProjective(), isIdentityProjective(), isValidNonZeroScalar(), isValidScalar(), toAddress() (+21 more)
+Cohesion: 0.13
+Nodes (19): StdSecp256k1, generatorAffine(), generatorProjective(), identityProjective(), isIdentityProjective(), isValidNonZeroScalar(), isValidScalar(), A (+11 more)
 
 ### Community 60 - "CheatcodesPrinter"
 Cohesion: 0.06
@@ -687,25 +694,21 @@ Nodes (29): semantic, semantic, semantic, semantic, semantic, semantic, semantic
 Cohesion: 0.08
 Nodes (27): devDependencies, eslint@10.14.0, @eslint/js@10.0.1, @types/node@26.6.6, typescript@5.9.3, typescript-eslint@8.72.1, engines, node (+19 more)
 
-### Community 65 - "Test"
-Cohesion: 0.07
-Nodes (11): TestBase, Test, IS_TEST, CommonBaseTest, CompilationTest, StdMathMock, StdStyleTest, h1() (+3 more)
-
 ### Community 66 - "assertTrue"
 Cohesion: 0.10
-Nodes (14): stdStorage, checked_write(), clear(), depth(), enable_packed_slots(), find(), find(), target() (+6 more)
+Nodes (12): stdStorage, depth(), enable_packed_slots(), parent(), target(), with_calldata(), vm, depth() (+4 more)
 
 ### Community 67 - "LibVariable"
 Cohesion: 0.09
 Nodes (26): dependencies, @openzeppelin/contracts@^5.6.1, devDependencies, forge-std@^1.1.2, solc@0.8.28, solc, name, private (+18 more)
 
 ### Community 68 - "StdErrorsTest"
-Cohesion: 0.11
-Nodes (27): YieldVault, constructor(), InsufficientPositionBalance, ZeroAddress, ZeroAmount, PositionDeposited, PositionWithdrawn, RewardAccrued (+19 more)
+Cohesion: 0.09
+Nodes (33): YieldVault, constructor(), InsufficientPositionBalance, ZeroAddress, ZeroAmount, PositionDeposited, PositionWithdrawn, RewardAccrued (+25 more)
 
 ### Community 70 - "StdErrorsTest"
-Cohesion: 0.09
-Nodes (26): ChestManager, constructor(), InvalidStatusTransition, ProofFromFuture, RequestNotFound, Unauthorized, ZeroAddress, RequestStatusUpdated (+18 more)
+Cohesion: 0.06
+Nodes (52): ChestManager, constructor(), ChestType, QUEST, SPONSOR, YIELD, AlreadyClaimed, ChestIdMismatch (+44 more)
 
 ### Community 71 - "ICMGatewayRoundTrip.t.sol"
 Cohesion: 0.09
@@ -731,9 +734,9 @@ Nodes (12): stdError, arithmeticError, assertionError, divisionError, encodeStor
 Cohesion: 0.15
 Nodes (22): LibVariable, UnsafeCast, toInt128(), toInt128Array(), toInt16(), toInt16Array(), toInt32(), toInt32Array() (+14 more)
 
-### Community 78 - "LibVariableTest"
-Cohesion: 0.08
-Nodes (12): stdError, arithmeticError, assertionError, divisionError, encodeStorageError, enumConversionError, indexOOBError, memOverflowError (+4 more)
+### Community 78 - "Test"
+Cohesion: 0.06
+Nodes (8): Test, IS_TEST, CompilationTest, StdConstantsTest, StdErrorsTest, test, StdMathMock, VmTest
 
 ### Community 79 - "backend"
 Cohesion: 0.08
@@ -764,8 +767,8 @@ Cohesion: 0.09
 Nodes (7): IERC721, Approval, ApprovalForAll, Transfer, IERC721Enumerable, IERC721Metadata, IERC721TokenReceiver
 
 ### Community 86 - "CChainICMGateway"
-Cohesion: 0.12
-Nodes (20): assertFalse(), assertTrue(), assumeNoBlacklisted(), assumeNotBlacklisted(), identityAffine(), isIdentityAffine(), isOnCurve(), test_Coercion() (+12 more)
+Cohesion: 0.16
+Nodes (10): assumeNoBlacklisted(), assumeNotBlacklisted(), StdCheatsForkTest, testFuzz_AssumeNotBlacklisted_TokenWithoutBlacklist(), testFuzz_AssumeNotBlacklisted_USDC(), testFuzz_AssumeNotBlacklisted_USDT(), USDC_BLACKLISTED_USER, USDC (+2 more)
 
 ### Community 87 - "stdStorageSafe"
 Cohesion: 0.11
@@ -792,16 +795,16 @@ Cohesion: 0.09
 Nodes (19): CommonBase, CONSOLE, CREATE2_FACTORY, DEFAULT_SENDER, DEFAULT_TEST_CONTRACT, MULTICALL3_ADDRESS, SECP256K1_ORDER, stdstore (+11 more)
 
 ### Community 93 - "ConfigTest"
-Cohesion: 0.14
-Nodes (19): Config, _loadConfig(), _loadConfigAndForks(), chainIds, config, forkOf, assertFalse(), assertTrue() (+11 more)
+Cohesion: 0.15
+Nodes (17): Config, _loadConfig(), _loadConfigAndForks(), chainIds, config, forkOf, assertFalse(), assertTrue() (+9 more)
 
 ### Community 94 - "stdStorage"
-Cohesion: 0.18
-Nodes (18): stdStorageSafe, SlotFound, WARNING_UninitedSlot, _bytesToBytes32(), callTarget(), callTargetRaw(), _checkShortBytesSlot(), checkSlotMutatesCall() (+10 more)
+Cohesion: 0.10
+Nodes (34): parent(), read_address(), read_bool(), read_bytes32(), read_int(), root(), stdStorageSafe, SlotFound (+26 more)
 
 ### Community 95 - "StdUtilsTest"
-Cohesion: 0.10
-Nodes (13): getTokenBalances(), StdUtilsForkTest, test_GetTokenBalances_Empty(), test_GetTokenBalances_SHIB(), test_GetTokenBalances_USDC(), SHIB_HOLDER_0, SHIB_HOLDER_1, SHIB_HOLDER_2 (+5 more)
+Cohesion: 0.15
+Nodes (12): getTokenBalances(), StdUtilsForkTest, test_GetTokenBalances_Empty(), test_GetTokenBalances_SHIB(), test_GetTokenBalances_USDC(), SHIB_HOLDER_0, SHIB_HOLDER_1, SHIB_HOLDER_2 (+4 more)
 
 ### Community 96 - "sync-release-branch"
 Cohesion: 0.10
@@ -812,12 +815,12 @@ Cohesion: 0.09
 Nodes (21): command, container_name, environment, healthcheck, image, logging, ports, restart (+13 more)
 
 ### Community 98 - "engine.ts"
-Cohesion: 0.06
-Nodes (31): metadata, PassportPage(), BadgeIdentityDimension, PASSPORT_BADGES, PassportBadgeDefinition, PassportBadgeKey, awardIdentity(), createEmptyPassportState() (+23 more)
+Cohesion: 0.07
+Nodes (32): metadata, PassportPage(), getGameplayTracker(), BadgeIdentityDimension, PASSPORT_BADGES, PassportBadgeDefinition, PassportBadgeKey, awardIdentity() (+24 more)
 
-### Community 99 - "proof-signer.ts"
-Cohesion: 0.10
-Nodes (21): architectureTags, fileType, hash, mtime, sizeBytes, architectureTags, fileType, hash (+13 more)
+### Community 99 - "apps/web/AGENTS.md"
+Cohesion: 0.33
+Nodes (6): architectureTags, fileType, hash, mtime, sizeBytes, apps/web/AGENTS.md
 
 ### Community 100 - "ConfigTest"
 Cohesion: 0.19
@@ -840,8 +843,8 @@ Cohesion: 0.11
 Nodes (7): IERC6909, Approval, OperatorSet, Transfer, IERC6909ContentURI, IERC6909Metadata, IERC6909TokenSupply
 
 ### Community 105 - "ConfigTest"
-Cohesion: 0.10
-Nodes (12): stdStorage, depth(), enable_packed_slots(), parent(), target(), with_calldata(), vm, depth() (+4 more)
+Cohesion: 0.08
+Nodes (19): stdStorage, checked_write(), clear(), depth(), enable_packed_slots(), find(), find(), read_uint() (+11 more)
 
 ### Community 106 - "IERC7575"
 Cohesion: 0.15
@@ -856,8 +859,8 @@ Cohesion: 0.13
 Nodes (20): log, log_named_bytes, assertEqCall(), assertEqCall(), assertEqCall(), assertEqCall(), StdAssertionsTest, assertEqCallExternal() (+12 more)
 
 ### Community 109 - "model.ts"
-Cohesion: 0.08
-Nodes (33): SponsorScannerModal(), SponsorScannerModalProps, recordPassportEvidence(), applyConfirmedEvidence(), createTrailProgress(), PENDING_ICM_STATES, TrailCheckpointStatus, TrailCheckpointView (+25 more)
+Cohesion: 0.07
+Nodes (54): dynamic, POST(), CheckpointEvidenceItem, CorrelationLogPayload, createEvidenceIdempotencyKey(), EvidenceLifecycleStatus, logEvidenceReconciliation(), mapLifecycleToUIState() (+46 more)
 
 ### Community 110 - "StdMathTest"
 Cohesion: 0.14
@@ -888,8 +891,8 @@ Cohesion: 0.14
 Nodes (11): stdMath, abs(), delta(), percentDelta(), _INT256_MIN, StdMathTest, getAbs(), test_GetAbs() (+3 more)
 
 ### Community 117 - "contracts-l1/lib/forge-std/test/StdStorage.t.sol"
-Cohesion: 0.11
-Nodes (14): CanonicalLookingStaticReturn, decoy, first, second, MockReflectionToken, _a, _b, _balances (+6 more)
+Cohesion: 0.08
+Nodes (17): CanonicalLookingStaticReturn, decoy, first, second, MockReflectionToken, _a, _b, _balances (+9 more)
 
 ### Community 118 - "with"
 Cohesion: 0.16
@@ -900,8 +903,8 @@ Cohesion: 0.14
 Nodes (7): IERC7540, IERC7540Deposit, DepositRequest, IERC7540Operator, OperatorSet, IERC7540Redeem, RedeemRequest
 
 ### Community 120 - "Test"
-Cohesion: 0.07
-Nodes (7): Test, IS_TEST, CommonBaseTest, CompilationTest, StdConstantsTest, StdMathMock, VmTest
+Cohesion: 0.11
+Nodes (6): Test, IS_TEST, CompilationTest, StdConstantsTest, StdMathMock, VmTest
 
 ### Community 121 - "contracts-cchain/lib/forge-std/.github/workflows/scan-github-actions.yml"
 Cohesion: 0.11
@@ -956,7 +959,7 @@ Cohesion: 0.12
 Nodes (10): StdJsonTest, path, root, NestedJson, a, b, c, SimpleJson (+2 more)
 
 ### Community 134 - "math/progression.ts"
-Cohesion: 0.05
+Cohesion: 0.06
 Nodes (58): BALANCE_TIER_THRESHOLDS, BASE_COMPASS_LEVEL, BASE_ENERGY_MAX, BASE_OPEN_RADIUS_METERS, MAX_EXPLORATION_STREAK_BONUS, MAX_POWER_LEVEL, MOCK_USDC_DECIMALS, MOCK_USDC_UNIT (+50 more)
 
 ### Community 135 - "_makeSponsorProof"
@@ -980,8 +983,8 @@ Cohesion: 0.13
 Nodes (5): ErrorsTest, T, T1, someArr, someBytes
 
 ### Community 140 - "assertTrue"
-Cohesion: 0.09
-Nodes (42): assertFalse(), assertTrue(), StdSecp256k1, generatorAffine(), generatorProjective(), identityAffine(), identityProjective(), isIdentityAffine() (+34 more)
+Cohesion: 0.20
+Nodes (21): assertFalse(), assertTrue(), isIdentityAffine(), isIdentityProjective(), isOnCurve(), isValidNonZeroScalar(), isValidScalar(), toAddress() (+13 more)
 
 ### Community 141 - "ErrorsTest"
 Cohesion: 0.13
@@ -1015,9 +1018,9 @@ Nodes (14): RawReceipt, blockHash, blockNumber, contractAddress, cumulativeGasUs
 Cohesion: 0.14
 Nodes (14): Receipt, blockHash, blockNumber, contractAddress, cumulativeGasUsed, effectiveGasPrice, from, gasUsed (+6 more)
 
-### Community 149 - "evidence-adapter.ts"
-Cohesion: 0.08
-Nodes (36): dynamic, POST(), CheckpointEvidenceItem, CorrelationLogPayload, createEvidenceIdempotencyKey(), EvidenceLifecycleStatus, EvidenceStatusReader, logEvidenceReconciliation() (+28 more)
+### Community 149 - "rate-limiter.ts"
+Cohesion: 0.20
+Nodes (9): FaucetCheckResult, faucetClaims, ipFaucetCounts, MAX_RECONCILE_PER_WINDOW, RECONCILE_WINDOW_MS, reconcileIpTimestamps, ReconcileRateLimitResult, reconcileWalletTimestamps (+1 more)
 
 ### Community 150 - "RawReceipt"
 Cohesion: 0.14
@@ -1028,8 +1031,8 @@ Cohesion: 0.14
 Nodes (14): Receipt, blockHash, blockNumber, contractAddress, cumulativeGasUsed, effectiveGasPrice, from, gasUsed (+6 more)
 
 ### Community 152 - "vitest"
-Cohesion: 0.08
-Nodes (21): dependencies, zod@4.6.7, devDependencies, vitest@^5.1.0, exports, name, private, scripts (+13 more)
+Cohesion: 0.15
+Nodes (13): dependencies, zod@4.6.7, devDependencies, vitest@^5.1.0, exports, name, private, scripts (+5 more)
 
 ### Community 153 - "manifest.json"
 Cohesion: 0.15
@@ -1043,9 +1046,9 @@ Nodes (12): env, SOLC_LATEST, SOLC_MINIMUM, SOLC_PRERELEASE, jobs, name, on, pul
 Cohesion: 0.15
 Nodes (12): env, SOLC_LATEST, SOLC_MINIMUM, SOLC_PRERELEASE, jobs, name, on, pull_request (+4 more)
 
-### Community 156 - "_verifySponsorProof"
-Cohesion: 0.21
-Nodes (13): AlreadyClaimed, ChestIdMismatch, InvalidCampaignId, InvalidSignature, NonceAlreadyUsed, ProofExpired, ProofTtlExceeded, WrongEpoch (+5 more)
+### Community 156 - "src/index.ts"
+Cohesion: 0.06
+Nodes (11): dynamic, GET(), getPilotFunnelMetrics(), CompositeAnalyticsSink, DevLogAnalyticsSink, globalMemoryAnalyticsSink, MemoryAnalyticsSink, globalGameplayTracker (+3 more)
 
 ### Community 157 - "semanticSummary"
 Cohesion: 0.18
@@ -1088,8 +1091,8 @@ Cohesion: 0.17
 Nodes (11): ITeleporterMessenger, TeleporterFeeInfo, amount, feeTokenAddress, TeleporterMessageInput, allowedRelayerAddresses, destinationAddress, destinationBlockchainID (+3 more)
 
 ### Community 167 - "gameplay/schemas.ts"
-Cohesion: 0.13
-Nodes (21): addDuplicateIssues(), addWindowIssue(), badgeRuleSchema, earnedBadgeSchema, gameplayEvidenceEventTypeSchema, gameplayIdSchema, gameplayModeSchema, isoDateTimeSchema (+13 more)
+Cohesion: 0.14
+Nodes (19): addDuplicateIssues(), addWindowIssue(), badgeRuleSchema, earnedBadgeSchema, gameplayEvidenceEventTypeSchema, gameplayIdSchema, gameplayModeSchema, isoDateTimeSchema (+11 more)
 
 ### Community 168 - "compilerOptions"
 Cohesion: 0.17
@@ -1104,8 +1107,8 @@ Cohesion: 0.18
 Nodes (11): RawReceiptLog, blockHash, blockNumber, data, logAddress, logIndex, removed, topics (+3 more)
 
 ### Community 171 - "rules.ts"
-Cohesion: 0.19
-Nodes (16): applyCheckpointEvidence(), BadgeEligibilityContext, BadgeEvidenceIdentity, CheckpointApplicationResult, CheckpointApplicationStatus, createEarnedBadge(), createPerkClaim(), evaluatePerkEligibility() (+8 more)
+Cohesion: 0.14
+Nodes (20): applyCheckpointEvidence(), BadgeEligibilityContext, BadgeEvidenceIdentity, CheckpointApplicationResult, CheckpointApplicationStatus, createEarnedBadge(), createPerkClaim(), defaultDemoModePolicy() (+12 more)
 
 ### Community 172 - "checked_write"
 Cohesion: 0.18
@@ -1131,9 +1134,9 @@ Nodes (10): ForgeContext, Coverage, ScriptBroadcast, ScriptDryRun, ScriptGroup, 
 Cohesion: 0.20
 Nodes (10): EthGetLogs, blockHash, blockNumber, data, emitter, logIndex, removed, topics (+2 more)
 
-### Community 178 - "checked_write"
-Cohesion: 0.20
-Nodes (11): checked_write(), clear(), find(), find(), read_bool(), read_int(), clear(), getMaskByOffsets() (+3 more)
+### Community 178 - "analytics.ts"
+Cohesion: 0.07
+Nodes (28): BadgeEarnedProps, badgeEarnedPropsSchema, checkpointConfirmedPropsSchema, CheckpointSubmittedProps, checkpointSubmittedPropsSchema, CheckpointViewedProps, checkpointViewedPropsSchema, FORBIDDEN_ANALYTICS_KEY_REGEX (+20 more)
 
 ### Community 179 - "MockUSDC"
 Cohesion: 0.22
@@ -1152,8 +1155,8 @@ Cohesion: 0.20
 Nodes (10): EthGetLogs, blockHash, blockNumber, data, emitter, logIndex, removed, topics (+2 more)
 
 ### Community 183 - "TestMockCall"
-Cohesion: 0.18
-Nodes (7): TestMockCall, returnData, shouldRevert, MockContractWithConstructorArgs, x, y, z
+Cohesion: 0.40
+Nodes (3): TestMockCall, returnData, shouldRevert
 
 ### Community 184 - "check"
 Cohesion: 0.12
@@ -1211,9 +1214,9 @@ Nodes (9): Tx1559Detail, accessList, data, from, gas, nonce, to, txType (+1 more
 Cohesion: 0.22
 Nodes (9): RequestStatus, ACK_PENDING, CONFIRMED, CREATED, FAILED_FINAL, NONE, REMOTE_EXECUTED, RETRYABLE_FAILED (+1 more)
 
-### Community 198 - "LocationProof"
-Cohesion: 0.31
-Nodes (9): ChestOpenRequested, DepositRequestCreated, _currentEpoch(), _forwardToGateway(), _generateRequestId(), openChest(), openSponsorChest(), _playerRarity() (+1 more)
+### Community 198 - "ADR-001: Engagement Storage Architecture & Repository Boundary"
+Cohesion: 0.08
+Nodes (24): 1. Context & Problem Statement, 2. System & Economic Source-of-Truth Boundary, 3. Storage Alternatives Comparison, 4. Architectural Decision, 5.1 Data Classification: Authoritative vs. Derived, 5.2 Mandatory Idempotency & Unique Constraints, 5.3 Wallet Authentication & Authorization, 5.4 Backup, Restore, and Disaster Recovery (Rebuild Plan) (+16 more)
 
 ### Community 199 - "PositionSnapshot"
 Cohesion: 0.22
@@ -1319,13 +1322,13 @@ Nodes (8): EthGetProof, account, accountProof, balance, codeHash, nonce, storage
 Cohesion: 0.25
 Nodes (8): FsMetadata, accessed, created, isDir, isSymlink, length, modified, readOnly
 
-### Community 226 - "StdConstantsTest"
-Cohesion: 0.25
-Nodes (3): Bar, balanceOf, totalSupply
+### Community 226 - "contracts-l1/lib/forge-std/test/StdCheats.t.sol"
+Cohesion: 0.05
+Nodes (21): Bar, balanceOf, totalSupply, BarERC1155, _balances, _totalSupply, BarERC721, _balances (+13 more)
 
 ### Community 227 - "scoring.ts"
-Cohesion: 0.20
-Nodes (12): defaultDemoModePolicy(), appendTeamScoreEvent(), calculateTeamScore(), createTeamScoreEvent(), createTeamScoreEventIdentity(), encodeIdentityPart(), EVIDENCE_TYPE_BY_REASON, reduceTeamScoreEvents() (+4 more)
+Cohesion: 0.27
+Nodes (10): appendTeamScoreEvent(), calculateTeamScore(), createTeamScoreEvent(), createTeamScoreEventIdentity(), encodeIdentityPart(), EVIDENCE_TYPE_BY_REASON, reduceTeamScoreEvents(), GameplayEvidenceEvent (+2 more)
 
 ### Community 228 - "DepositRequest"
 Cohesion: 0.25
@@ -1407,17 +1410,13 @@ Nodes (6): architectureTags, fileType, hash, mtime, sizeBytes, apps/web/src/app/
 Cohesion: 0.33
 Nodes (6): architectureTags, fileType, hash, mtime, sizeBytes, apps/web/src/app/api/faucet/gas/route.ts
 
-### Community 248 - "Gas"
-Cohesion: 0.33
-Nodes (6): architectureTags, fileType, hash, mtime, sizeBytes, apps/web/src/app/api/map-config/route.ts
+### Community 248 - "files"
+Cohesion: 0.10
+Nodes (21): architectureTags, fileType, hash, mtime, sizeBytes, architectureTags, fileType, hash (+13 more)
 
-### Community 249 - "StorageAccess"
-Cohesion: 0.33
-Nodes (6): architectureTags, fileType, hash, mtime, sizeBytes, apps/web/src/app/api/proofs/location/route.ts
-
-### Community 250 - "QuestRegistration"
-Cohesion: 0.33
-Nodes (6): architectureTags, fileType, hash, mtime, sizeBytes, apps/web/src/app/api/proofs/sponsor/route.ts
+### Community 250 - "StdSecp256k1"
+Cohesion: 0.15
+Nodes (14): StdSecp256k1, generatorAffine(), generatorProjective(), identityAffine(), identityProjective(), A, B, GX (+6 more)
 
 ### Community 251 - "Forge Standard Library README"
 Cohesion: 0.33
@@ -1427,25 +1426,13 @@ Nodes (6): architectureTags, fileType, hash, mtime, sizeBytes, apps/web/src/app/
 Cohesion: 0.33
 Nodes (6): architectureTags, fileType, hash, mtime, sizeBytes, apps/web/src/app/page.tsx
 
-### Community 253 - "DebugStep"
-Cohesion: 0.33
-Nodes (6): architectureTags, fileType, hash, mtime, sizeBytes, apps/web/src/components/cross-chain/icm-storage.ts
+### Community 254 - "assertTrue"
+Cohesion: 0.21
+Nodes (15): assertFalse(), assertTrue(), identityAffine(), isIdentityAffine(), isOnCurve(), identities(), test_loadConfig(), test_writeConfig() (+7 more)
 
-### Community 254 - "Gas"
-Cohesion: 0.33
-Nodes (6): architectureTags, fileType, hash, mtime, sizeBytes, apps/web/src/components/cross-chain/ICMProgressModal.tsx
-
-### Community 255 - "StorageAccess"
-Cohesion: 0.33
-Nodes (6): architectureTags, fileType, hash, mtime, sizeBytes, apps/web/src/components/cross-chain/index.ts
-
-### Community 256 - "clusteringSummary"
-Cohesion: 0.33
-Nodes (6): architectureTags, fileType, hash, mtime, sizeBytes, apps/web/src/components/cross-chain/useICMProgress.ts
-
-### Community 257 - "graphSummary"
-Cohesion: 0.33
-Nodes (6): architectureTags, fileType, hash, mtime, sizeBytes, apps/web/src/components/map/ChestBottomSheet.tsx
+### Community 257 - "stdError"
+Cohesion: 0.20
+Nodes (10): stdError, arithmeticError, assertionError, divisionError, encodeStorageError, enumConversionError, indexOOBError, memOverflowError (+2 more)
 
 ### Community 258 - "build-matrix"
 Cohesion: 0.33
@@ -1511,6 +1498,10 @@ Nodes (6): DirEntry, depth, errorMessage, isDir, isSymlink, path
 Cohesion: 0.33
 Nodes (6): SignedDelegation, implementation, nonce, r, s, v
 
+### Community 275 - "StdSecp256k1Test"
+Cohesion: 0.38
+Nodes (9): toAddress(), yCompressed(), yParity(), yParityEthereum(), encodings(), StdSecp256k1Test, test_ParityBounds(), testFuzz_Parity() (+1 more)
+
 ### Community 276 - "BarERC1155"
 Cohesion: 0.33
 Nodes (3): BarERC1155, _balances, _totalSupply
@@ -1523,9 +1514,9 @@ Nodes (3): boundPrivateKey(), StdUtilsTest, test_BoundPrivateKey()
 Cohesion: 0.36
 Nodes (8): InvalidRequestStatus, RequestNotFound, UnauthorizedPlayer, UnsupportedChestType, CrossChainRequestSent, retryRequest(), _send(), sendDepositRequest()
 
-### Community 279 - "SignedDelegation"
-Cohesion: 0.33
-Nodes (6): Position, accruedReward, lastAccruedAt, principal, qualifyingSince, weightedAprBps
+### Community 279 - "env.ts"
+Cohesion: 0.20
+Nodes (7): evmAddressSchema, httpUrlSchema, privateKeySchema, PublicEnv, publicEnvSchema, ServerEnv, serverEnvSchema
 
 ### Community 280 - "BarERC1155"
 Cohesion: 0.33
@@ -1555,17 +1546,17 @@ Nodes (6): DirEntry, depth, errorMessage, isDir, isSymlink, path
 Cohesion: 0.33
 Nodes (6): SignedDelegation, implementation, nonce, r, s, v
 
-### Community 289 - "TestMockCall"
-Cohesion: 0.33
-Nodes (3): BarERC1155, _balances, _totalSupply
+### Community 289 - "gameplay-analytics.test.ts"
+Cohesion: 0.25
+Nodes (8): calculatePilotFunnel(), CheckpointConfirmedProps, createDeterministicHash(), detectForbiddenFields(), GameplayAnalyticsEvent, pseudonymizeWallet(), TrailCompletedProps, validateAnalyticsEvent()
 
-### Community 290 - "BarERC721"
-Cohesion: 0.33
-Nodes (3): BarERC721, _balances, _owners
+### Community 290 - "StdStyleTest"
+Cohesion: 0.32
+Nodes (4): StdStyleTest, h1(), h2(), test_StyleCustom()
 
-### Community 292 - "StorageTestTarget"
-Cohesion: 0.33
-Nodes (3): MockUSDT, blacklist, USDTLike
+### Community 292 - "_read"
+Cohesion: 0.29
+Nodes (7): read_address(), read_bytes32(), read_uint(), _read(), read_address(), read_bytes32(), read_uint()
 
 ### Community 293 - "StdTomlTest"
 Cohesion: 0.14
@@ -1623,10 +1614,6 @@ Nodes (5): Chain, chainAlias, chainId, name, rpcUrl
 Cohesion: 0.40
 Nodes (5): Wallet, addr, privateKey, publicKeyX, publicKeyY
 
-### Community 308 - "_read"
-Cohesion: 0.29
-Nodes (7): read_address(), read_bytes32(), read_uint(), _read(), read_address(), read_bytes32(), read_uint()
-
 ### Community 309 - "FindCallData"
 Cohesion: 0.40
 Nodes (3): StorageTestTarget, stdstore, test
@@ -1660,8 +1647,8 @@ Cohesion: 0.50
 Nodes (4): typos, runs-on, steps, timeout-minutes
 
 ### Community 318 - "codeql"
-Cohesion: 0.24
-Nodes (7): sigs(), sig(), sigs(), FindCallData, reads, result, shortBytesStorageValue
+Cohesion: 0.50
+Nodes (4): FindCallData, reads, result, shortBytesStorageValue
 
 ### Community 319 - "typos"
 Cohesion: 0.50
@@ -1691,9 +1678,9 @@ Nodes (4): ChestType, QUEST, SPONSOR, YIELD
 Cohesion: 0.50
 Nodes (4): UnauthorizedCaller, SnapshotSent, sendQuestCompletion(), _sendSnapshot()
 
-### Community 326 - "ChestType"
-Cohesion: 0.50
-Nodes (4): BudgetType, PRINCIPAL, QUEST, REWARD
+### Community 326 - "apps/graphify-out/cache/stat-index.json"
+Cohesion: 0.33
+Nodes (6): architectureTags, fileType, hash, mtime, sizeBytes, apps/graphify-out/cache/stat-index.json
 
 ### Community 327 - "AGENTS.md"
 Cohesion: 0.50
@@ -1727,9 +1714,9 @@ Nodes (4): Log, data, emitter, topics
 Cohesion: 0.50
 Nodes (4): PotentialRevert, partialMatch, revertData, reverter
 
-### Community 335 - "ProcessedRequest"
-Cohesion: 0.50
-Nodes (4): ChestType, QUEST, SPONSOR, YIELD
+### Community 335 - "apps/graphify-out/graph.json"
+Cohesion: 0.33
+Nodes (6): architectureTags, fileType, hash, mtime, sizeBytes, apps/graphify-out/graph.json
 
 ### Community 337 - "sigs"
 Cohesion: 0.67
@@ -1763,9 +1750,9 @@ Nodes (3): TypeMismatch, assertEq(), isEqual()
 Cohesion: 0.67
 Nodes (3): Account, addr, key
 
-### Community 345 - "VmInternal"
-Cohesion: 0.67
-Nodes (3): TxReturn, internalType, value
+### Community 345 - "apps/graphify-out/manifest.json"
+Cohesion: 0.33
+Nodes (6): architectureTags, fileType, hash, mtime, sizeBytes, apps/graphify-out/manifest.json
 
 ### Community 346 - "ErrorsTest"
 Cohesion: 0.13
@@ -1784,8 +1771,8 @@ Cohesion: 0.67
 Nodes (3): Rpc, key, url
 
 ### Community 352 - "chains.ts"
-Cohesion: 0.14
-Nodes (17): dynamic, FaucetHealth, formatTokenUnits(), formatWeiToEtherString(), GET(), queryRpcWithLatency(), RpcHealth, SponsorPoolHealth (+9 more)
+Cohesion: 0.17
+Nodes (13): dynamic, FaucetHealth, formatTokenUnits(), formatWeiToEtherString(), GET(), queryRpcWithLatency(), RpcHealth, SponsorPoolHealth (+5 more)
 
 ### Community 355 - "relayer/package.json"
 Cohesion: 0.16
@@ -1795,9 +1782,9 @@ Nodes (13): @defi-trail/shared@workspace:*, dependencies, @defi-trail/shared@wor
 Cohesion: 0.44
 Nodes (9): EnergyRefilled, _balanceTier(), _currentEpoch(), _energyMax(), getEnergyMax(), _powerLevel(), _refillIfNewEpoch(), refundEnergy() (+1 more)
 
-### Community 357 - "_read"
-Cohesion: 0.15
-Nodes (14): read_address(), read_bool(), read_bytes32(), read_int(), read_uint(), clear(), getMaskByOffsets(), getUpdatedSlotValue() (+6 more)
+### Community 357 - "checked_write"
+Cohesion: 0.20
+Nodes (11): checked_write(), clear(), find(), find(), read_bool(), read_int(), clear(), getMaskByOffsets() (+3 more)
 
 ### Community 358 - "StdUtilsMock"
 Cohesion: 0.29
@@ -1807,9 +1794,9 @@ Nodes (4): bytesToUint(), StdUtilsMock, exposedBytesToUint(), test_BytesToUint()
 Cohesion: 0.67
 Nodes (3): TypeMismatch, assertEq(), isEqual()
 
-### Community 392 - "health/page.tsx"
-Cohesion: 0.24
-Nodes (10): AdminHealthPage(), FaucetHealth, RpcHealth, SponsorPoolHealth, SystemHealthReport, WalletHealth, AddressBadge(), AddressBadgeProps (+2 more)
+### Community 392 - "apps/web/next.config.ts"
+Cohesion: 0.33
+Nodes (6): architectureTags, fileType, hash, mtime, sizeBytes, apps/web/next.config.ts
 
 ### Community 393 - "MockUSDC"
 Cohesion: 0.33
@@ -1819,9 +1806,9 @@ Nodes (3): MockUSDC, blacklist, USDCLike
 Cohesion: 0.33
 Nodes (3): MockUSDT, blacklist, USDTLike
 
-### Community 395 - "MockUSDC"
+### Community 395 - "apps/web/src/app/api/admin/analytics/route.ts"
 Cohesion: 0.33
-Nodes (3): MockUSDC, blacklist, USDCLike
+Nodes (6): architectureTags, fileType, hash, mtime, sizeBytes, apps/web/src/app/api/admin/analytics/route.ts
 
 ### Community 396 - "Q: packages shared domain types progression exports"
 Cohesion: 0.40
@@ -1855,29 +1842,33 @@ Nodes (3): ReflectionTokenTarget, stdstore, token
 Cohesion: 0.40
 Nodes (4): Answer, Outcome, Q: progression exploration score unique H3 rarity, Source Nodes
 
-### Community 404 - "ReflectionTokenTarget"
-Cohesion: 0.40
-Nodes (3): ReflectionTokenTarget, stdstore, token
+### Community 404 - "apps/web/src/app/api/gameplay/seasons/active/route.ts"
+Cohesion: 0.33
+Nodes (6): architectureTags, fileType, hash, mtime, sizeBytes, apps/web/src/app/api/gameplay/seasons/active/route.ts
 
-### Community 405 - "sigs"
-Cohesion: 0.67
-Nodes (3): sigs(), sig(), sigs()
+### Community 405 - "apps/web/src/app/api/gameplay/trails/reconcile/route.ts"
+Cohesion: 0.33
+Nodes (6): architectureTags, fileType, hash, mtime, sizeBytes, apps/web/src/app/api/gameplay/trails/reconcile/route.ts
 
 ### Community 406 - "Q: PositionView player stats display"
 Cohesion: 0.40
 Nodes (4): Answer, Outcome, Q: PositionView player stats display, Source Nodes
 
+### Community 407 - "yParity"
+Cohesion: 0.73
+Nodes (6): yCompressed(), yParity(), yParityEthereum(), encodings(), test_ParityBounds(), testFuzz_Parity()
+
 ### Community 409 - "Q: Explain GE-05 Passport badge engine"
 Cohesion: 0.40
 Nodes (4): Answer, Outcome, Q: Explain GE-05 Passport badge engine, Source Nodes
 
+### Community 410 - "layout.tsx"
+Cohesion: 0.50
+Nodes (3): metadata, RootLayout(), WalletProvider()
+
 ### Community 411 - "Q: Path from PlayerState to PositionView"
 Cohesion: 0.40
 Nodes (4): Answer, Outcome, Q: Path from PlayerState to PositionView, Source Nodes
-
-### Community 412 - "app/page.tsx"
-Cohesion: 0.14
-Nodes (3): MapFocusRequest, QuestTutorialModalProps, TutorialTab
 
 ### Community 416 - "Q: map-config route campus slots validation API response"
 Cohesion: 0.40
@@ -1895,10 +1886,14 @@ Nodes (4): Answer, Outcome, Q: path map-config/route.ts InteractiveMap, Source N
 Cohesion: 0.40
 Nodes (4): Answer, Outcome, Q: gameplay config repository active season today trail campus slots, Source Nodes
 
+### Community 420 - "sigs"
+Cohesion: 0.67
+Nodes (3): sigs(), sig(), sigs()
+
 ## Knowledge Gaps
 - **166 isolated node(s):** `QUEST`, `SPONSOR`, `YIELD`, `COMMON`, `EPIC` (+161 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 4724 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **59 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 4798 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **71 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Work-memory lessons
 
@@ -1916,8 +1911,8 @@ Nodes (4): Answer, Outcome, Q: gameplay config repository active season today tr
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `VmSafe` connect `VmSafe` to `AccountAccess`, `Web TypeScript Configuration`, `build-matrix`, `ItemOrder`, `CmpCheatcode`, `AddressType`, `TeleporterMessageInput`, `Chain`, `Wallet`, `ReceiptLog`, `ForgeContext`, `IMulticall3`, `typos`, `FindCallData`, `BroadcastTxType`, `EthStorageProof`, `FfiResult`, `ChainInfo`, `Rpc`, `scripts/main.ts`, `services/relayer/package.json`, `contracts-cchain/lib/forge-std/test/LibVariable.t.sol`, `StdConstants`, `EthGetProof`, `FsMetadata`?**
-  _High betweenness centrality (0.041) - this node is a cross-community bridge._
+- **Why does `VmSafe` connect `Extraction Metadata` to `schemas.ts`, `Vm`, `build`, `ci-success`, `Chain`, `Wallet`, `TeleporterMessageInput`, `web/package.json`, `next-env.d.ts`, `codeql`, `ForgeContext`, `EthGetLogs`, `TxReturn`, `sigs`, `AccessListItem`, `ChainInfo`, `Rpc`, `readNonBoolValue`, `contracts-l1/lib/forge-std/test/LibVariable.t.sol`, `logMemory`, `FsMetadata`, `Bar`, `DepositRequest`, `SponsorProof`, `DepositRequest`?**
+  _High betweenness centrality (0.047) - this node is a cross-community bridge._
 - **What connects `QUEST`, `SPONSOR`, `YIELD` to the rest of the system?**
   _166 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `VmSafe` be split into smaller, more focused modules?**
@@ -1926,7 +1921,7 @@ _Questions this graph is uniquely positioned to answer:_
   _High betweenness centrality (0.040) - this node is a cross-community bridge._
 - **Should `Extraction Metadata` be split into smaller, more focused modules?**
   _Cohesion score 0.004739336492890996 - nodes in this community are weakly interconnected._
-- **Why does `VmSafe` connect `Extraction Metadata` to `schemas.ts`, `Vm`, `build`, `ci-success`, `Chain`, `Wallet`, `TeleporterMessageInput`, `web/package.json`, `next-env.d.ts`, `codeql`, `ForgeContext`, `EthGetLogs`, `TxReturn`, `sigs`, `AccessListItem`, `ChainInfo`, `Rpc`, `readNonBoolValue`, `contracts-l1/lib/forge-std/test/LibVariable.t.sol`, `logMemory`, `FsMetadata`, `Bar`, `DepositRequest`, `SponsorProof`, `DepositRequest`?**
-  _High betweenness centrality (0.039) - this node is a cross-community bridge._
+- **Why does `VmSafe` connect `VmSafe` to `AccountAccess`, `Web TypeScript Configuration`, `build-matrix`, `ItemOrder`, `CmpCheatcode`, `AddressType`, `TeleporterMessageInput`, `Chain`, `Wallet`, `ReceiptLog`, `ForgeContext`, `IMulticall3`, `typos`, `FindCallData`, `BroadcastTxType`, `EthStorageProof`, `FfiResult`, `ChainInfo`, `Rpc`, `scripts/main.ts`, `services/relayer/package.json`, `contracts-cchain/lib/forge-std/test/LibVariable.t.sol`, `StdConstants`, `EthGetProof`, `FsMetadata`?**
+  _High betweenness centrality (0.038) - this node is a cross-community bridge._
 - **Should `console` be split into smaller, more focused modules?**
   _Cohesion score 0.010050251256281407 - nodes in this community are weakly interconnected._
