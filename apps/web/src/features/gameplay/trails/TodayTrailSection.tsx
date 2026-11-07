@@ -26,6 +26,7 @@ import {
   createConfirmedTrailEvidence,
   recordPassportEvidence,
 } from "@/features/gameplay/passport";
+import { getGameplayTracker } from "@/features/analytics";
 import {
   TodayTrailCard,
   type TodayTrailCardState,
@@ -124,6 +125,11 @@ export function TodayTrailSection({
         setTrail(parsedTrail.data);
         setProgress(recovered.progress);
         setViewState({ kind: "empty" });
+
+        getGameplayTracker().trackSeasonViewed(
+          { seasonId: parsedTrail.data.seasonId, source: "today_trail_section" },
+          playerId,
+        );
       } catch (error) {
         if (!mounted || controller.signal.aborted) return;
         setTrail(null);
@@ -146,6 +152,25 @@ export function TodayTrailSection({
   }, [playerId, reloadToken]);
 
   useEffect(() => {
+    if (!trail || !evidence.requestId || evidence.state !== "submitted") return;
+    const slot = evidence.chestSlot ?? 0;
+    const checkpoint = trail.checkpoints[slot];
+    if (checkpoint) {
+      getGameplayTracker().trackCheckpointSubmitted(
+        {
+          seasonId: trail.seasonId,
+          trailId: trail.id,
+          checkpointId: checkpoint.id,
+          position: slot,
+          requestId: evidence.requestId,
+          mode: "DEMO",
+        },
+        playerId,
+      );
+    }
+  }, [evidence.chestSlot, evidence.requestId, evidence.state, playerId, trail]);
+
+  useEffect(() => {
     if (!trail || !progress || evidence.state !== "confirmed" || !evidence.requestId) return;
     const status = mapUIStateToLifecycle(evidence.state);
     const result = reconcileTrailProgressWithEvidence({
@@ -162,6 +187,38 @@ export function TodayTrailSection({
       ],
     });
     if (result.appliedCount > 0) {
+      const newlyConfirmed = result.progress.completedCheckpoints.slice(
+        progress.completedCheckpoints.length,
+      );
+      for (const completion of newlyConfirmed) {
+        const checkpointIndex = trail.checkpoints.findIndex(
+          (c) => c.id === completion.checkpointId,
+        );
+        getGameplayTracker().trackCheckpointConfirmed(
+          {
+            seasonId: trail.seasonId,
+            trailId: trail.id,
+            checkpointId: completion.checkpointId,
+            position: Math.max(0, checkpointIndex),
+            requestId: completion.requestId ?? evidence.requestId!,
+            mode: "DEMO",
+          },
+          playerId,
+        );
+      }
+
+      if (result.isComplete && !progress.completedAt) {
+        getGameplayTracker().trackTrailCompleted(
+          {
+            seasonId: trail.seasonId,
+            trailId: trail.id,
+            completedCheckpoints: result.progress.completedCheckpoints.length,
+            mode: "DEMO",
+          },
+          playerId,
+        );
+      }
+
       const passportEvidence = createConfirmedTrailEvidence({
         trail,
         previousProgress: progress,
@@ -180,6 +237,15 @@ export function TodayTrailSection({
 
   const handleStart = useCallback(() => {
     if (!trail) return;
+    getGameplayTracker().trackTrailStarted(
+      {
+        seasonId: trail.seasonId,
+        trailId: trail.id,
+        checkpointCount: trail.checkpoints.length,
+        mode: "DEMO",
+      },
+      playerId,
+    );
     const nextProgress = createTrailProgress(
       trail.id,
       playerId,
@@ -189,6 +255,25 @@ export function TodayTrailSection({
     setProgress(nextProgress);
   }, [playerId, trail]);
 
+  const handleFocusChest = useCallback(
+    (chestId: string, checkpointPosition: number) => {
+      if (trail) {
+        getGameplayTracker().trackCheckpointViewed(
+          {
+            seasonId: trail.seasonId,
+            trailId: trail.id,
+            checkpointId: chestId,
+            position: checkpointPosition,
+            mode: "DEMO",
+          },
+          playerId,
+        );
+      }
+      onFocusChest(chestId, checkpointPosition);
+    },
+    [onFocusChest, playerId, trail],
+  );
+
   const cardState: TodayTrailCardState = trail
     ? { kind: "ready", trail, progress, evidence }
     : viewState;
@@ -197,7 +282,7 @@ export function TodayTrailSection({
     <TodayTrailCard
       state={cardState}
       onStart={handleStart}
-      onFocusChest={onFocusChest}
+      onFocusChest={handleFocusChest}
       onResumeEvidence={onResumeEvidence}
       onRetry={() => setReloadToken((value) => value + 1)}
     />
