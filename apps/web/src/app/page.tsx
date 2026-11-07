@@ -12,7 +12,10 @@ import {
 } from "@/components/map/InteractiveMap";
 import { ICMProgressModal, useICMProgress, RequestStatus } from "@/components/cross-chain";
 import { QuestTutorialModal } from "@/components/quest";
-import { SponsorScannerModal } from "@/components/sponsor";
+import {
+  SponsorPerkClaimView,
+  SponsorScannerModal,
+} from "@/components/sponsor";
 import { PositionView } from "@/components/position";
 import { TodayTrailSection } from "@/features/gameplay/trails";
 import { TeamLeaderboardSection } from "@/features/gameplay/teams";
@@ -24,6 +27,8 @@ export default function HomePage() {
   const [mainTab, setMainTab] = React.useState<"map" | "teams" | "position">("map");
   const [questModalOpen, setQuestModalOpen] = React.useState<boolean>(false);
   const [sponsorModalOpen, setSponsorModalOpen] = React.useState<boolean>(false);
+  const [sponsorClaimAuthorization, setSponsorClaimAuthorization] =
+    React.useState<string | undefined>(undefined);
   const [selectedChestForModal, setSelectedChestForModal] = React.useState<any>(null);
   const [mapFocusRequest, setMapFocusRequest] =
     React.useState<MapFocusRequest | null>(null);
@@ -381,6 +386,12 @@ export default function HomePage() {
             onResumeEvidence={() => icm.setIsOpen(true)}
           />
 
+          <SponsorPerkClaimView
+            walletAddress={account?.address}
+            claimAuthorization={sponsorClaimAuthorization}
+            evidence={trailEvidence}
+          />
+
           <div
             style={{
               display: "flex",
@@ -422,6 +433,7 @@ export default function HomePage() {
                 setQuestModalOpen(true);
               } else if (chest.type === "SPONSOR") {
                 setSelectedChestForModal(chest);
+                setSponsorClaimAuthorization(undefined);
                 setSponsorModalOpen(true);
               } else {
                 runIcmSimulation(chest.slot, chest.type, chest.chestId);
@@ -545,7 +557,8 @@ export default function HomePage() {
         onClose={() => setSponsorModalOpen(false)}
         chestId={selectedChestForModal?.chestId}
         walletAddress={account?.address}
-        onProofReceived={() => {
+        onProofReceived={(result) => {
+          setSponsorClaimAuthorization(result.perkClaimAuthorization);
           setSponsorModalOpen(false);
           runIcmSimulation(
             selectedChestForModal?.slot ?? 2,

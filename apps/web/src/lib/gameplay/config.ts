@@ -44,7 +44,7 @@ export const DEMO_GAMEPLAY_CONFIG = {
         "FIVE_UNIQUE_H3",
         "QUEST_LEARNER",
       ],
-      perkCampaignIds: [],
+      perkCampaignIds: ["demo-coffee-v1"],
       status: "ACTIVE",
     },
   ],

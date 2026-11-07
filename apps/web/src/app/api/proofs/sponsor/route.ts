@@ -3,6 +3,8 @@ import { errorResponse } from "@/lib/api-response";
 import { findSlotByChestId, getCurrentEpoch, computeCampaignIdHash } from "@/lib/campus";
 import { haversineDistanceMeters } from "@/lib/geo";
 import { generateNonce, signSponsorProof, verifySponsorQrPayload } from "@/lib/proof-signer";
+import { getSponsorPerkCampaign } from "@/features/sponsor-perks/types";
+import { getSponsorPerkService } from "@/lib/sponsor-perk-service";
 
 interface SponsorProofRequestBody {
   wallet: string;
@@ -165,6 +167,15 @@ export async function POST(req: NextRequest) {
       nonce,
       expiresAt,
     });
+    const campaign = getSponsorPerkCampaign(qrResult.campaignId || "");
+    const perkClaimAuthorization = campaign
+      ? getSponsorPerkService().issueClaimAuthorization({
+          player: wallet.toLowerCase(),
+          campaignId: campaign.id,
+          ruleId: campaign.ruleId,
+          requestId: canonicalChestId,
+        })
+      : undefined;
 
     return NextResponse.json({
       proof: {
@@ -176,6 +187,7 @@ export async function POST(req: NextRequest) {
         expiresAt,
         signature,
       },
+      ...(perkClaimAuthorization ? { perkClaimAuthorization } : {}),
     });
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : "Internal server error";

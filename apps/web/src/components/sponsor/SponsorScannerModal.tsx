@@ -4,13 +4,29 @@ import React, { useState, useEffect, useRef } from "react";
 import { Html5Qrcode } from "html5-qrcode";
 import { parseSafeJSON } from "@/lib/json";
 
+interface SponsorProofPayload {
+  player: string;
+  chestId: string;
+  campaignId: string;
+  epoch: number;
+  nonce: string;
+  expiresAt: number;
+  signature: string;
+}
+
+export interface SponsorProofApiResult {
+  proof?: SponsorProofPayload;
+  perkClaimAuthorization?: string;
+  error?: { message?: string };
+}
+
 export interface SponsorScannerModalProps {
   isOpen: boolean;
   onClose: () => void;
   chestId?: string;
   walletAddress?: string;
   playerCoords?: { lat: number; lng: number; accuracyMeters?: number };
-  onProofReceived?: (proofData: any) => void;
+  onProofReceived?: (proofData: SponsorProofApiResult) => void;
 }
 
 export function SponsorScannerModal({
@@ -25,7 +41,7 @@ export function SponsorScannerModal({
   const [manualCode, setManualCode] = useState<string>("demo-coffee-v1");
   const [isVerifying, setIsVerifying] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const [successProof, setSuccessProof] = useState<any | null>(null);
+  const [successProof, setSuccessProof] = useState<SponsorProofPayload | null>(null);
   const [cameraError, setCameraError] = useState<string>("");
 
   const scannerRef = useRef<Html5Qrcode | null>(null);
@@ -69,13 +85,13 @@ export function SponsorScannerModal({
       });
 
       const rawText = await res.text();
-      const data = parseSafeJSON(rawText);
+      const data = parseSafeJSON<SponsorProofApiResult>(rawText);
 
       if (!data) {
         throw new Error(`Server returned non-JSON response (HTTP ${res.status})`);
       }
 
-      if (!res.ok || data?.error) {
+      if (!res.ok || data.error || !data.proof) {
         throw new Error(data?.error?.message || `HTTP ${res.status}: Verification failed`);
       }
 
@@ -85,8 +101,10 @@ export function SponsorScannerModal({
       if (onProofReceived) {
         onProofReceived(data);
       }
-    } catch (err: any) {
-      setErrorMessage(err?.message || "Failed to verify sponsor QR code");
+    } catch (err: unknown) {
+      setErrorMessage(
+        err instanceof Error ? err.message : "Failed to verify sponsor QR code",
+      );
     } finally {
       setIsVerifying(false);
     }
@@ -118,10 +136,14 @@ export function SponsorScannerModal({
             // Ignore frame parse errors
           }
         );
-      } catch (err: any) {
+      } catch (err: unknown) {
         if (!isCancelled) {
           console.warn("[SponsorScanner] Camera initialization failed:", err);
-          setCameraError(err?.message || "Camera permission denied or not supported on this device.");
+          setCameraError(
+            err instanceof Error
+              ? err.message
+              : "Camera permission denied or not supported on this device.",
+          );
           // Auto switch to manual fallback mode
           setScanMode("manual");
         }
@@ -210,7 +232,7 @@ export function SponsorScannerModal({
                   textTransform: "uppercase",
                 }}
               >
-                ☕ Sponsor Chest • 2 Mock USDC
+                Sponsor Chest • Proof check
               </span>
             </div>
             <h2 style={{ fontSize: "1.125rem", fontWeight: 700, color: "#F8FAFC", margin: 0 }}>
@@ -267,7 +289,7 @@ export function SponsorScannerModal({
               cursor: "pointer",
             }}
           >
-            📷 Quét Camera
+            Quét Camera
           </button>
           <button
             type="button"
@@ -289,12 +311,38 @@ export function SponsorScannerModal({
               cursor: "pointer",
             }}
           >
-            ⌨️ Nhập Mã Thủ Công
+            Nhập Mã Thủ Công
           </button>
         </div>
 
         {/* Content Body */}
         <div style={{ padding: "20px 24px", display: "flex", flexDirection: "column", gap: "16px" }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))",
+              gap: "8px",
+            }}
+            aria-label="Sponsor asset boundary"
+          >
+            <div style={{ border: "1px solid #334155", borderRadius: "8px", padding: "10px 12px" }}>
+              <strong style={{ display: "block", color: "#E2E8F0", fontSize: "0.75rem" }}>
+                Mock USDC
+              </strong>
+              <span style={{ display: "block", color: "#94A3B8", fontSize: "0.7rem", marginTop: "3px", lineHeight: 1.4 }}>
+                Test-only C-Chain accounting. Not money or a redeemable voucher.
+              </span>
+            </div>
+            <div style={{ border: "1px solid #334155", borderRadius: "8px", padding: "10px 12px" }}>
+              <strong style={{ display: "block", color: "#E2E8F0", fontSize: "0.75rem" }}>
+                Sponsor perk
+              </strong>
+              <span style={{ display: "block", color: "#94A3B8", fontSize: "0.7rem", marginTop: "3px", lineHeight: 1.4 }}>
+                Separate promotional claim available only after ICM confirmation.
+              </span>
+            </div>
+          </div>
+
           {cameraError && (
             <div
               style={{
@@ -306,7 +354,7 @@ export function SponsorScannerModal({
                 color: "#FBBF24",
               }}
             >
-              ⚠️ {cameraError} (Đã chuyển sang chế độ nhập mã thủ công)
+              {cameraError} (Đã chuyển sang chế độ nhập mã thủ công)
             </div>
           )}
 
@@ -403,7 +451,7 @@ export function SponsorScannerModal({
                 color: "#F87171",
               }}
             >
-              ✕ {errorMessage}
+              {errorMessage}
             </div>
           )}
 
@@ -421,10 +469,10 @@ export function SponsorScannerModal({
               }}
             >
               <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                <span style={{ color: "#34D399", fontWeight: 700 }}>✓ SponsorProof Hợp Lệ!</span>
+                <span style={{ color: "#34D399", fontWeight: 700 }}>SponsorProof hợp lệ</span>
               </div>
               <p style={{ margin: 0, fontSize: "0.8125rem", color: "#A7F3D0" }}>
-                Chữ ký EIP-712 đã được cấp thành công. Bạn đã sẵn sàng mở rương nhận 2 Mock USDC top-up vào vị thế!
+                Chữ ký EIP-712 đã được cấp. Bước tiếp theo gửi Sponsor Chest qua ICM. Perk chỉ có thể claim sau trạng thái CONFIRMED và không phải là Mock USDC.
               </p>
               <button
                 type="button"
@@ -441,7 +489,7 @@ export function SponsorScannerModal({
                   cursor: "pointer",
                 }}
               >
-                Tiếp Tục Mở Rương →
+                Tiếp tục xác nhận ICM
               </button>
             </div>
           )}

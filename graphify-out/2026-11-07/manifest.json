@@ -98,9 +98,9 @@
     "semantic_hash": "43c23a9ea3ed4c18d52af79067158bb7"
   },
   "apps/web/src/app/page.tsx": {
-    "mtime": 1794023195.1973164,
-    "seen": 1794023740.4912243,
-    "ast_hash": "727f3eae5c3205f68345713d3eb44081",
+    "mtime": 1794050578.908465,
+    "seen": 1794050620.281175,
+    "ast_hash": "1c7c646c1b0666dd45e2b98678e2aea2",
     "semantic_hash": ""
   },
   "apps/web/tsconfig.json": {
@@ -1532,9 +1532,9 @@
     "semantic_hash": "baaea65284b2b5c8afceb430e2719ad4"
   },
   "packages/shared/src/gameplay/index.ts": {
-    "mtime": 1794024080.1161766,
-    "seen": 1794025966.8825028,
-    "ast_hash": "cf633936037213451f2fa94f4ea20a94",
+    "mtime": 1794050579.3220804,
+    "seen": 1794050620.3455217,
+    "ast_hash": "9093653c7438cccd0c97eedb007c97c2",
     "semantic_hash": ""
   },
   "packages/shared/src/gameplay/rules.ts": {
@@ -1646,9 +1646,9 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/gameplay/trails/TodayTrailSection.tsx": {
-    "mtime": 1794024616.098526,
-    "seen": 1794025966.8364358,
-    "ast_hash": "b83c60ced3d00320950e873c6b9a5aa8",
+    "mtime": 1794026331.9381428,
+    "seen": 1794050620.2916317,
+    "ast_hash": "9b216eb56bf295c73cd60d67d4ab09c6",
     "semantic_hash": ""
   },
   "apps/web/src/features/gameplay/trails/index.ts": {
@@ -1907,6 +1907,66 @@
     "mtime": 1794025439.7970054,
     "seen": 1794025966.8892117,
     "ast_hash": "50ac2f68c9310962cca580b29b2a8ee2",
+    "semantic_hash": ""
+  },
+  "apps/web/src/app/api/gameplay/leaderboard/rebuild/route.ts": {
+    "mtime": 1794026371.9482422,
+    "seen": 1794050620.2778647,
+    "ast_hash": "0907f9acd1186d66223846357def6bee",
+    "semantic_hash": ""
+  },
+  "apps/web/src/app/api/gameplay/leaderboard/route.ts": {
+    "mtime": 1794026372.1664822,
+    "seen": 1794050620.2778707,
+    "ast_hash": "7557c4e97cf0f634b2610a89673fa258",
+    "semantic_hash": ""
+  },
+  "apps/web/src/app/api/gameplay/teams/route.ts": {
+    "mtime": 1794026372.3073905,
+    "seen": 1794050620.2786322,
+    "ast_hash": "6175d5eb97d35a9cd4cee09841186590",
+    "semantic_hash": ""
+  },
+  "apps/web/src/features/gameplay/teams/TeamLeaderboardSection.tsx": {
+    "mtime": 1794050579.104604,
+    "seen": 1794050620.2913966,
+    "ast_hash": "84deb0636f55bcfc32ee9b9987ad536f",
+    "semantic_hash": ""
+  },
+  "apps/web/src/features/gameplay/teams/index.ts": {
+    "mtime": 1794026373.4730546,
+    "seen": 1794050620.291402,
+    "ast_hash": "f24fcb172114f5d8ff8bdd57669fd8b8",
+    "semantic_hash": ""
+  },
+  "apps/web/src/lib/engagement-store.ts": {
+    "mtime": 1794026373.9203405,
+    "seen": 1794050620.2932386,
+    "ast_hash": "ec9450ce181138b92a7b13dd606f5ebe",
+    "semantic_hash": ""
+  },
+  "apps/web/tests/ge09-teams-leaderboard.test.ts": {
+    "mtime": 1794050579.24192,
+    "seen": 1794050620.2980735,
+    "ast_hash": "136e0b5b6f46c06461689fbc8c89708c",
+    "semantic_hash": ""
+  },
+  "packages/shared/src/gameplay/leaderboard-reducer.ts": {
+    "mtime": 1794026374.4356055,
+    "seen": 1794050620.3455312,
+    "ast_hash": "f03c2cdad8d1eeae72bcb3ac23459dac",
+    "semantic_hash": ""
+  },
+  "packages/shared/src/gameplay/teams.ts": {
+    "mtime": 1794026374.640687,
+    "seen": 1794050620.347142,
+    "ast_hash": "7545521cfe09355b9b91aa53e4cd90d9",
+    "semantic_hash": ""
+  },
+  "packages/shared/tests/gameplay-teams-reducer.test.ts": {
+    "mtime": 1794026374.8271434,
+    "seen": 1794050620.350251,
+    "ast_hash": "77239e357ee582a56e871fd82373a805",
     "semantic_hash": ""
   },
   "pnpm-lock.yaml": {

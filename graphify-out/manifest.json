@@ -98,9 +98,9 @@
     "semantic_hash": "43c23a9ea3ed4c18d52af79067158bb7"
   },
   "apps/web/src/app/page.tsx": {
-    "mtime": 1794050578.908465,
-    "seen": 1794050620.281175,
-    "ast_hash": "1c7c646c1b0666dd45e2b98678e2aea2",
+    "mtime": 1794051784.5077448,
+    "seen": 1794059891.4982686,
+    "ast_hash": "d72d748840d0b8fca998e34727e95696",
     "semantic_hash": ""
   },
   "apps/web/tsconfig.json": {
@@ -1195,10 +1195,10 @@
     "semantic_hash": "2010fdae48f95938b69708750dd67352"
   },
   "apps/web/src/app/api/proofs/sponsor/route.ts": {
-    "mtime": 1793936968.9092815,
-    "seen": 1793963365.1747677,
-    "ast_hash": "9d29b48c060ccfe368837029cd67e3af",
-    "semantic_hash": "9d29b48c060ccfe368837029cd67e3af"
+    "mtime": 1794051640.606858,
+    "seen": 1794059891.4980142,
+    "ast_hash": "048306d1a0f2c41d0bd570f735be0d42",
+    "semantic_hash": ""
   },
   "apps/web/src/components/map/ChestBottomSheet.tsx": {
     "mtime": 1793960037.5044372,
@@ -1333,9 +1333,9 @@
     "semantic_hash": "57557c3d9e2be0c68934a0d9bc7e64b1"
   },
   "apps/web/src/lib/rate-limiter.ts": {
-    "mtime": 1793984996.2242334,
-    "seen": 1794014402.3310232,
-    "ast_hash": "dfc7b6852c05eae48b60fafdf5deb7f9",
+    "mtime": 1794051110.500728,
+    "seen": 1794059891.5102267,
+    "ast_hash": "eecef72428ede2d02537e82246323036",
     "semantic_hash": ""
   },
   "apps/web/src/lib/server-env.ts": {
@@ -1351,10 +1351,10 @@
     "semantic_hash": "84efe1f0ae4b08730b2255baaba91f50"
   },
   "apps/web/tests/api.test.ts": {
-    "mtime": 1793936969.497509,
-    "seen": 1793963365.174841,
-    "ast_hash": "d549a5874c2d4b2e974e35f2a7d7f2c3",
-    "semantic_hash": "d549a5874c2d4b2e974e35f2a7d7f2c3"
+    "mtime": 1794051784.5160065,
+    "seen": 1794059891.5107625,
+    "ast_hash": "e005d66deba33c00a11c3f4202722a99",
+    "semantic_hash": ""
   },
   "apps/web/tests/map.test.ts": {
     "mtime": 1793965267.59789,
@@ -1447,16 +1447,16 @@
     "semantic_hash": "6c08e3f2949c91e753eb5e1a7019b0eb"
   },
   "apps/web/src/components/sponsor/SponsorScannerModal.tsx": {
-    "mtime": 1793974488.6486309,
-    "seen": 1793975243.006538,
-    "ast_hash": "eb03d18111163f9e427b58092657dab3",
-    "semantic_hash": "eb03d18111163f9e427b58092657dab3"
+    "mtime": 1794051653.2979164,
+    "seen": 1794059891.5030475,
+    "ast_hash": "b42d142d4c0fd0127db6566c03d55807",
+    "semantic_hash": ""
   },
   "apps/web/src/components/sponsor/index.ts": {
-    "mtime": 1793969311.232822,
-    "seen": 1793971870.6605332,
-    "ast_hash": "6b03a321aa9d3c5d5fa234b629eaa567",
-    "semantic_hash": "6b03a321aa9d3c5d5fa234b629eaa567"
+    "mtime": 1794051273.5459774,
+    "seen": 1794059891.503051,
+    "ast_hash": "24d4e99f19b952aa693cfd7ea9c749a9",
+    "semantic_hash": ""
   },
   "apps/web/tests/features-modals.test.ts": {
     "mtime": 1793969311.3163033,
@@ -1598,9 +1598,9 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/gameplay/config.ts": {
-    "mtime": 1794014763.5095234,
-    "seen": 1794015400.9463649,
-    "ast_hash": "5763f15b1b51843322d30cf96df890d4",
+    "mtime": 1794051784.510262,
+    "seen": 1794059891.5093176,
+    "ast_hash": "d43f5b7156151fde112213df878645e3",
     "semantic_hash": ""
   },
   "apps/web/src/lib/gameplay/errors.ts": {
@@ -1646,9 +1646,9 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/gameplay/trails/TodayTrailSection.tsx": {
-    "mtime": 1794026331.9381428,
-    "seen": 1794050620.2916317,
-    "ast_hash": "9b216eb56bf295c73cd60d67d4ab09c6",
+    "mtime": 1794051305.0514314,
+    "seen": 1794059891.5075574,
+    "ast_hash": "b6606f7d820715771dc60a8a89c13fdb",
     "semantic_hash": ""
   },
   "apps/web/src/features/gameplay/trails/index.ts": {
@@ -1730,9 +1730,9 @@
     "semantic_hash": ""
   },
   "apps/web/src/app/api/gameplay/trails/reconcile/route.ts": {
-    "mtime": 1793985261.6451118,
-    "seen": 1794014402.3001707,
-    "ast_hash": "b2ed294eeb4de621de9e14ffece94e4c",
+    "mtime": 1794051469.080931,
+    "seen": 1794059891.497091,
+    "ast_hash": "8fc7e1d4a9a7bc07008dbf4f8b9911eb",
     "semantic_hash": ""
   },
   "apps/web/src/features/gameplay/trails/evidence-adapter.ts": {
@@ -1967,6 +1967,60 @@
     "mtime": 1794026374.8271434,
     "seen": 1794050620.350251,
     "ast_hash": "77239e357ee582a56e871fd82373a805",
+    "semantic_hash": ""
+  },
+  "apps/web/src/app/api/sponsor-perks/claims/route.ts": {
+    "mtime": 1794051640.60286,
+    "seen": 1794059891.4980235,
+    "ast_hash": "0b090d2878aa2aaa884275b530b20f7e",
+    "semantic_hash": ""
+  },
+  "apps/web/src/app/api/sponsor-perks/redemptions/route.ts": {
+    "mtime": 1794051784.511792,
+    "seen": 1794059891.4980278,
+    "ast_hash": "591ffcdcb7e18642bfc050e7effaa7e0",
+    "semantic_hash": ""
+  },
+  "apps/web/src/app/sponsor/operator/page.tsx": {
+    "mtime": 1794051273.543976,
+    "seen": 1794059891.4987736,
+    "ast_hash": "03c2b5b901485ca2f84a9e2de37ee31d",
+    "semantic_hash": ""
+  },
+  "apps/web/src/components/sponsor/OperatorRedemptionView.tsx": {
+    "mtime": 1794051273.5354617,
+    "seen": 1794059891.5030386,
+    "ast_hash": "59adcbb6debc3576f2ed4650d5e8b7c4",
+    "semantic_hash": ""
+  },
+  "apps/web/src/components/sponsor/SponsorPerkClaimView.tsx": {
+    "mtime": 1794051653.2989151,
+    "seen": 1794059891.5030434,
+    "ast_hash": "5bf0c6b50dcacc341879e9ce23609b7b",
+    "semantic_hash": ""
+  },
+  "apps/web/src/features/sponsor-perks/types.ts": {
+    "mtime": 1794051086.9856758,
+    "seen": 1794059891.5084054,
+    "ast_hash": "5c04fd741f692de7df3d0b3c835e58cd",
+    "semantic_hash": ""
+  },
+  "apps/web/src/lib/sponsor-operator-auth.ts": {
+    "mtime": 1794051086.9897647,
+    "seen": 1794059891.510404,
+    "ast_hash": "189ab7e7adfd84a0d5137ddfa39cc44c",
+    "semantic_hash": ""
+  },
+  "apps/web/src/lib/sponsor-perk-service.ts": {
+    "mtime": 1794051784.5137954,
+    "seen": 1794059891.5104074,
+    "ast_hash": "569048bc2308acf2f8408c22755d6b0b",
+    "semantic_hash": ""
+  },
+  "apps/web/tests/ge10-sponsor-perks.test.ts": {
+    "mtime": 1794051784.5200076,
+    "seen": 1794059891.5125859,
+    "ast_hash": "a5d87354eb473805010df45d15a2c889",
     "semantic_hash": ""
   },
   "pnpm-lock.yaml": {

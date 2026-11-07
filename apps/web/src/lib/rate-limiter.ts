@@ -82,6 +82,11 @@ export function recordFaucetClaim(
 const reconcileWalletTimestamps = new Map<string, number[]>();
 const reconcileIpTimestamps = new Map<string, number[]>();
 
+const sponsorClaimWalletTimestamps = new Map<string, number[]>();
+const sponsorClaimIpTimestamps = new Map<string, number[]>();
+const sponsorRedemptionOperatorTimestamps = new Map<string, number[]>();
+const sponsorRedemptionIpTimestamps = new Map<string, number[]>();
+
 export const RECONCILE_WINDOW_MS = 10_000;
 export const MAX_RECONCILE_PER_WINDOW = 20;
 
@@ -156,6 +161,118 @@ export function recordReconcileRequest(
   }
 }
 
+export interface SponsorPerkRateLimitResult {
+  allowed: boolean;
+  retryAfterMs?: number;
+}
+
+function checkSlidingWindow(
+  store: Map<string, number[]>,
+  key: string,
+  windowMs: number,
+  maxPerWindow: number,
+): SponsorPerkRateLimitResult {
+  const now = Date.now();
+  const timestamps = (store.get(key) ?? []).filter(
+    (timestamp) => now - timestamp < windowMs,
+  );
+  store.set(key, timestamps);
+  if (timestamps.length < maxPerWindow) return { allowed: true };
+  return {
+    allowed: false,
+    retryAfterMs: Math.max(0, windowMs - (now - timestamps[0]!)),
+  };
+}
+
+function recordSlidingWindow(
+  store: Map<string, number[]>,
+  key: string,
+  windowMs: number,
+): void {
+  const now = Date.now();
+  const timestamps = (store.get(key) ?? []).filter(
+    (timestamp) => now - timestamp < windowMs,
+  );
+  timestamps.push(now);
+  store.set(key, timestamps);
+}
+
+export function checkSponsorClaimRateLimit(
+  wallet: string,
+  clientIp?: string,
+  windowMs = 60_000,
+  maxPerWallet = 5,
+): SponsorPerkRateLimitResult {
+  const walletCheck = checkSlidingWindow(
+    sponsorClaimWalletTimestamps,
+    wallet.toLowerCase(),
+    windowMs,
+    maxPerWallet,
+  );
+  if (!walletCheck.allowed) return walletCheck;
+  return clientIp
+    ? checkSlidingWindow(
+        sponsorClaimIpTimestamps,
+        clientIp,
+        windowMs,
+        maxPerWallet * 4,
+      )
+    : { allowed: true };
+}
+
+export function recordSponsorClaimAttempt(
+  wallet: string,
+  clientIp?: string,
+  windowMs = 60_000,
+): void {
+  recordSlidingWindow(
+    sponsorClaimWalletTimestamps,
+    wallet.toLowerCase(),
+    windowMs,
+  );
+  if (clientIp) {
+    recordSlidingWindow(sponsorClaimIpTimestamps, clientIp, windowMs);
+  }
+}
+
+export function checkSponsorRedemptionRateLimit(
+  operatorId: string,
+  clientIp?: string,
+  windowMs = 60_000,
+  maxPerOperator = 20,
+): SponsorPerkRateLimitResult {
+  const operatorCheck = checkSlidingWindow(
+    sponsorRedemptionOperatorTimestamps,
+    operatorId,
+    windowMs,
+    maxPerOperator,
+  );
+  if (!operatorCheck.allowed) return operatorCheck;
+  return clientIp
+    ? checkSlidingWindow(
+        sponsorRedemptionIpTimestamps,
+        clientIp,
+        windowMs,
+        maxPerOperator * 2,
+      )
+    : { allowed: true };
+}
+
+export function recordSponsorRedemptionAttempt(
+  operatorId: string,
+  clientIp?: string,
+  windowMs = 60_000,
+): void {
+  recordSlidingWindow(
+    sponsorRedemptionOperatorTimestamps,
+    operatorId,
+    windowMs,
+  );
+  if (clientIp) {
+    recordSlidingWindow(sponsorRedemptionIpTimestamps, clientIp, windowMs);
+  }
+}
+
 /**
  * Resets all rate limit state (useful for tests).
  */
@@ -164,4 +281,8 @@ export function resetRateLimits(): void {
   ipFaucetCounts.clear();
   reconcileWalletTimestamps.clear();
   reconcileIpTimestamps.clear();
+  sponsorClaimWalletTimestamps.clear();
+  sponsorClaimIpTimestamps.clear();
+  sponsorRedemptionOperatorTimestamps.clear();
+  sponsorRedemptionIpTimestamps.clear();
 }

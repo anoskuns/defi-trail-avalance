@@ -232,6 +232,9 @@ describe("API Endpoints", () => {
       expect(data.proof.chestId).toBe(sponsorSlot.chestId);
       expect(data.proof.campaignId).toBe(sponsorSlot.campaignIdHash);
       expect(data.proof.signature).toMatch(/^0x[a-fA-F0-9]{130}$/);
+      expect(data.perkClaimAuthorization).toMatch(/^spka_[A-Za-z0-9_-]{43}$/);
+      expect(data.perkClaimAuthorization).not.toContain(testWallet.toLowerCase());
+      expect(data.perkClaimAuthorization).not.toContain("demo-coffee-v1");
     });
 
     it("rejects expired QR payload with INVALID_QR", async () => {

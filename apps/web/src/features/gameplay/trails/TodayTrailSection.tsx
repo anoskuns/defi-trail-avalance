@@ -187,6 +187,39 @@ export function TodayTrailSection({
       ],
     });
     if (result.appliedCount > 0) {
+      if (evidence.chestType?.toUpperCase() === "SPONSOR") {
+        void fetch("/api/gameplay/trails/reconcile", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            trailId: trail.id,
+            player: playerId,
+            cachedProgress: progress,
+            evidenceItems: [
+              {
+                requestId: evidence.requestId,
+                chestSlot: evidence.chestSlot,
+                status: "CONFIRMED",
+                occurredAt: new Date().toISOString(),
+                mode: "DEMO",
+              },
+            ],
+          }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              console.warn(
+                "[SponsorPerk] confirmed eligibility reconciliation was not recorded",
+              );
+            }
+          })
+          .catch(() => {
+            console.warn(
+              "[SponsorPerk] confirmed eligibility reconciliation was unavailable",
+            );
+          });
+      }
+
       const newlyConfirmed = result.progress.completedCheckpoints.slice(
         progress.completedCheckpoints.length,
       );

@@ -13,17 +13,40 @@ import {
   type CheckpointEvidenceItem,
   mapRequestStatusToLifecycle,
   mapUIStateToLifecycle,
+  resolveEvidenceCheckpointId,
 } from "@/features/gameplay/trails/evidence-adapter";
 import type { TrailProgress } from "@defi-trail/shared";
 import type { StoredICMRequest } from "@/components/cross-chain/types";
+import { findSlotByChestId } from "@/lib/campus";
+import { getSponsorPerkCampaign } from "@/features/sponsor-perks/types";
+import { getSponsorPerkService } from "@/lib/sponsor-perk-service";
 
 export const dynamic = "force-dynamic";
 
+interface ReconcileRequestBody {
+  trailId?: unknown;
+  player?: unknown;
+  pendingRequests?: unknown;
+  cachedProgress?: unknown;
+  evidenceItems?: unknown;
+}
+
+function isCheckpointEvidenceItem(value: unknown): value is CheckpointEvidenceItem {
+  if (!value || typeof value !== "object") return false;
+  const candidate = value as Partial<CheckpointEvidenceItem>;
+  return (
+    typeof candidate.requestId === "string" &&
+    ["CREATED", "SENT", "REMOTE_EXECUTED", "ACK_PENDING", "CONFIRMED", "FAILED"].includes(
+      candidate.status ?? "",
+    )
+  );
+}
+
 export async function POST(req: NextRequest) {
   try {
-    let body: any;
+    let body: ReconcileRequestBody;
     try {
-      body = await req.json();
+      body = (await req.json()) as ReconcileRequestBody;
     } catch {
       return errorResponse("INVALID_PAYLOAD", "Request body must be valid JSON", 400);
     }
@@ -70,7 +93,7 @@ export async function POST(req: NextRequest) {
 
     // 3. Assemble evidence items from explicit items and pending stored requests
     const items: CheckpointEvidenceItem[] = Array.isArray(evidenceItems)
-      ? [...evidenceItems]
+      ? evidenceItems.filter(isCheckpointEvidenceItem)
       : [];
 
     if (Array.isArray(pendingRequests)) {
@@ -103,6 +126,40 @@ export async function POST(req: NextRequest) {
       baseProgress: cachedProgress as TrailProgress | null,
       evidenceItems: items,
     });
+
+    // GE-10: only the authoritative CONFIRMED reconciliation boundary may
+    // create sponsor-perk eligibility. This ledger is isolated from vaults,
+    // balances, SponsorPool allocation, and Mock USDC accounting.
+    for (const item of items) {
+      if (item.status !== "CONFIRMED") continue;
+      const checkpointId = resolveEvidenceCheckpointId(trail, item);
+      if (!checkpointId) continue;
+      const completion = result.progress.completedCheckpoints.find(
+        (entry) =>
+          entry.checkpointId === checkpointId &&
+          entry.requestId?.toLowerCase() === item.requestId.toLowerCase(),
+      );
+      if (!completion) continue;
+
+      const checkpoint = trail.checkpoints.find(
+        (entry) => entry.id === checkpointId,
+      );
+      const slot = checkpoint
+        ? findSlotByChestId(checkpoint.chestId)
+        : undefined;
+      if (slot?.type !== "SPONSOR" || !slot.sponsorCampaign) continue;
+      const campaign = getSponsorPerkCampaign(slot.sponsorCampaign);
+      if (!campaign) continue;
+
+      getSponsorPerkService().recordConfirmedEligibility({
+        player,
+        campaignId: campaign.id,
+        ruleId: campaign.ruleId,
+        requestId: item.requestId,
+        chestId: slot.chestId,
+        confirmedAt: completion.completedAt,
+      });
+    }
 
     return successResponse({
       progress: result.progress,
