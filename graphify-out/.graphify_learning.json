@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-06T16:39:14.764061+00:00",
+  "generated_at": "2026-11-07T01:37:13.228088+00:00",
   "nodes": {
     "apps_web_src_app_api_gameplay_seasons_active_route": {
       "code_fingerprint": "2f265865959d18012e92f349dfd4d3b4fbaf3d4981abc1665dc0433865be5af1",
@@ -12,7 +12,7 @@
           "q": "gameplay config repository active season today trail campus slots"
         }
       ],
-      "score": 0.999812285,
+      "score": 0.991219207,
       "source_file": "apps/web/src/app/api/gameplay/seasons/active/route.ts",
       "status": "tentative",
       "uses": 1
@@ -28,7 +28,7 @@
           "q": "gameplay config repository active season today trail campus slots"
         }
       ],
-      "score": 0.999812285,
+      "score": 0.991219207,
       "source_file": "apps/web/src/app/api/gameplay/trails/today/route.ts",
       "status": "tentative",
       "uses": 1
@@ -45,7 +45,7 @@
           "q": "map-config route campus slots validation API response"
         }
       ],
-      "score": -3.68e-07,
+      "score": -3.65e-07,
       "source_file": "apps/web/src/app/api/map-config/route.ts",
       "status": "contested",
       "uses": 1,
@@ -62,8 +62,200 @@
           "q": "Nhận xét prompt triển khai B. Module Giao diện Ví 2. Tích hợp Layout và Trang chủ có ổn không?"
         }
       ],
-      "score": 0.993361181,
+      "score": 0.984823548,
       "source_file": "apps/web/src/app/layout.tsx",
+      "status": "tentative",
+      "uses": 1
+    },
+    "apps_web_src_components_cross_chain_icm_storage": {
+      "code_fingerprint": "1e8a5fdd883b829db9265f0e4c359ccaf78520e7fd6d031f8e77c06a12a04c25",
+      "label": "icm-storage.ts",
+      "last": "2026-11-06T16:54:09.821714+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-06T16:54:09.821714+00:00",
+          "outcome": "useful",
+          "q": "ICM confirmed requestId storage status"
+        }
+      ],
+      "score": 0.991642634,
+      "source_file": "apps/web/src/components/cross-chain/icm-storage.ts",
+      "status": "tentative",
+      "uses": 1
+    },
+    "apps_web_src_components_cross_chain_useicmprogress_useicmprogress": {
+      "code_fingerprint": "5729c2ad80a96b14f3a33ba2c009b0055639b2622c3bc3972bdce37d4c3598e0",
+      "label": "useICMProgress()",
+      "last": "2026-11-06T16:54:11.249558+00:00",
+      "neg": 1,
+      "provenance": [
+        {
+          "date": "2026-11-06T16:54:09.821714+00:00",
+          "outcome": "useful",
+          "q": "ICM confirmed requestId storage status"
+        }
+      ],
+      "score": -3.79e-07,
+      "source_file": "apps/web/src/components/cross-chain/useICMProgress.ts",
+      "status": "contested",
+      "uses": 1,
+      "verdict": "dead end"
+    },
+    "apps_web_src_components_map_chestbottomsheet_chestbottomsheet": {
+      "code_fingerprint": "74107f0bfd7cb37ba2cb423940382db33720d144bc4192c775fc78a0d540acba",
+      "label": "ChestBottomSheet()",
+      "last": "2026-11-06T16:54:11.249558+00:00",
+      "neg": 1,
+      "provenance": [
+        {
+          "date": "2026-11-06T16:54:09.109698+00:00",
+          "outcome": "useful",
+          "q": "page InteractiveMap SelectedChest ChestBottomSheet dependencies"
+        }
+      ],
+      "score": -5.67e-07,
+      "source_file": "apps/web/src/components/map/ChestBottomSheet.tsx",
+      "status": "contested",
+      "uses": 1,
+      "verdict": "dead end"
+    },
+    "apps_web_src_components_map_interactivemap_interactivemap": {
+      "code_fingerprint": "43cbbe9cc72a7579172bd03f9671b3d8a709ff86b7414f220a1b37ca4454c785",
+      "label": "InteractiveMap()",
+      "last": "2026-11-06T16:54:11.998653+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-06T16:54:11.998653+00:00",
+          "outcome": "useful",
+          "q": "today trail section interactive map icm progress apply checkpoint evidence storage confirmed"
+        },
+        {
+          "date": "2026-11-06T16:54:10.536764+00:00",
+          "outcome": "useful",
+          "q": "Path from page.tsx to InteractiveMap"
+        },
+        {
+          "date": "2026-11-06T16:54:09.109698+00:00",
+          "outcome": "useful",
+          "q": "page InteractiveMap SelectedChest ChestBottomSheet dependencies"
+        }
+      ],
+      "score": 2.974928481,
+      "source_file": "apps/web/src/components/map/InteractiveMap.tsx",
+      "status": "preferred",
+      "uses": 3
+    },
+    "apps_web_src_components_map_types_selectedchest": {
+      "code_fingerprint": "0b0ff6150fb86bf652bfe2e87376c49a7b4f5d5fc4d6e1052046b57468daa3a7",
+      "label": "SelectedChest",
+      "last": "2026-11-06T16:54:09.109698+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-06T16:54:09.109698+00:00",
+          "outcome": "useful",
+          "q": "page InteractiveMap SelectedChest ChestBottomSheet dependencies"
+        }
+      ],
+      "score": 0.991642445,
+      "source_file": "apps/web/src/components/map/types.ts",
+      "status": "tentative",
+      "uses": 1
+    },
+    "apps_web_src_components_position_positionview_positionview": {
+      "code_fingerprint": "c380222651827a1894c889251f202e423842c6626896cc75a4a9b2ba9e44a96f",
+      "label": "PositionView()",
+      "last": "2026-11-07T01:37:11.154422+00:00",
+      "neg": 1,
+      "provenance": [
+        {
+          "date": "2026-11-07T01:37:10.292827+00:00",
+          "outcome": "useful",
+          "q": "PositionView player stats display"
+        }
+      ],
+      "score": -2.3e-07,
+      "source_file": "apps/web/src/components/position/PositionView.tsx",
+      "status": "contested",
+      "uses": 1,
+      "verdict": "dead end"
+    },
+    "apps_web_src_features_gameplay_passport_engine_evaluatepassport": {
+      "code_fingerprint": "64855fdddd17b06246f16e8a2a73cd7245e6e78290a8699c35f49b41e8a0e77b",
+      "label": "evaluatePassport()",
+      "last": "2026-11-07T01:37:11.989455+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-07T01:37:11.989455+00:00",
+          "outcome": "useful",
+          "q": "Explain GE-05 Passport badge engine"
+        }
+      ],
+      "score": 0.999999669,
+      "source_file": "apps/web/src/features/gameplay/passport/engine.ts",
+      "status": "tentative",
+      "uses": 1
+    },
+    "apps_web_src_features_gameplay_trails_evidence_adapter_reconciletrailprogresswithevidence": {
+      "code_fingerprint": "5fc5d52fa2daa4148df53c8c6895246c1e2e09dd05c9aa12efc131cd6d34236e",
+      "label": "reconcileTrailProgressWithEvidence()",
+      "last": "2026-11-07T01:37:11.989455+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-07T01:37:11.989455+00:00",
+          "outcome": "useful",
+          "q": "Explain GE-05 Passport badge engine"
+        }
+      ],
+      "score": 0.999999669,
+      "source_file": "apps/web/src/features/gameplay/trails/evidence-adapter.ts",
+      "status": "tentative",
+      "uses": 1
+    },
+    "apps_web_src_features_gameplay_trails_model_applyconfirmedevidence": {
+      "code_fingerprint": "9299f45faf3a19e7acddbbb35f8db6460b1dffaa5859ee6a2643c235f9a5e323",
+      "label": "applyConfirmedEvidence()",
+      "last": "2026-11-06T16:54:11.998653+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-06T16:54:11.998653+00:00",
+          "outcome": "useful",
+          "q": "today trail section interactive map icm progress apply checkpoint evidence storage confirmed"
+        }
+      ],
+      "score": 0.991643211,
+      "source_file": "apps/web/src/features/gameplay/trails/model.ts",
+      "status": "tentative",
+      "uses": 1
+    },
+    "apps_web_src_features_gameplay_trails_todaytrailcard_todaytrailcard": {
+      "code_fingerprint": "48368c7870b0f2433822bf75a2e924523d83c46b196d467e91e337b200af6b8a",
+      "label": "TodayTrailCard()",
+      "last": "2026-11-06T16:54:11.998653+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-06T16:54:11.998653+00:00",
+          "outcome": "useful",
+          "q": "today trail section interactive map icm progress apply checkpoint evidence storage confirmed"
+        }
+      ],
+      "score": 0.991643211,
+      "source_file": "apps/web/src/features/gameplay/trails/TodayTrailCard.tsx",
+      "status": "tentative",
+      "uses": 1
+    },
+    "apps_web_src_features_gameplay_trails_todaytrailsection_todaytrailsection": {
+      "code_fingerprint": "d838f3cda3d08a40f2459b05d9cd381f6509236e9605e05cbe0999c39e9ff233",
+      "label": "TodayTrailSection()",
+      "last": "2026-11-06T16:54:11.998653+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-06T16:54:11.998653+00:00",
+          "outcome": "useful",
+          "q": "today trail section interactive map icm progress apply checkpoint evidence storage confirmed"
+        }
+      ],
+      "score": 0.991643211,
+      "source_file": "apps/web/src/features/gameplay/trails/TodayTrailSection.tsx",
       "status": "tentative",
       "uses": 1
     },
@@ -78,7 +270,7 @@
           "q": "server-env api-response rate-limiter"
         }
       ],
-      "score": 0.999811903,
+      "score": 0.991218828,
       "source_file": "apps/web/src/lib/api-response.ts",
       "status": "tentative",
       "uses": 1
@@ -94,7 +286,7 @@
           "q": "map-config route campus slots validation API response"
         }
       ],
-      "score": 0.999811721,
+      "score": 0.991218647,
       "source_file": "apps/web/src/lib/campus.ts",
       "status": "tentative",
       "uses": 1
@@ -110,7 +302,7 @@
           "q": "gameplay config repository active season today trail campus slots"
         }
       ],
-      "score": 0.999812285,
+      "score": 0.991219207,
       "source_file": "apps/web/src/lib/gameplay/repository.ts",
       "status": "tentative",
       "uses": 1
@@ -126,13 +318,13 @@
           "q": "gameplay config repository active season today trail campus slots"
         }
       ],
-      "score": 0.999812285,
+      "score": 0.991219207,
       "source_file": "apps/web/src/lib/gameplay/repository.ts",
       "status": "tentative",
       "uses": 1
     },
     "apps_web_src_lib_rate_limiter": {
-      "code_fingerprint": "4033b66deef7488123c30ebddd169055d3e2b8592a16ef3132de7a84af68c607",
+      "code_fingerprint": "d1590ca5735b5dffb0ca0c158666f3fa5c2db4eec3bc804163be8f2e9eb20296",
       "label": "rate-limiter.ts",
       "last": "2026-11-06T16:27:31.316992+00:00",
       "provenance": [
@@ -142,7 +334,7 @@
           "q": "server-env api-response rate-limiter"
         }
       ],
-      "score": 0.999811903,
+      "score": 0.991218828,
       "source_file": "apps/web/src/lib/rate-limiter.ts",
       "status": "tentative",
       "uses": 1
@@ -158,7 +350,7 @@
           "q": "server-env api-response rate-limiter"
         }
       ],
-      "score": 0.999811903,
+      "score": 0.991218828,
       "source_file": "apps/web/src/lib/server-env.ts",
       "status": "tentative",
       "uses": 1
@@ -174,8 +366,40 @@
           "q": "Nhận xét prompt triển khai B. Module Giao diện Ví 2. Tích hợp Layout và Trang chủ có ổn không?"
         }
       ],
-      "score": 0.993361181,
+      "score": 0.984823548,
       "source_file": "DeFi-Trail-PRD.md",
+      "status": "tentative",
+      "uses": 1
+    },
+    "packages_contracts_l1_src_playerstate_contract_playerstate_struct_player_player_field_uniqueh3count": {
+      "code_fingerprint": "f93c56fe4e82e154a9c5dbb822ea2475f01bbd3d820cd16fca900fb194e3d382",
+      "label": "uniqueH3Count",
+      "last": "2026-11-07T01:37:09.476353+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-07T01:37:09.476353+00:00",
+          "outcome": "useful",
+          "q": "progression exploration score unique H3 rarity"
+        }
+      ],
+      "score": 0.999998997,
+      "source_file": "packages/contracts-l1/src/PlayerState.sol",
+      "status": "tentative",
+      "uses": 1
+    },
+    "packages_shared_src_gameplay_rules_applycheckpointevidence": {
+      "code_fingerprint": "a386de03a8d349242db3755a7318882e17808cbbde706852ebe882334a470a4b",
+      "label": "applyCheckpointEvidence()",
+      "last": "2026-11-06T16:54:11.998653+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-06T16:54:11.998653+00:00",
+          "outcome": "useful",
+          "q": "today trail section interactive map icm progress apply checkpoint evidence storage confirmed"
+        }
+      ],
+      "score": 0.991643211,
+      "source_file": "packages/shared/src/gameplay/rules.ts",
       "status": "tentative",
       "uses": 1
     },
@@ -195,10 +419,42 @@
           "q": "packages shared domain types progression exports"
         }
       ],
-      "score": 1.99908549,
+      "score": 1.981903967,
       "source_file": "packages/shared/src/index.ts",
       "status": "preferred",
       "uses": 2
+    },
+    "packages_shared_src_math_progression_calculateexplorationscore": {
+      "code_fingerprint": "cf214a50e559f5b74cdd17a41305ae710c1c51e5395d7af6f126bfb60c4be974",
+      "label": "calculateExplorationScore()",
+      "last": "2026-11-07T01:37:09.476353+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-07T01:37:09.476353+00:00",
+          "outcome": "useful",
+          "q": "progression exploration score unique H3 rarity"
+        }
+      ],
+      "score": 0.999998997,
+      "source_file": "packages/shared/src/math/progression.ts",
+      "status": "tentative",
+      "uses": 1
+    },
+    "packages_shared_src_math_progression_getrarityandapr": {
+      "code_fingerprint": "cf214a50e559f5b74cdd17a41305ae710c1c51e5395d7af6f126bfb60c4be974",
+      "label": "getRarityAndApr()",
+      "last": "2026-11-07T01:37:09.476353+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-07T01:37:09.476353+00:00",
+          "outcome": "useful",
+          "q": "progression exploration score unique H3 rarity"
+        }
+      ],
+      "score": 0.999998997,
+      "source_file": "packages/shared/src/math/progression.ts",
+      "status": "tentative",
+      "uses": 1
     },
     "packages_shared_src_types_domain": {
       "code_fingerprint": "0e305f0cd662744d6c15610640a7a81c833580079705501908995a15053d9166",
@@ -216,7 +472,7 @@
           "q": "packages shared domain types progression exports"
         }
       ],
-      "score": 1.999085305,
+      "score": 1.981903784,
       "source_file": "packages/shared/src/types/domain.ts",
       "status": "preferred",
       "uses": 2
@@ -237,7 +493,7 @@
           "q": "packages shared domain types progression exports"
         }
       ],
-      "score": 1.999085305,
+      "score": 1.981903784,
       "source_file": "packages/shared/tests/progression.test.ts",
       "status": "preferred",
       "uses": 2

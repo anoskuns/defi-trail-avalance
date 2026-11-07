@@ -110,6 +110,21 @@ export function WalletHeader({
                 AVALANCHE
               </span>
               <Link
+                href="/passport"
+                title="Gameplay Passport"
+                style={{
+                  display: "inline-flex",
+                  minHeight: "44px",
+                  alignItems: "center",
+                  padding: "0 8px",
+                  color: "#CBD5E1",
+                  fontSize: "0.75rem",
+                  fontWeight: 700,
+                }}
+              >
+                Passport
+              </Link>
+              <Link
                 href="/admin/health"
                 title="System Health & Operations"
                 className="text-[10px] font-mono text-slate-400 hover:text-amber-400 bg-slate-900 hover:bg-slate-800 px-1.5 py-0.5 rounded border border-slate-800 transition flex items-center gap-1 ml-1"

@@ -173,6 +173,40 @@ describe("gameplay pure rules", () => {
     ).toEqual(["event-1", "event-2"]);
   });
 
+  it("supports deterministic distinct badge dimensions without changing canonical rules", () => {
+    const rule: BadgeRule = {
+      badgeId: "THREE_CHEST_TYPES",
+      ruleVersion: 1,
+      eventType: "CHEST_CONFIRMED",
+      threshold: 3,
+      window: "SEASON",
+    };
+    const events = [
+      makeEvidence("checkpoint-1", "event-yield", "request-1"),
+      makeEvidence("checkpoint-2", "event-yield-duplicate", "request-2"),
+      makeEvidence("checkpoint-3", "event-quest", "request-3"),
+      makeEvidence("checkpoint-1", "event-sponsor", "request-4"),
+    ];
+    const chestTypes = new Map([
+      ["event-yield", "YIELD"],
+      ["event-yield-duplicate", "YIELD"],
+      ["event-quest", "QUEST"],
+      ["event-sponsor", "SPONSOR"],
+    ]);
+    const identityOf = (event: GameplayEvidenceEvent) =>
+      chestTypes.get(event.eventId);
+
+    expect(
+      createEarnedBadge(
+        rule,
+        events,
+        { player, seasonId: "season-1" },
+        "2026-01-05T00:00:00.000Z",
+        identityOf,
+      )?.evidenceRefs,
+    ).toEqual(["event-quest", "event-sponsor", "event-yield"]);
+  });
+
   it("enforces one perk claim per player/campaign and expiry", () => {
     const campaign: PerkCampaign = {
       id: "campaign-1",

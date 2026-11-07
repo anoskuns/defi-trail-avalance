@@ -100,9 +100,9 @@
     "semantic_hash": "43c23a9ea3ed4c18d52af79067158bb7"
   },
   "apps/web/src/app/page.tsx": {
-    "mtime": 1793983827.9116507,
-    "seen": 1793984007.7354522,
-    "ast_hash": "5a3f9c2e6ec5697b2cd7d7aae63680f6",
+    "mtime": 1794014763.507047,
+    "seen": 1794015400.9382293,
+    "ast_hash": "e5b65d0cc53a0c0318240fc393e23a3a",
     "semantic_hash": ""
   },
   "apps/web/tsconfig.json": {
@@ -1281,10 +1281,10 @@
     "semantic_hash": "76fe9635a36c5bfa5e1f441902a322d4"
   },
   "apps/web/src/components/wallet/WalletHeader.tsx": {
-    "mtime": 1793976159.5704033,
-    "seen": 1793978677.5088313,
-    "ast_hash": "8c4b4180b2746e65087ccd455a9b1c2c",
-    "semantic_hash": "8c4b4180b2746e65087ccd455a9b1c2c"
+    "mtime": 1794014981.1215315,
+    "seen": 1794015400.9443436,
+    "ast_hash": "80ed2f3ac242b0d367589864c17eccc1",
+    "semantic_hash": ""
   },
   "apps/web/src/components/wallet/WalletProvider.tsx": {
     "mtime": 1793974488.7299316,
@@ -1335,10 +1335,10 @@
     "semantic_hash": "57557c3d9e2be0c68934a0d9bc7e64b1"
   },
   "apps/web/src/lib/rate-limiter.ts": {
-    "mtime": 1793937004.178534,
-    "seen": 1793963365.1748343,
-    "ast_hash": "717d82c699d752e33e917eb58faed39a",
-    "semantic_hash": "717d82c699d752e33e917eb58faed39a"
+    "mtime": 1793984996.2242334,
+    "seen": 1794014402.3310232,
+    "ast_hash": "dfc7b6852c05eae48b60fafdf5deb7f9",
+    "semantic_hash": ""
   },
   "apps/web/src/lib/server-env.ts": {
     "mtime": 1793936969.4229343,
@@ -1540,9 +1540,9 @@
     "semantic_hash": ""
   },
   "packages/shared/src/gameplay/rules.ts": {
-    "mtime": 1793980964.4368515,
-    "seen": 1793981384.8369117,
-    "ast_hash": "5559d430070955355ef035c36336b95c",
+    "mtime": 1794015485.455212,
+    "seen": 1794015565.2791274,
+    "ast_hash": "894d85deb796ac063d60893780626b08",
     "semantic_hash": ""
   },
   "packages/shared/src/gameplay/schemas.ts": {
@@ -1564,9 +1564,9 @@
     "semantic_hash": ""
   },
   "packages/shared/tests/gameplay-rules.test.ts": {
-    "mtime": 1793981092.5286336,
-    "seen": 1793981384.8379571,
-    "ast_hash": "74263af5cfb31427d6a7a5e90434a338",
+    "mtime": 1794015074.0975294,
+    "seen": 1794015400.9996276,
+    "ast_hash": "2d72753d05dae88ad9f05a9f677f6220",
     "semantic_hash": ""
   },
   "packages/shared/tests/gameplay-schemas.test.ts": {
@@ -1600,9 +1600,9 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/gameplay/config.ts": {
-    "mtime": 1793982166.4170346,
-    "seen": 1793982429.074586,
-    "ast_hash": "9c61cf923fde244ce3a6f7065b75688f",
+    "mtime": 1794014763.5095234,
+    "seen": 1794015400.9463649,
+    "ast_hash": "5763f15b1b51843322d30cf96df890d4",
     "semantic_hash": ""
   },
   "apps/web/src/lib/gameplay/errors.ts": {
@@ -1648,21 +1648,21 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/gameplay/trails/TodayTrailSection.tsx": {
-    "mtime": 1793983827.9086492,
-    "seen": 1793984007.742777,
-    "ast_hash": "2421ab4437d7bc9e9505732c7edb26b5",
+    "mtime": 1794014981.1188252,
+    "seen": 1794015400.944957,
+    "ast_hash": "274b537532aa0a15eaf7de4bbe236564",
     "semantic_hash": ""
   },
   "apps/web/src/features/gameplay/trails/index.ts": {
-    "mtime": 1793983554.2588866,
-    "seen": 1793984007.7427807,
-    "ast_hash": "262d253ded15c071c4dea5fe8d2fdac5",
+    "mtime": 1793984986.2054641,
+    "seen": 1794014402.3233488,
+    "ast_hash": "0e42bb30a78d988f426ade510f53463e",
     "semantic_hash": ""
   },
   "apps/web/src/features/gameplay/trails/model.ts": {
-    "mtime": 1793983827.9051116,
-    "seen": 1793984007.742784,
-    "ast_hash": "f5845619d1f16357d337e635329c2cbd",
+    "mtime": 1794014763.5035446,
+    "seen": 1794015400.9453475,
+    "ast_hash": "cf92023b09b2069ab81dc41ef63e0ca9",
     "semantic_hash": ""
   },
   "apps/web/src/features/gameplay/trails/storage.ts": {
@@ -1729,6 +1729,114 @@
     "mtime": 1793984051.2520726,
     "seen": 1793984173.9756813,
     "ast_hash": "580b64064ccd2b3180ba68048fc4b0d4",
+    "semantic_hash": ""
+  },
+  "apps/web/src/app/api/gameplay/trails/reconcile/route.ts": {
+    "mtime": 1793985261.6451118,
+    "seen": 1794014402.3001707,
+    "ast_hash": "b2ed294eeb4de621de9e14ffece94e4c",
+    "semantic_hash": ""
+  },
+  "apps/web/src/features/gameplay/trails/evidence-adapter.ts": {
+    "mtime": 1793985261.8652575,
+    "seen": 1794014402.3233416,
+    "ast_hash": "b77aa7b6a33fbf31718712ec29c10d93",
+    "semantic_hash": ""
+  },
+  "apps/web/tests/ge04-evidence-reconciliation.test.ts": {
+    "mtime": 1793986150.148071,
+    "seen": 1794014402.3333025,
+    "ast_hash": "34cfa7b37f45108a51dae62ca60dab83",
+    "semantic_hash": ""
+  },
+  "apps/web/src/app/passport/page.tsx": {
+    "mtime": 1794014958.3952453,
+    "seen": 1794015400.938236,
+    "ast_hash": "4bb1941672a1943b82cc092dbb93757a",
+    "semantic_hash": ""
+  },
+  "apps/web/src/features/gameplay/passport/PassportClient.tsx": {
+    "mtime": 1794014958.3899086,
+    "seen": 1794015400.944726,
+    "ast_hash": "47fb780c148585f323e913a0321f22bf",
+    "semantic_hash": ""
+  },
+  "apps/web/src/features/gameplay/passport/PassportCollection.tsx": {
+    "mtime": 1794014958.3873808,
+    "seen": 1794015400.9447305,
+    "ast_hash": "700c551c8add505cd90ca01967cd6d5f",
+    "semantic_hash": ""
+  },
+  "apps/web/src/features/gameplay/passport/definitions.ts": {
+    "mtime": 1794014842.367358,
+    "seen": 1794015400.9447336,
+    "ast_hash": "5ec94b93372b289d7b16b373fb7eeeed",
+    "semantic_hash": ""
+  },
+  "apps/web/src/features/gameplay/passport/engine.ts": {
+    "mtime": 1794015485.4672353,
+    "seen": 1794015565.233488,
+    "ast_hash": "193057486b085c113b57d5d927394861",
+    "semantic_hash": ""
+  },
+  "apps/web/src/features/gameplay/passport/index.ts": {
+    "mtime": 1794015074.0995321,
+    "seen": 1794015400.94474,
+    "ast_hash": "3c5b7a31d43d52a8665098ef8aee26a4",
+    "semantic_hash": ""
+  },
+  "apps/web/src/features/gameplay/passport/share.ts": {
+    "mtime": 1794014870.5271468,
+    "seen": 1794015400.944743,
+    "ast_hash": "b703731720f46f996d89b83f4dfffc16",
+    "semantic_hash": ""
+  },
+  "apps/web/src/features/gameplay/passport/storage.ts": {
+    "mtime": 1794015485.473229,
+    "seen": 1794015565.233933,
+    "ast_hash": "71fc2cebe827650b259a7c381a0d8c0b",
+    "semantic_hash": ""
+  },
+  "apps/web/src/features/gameplay/passport/trail-integration.ts": {
+    "mtime": 1794014842.3696322,
+    "seen": 1794015400.9447484,
+    "ast_hash": "d544c8f1ae0ddec19d00a1498786aca9",
+    "semantic_hash": ""
+  },
+  "apps/web/tests/passport-engine.test.ts": {
+    "mtime": 1794015117.0748992,
+    "seen": 1794015400.9525065,
+    "ast_hash": "d005252d544fe10faea86d4b8cf0595e",
+    "semantic_hash": ""
+  },
+  "apps/web/tests/passport-privacy.test.ts": {
+    "mtime": 1794015117.0769014,
+    "seen": 1794015400.9525132,
+    "ast_hash": "5f1b8f4b733b1991fe1521c430d30e41",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20261107_013709_ec3edcee_progression_exploration_score_unique_h3_rarity.md": {
+    "mtime": 1794015429.4769442,
+    "seen": 1794015565.2891355,
+    "ast_hash": "113e29cc5ac9056badc8669069059590",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20261107_013710_45892b71_positionview_player_stats_display.md": {
+    "mtime": 1794015430.293291,
+    "seen": 1794015565.2891402,
+    "ast_hash": "6bb1b680ec5d5de10a64f707fb6bc9dd",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20261107_013711_556eb6d8_explain_ge_05_passport_badge_engine.md": {
+    "mtime": 1794015431.9908307,
+    "seen": 1794015565.2891438,
+    "ast_hash": "99b0de74e690bb3b841f96db727b0b10",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20261107_013711_e9964021_path_from_playerstate_to_positionview.md": {
+    "mtime": 1794015431.1556604,
+    "seen": 1794015565.2891474,
+    "ast_hash": "f6e98b307381112563610620274a4ee6",
     "semantic_hash": ""
   },
   "pnpm-lock.yaml": {

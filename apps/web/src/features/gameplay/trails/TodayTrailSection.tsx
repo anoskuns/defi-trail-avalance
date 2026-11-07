@@ -23,6 +23,10 @@ import {
 } from "./evidence-adapter";
 import { getPendingRequest } from "@/components/cross-chain/icm-storage";
 import {
+  createConfirmedTrailEvidence,
+  recordPassportEvidence,
+} from "@/features/gameplay/passport";
+import {
   TodayTrailCard,
   type TodayTrailCardState,
 } from "./TodayTrailCard";
@@ -158,6 +162,17 @@ export function TodayTrailSection({
       ],
     });
     if (result.appliedCount > 0) {
+      const passportEvidence = createConfirmedTrailEvidence({
+        trail,
+        previousProgress: progress,
+        nextProgress: result.progress,
+        ...(evidence.chestType ? { chestType: evidence.chestType } : {}),
+      });
+      recordPassportEvidence({
+        records: passportEvidence,
+        player: playerId,
+        seasonId: trail.seasonId,
+      });
       saveTrailProgressCache(result.progress);
       setProgress(result.progress);
     }

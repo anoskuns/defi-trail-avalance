@@ -80,8 +80,9 @@ export default function HomePage() {
       state: icm.state,
       requestId: icm.requestId || undefined,
       chestSlot: icm.chestSlot,
+      chestType: icm.chestType,
     }),
-    [icm.chestSlot, icm.requestId, icm.state],
+    [icm.chestSlot, icm.chestType, icm.requestId, icm.state],
   );
 
   // Complete 5-Step Cross-Chain Simulation Pipeline (PRD §8.2, §9.3)

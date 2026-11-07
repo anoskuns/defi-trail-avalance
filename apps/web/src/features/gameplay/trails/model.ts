@@ -17,6 +17,7 @@ export interface TrailEvidenceSignal {
   state: ICMUIState;
   requestId?: string;
   chestSlot?: number;
+  chestType?: string;
 }
 
 export interface TrailCheckpointView {

@@ -126,10 +126,16 @@ export interface BadgeEligibilityContext {
   demoModePolicy?: DemoModePolicy;
 }
 
+export type BadgeEvidenceIdentity = (
+  event: GameplayEvidenceEvent,
+) => string | null | undefined;
+
 export function getBadgeEligibilityEvidence(
   rule: BadgeRule,
   events: readonly GameplayEvidenceEvent[],
   context: BadgeEligibilityContext,
+  identityOf: BadgeEvidenceIdentity = (event) =>
+    event.requestId ?? event.eventId,
 ): GameplayEvidenceEvent[] {
   if (rule.window === "SEASON" && !context.seasonId) {
     return [];
@@ -141,7 +147,6 @@ export function getBadgeEligibilityEvidence(
   const policy = context.demoModePolicy ?? defaultDemoModePolicy;
   const uniqueEvents = new Map<string, GameplayEvidenceEvent>();
   for (const event of events) {
-    const identity = event.requestId ?? event.eventId;
     if (
       event.eventType !== rule.eventType ||
       event.player.toLowerCase() !== context.player.toLowerCase() ||
@@ -149,6 +154,10 @@ export function getBadgeEligibilityEvidence(
       (rule.window === "SEASON" && event.seasonId !== context.seasonId) ||
       (rule.window === "EPOCH" && event.epochId !== context.epochId)
     ) {
+      continue;
+    }
+    const identity = identityOf(event);
+    if (!identity) {
       continue;
     }
     if (!uniqueEvents.has(identity)) {
@@ -167,8 +176,12 @@ export function isBadgeEligible(
   rule: BadgeRule,
   events: readonly GameplayEvidenceEvent[],
   context: BadgeEligibilityContext,
+  identityOf?: BadgeEvidenceIdentity,
 ): boolean {
-  return getBadgeEligibilityEvidence(rule, events, context).length >= rule.threshold;
+  return (
+    getBadgeEligibilityEvidence(rule, events, context, identityOf).length >=
+    rule.threshold
+  );
 }
 
 export function createEarnedBadge(
@@ -176,8 +189,14 @@ export function createEarnedBadge(
   events: readonly GameplayEvidenceEvent[],
   context: BadgeEligibilityContext,
   earnedAt: string,
+  identityOf?: BadgeEvidenceIdentity,
 ): EarnedBadge | null {
-  const evidence = getBadgeEligibilityEvidence(rule, events, context);
+  const evidence = getBadgeEligibilityEvidence(
+    rule,
+    events,
+    context,
+    identityOf,
+  );
   if (evidence.length < rule.threshold) {
     return null;
   }
