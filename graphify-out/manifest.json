@@ -100,9 +100,9 @@
     "semantic_hash": "43c23a9ea3ed4c18d52af79067158bb7"
   },
   "apps/web/src/app/page.tsx": {
-    "mtime": 1794014763.507047,
-    "seen": 1794015400.9382293,
-    "ast_hash": "e5b65d0cc53a0c0318240fc393e23a3a",
+    "mtime": 1794023195.1973164,
+    "seen": 1794023740.4912243,
+    "ast_hash": "727f3eae5c3205f68345713d3eb44081",
     "semantic_hash": ""
   },
   "apps/web/tsconfig.json": {
@@ -1389,10 +1389,10 @@
     "semantic_hash": "e7f471cc79e486368536e3e5445c3f92"
   },
   "apps/web/src/components/cross-chain/ICMProgressModal.tsx": {
-    "mtime": 1793973271.5441566,
-    "seen": 1793973965.2452397,
-    "ast_hash": "097910f6e010eb7bb5720efab718ab90",
-    "semantic_hash": "097910f6e010eb7bb5720efab718ab90"
+    "mtime": 1794023178.1804092,
+    "seen": 1794023740.4916208,
+    "ast_hash": "2fa3cf65791d6151a1d35822ad734f70",
+    "semantic_hash": ""
   },
   "apps/web/src/components/cross-chain/icm-storage.ts": {
     "mtime": 1793974488.382599,
@@ -1413,10 +1413,10 @@
     "semantic_hash": "c66bc0c00c21983c556fa2a51453b4cd"
   },
   "apps/web/src/components/cross-chain/useICMProgress.ts": {
-    "mtime": 1793973271.886795,
-    "seen": 1793973965.2454758,
-    "ast_hash": "12170c89ebe7bfbe66135e10cf23330f",
-    "semantic_hash": "12170c89ebe7bfbe66135e10cf23330f"
+    "mtime": 1794023418.553813,
+    "seen": 1794023740.49258,
+    "ast_hash": "1a5c09e608cf6b42eb1278fd1009afab",
+    "semantic_hash": ""
   },
   "apps/web/tests/icm-modal.test.ts": {
     "mtime": 1793972632.130956,
@@ -1642,9 +1642,9 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/gameplay/trails/TodayTrailCard.tsx": {
-    "mtime": 1793983827.906633,
-    "seen": 1793984007.7427707,
-    "ast_hash": "4c15f2745307a7a46fb3c7a82c1cf5e0",
+    "mtime": 1794023195.1953182,
+    "seen": 1794023740.504474,
+    "ast_hash": "d4c99c657f35686b4ceefb62983a1f76",
     "semantic_hash": ""
   },
   "apps/web/src/features/gameplay/trails/TodayTrailSection.tsx": {
@@ -1837,6 +1837,18 @@
     "mtime": 1794015431.1556604,
     "seen": 1794015565.2891474,
     "ast_hash": "f6e98b307381112563610620274a4ee6",
+    "semantic_hash": ""
+  },
+  "apps/web/src/components/cross-chain/relay-moment.ts": {
+    "mtime": 1794023049.3280957,
+    "seen": 1794023740.49228,
+    "ast_hash": "552ec8185cafc0882da34520aefc3949",
+    "semantic_hash": ""
+  },
+  "apps/web/tests/ge06-relay-moment.test.ts": {
+    "mtime": 1794023237.3578067,
+    "seen": 1794023740.5124693,
+    "ast_hash": "ad5ae91606de2854cbded444a6b0ea86",
     "semantic_hash": ""
   },
   "pnpm-lock.yaml": {

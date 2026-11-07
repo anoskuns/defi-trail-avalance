@@ -4,7 +4,6 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import type {
   ICMUIState,
   ICMTimelineStep,
-  StoredICMRequest,
   StepStatus,
 } from "./types";
 import { RequestStatus } from "./types";
@@ -16,6 +15,11 @@ import {
   clearPendingRequest,
   mapOnChainStatusToUIState,
 } from "./icm-storage";
+import {
+  getElapsedSeconds,
+  getRelayWaitState,
+  getTimelineStepStatus,
+} from "./relay-moment";
 
 export interface UseICMProgressOptions {
   storageKey?: string;
@@ -82,8 +86,7 @@ export function useICMProgress(options: UseICMProgressOptions = {}) {
     }
 
     timerRef.current = setInterval(() => {
-      const secs = Math.max(0, Math.floor((Date.now() - currentStart) / 1000));
-      setElapsedSeconds(secs);
+      setElapsedSeconds(getElapsedSeconds(currentStart));
     }, 1000);
 
     return () => {
@@ -108,11 +111,7 @@ export function useICMProgress(options: UseICMProgressOptions = {}) {
       setChestType(stored.chestType);
       setStartedAt(stored.startedAt);
 
-      const calculatedElapsed = Math.max(
-        0,
-        Math.floor((Date.now() - stored.startedAt) / 1000)
-      );
-      setElapsedSeconds(calculatedElapsed);
+      setElapsedSeconds(getElapsedSeconds(stored.startedAt));
 
       if (stored.status === "confirmed") {
         setState("confirmed");
@@ -154,54 +153,8 @@ export function useICMProgress(options: UseICMProgressOptions = {}) {
 
   // 3. Construct 2-Chain Visual Timeline Steps (Requirement 2)
   const timelineSteps = useMemo<ICMTimelineStep[]>(() => {
-    // Step state helper
-    const getStepStatus = (stepIndex: number): StepStatus => {
-      if (state === "final_error") {
-        return stepIndex === 1 ? "failed" : "pending";
-      }
-      if (state === "retryable_error") {
-        if (stepIndex <= 2) return "completed";
-        if (stepIndex === 3) return "failed";
-        return "pending";
-      }
-      if (state === "confirmed") {
-        return "completed";
-      }
-
-      // In flight states
-      if (state === "idle" || state === "awaiting_signature") {
-        return "pending";
-      }
-      if (state === "submitted") {
-        return stepIndex === 1 ? "in_progress" : "pending";
-      }
-      if (state === "icm_pending") {
-        // Evaluate based on on-chain status or elapsed time progression
-        if (onChainStatus >= RequestStatus.ACK_PENDING) {
-          if (stepIndex <= 4) return "completed";
-          return "in_progress";
-        }
-        if (onChainStatus === RequestStatus.REMOTE_EXECUTED) {
-          if (stepIndex <= 3) return "completed";
-          return stepIndex === 4 ? "in_progress" : "pending";
-        }
-        if (onChainStatus === RequestStatus.SENT) {
-          if (stepIndex <= 2) return "completed";
-          return stepIndex === 3 ? "in_progress" : "pending";
-        }
-
-        // Time-based progression when onChainStatus is pending
-        if (elapsedSeconds < 8) {
-          return stepIndex === 1 ? "completed" : stepIndex === 2 ? "in_progress" : "pending";
-        }
-        if (elapsedSeconds < 20) {
-          return stepIndex <= 2 ? "completed" : stepIndex === 3 ? "in_progress" : "pending";
-        }
-        return stepIndex <= 3 ? "completed" : stepIndex === 4 ? "in_progress" : "pending";
-      }
-
-      return "pending";
-    };
+    const getStepStatus = (stepIndex: number): StepStatus =>
+      getTimelineStepStatus(state, onChainStatus, stepIndex);
 
     return [
       {
@@ -251,11 +204,10 @@ export function useICMProgress(options: UseICMProgressOptions = {}) {
         status: getStepStatus(5),
       },
     ];
-  }, [state, onChainStatus, elapsedSeconds, txHash]);
+  }, [state, onChainStatus, txHash]);
 
   // Graceful waiting thresholds (Requirement 3)
-  const isStillRelaying = (state === "icm_pending" || state === "submitted") && elapsedSeconds >= 30;
-  const canRetry = (state === "icm_pending" || state === "submitted") && elapsedSeconds >= 60;
+  const { isStillRelaying, canRetry } = getRelayWaitState(state, elapsedSeconds);
 
   // 4. Action Handlers
   const startRequest = useCallback(
@@ -377,16 +329,22 @@ export function useICMProgress(options: UseICMProgressOptions = {}) {
       setIsRetrying(true);
       setState("icm_pending");
       // Reset elapsed timer for new retry cycle with SAME requestId (PRD §9.3)
-      setStartedAt(Date.now());
+      const retryStartedAt = Date.now();
+      setStartedAt(retryStartedAt);
       setElapsedSeconds(0);
-      updatePendingRequest({ status: "icm_pending", startedAt: Date.now() }, storageKey);
+      updatePendingRequest(
+        { status: "icm_pending", startedAt: retryStartedAt },
+        storageKey,
+      );
 
       const cb = onRetryRef.current;
       if (cb) {
         await cb(requestId);
       }
-    } catch (err: any) {
-      setRetryableError(err?.message || "Retry failed to dispatch message");
+    } catch (err: unknown) {
+      setRetryableError(
+        err instanceof Error ? err.message : "Retry failed to dispatch message",
+      );
     } finally {
       setIsRetrying(false);
     }

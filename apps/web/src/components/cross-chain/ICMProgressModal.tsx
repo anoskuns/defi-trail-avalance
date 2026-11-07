@@ -3,6 +3,13 @@
 import React, { useState, useEffect, useId } from "react";
 import type { ICMProgressModalProps } from "./types";
 import { useICMProgress, type UseICMProgressReturn } from "./useICMProgress";
+import {
+  getRelayAnnouncement,
+  getRelayLearningCard,
+  getRelayMomentStages,
+  shouldCelebrateICM,
+} from "./relay-moment";
+import styles from "./ICMProgressModal.module.css";
 
 export function ICMProgressModal(props: ICMProgressModalProps) {
   if (props.progress) {
@@ -51,6 +58,14 @@ function ICMProgressModalView(props: ICMProgressModalViewProps) {
 
   const [copiedId, setCopiedId] = useState(false);
   const titleId = useId();
+  const relayStages = getRelayMomentStages(state, progress.onChainStatus);
+  const learningCard = getRelayLearningCard(chestType);
+  const relayAnnouncement = getRelayAnnouncement(
+    state,
+    progress.onChainStatus,
+    elapsedSeconds,
+  );
+  const isCelebrating = shouldCelebrateICM(state);
 
   const handleClose = () => {
     if (props.onClose) {
@@ -184,12 +199,12 @@ function ICMProgressModalView(props: ICMProgressModalViewProps) {
                   }`,
                 }}
               >
-                {state === "confirmed" && "✓ Confirmed"}
-                {state === "final_error" && "✕ Failed"}
-                {state === "retryable_error" && "⚠ Retryable"}
-                {state === "awaiting_signature" && "✍ Awaiting Signature"}
-                {state === "submitted" && "⏳ Submitted"}
-                {state === "icm_pending" && "🔄 Teleporter Active"}
+                {state === "confirmed" && "Confirmed"}
+                {state === "final_error" && "Failed"}
+                {state === "retryable_error" && "Retryable"}
+                {state === "awaiting_signature" && "Awaiting Signature"}
+                {state === "submitted" && "Submitted"}
+                {state === "icm_pending" && "Teleporter Active"}
               </span>
 
               {chestSlot !== undefined && (
@@ -232,66 +247,51 @@ function ICMProgressModalView(props: ICMProgressModalViewProps) {
           </button>
         </div>
 
-        {/* 2-Chain Visual Overview Card */}
-        <div
-          style={{
-            padding: "12px 24px",
-            backgroundColor: "rgba(15, 23, 42, 0.3)",
-            borderBottom: "1px solid #1E293B",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: "12px",
-          }}
+        <p
+          className={styles.visuallyHidden}
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
         >
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <div
-              style={{
-                padding: "4px 8px",
-                borderRadius: "6px",
-                backgroundColor: "rgba(99, 102, 241, 0.2)",
-                border: "1px solid rgba(99, 102, 241, 0.4)",
-                fontSize: "0.75rem",
-                fontWeight: 600,
-                color: "#A5B4FC",
-              }}
-            >
-              🎮 Avalanche Game L1
-            </div>
-            <span style={{ color: "#64748B", fontSize: "0.875rem" }}>⇄</span>
-            <div
-              style={{
-                padding: "4px 8px",
-                borderRadius: "6px",
-                backgroundColor: "rgba(244, 63, 94, 0.2)",
-                border: "1px solid rgba(244, 63, 94, 0.4)",
-                fontSize: "0.75rem",
-                fontWeight: 600,
-                color: "#FDA4AF",
-              }}
-            >
-              ⚡ Fuji C-Chain (43113)
-            </div>
+          {relayAnnouncement}
+        </p>
+
+        {/* Relay Moment: state-derived, never time-simulated. */}
+        <section className={styles.relayMoment} aria-labelledby={`${titleId}-relay`}>
+          <div className={styles.relayMomentHeader}>
+            <h3 id={`${titleId}-relay`} className={styles.relayMomentTitle}>
+              Live relay path
+            </h3>
+            {(state === "icm_pending" || state === "submitted") && (
+              <span className={styles.elapsed}>
+                Elapsed <strong>{formatSeconds(elapsedSeconds)}</strong>
+              </span>
+            )}
           </div>
 
-          {(state === "icm_pending" || state === "submitted") && (
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "6px",
-                fontSize: "0.75rem",
-                color: "#94A3B8",
-              }}
-            >
-              <span>Elapsed:</span>
-              <strong style={{ color: "#38BDF8", fontFamily: "monospace" }}>
-                {formatSeconds(elapsedSeconds)}
-              </strong>
-            </div>
-          )}
-        </div>
+          <ol className={styles.relayTrack} aria-label="Cross-chain relay stages">
+            {relayStages.map((stage, index) => (
+              <li
+                key={stage.id}
+                className={styles.relayStage}
+                data-status={stage.status}
+                data-connector={stage.status === "completed" ? "completed" : "pending"}
+                aria-current={stage.status === "in_progress" ? "step" : undefined}
+              >
+                <span className={styles.relayNode} aria-hidden="true">
+                  {stage.status === "completed"
+                    ? "✓"
+                    : stage.status === "failed"
+                      ? "×"
+                      : index + 1}
+                </span>
+                <span className={styles.relayLabel}>{stage.label}</span>
+                <span className={styles.relayDetail}>{stage.detail}</span>
+                <span className={styles.visuallyHidden}> — {stage.status.replace("_", " ")}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
 
         {/* Scrollable Body: Timeline and Graceful Alerts */}
         <div
@@ -303,6 +303,14 @@ function ICMProgressModalView(props: ICMProgressModalViewProps) {
             gap: "16px",
           }}
         >
+          <aside className={styles.learningCard} aria-labelledby={`${titleId}-lesson`}>
+            <p className={styles.learningEyebrow}>{learningCard.eyebrow}</p>
+            <h3 id={`${titleId}-lesson`} className={styles.learningTitle}>
+              {learningCard.title}
+            </h3>
+            <p className={styles.learningBody}>{learningCard.body}</p>
+          </aside>
+
           {/* Graceful Waiting Banner: 30s threshold (PRD §8.2 Requirement 3) */}
           {isStillRelaying && state !== "confirmed" && (
             <div
@@ -319,7 +327,6 @@ function ICMProgressModalView(props: ICMProgressModalViewProps) {
             >
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                  <span style={{ fontSize: "1.125rem" }}>⏳</span>
                   <span style={{ fontWeight: 700, color: "#FBBF24", fontSize: "0.875rem" }}>
                     Still relaying...
                   </span>
@@ -409,7 +416,6 @@ function ICMProgressModalView(props: ICMProgressModalViewProps) {
               }}
             >
               <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <span style={{ fontSize: "1.125rem" }}>⚡</span>
                 <span style={{ fontWeight: 700, color: "#FB923C", fontSize: "0.875rem" }}>
                   Message Relay Exceeded 60 Seconds
                 </span>
@@ -468,6 +474,7 @@ function ICMProgressModalView(props: ICMProgressModalViewProps) {
           {/* Success Banner */}
           {state === "confirmed" && (
             <div
+              className={isCelebrating ? styles.celebration : undefined}
               style={{
                 backgroundColor: "rgba(16, 185, 129, 0.15)",
                 border: "1px solid rgba(16, 185, 129, 0.45)",
@@ -476,7 +483,6 @@ function ICMProgressModalView(props: ICMProgressModalViewProps) {
                 textAlign: "center",
               }}
             >
-              <div style={{ fontSize: "2rem", marginBottom: "8px" }}>🎉</div>
               <h3 style={{ margin: "0 0 6px 0", color: "#34D399", fontSize: "1.125rem" }}>
                 Cross-Chain Position Confirmed!
               </h3>
@@ -507,6 +513,7 @@ function ICMProgressModalView(props: ICMProgressModalViewProps) {
               return (
                 <div
                   key={step.id}
+                  className={styles.timelineStep}
                   style={{
                     display: "flex",
                     gap: "14px",
@@ -529,7 +536,6 @@ function ICMProgressModalView(props: ICMProgressModalViewProps) {
                         ? "rgba(239, 68, 68, 0.3)"
                         : "#1E293B"
                     }`,
-                    transition: "all 0.2s ease",
                   }}
                 >
                   {/* Step status icon */}
@@ -636,27 +642,21 @@ function ICMProgressModalView(props: ICMProgressModalViewProps) {
           }}
         >
           {state === "confirmed" ? (
-            <button
-              type="button"
-              onClick={() => {
-                if (onSuccessDismiss) onSuccessDismiss();
-                handleClose();
-              }}
-              style={{
-                backgroundColor: "#10B981",
-                border: "none",
-                borderRadius: "10px",
-                padding: "10px 20px",
-                fontSize: "0.875rem",
-                fontWeight: 700,
-                color: "#FFFFFF",
-                cursor: "pointer",
-                minHeight: "44px",
-                boxShadow: "0 4px 14px rgba(16, 185, 129, 0.4)",
-              }}
-            >
-              Done & Explore Rewards
-            </button>
+            <div className={styles.successActions}>
+              <a className={styles.passportLink} href="/passport">
+                View Passport
+              </a>
+              <button
+                className={styles.nextButton}
+                type="button"
+                onClick={() => {
+                  if (onSuccessDismiss) onSuccessDismiss();
+                  handleClose();
+                }}
+              >
+                {onSuccessDismiss ? "Next checkpoint" : "Done"}
+              </button>
+            </div>
           ) : (
             <>
               <button

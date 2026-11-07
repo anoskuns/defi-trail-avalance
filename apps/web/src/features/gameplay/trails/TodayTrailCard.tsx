@@ -165,13 +165,13 @@ export function TodayTrailCard({
           : { label: "Resume trail", action: onStart };
 
   return (
-    <section style={cardStyle} aria-labelledby="today-trail-title">
+    <section id="today-trail" style={cardStyle} aria-labelledby="today-trail-title">
       <div style={{ display: "flex", justifyContent: "space-between", gap: "12px", flexWrap: "wrap" }}>
         <div style={{ minWidth: 0 }}>
           <p style={{ color: "#38BDF8", fontSize: "0.75rem", fontWeight: 800, margin: 0 }}>
             TODAY’S TRAIL
           </p>
-          <h2 id="today-trail-title" style={{ color: "#F8FAFC", fontSize: "1.35rem", margin: "6px 0" }}>
+          <h2 id="today-trail-title" tabIndex={-1} style={{ color: "#F8FAFC", fontSize: "1.35rem", margin: "6px 0" }}>
             {trail.title}
           </h2>
           <p style={{ color: "#CBD5E1", lineHeight: 1.55, margin: 0, maxWidth: "620px" }}>

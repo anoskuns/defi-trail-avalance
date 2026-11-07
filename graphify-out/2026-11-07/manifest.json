@@ -1540,9 +1540,9 @@
     "semantic_hash": ""
   },
   "packages/shared/src/gameplay/rules.ts": {
-    "mtime": 1794014754.189574,
-    "seen": 1794015400.9977942,
-    "ast_hash": "63aca0a9ae0a8b92fb39d4f68fe48a99",
+    "mtime": 1794015485.455212,
+    "seen": 1794015565.2791274,
+    "ast_hash": "894d85deb796ac063d60893780626b08",
     "semantic_hash": ""
   },
   "packages/shared/src/gameplay/schemas.ts": {
@@ -1774,9 +1774,9 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/gameplay/passport/engine.ts": {
-    "mtime": 1794014842.3686342,
-    "seen": 1794015400.9447372,
-    "ast_hash": "23c7ccf3a8a14088b66ed906377747f5",
+    "mtime": 1794015485.4672353,
+    "seen": 1794015565.233488,
+    "ast_hash": "193057486b085c113b57d5d927394861",
     "semantic_hash": ""
   },
   "apps/web/src/features/gameplay/passport/index.ts": {
@@ -1792,9 +1792,9 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/gameplay/passport/storage.ts": {
-    "mtime": 1794014870.5219862,
-    "seen": 1794015400.9447455,
-    "ast_hash": "53067f7d9864bfdf474d1cc31c95d1dc",
+    "mtime": 1794015485.473229,
+    "seen": 1794015565.233933,
+    "ast_hash": "71fc2cebe827650b259a7c381a0d8c0b",
     "semantic_hash": ""
   },
   "apps/web/src/features/gameplay/passport/trail-integration.ts": {
@@ -1813,6 +1813,30 @@
     "mtime": 1794015117.0769014,
     "seen": 1794015400.9525132,
     "ast_hash": "5f1b8f4b733b1991fe1521c430d30e41",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20261107_013709_ec3edcee_progression_exploration_score_unique_h3_rarity.md": {
+    "mtime": 1794015429.4769442,
+    "seen": 1794015565.2891355,
+    "ast_hash": "113e29cc5ac9056badc8669069059590",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20261107_013710_45892b71_positionview_player_stats_display.md": {
+    "mtime": 1794015430.293291,
+    "seen": 1794015565.2891402,
+    "ast_hash": "6bb1b680ec5d5de10a64f707fb6bc9dd",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20261107_013711_556eb6d8_explain_ge_05_passport_badge_engine.md": {
+    "mtime": 1794015431.9908307,
+    "seen": 1794015565.2891438,
+    "ast_hash": "99b0de74e690bb3b841f96db727b0b10",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20261107_013711_e9964021_path_from_playerstate_to_positionview.md": {
+    "mtime": 1794015431.1556604,
+    "seen": 1794015565.2891474,
+    "ast_hash": "f6e98b307381112563610620274a4ee6",
     "semantic_hash": ""
   },
   "pnpm-lock.yaml": {

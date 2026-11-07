@@ -490,7 +490,15 @@ export default function HomePage() {
         onClose={icm.closeModal}
         progress={icm}
         onSuccessDismiss={() => {
-          icm.closeModal();
+          window.requestAnimationFrame(() => {
+            document.getElementById("today-trail")?.scrollIntoView({
+              behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                ? "auto"
+                : "smooth",
+              block: "center",
+            });
+            document.getElementById("today-trail-title")?.focus();
+          });
         }}
       />
 
