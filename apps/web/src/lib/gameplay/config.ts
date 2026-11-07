@@ -1,4 +1,8 @@
-import type { SeasonDefinition, TrailDefinition } from "@defi-trail/shared";
+import type {
+  PerkCampaign,
+  SeasonDefinition,
+  TrailDefinition,
+} from "@defi-trail/shared";
 
 export const GAMEPLAY_CONFIG_VERSION = 1 as const;
 
@@ -19,6 +23,7 @@ export interface GameplayConfigSource {
   configVersion: number;
   seasons: readonly SeasonDefinition[];
   trails: readonly TrailConfigSeed[];
+  campaigns: readonly PerkCampaign[];
 }
 
 /**
@@ -79,6 +84,23 @@ export const DEMO_GAMEPLAY_CONFIG = {
       endsAt: "2027-01-01T00:00:00.000Z",
       estimatedMinutes: 30,
       completionBadgeId: "TRAIL_COMPLETE",
+      enabled: true,
+    },
+  ],
+  campaigns: [
+    {
+      id: "demo-coffee-v1",
+      version: 1,
+      seasonId: "demo-season-2026",
+      sponsorName: "Campus Sponsor",
+      title: "Complimentary drink size upgrade",
+      description:
+        "Present the opaque claim token at the participating campus sponsor counter.",
+      eligibleEventTypes: ["CHEST_CONFIRMED"],
+      startsAt: "2026-01-01T00:00:00.000Z",
+      endsAt: "2027-01-01T00:00:00.000Z",
+      claimTtlSeconds: 900,
+      maxClaimsPerPlayer: 1,
       enabled: true,
     },
   ],

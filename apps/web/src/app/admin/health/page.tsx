@@ -43,6 +43,16 @@ interface FaucetHealth {
   rateLimitPolicy: string;
 }
 
+interface OrganizerContentReadiness {
+  status: "READY" | "BLOCKED" | "NO_PUBLISHED_CONTENT";
+  publishedVersion: number | null;
+  lifecycle: "ACTIVE" | "SCHEDULED" | "ENDED" | "NONE";
+  seasonId: string | null;
+  validationIssueCount: number;
+  seededCheckpointCount: number;
+  seededCampaignCount: number;
+}
+
 interface SystemHealthReport {
   timestamp: string;
   overallStatus: "healthy" | "degraded" | "critical";
@@ -63,6 +73,7 @@ interface SystemHealthReport {
     address: string;
     status: "ready" | "unconfigured";
   };
+  organizerContent: OrganizerContentReadiness;
 }
 
 export default function AdminHealthPage() {
@@ -584,7 +595,48 @@ export default function AdminHealthPage() {
             </p>
           </div>
 
-          {/* 4. Faucet Status */}
+          {/* 4. Organizer content readiness (read-only) */}
+          <div
+            style={{
+              backgroundColor: "rgba(15, 23, 42, 0.8)",
+              border: "1px solid #1E293B",
+              borderRadius: "14px",
+              padding: "18px 20px",
+              boxShadow: "0 4px 20px rgba(0, 0, 0, 0.25)",
+            }}
+          >
+            <div
+              style={{
+                fontSize: "0.75rem",
+                color: "#94A3B8",
+                fontWeight: 600,
+                textTransform: "uppercase",
+                letterSpacing: "0.05em",
+              }}
+            >
+              Organizer Content
+            </div>
+            <div style={{ marginTop: "8px", display: "flex", alignItems: "center", gap: "8px" }}>
+              <span
+                aria-hidden="true"
+                style={{
+                  width: "10px",
+                  height: "10px",
+                  borderRadius: "50%",
+                  backgroundColor:
+                    data?.organizerContent.status === "READY" ? "#10B981" : "#F59E0B",
+                }}
+              />
+              <span style={{ fontSize: "1.1rem", fontWeight: 700, color: "#E2E8F0" }}>
+                {data?.organizerContent.status ?? "Checking"}
+              </span>
+            </div>
+            <p style={{ fontSize: "0.75rem", color: "#64748B", marginTop: "8px", marginBottom: 0 }}>
+              Version {data?.organizerContent.publishedVersion ?? "—"} · {data?.organizerContent.lifecycle ?? "NONE"} · read-only
+            </p>
+          </div>
+
+          {/* 5. Faucet Status */}
           <div
             style={{
               backgroundColor: "rgba(15, 23, 42, 0.8)",

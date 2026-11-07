@@ -80,6 +80,17 @@ describe("Admin Health API & Operational Telemetry (PRD §3.2, §9.1, §9.3, §2
       expect(json.faucet.rateLimitPolicy).toContain("1 claim");
       expect(json.proofSigner).toBeDefined();
       expect(json.proofSigner.address).toMatch(/^0x[a-fA-F0-9]{40}$/);
+
+      // 5. Read-only organizer content readiness (GE-11)
+      expect(json.organizerContent).toMatchObject({
+        status: "READY",
+        publishedVersion: 1,
+        lifecycle: "ACTIVE",
+        validationIssueCount: 0,
+      });
+      expect(JSON.stringify(json.organizerContent)).not.toMatch(
+        /token|secret|private|balance|principal|rewardReserve|apr/i,
+      );
     } finally {
       global.fetch = originalFetch;
     }

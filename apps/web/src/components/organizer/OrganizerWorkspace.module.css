@@ -1,0 +1,607 @@
+.workspace,
+.unlockCard {
+  color: #e2e8f0;
+}
+
+.unlockCard {
+  width: min(560px, calc(100% - 32px));
+  margin: 48px auto;
+  padding: 28px;
+  border: 1px solid #334155;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #111827, #0f172a);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+}
+
+.unlockCard h1,
+.workspaceHeader h1 {
+  margin: 0;
+  color: #f8fafc;
+  letter-spacing: -0.03em;
+}
+
+.eyebrow,
+.step {
+  margin: 0 0 6px;
+  color: #7dd3fc;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.lead {
+  max-width: 720px;
+  margin: 8px 0 0;
+  color: #94a3b8;
+  line-height: 1.55;
+}
+
+.unlockForm,
+.formGrid,
+.editorColumn,
+.sideColumn {
+  display: grid;
+}
+
+.unlockForm {
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.unlockForm label,
+.formGrid label,
+.confirmationCard label {
+  display: grid;
+  gap: 6px;
+  color: #cbd5e1;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.unlockForm input,
+.formGrid input,
+.formGrid select,
+.formGrid textarea,
+.confirmationCard input {
+  width: 100%;
+  min-height: 44px;
+  box-sizing: border-box;
+  border: 1px solid #475569;
+  border-radius: 9px;
+  padding: 10px 12px;
+  background: #0f172a;
+  color: #f8fafc;
+  font: inherit;
+}
+
+.formGrid textarea {
+  min-height: 92px;
+  resize: vertical;
+}
+
+.unlockForm input:focus-visible,
+.formGrid input:focus-visible,
+.formGrid select:focus-visible,
+.formGrid textarea:focus-visible,
+.confirmationCard input:focus-visible,
+.workspace button:focus-visible,
+.unlockCard button:focus-visible {
+  outline: 3px solid #bae6fd;
+  outline-offset: 2px;
+}
+
+.unlockForm button,
+.toolbar button,
+.historyList button,
+.confirmationActions button {
+  min-height: 44px;
+  border: 1px solid #0284c7;
+  border-radius: 9px;
+  padding: 10px 15px;
+  background: #0284c7;
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.unlockForm button:disabled,
+.toolbar button:disabled,
+.historyList button:disabled,
+.confirmationActions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.workspace {
+  width: min(1440px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0 64px;
+}
+
+.workspaceHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.headerMeta {
+  display: grid;
+  min-width: 180px;
+  gap: 5px;
+  justify-items: end;
+}
+
+.headerMeta span,
+.versionBadge,
+.seedBadge,
+.previewSize,
+.readyBadge,
+.issueBadge {
+  border: 1px solid #475569;
+  border-radius: 999px;
+  padding: 4px 9px;
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.headerMeta span[data-status="READY"],
+.readyBadge {
+  border-color: rgba(16, 185, 129, 0.5);
+  color: #6ee7b7;
+}
+
+.headerMeta small,
+.headerMeta strong {
+  color: #cbd5e1;
+}
+
+.toolbar {
+  position: sticky;
+  top: 94px;
+  z-index: 20;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid rgba(51, 65, 85, 0.9);
+  border-radius: 13px;
+  background: rgba(2, 6, 23, 0.93);
+  backdrop-filter: blur(10px);
+}
+
+.publishButton {
+  border-color: #059669 !important;
+  background: #059669 !important;
+}
+
+.secondaryButton {
+  border-color: #475569 !important;
+  background: transparent !important;
+  color: #cbd5e1 !important;
+}
+
+.dangerButton {
+  border-color: #dc2626 !important;
+  background: #dc2626 !important;
+}
+
+.editorLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(340px, 0.75fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.editorColumn,
+.sideColumn {
+  gap: 20px;
+}
+
+.sideColumn {
+  position: sticky;
+  top: 166px;
+  max-height: calc(100vh - 185px);
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.panel,
+.previewPanel {
+  padding: 20px;
+  border: 1px solid #293548;
+  border-radius: 15px;
+  background: #111827;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+
+.panelHeading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.panelHeading h2 {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 1rem;
+}
+
+.versionBadge,
+.previewSize {
+  color: #bae6fd;
+}
+
+.seedBadge {
+  color: #c4b5fd;
+}
+
+.issueBadge {
+  border-color: rgba(248, 113, 113, 0.5);
+  color: #fca5a5;
+}
+
+.formGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.choiceGroup,
+.checkpointGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 18px 0 0;
+  border: 0;
+  padding: 0;
+}
+
+.choiceGroup legend,
+.checkpointGrid legend {
+  grid-column: 1 / -1;
+  margin-bottom: 7px;
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.choiceGroup label,
+.checkpointGrid label {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid #334155;
+  border-radius: 9px;
+  padding: 9px 11px;
+  color: #cbd5e1;
+  font-size: 0.76rem;
+  cursor: pointer;
+}
+
+.checkpointGrid label[data-selected="true"] {
+  border-color: #0284c7;
+  background: rgba(2, 132, 199, 0.1);
+}
+
+.checkpointGrid label span {
+  display: grid;
+  gap: 2px;
+}
+
+.checkpointGrid small {
+  color: #64748b;
+}
+
+.boundaryNotice,
+.muted {
+  margin: 16px 0 0;
+  color: #94a3b8;
+  font-size: 0.75rem;
+  line-height: 1.55;
+}
+
+.phoneFrame {
+  width: min(100%, 375px);
+  box-sizing: border-box;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 7px solid #020617;
+  border-radius: 28px;
+  background: #0f172a;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.36);
+}
+
+.phoneTop {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid #1e293b;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.phoneTop small {
+  color: #7dd3fc;
+}
+
+.previewHero,
+.previewTrail,
+.previewPerk {
+  padding: 16px;
+}
+
+.previewHero {
+  background: radial-gradient(circle at top right, rgba(2, 132, 199, 0.35), transparent 48%);
+}
+
+.previewHero small,
+.previewPerk small {
+  color: #7dd3fc;
+  font-size: 0.64rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.previewHero h3 {
+  margin: 7px 0;
+  color: #f8fafc;
+}
+
+.previewHero p,
+.previewTrail span,
+.previewPerk span {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.previewTrail {
+  border-top: 1px solid #1e293b;
+}
+
+.previewTrail > strong,
+.previewPerk strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #f8fafc;
+}
+
+.previewTrail ol {
+  display: grid;
+  gap: 8px;
+  margin: 13px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.previewTrail li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #cbd5e1;
+  font-size: 0.72rem;
+}
+
+.previewTrail li span {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 50%;
+  background: #1e293b;
+  color: #7dd3fc;
+}
+
+.previewPerk {
+  margin: 0 12px 14px;
+  border: 1px solid rgba(16, 185, 129, 0.38);
+  border-radius: 11px;
+  background: rgba(6, 78, 59, 0.22);
+}
+
+.validationList,
+.historyList,
+.auditList {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.validationList li {
+  display: grid;
+  gap: 3px;
+  padding: 10px;
+  border-left: 3px solid #ef4444;
+  background: rgba(127, 29, 29, 0.16);
+  font-size: 0.72rem;
+}
+
+.validationList span {
+  color: #fca5a5;
+}
+
+.readyMessage {
+  margin: 0;
+  color: #6ee7b7;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.historyList li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px;
+  border: 1px solid #334155;
+  border-radius: 9px;
+}
+
+.historyList li div,
+.auditList li {
+  display: grid;
+  gap: 3px;
+}
+
+.historyList span,
+.historyList code,
+.auditList time,
+.auditList small {
+  color: #94a3b8;
+  font-size: 0.66rem;
+}
+
+.historyList button {
+  min-width: 110px;
+  border-color: #475569;
+  background: transparent;
+  color: #cbd5e1;
+  font-size: 0.68rem;
+}
+
+.auditList li {
+  grid-template-columns: 1fr auto;
+  padding: 10px;
+  border-bottom: 1px solid #293548;
+  font-size: 0.7rem;
+}
+
+.errorSummary,
+.notice {
+  margin-bottom: 16px;
+  padding: 13px 15px;
+  border-radius: 10px;
+  line-height: 1.5;
+}
+
+.errorSummary {
+  border: 1px solid rgba(248, 113, 113, 0.48);
+  background: rgba(127, 29, 29, 0.25);
+  color: #fecaca;
+}
+
+.errorSummary h2,
+.errorSummary p {
+  margin: 0;
+  font-size: 0.82rem;
+}
+
+.notice {
+  border: 1px solid rgba(56, 189, 248, 0.38);
+  background: rgba(14, 116, 144, 0.16);
+  color: #bae6fd;
+  font-size: 0.78rem;
+}
+
+.confirmation {
+  position: fixed;
+  z-index: 80;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(2, 6, 23, 0.82);
+}
+
+.confirmationCard {
+  width: min(500px, 100%);
+  box-sizing: border-box;
+  border: 1px solid #475569;
+  border-radius: 16px;
+  padding: 24px;
+  background: #111827;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+}
+
+.confirmationCard h2 {
+  margin: 0;
+  color: #f8fafc;
+}
+
+.confirmationCard p {
+  color: #94a3b8;
+  line-height: 1.55;
+}
+
+.confirmationActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+@media (max-width: 1000px) {
+  .editorLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .sideColumn {
+    position: static;
+    max-height: none;
+    overflow: visible;
+  }
+}
+
+@media (max-width: 640px) {
+  .workspace {
+    width: min(100% - 20px, 1440px);
+    padding-top: 20px;
+  }
+
+  .workspaceHeader,
+  .toolbar,
+  .confirmationActions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .headerMeta {
+    justify-items: start;
+  }
+
+  .toolbar {
+    position: static;
+  }
+
+  .toolbar button,
+  .confirmationActions button {
+    width: 100%;
+  }
+
+  .formGrid,
+  .choiceGroup,
+  .checkpointGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .fullWidth {
+    grid-column: auto;
+  }
+
+  .panel,
+  .previewPanel {
+    padding: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .workspace *,
+  .confirmation * {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

@@ -1,7 +1,9 @@
 import {
+  perkCampaignSchema,
   seasonDefinitionSchema,
   trailDefinitionSchema,
   validateActiveWindow,
+  type PerkCampaign,
   type SeasonDefinition,
   type TrailDefinition,
 } from "@defi-trail/shared";
@@ -10,11 +12,11 @@ import {
   type MapConfigResponse,
 } from "@/lib/campus";
 import {
-  DEMO_GAMEPLAY_CONFIG,
   type GameplayConfigSource,
   type TrailConfigSeed,
 } from "./config";
 import { GameplayConfigError } from "./errors";
+import { getOrganizerContentService } from "@/lib/organizer-content-service";
 
 type CampusConfig = Pick<MapConfigResponse, "campusId" | "slots">;
 type CampusConfigLoader = (timestampSec: number) => CampusConfig;
@@ -28,6 +30,7 @@ export interface GameplayConfigRepository {
   readonly configVersion: number;
   getActiveSeason(at: Date): SeasonDefinition | null;
   getTodayTrail(at: Date): TodayTrailResult | null;
+  getActiveCampaigns(at: Date): PerkCampaign[];
 }
 
 function assertValidDate(at: Date): void {
@@ -88,6 +91,7 @@ export class VersionedGameplayConfigRepository
   readonly configVersion: number;
   private readonly seasons: SeasonDefinition[];
   private readonly trails: TrailConfigSeed[];
+  private readonly campaigns: PerkCampaign[];
 
   constructor(
     source: GameplayConfigSource,
@@ -110,9 +114,13 @@ export class VersionedGameplayConfigRepository
           ...checkpoint,
         })),
       }));
+      this.campaigns = source.campaigns.map((campaign) =>
+        perkCampaignSchema.parse(campaign),
+      );
 
       assertUniqueIds(this.seasons, "Season");
       assertUniqueIds(this.trails, "Trail");
+      assertUniqueIds(this.campaigns, "Campaign");
 
       const validationCampus = this.loadCampusConfig(0);
       const resolvedTrails = this.trails.map((trail) =>
@@ -121,6 +129,9 @@ export class VersionedGameplayConfigRepository
       const seasonIds = new Set(this.seasons.map((season) => season.id));
       const trailsById = new Map(
         resolvedTrails.map((trail) => [trail.id, trail] as const),
+      );
+      const campaignsById = new Map(
+        this.campaigns.map((campaign) => [campaign.id, campaign] as const),
       );
 
       for (const trail of resolvedTrails) {
@@ -137,6 +148,14 @@ export class VersionedGameplayConfigRepository
           if (!trail || trail.seasonId !== season.id) {
             throw new GameplayConfigError(
               `Season ${season.id} references invalid trail ${trailId}`,
+            );
+          }
+        }
+        for (const campaignId of season.perkCampaignIds) {
+          const campaign = campaignsById.get(campaignId);
+          if (!campaign || campaign.seasonId !== season.id) {
+            throw new GameplayConfigError(
+              `Season ${season.id} references invalid campaign ${campaignId}`,
             );
           }
         }
@@ -197,13 +216,26 @@ export class VersionedGameplayConfigRepository
       trail: resolveTrail(seed, this.loadCampusConfig(timestampSec)),
     };
   }
+
+  getActiveCampaigns(at: Date): PerkCampaign[] {
+    const season = this.getActiveSeason(at);
+    if (!season) return [];
+    const isoInstant = at.toISOString();
+    return this.campaigns
+      .filter(
+        (campaign) =>
+          campaign.seasonId === season.id &&
+          season.perkCampaignIds.includes(campaign.id) &&
+          campaign.enabled &&
+          validateActiveWindow(campaign, isoInstant),
+      )
+      .map((campaign) => ({ ...campaign }));
+  }
 }
 
-const defaultRepository = new VersionedGameplayConfigRepository(
-  DEMO_GAMEPLAY_CONFIG,
-);
-
 export function getGameplayConfigRepository(): GameplayConfigRepository {
-  return defaultRepository;
+  return new VersionedGameplayConfigRepository(
+    getOrganizerContentService().getPlayerConfigSource(),
+  );
 }
 

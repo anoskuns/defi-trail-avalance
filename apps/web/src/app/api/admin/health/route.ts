@@ -6,6 +6,8 @@ import {
   gameL1ChainId,
 } from "@/lib/chains";
 import { getProofSignerAccount } from "@/lib/proof-signer";
+import { getOrganizerContentService } from "@/lib/organizer-content-service";
+import type { OrganizerReadiness } from "@/features/organizer";
 
 export const dynamic = "force-dynamic";
 
@@ -68,6 +70,7 @@ interface SystemHealthReport {
     address: string;
     status: "ready" | "unconfigured";
   };
+  organizerContent: OrganizerReadiness;
 }
 
 // Helper to query eth JSON-RPC with timeout and latency measurement
@@ -328,7 +331,7 @@ export async function GET() {
   }
 
   // 5. Proof Signer & Faucet Status
-  let proofSignerAddress = "";
+  let proofSignerAddress: string;
   try {
     const signerAccount = getProofSignerAccount();
     proofSignerAddress = signerAccount.address;
@@ -336,8 +339,8 @@ export async function GET() {
     proofSignerAddress = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266";
   }
 
-  let faucetGasBalance = "0.0000";
-  let faucetAvaxBalance = "0.0000";
+  let faucetGasBalance: string;
+  let faucetAvaxBalance: string;
 
   if (gameL1Health.status !== "offline") {
     const bal = await queryRpcWithLatency(
@@ -406,6 +409,7 @@ export async function GET() {
       address: proofSignerAddress,
       status: "ready",
     },
+    organizerContent: getOrganizerContentService().getReadiness(),
   };
 
   return NextResponse.json(report);
