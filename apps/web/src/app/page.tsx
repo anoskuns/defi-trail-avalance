@@ -15,12 +15,13 @@ import { QuestTutorialModal } from "@/components/quest";
 import { SponsorScannerModal } from "@/components/sponsor";
 import { PositionView } from "@/components/position";
 import { TodayTrailSection } from "@/features/gameplay/trails";
+import { TeamLeaderboardSection } from "@/features/gameplay/teams";
 
 export default function HomePage() {
   const account = useActiveAccount();
   const activeChain = useActiveWalletChain();
 
-  const [mainTab, setMainTab] = React.useState<"map" | "position">("map");
+  const [mainTab, setMainTab] = React.useState<"map" | "teams" | "position">("map");
   const [questModalOpen, setQuestModalOpen] = React.useState<boolean>(false);
   const [sponsorModalOpen, setSponsorModalOpen] = React.useState<boolean>(false);
   const [selectedChestForModal, setSelectedChestForModal] = React.useState<any>(null);
@@ -325,6 +326,22 @@ export default function HomePage() {
         </button>
         <button
           type="button"
+          onClick={() => setMainTab("teams")}
+          style={{
+            padding: "10px 18px",
+            borderRadius: "10px",
+            fontSize: "0.875rem",
+            fontWeight: 700,
+            backgroundColor: mainTab === "teams" ? "rgba(245, 158, 11, 0.2)" : "transparent",
+            color: mainTab === "teams" ? "#F59E0B" : "#94A3B8",
+            border: mainTab === "teams" ? "1px solid rgba(245, 158, 11, 0.4)" : "1px solid transparent",
+            cursor: "pointer",
+          }}
+        >
+          🏆 Đội & Bảng Xếp Hạng (Teams & Leaderboard)
+        </button>
+        <button
+          type="button"
           onClick={() => setMainTab("position")}
           style={{
             padding: "10px 18px",
@@ -412,6 +429,8 @@ export default function HomePage() {
             }}
           />
         </section>
+      ) : mainTab === "teams" ? (
+        <TeamLeaderboardSection player={account?.address} />
       ) : (
         <PositionView
           playerWallet={account?.address}

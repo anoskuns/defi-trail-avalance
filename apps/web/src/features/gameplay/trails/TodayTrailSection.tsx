@@ -205,6 +205,27 @@ export function TodayTrailSection({
           },
           playerId,
         );
+
+        // GE-09: Post confirmed checkpoint evidence to leaderboard reducer
+        fetch("/api/gameplay/leaderboard", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            event: {
+              eventId: `evt_${completion.checkpointId}_${completion.requestId ?? Date.now()}`,
+              eventType: "CHEST_CONFIRMED",
+              player: playerId,
+              seasonId: trail.seasonId,
+              trailId: trail.id,
+              checkpointId: completion.checkpointId,
+              requestId: completion.requestId ?? evidence.requestId,
+              occurredAt: completion.completedAt,
+              mode: "DEMO",
+            },
+          }),
+        }).catch((err) =>
+          console.warn("[Leaderboard] score event submission skipped:", err),
+        );
       }
 
       if (result.isComplete && !progress.completedAt) {
@@ -216,6 +237,26 @@ export function TodayTrailSection({
             mode: "DEMO",
           },
           playerId,
+        );
+
+        // GE-09: Post trail completion evidence to leaderboard reducer
+        fetch("/api/gameplay/leaderboard", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            event: {
+              eventId: `evt_trail_${trail.id}_${evidence.requestId ?? Date.now()}`,
+              eventType: "TRAIL_COMPLETED",
+              player: playerId,
+              seasonId: trail.seasonId,
+              trailId: trail.id,
+              requestId: evidence.requestId,
+              occurredAt: new Date().toISOString(),
+              mode: "DEMO",
+            },
+          }),
+        }).catch((err) =>
+          console.warn("[Leaderboard] trail complete event submission skipped:", err),
         );
       }
 
