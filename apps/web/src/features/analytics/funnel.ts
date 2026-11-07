@@ -18,3 +18,4 @@ export function getPilotFunnelMetrics(
 ): PilotFunnelMetrics {
   return calculatePilotFunnel(sink.getEvents());
 }
+

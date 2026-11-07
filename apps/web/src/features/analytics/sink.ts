@@ -90,3 +90,4 @@ export class CompositeAnalyticsSink implements AnalyticsSink {
 
 // Global shared memory sink instance for application & tests
 export const globalMemoryAnalyticsSink = new MemoryAnalyticsSink();
+

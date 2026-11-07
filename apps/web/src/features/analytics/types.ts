@@ -20,3 +20,4 @@ export interface TrackerOptions {
   salt?: string;
   debug?: boolean;
 }
+
