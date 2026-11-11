@@ -1,0 +1,3461 @@
+{
+  "meta": {
+    "project": "Elemental Trail",
+    "version": "1.0.0",
+    "generatedAt": "2026-11-11T05:10:06.575922+00:00",
+    "description": "Machine-readable and AI-friendly Master Asset Catalog mapping physical repository assets to gameplay models, elements, UI screens, and runtime paths.",
+    "sourceDirectory": "asset",
+    "runtimeMountPath": "/assets",
+    "totalAssetFiles": 242,
+    "summaryByCategory": {
+      "pets": 16,
+      "frames": 3,
+      "ui_gameplay": 4,
+      "landing": 1,
+      "elemental_emblems_3d": 8,
+      "svg_types_flat": 18,
+      "svg_types_badge": 18,
+      "svg_controls": 7,
+      "backgrounds": 2,
+      "rarity_system": 11,
+      "event_materials": 8,
+      "explorer_tomes": 6,
+      "symbols_and_chips": 131
+    },
+    "summaryByStatus": {
+      "core_production_ready": 40,
+      "event_gps_exclusive": 3,
+      "ui_vector_lightweight": 40,
+      "ambient_backgrounds": 2,
+      "event_materials": 8,
+      "reference_and_dev_only": 9
+    }
+  },
+  "groups": {
+    "pets": [
+      {
+        "id": "pet_301_earth_s1_normal",
+        "speciesCode": 301,
+        "assetKey": "earth_s1_normal",
+        "name": "Mossy Pebble",
+        "nameVi": "Hòn Đá Rêu Phong",
+        "element": "earth",
+        "stage": 1,
+        "rarity": "Common",
+        "role": "Starter Pet",
+        "description": "Ancient stone creature covered in resilient moss.",
+        "filePath": "asset/art/earth_s1_normal.png",
+        "runtimePath": "/assets/art/earth_s1_normal.png",
+        "fileSize": 1170959,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "pet_302_earth_s2_normal",
+        "speciesCode": 302,
+        "assetKey": "earth_s2_normal",
+        "name": "Boulder Boar",
+        "nameVi": "Heo Rừng Nham Thạch",
+        "element": "earth",
+        "stage": 2,
+        "rarity": "Rare",
+        "role": "Evolution",
+        "description": "Sturdy boar encased in impenetrable rock armor.",
+        "filePath": "asset/art/earth_s2_normal.png",
+        "runtimePath": "/assets/art/earth_s2_normal.png",
+        "fileSize": 1554979,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "pet_303_earth_s3_normal",
+        "speciesCode": 303,
+        "assetKey": "earth_s3_normal",
+        "name": "Quartz Gorilla",
+        "nameVi": "Vượn Đột Biến Thạch Anh",
+        "element": "earth",
+        "stage": 3,
+        "rarity": "Epic",
+        "role": "Final Evolution",
+        "description": "Colossal quartz guardian endowed with crystal fury.",
+        "filePath": "asset/art/earth_s3_normal.png",
+        "runtimePath": "/assets/art/earth_s3_normal.png",
+        "fileSize": 1523746,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/nest"
+        ]
+      },
+      {
+        "id": "pet_101_fire_s1_normal",
+        "speciesCode": 101,
+        "assetKey": "fire_s1_normal",
+        "name": "Ember Sprite",
+        "nameVi": "Tinh Linh Lửa",
+        "element": "fire",
+        "stage": 1,
+        "rarity": "Common",
+        "role": "Starter Pet",
+        "description": "Small flame spirit found in warm volcanic clearings. Fast energy collector.",
+        "filePath": "asset/art/fire_s1_normal.png",
+        "runtimePath": "/assets/art/fire_s1_normal.png",
+        "fileSize": 757166,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "pet_102_fire_s2_normal",
+        "speciesCode": 102,
+        "assetKey": "fire_s2_normal",
+        "name": "Flare Fox",
+        "nameVi": "Hồ Ly Lửa",
+        "element": "fire",
+        "stage": 2,
+        "rarity": "Rare",
+        "role": "Target Evolution (Demo MVP)",
+        "description": "Evolved fox spirit with blazing tails. Target outcome of 2 Ember Sprite + 8 Essence recipe.",
+        "filePath": "asset/art/fire_s2_normal.png",
+        "runtimePath": "/assets/art/fire_s2_normal.png",
+        "fileSize": 1378794,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/nest",
+          "/evolve",
+          "/reward"
+        ]
+      },
+      {
+        "id": "pet_103_fire_s3_normal",
+        "speciesCode": 103,
+        "assetKey": "fire_s3_normal",
+        "name": "Pyromane Lion",
+        "nameVi": "Sư Tử Hỏa Diệm",
+        "element": "fire",
+        "stage": 3,
+        "rarity": "Epic",
+        "role": "Final Evolution",
+        "description": "Majestic fire lion with blazing mane. Apex fire predator.",
+        "filePath": "asset/art/fire_s3_normal.png",
+        "runtimePath": "/assets/art/fire_s3_normal.png",
+        "fileSize": 1167838,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/nest"
+        ]
+      },
+      {
+        "id": "pet_501_ice_s1_normal",
+        "speciesCode": 501,
+        "assetKey": "ice_s1_normal",
+        "name": "Avalanche Pet",
+        "nameVi": "Linh Thú Avalanche",
+        "element": "ice",
+        "stage": 1,
+        "rarity": "Rare",
+        "role": "Event GPS Exclusive (Avalanche Summit / Hackathon)",
+        "description": "Linh thú biểu tượng của sự kiện Avalanche Build Web3, kết tinh từ đỉnh tuyết sơn băng giá Avalanche.",
+        "filePath": "asset/art/ice_s1_normal.png",
+        "runtimePath": "/assets/art/ice_s1_normal.png",
+        "fileSize": 955891,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "event_gps_exclusive",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest"
+        ]
+      },
+      {
+        "id": "pet_701_lightning_s1_normal",
+        "speciesCode": 701,
+        "assetKey": "lightning_s1_normal",
+        "name": "KHTN Pet",
+        "nameVi": "Linh Thú KHTN",
+        "element": "lightning",
+        "stage": 1,
+        "rarity": "Rare",
+        "role": "Event GPS Exclusive (ĐH Khoa Học Tự Nhiên)",
+        "description": "Linh thú công nghệ tia chớp đại diện cho đối tác Đại học Khoa học Tự nhiên (HCMUS).",
+        "filePath": "asset/art/lightning_s1_normal.png",
+        "runtimePath": "/assets/art/lightning_s1_normal.png",
+        "fileSize": 931621,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "event_gps_exclusive",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest"
+        ]
+      },
+      {
+        "id": "pet_601_magma_s1_normal",
+        "speciesCode": 601,
+        "assetKey": "magma_s1_normal",
+        "name": "Emberstone",
+        "nameVi": "Nham Thạch Nung Đỏ",
+        "element": "magma",
+        "stage": 1,
+        "rarity": "Rare",
+        "role": "Upcoming Season 2 Expansion",
+        "description": "Lõi nham thạch nóng chảy, dự kiến xuất hiện trong bản đồ viễn chinh Mùa 2.",
+        "filePath": "asset/art/magma_s1_normal.png",
+        "runtimePath": "/assets/art/magma_s1_normal.png",
+        "fileSize": 1002296,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest"
+        ]
+      },
+      {
+        "id": "pet_801_nature_s1_normal",
+        "speciesCode": 801,
+        "assetKey": "nature_s1_normal",
+        "name": "Greenwich Pet",
+        "nameVi": "Linh Thú Greenwich",
+        "element": "nature",
+        "stage": 1,
+        "rarity": "Rare",
+        "role": "Event GPS Exclusive (ĐH Greenwich Việt Nam)",
+        "description": "Linh thú chồi xanh sinh thái đại diện cho đối tác Đại học Greenwich Việt Nam.",
+        "filePath": "asset/art/nature_s1_normal.png",
+        "runtimePath": "/assets/art/nature_s1_normal.png",
+        "fileSize": 1152465,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "event_gps_exclusive",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest"
+        ]
+      },
+      {
+        "id": "pet_201_water_s1_normal",
+        "speciesCode": 201,
+        "assetKey": "water_s1_normal",
+        "name": "Aqua Drop",
+        "nameVi": "Giọt Nước Tinh Nghịch",
+        "element": "water",
+        "stage": 1,
+        "rarity": "Common",
+        "role": "Starter Pet",
+        "description": "Playful water spirit hovering over natural springs and streams.",
+        "filePath": "asset/art/water_s1_normal.png",
+        "runtimePath": "/assets/art/water_s1_normal.png",
+        "fileSize": 906295,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "pet_202_water_s2_normal",
+        "speciesCode": 202,
+        "assetKey": "water_s2_normal",
+        "name": "Crested Shark",
+        "nameVi": "Cá Mập Triều Dâng",
+        "element": "water",
+        "stage": 2,
+        "rarity": "Rare",
+        "role": "Evolution",
+        "description": "Streamlined aqua predator adept at tidal navigation.",
+        "filePath": "asset/art/water_s2_normal.png",
+        "runtimePath": "/assets/art/water_s2_normal.png",
+        "fileSize": 903289,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "pet_203_water_s3_normal",
+        "speciesCode": 203,
+        "assetKey": "water_s3_normal",
+        "name": "Tidal Serpent",
+        "nameVi": "Giao Long Hải Lưu",
+        "element": "water",
+        "stage": 3,
+        "rarity": "Epic",
+        "role": "Final Evolution",
+        "description": "Legendary sea serpent commanding tidal waves.",
+        "filePath": "asset/art/water_s3_normal.png",
+        "runtimePath": "/assets/art/water_s3_normal.png",
+        "fileSize": 1077428,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/nest"
+        ]
+      },
+      {
+        "id": "pet_401_wind_s1_normal",
+        "speciesCode": 401,
+        "assetKey": "wind_s1_normal",
+        "name": "Zephyr Cloud",
+        "nameVi": "Đám Mây Tinh Linh",
+        "element": "wind",
+        "stage": 1,
+        "rarity": "Common",
+        "role": "Starter Pet",
+        "description": "Breezy cloud entity drifting across highland meadows.",
+        "filePath": "asset/art/wind_s1_normal.png",
+        "runtimePath": "/assets/art/wind_s1_normal.png",
+        "fileSize": 905283,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "pet_402_wind_s2_normal",
+        "speciesCode": 402,
+        "assetKey": "wind_s2_normal",
+        "name": "Gale Hawk",
+        "nameVi": "Ưng Bão Tố",
+        "element": "wind",
+        "stage": 2,
+        "rarity": "Rare",
+        "role": "Evolution",
+        "description": "Keen-eyed raptor slicing through turbulent gale winds.",
+        "filePath": "asset/art/wind_s2_normal.png",
+        "runtimePath": "/assets/art/wind_s2_normal.png",
+        "fileSize": 1099195,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "pet_403_wind_s3_normal",
+        "speciesCode": 403,
+        "assetKey": "wind_s3_normal",
+        "name": "Storm Griffin",
+        "nameVi": "Điểu Sư Cuồng Phong",
+        "element": "wind",
+        "stage": 3,
+        "rarity": "Epic",
+        "role": "Final Evolution",
+        "description": "Noble aerial predator wielding storm lightning and whirlwind.",
+        "filePath": "asset/art/wind_s3_normal.png",
+        "runtimePath": "/assets/art/wind_s3_normal.png",
+        "fileSize": 1724696,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/nest"
+        ]
+      }
+    ],
+    "frames": [
+      {
+        "id": "frame_common",
+        "name": "Common Frame",
+        "nameVi": "Khung Thẻ Thường",
+        "filePath": "asset/frame/common frames.png",
+        "runtimePath": "/assets/frame/common frames.png",
+        "fileSize": 1199646,
+        "format": "png",
+        "dimensions": "1024x1536",
+        "purpose": "Base / Stage 1 Pets card border",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/hunt"
+        ]
+      },
+      {
+        "id": "frame_rare",
+        "name": "Rare Frame",
+        "nameVi": "Khung Thẻ Hiếm (Viền Vàng)",
+        "filePath": "asset/frame/rare frames.png",
+        "runtimePath": "/assets/frame/rare frames.png",
+        "fileSize": 1242912,
+        "format": "png",
+        "dimensions": "1024x1536",
+        "purpose": "Evolved / Event Pets card border",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/evolve",
+          "/reward"
+        ]
+      },
+      {
+        "id": "card_back_fallback",
+        "name": "Card Back Fallback",
+        "nameVi": "Mặt Sau Thẻ Bài",
+        "filePath": "asset/fallback/card-back.png",
+        "runtimePath": "/assets/fallback/card-back.png",
+        "fileSize": 2042090,
+        "format": "png",
+        "dimensions": "1024x1536",
+        "purpose": "Locked / Silhouette / Loading card state",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/hunt",
+          "/vault"
+        ]
+      }
+    ],
+    "ui_gameplay": [
+      {
+        "id": "ui_cage",
+        "name": "Custody / Sanctuary Cage",
+        "nameVi": "Biểu Tượng Gửi Nuôi",
+        "filePath": "asset/ui/cage.png",
+        "runtimePath": "/assets/ui/cage.png",
+        "fileSize": 457495,
+        "format": "png",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/nest",
+          "/vault"
+        ]
+      },
+      {
+        "id": "ui_craft_altar",
+        "name": "Evolution Crafting Altar",
+        "nameVi": "Bàn Thờ Tiến Hóa",
+        "filePath": "asset/ui/craft.png",
+        "runtimePath": "/assets/ui/craft.png",
+        "fileSize": 491352,
+        "format": "png",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/evolve"
+        ]
+      },
+      {
+        "id": "ui_essence_vial",
+        "name": "Elemental Essence Vial",
+        "nameVi": "Bình Tinh Chất",
+        "filePath": "asset/ui/essence.png",
+        "runtimePath": "/assets/ui/essence.png",
+        "fileSize": 535508,
+        "format": "png",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/nest",
+          "/evolve",
+          "/hunt"
+        ]
+      },
+      {
+        "id": "ui_voucher_entitlement",
+        "name": "ICM Voucher Entitlement",
+        "nameVi": "Chứng Chỉ Phần Thưởng ICM",
+        "filePath": "asset/ui/voucher.png",
+        "runtimePath": "/assets/ui/voucher.png",
+        "fileSize": 434406,
+        "format": "png",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/reward"
+        ]
+      }
+    ],
+    "landing": [
+      {
+        "id": "landing_hero_banner",
+        "name": "Landing Page Hero Banner",
+        "nameVi": "Banner Trang Chủ",
+        "filePath": "asset/landing/hero.png",
+        "runtimePath": "/assets/landing/hero.png",
+        "fileSize": 2072172,
+        "format": "png",
+        "dimensions": "1672x941",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/landing"
+        ]
+      }
+    ],
+    "elemental_emblems_3d": [
+      {
+        "id": "emblem_3d_earth",
+        "element": "earth",
+        "name": "Earth 3D Emblem",
+        "nameVi": "Huy Hiệu 3D Hệ Earth",
+        "filePath": "asset/icons-raster-reference/earth.png",
+        "runtimePath": "/assets/icons-raster-reference/earth.png",
+        "fileSize": 455575,
+        "format": "png",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "emblem_3d_fire",
+        "element": "fire",
+        "name": "Fire 3D Emblem",
+        "nameVi": "Huy Hiệu 3D Hệ Fire",
+        "filePath": "asset/icons-raster-reference/fire.png",
+        "runtimePath": "/assets/icons-raster-reference/fire.png",
+        "fileSize": 440773,
+        "format": "png",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "emblem_3d_ice",
+        "element": "ice",
+        "name": "Ice 3D Emblem",
+        "nameVi": "Huy Hiệu 3D Hệ Ice",
+        "filePath": "asset/icons-raster-reference/ice.png",
+        "runtimePath": "/assets/icons-raster-reference/ice.png",
+        "fileSize": 625585,
+        "format": "png",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "emblem_3d_lightning",
+        "element": "lightning",
+        "name": "Lightning 3D Emblem",
+        "nameVi": "Huy Hiệu 3D Hệ Lightning",
+        "filePath": "asset/icons-raster-reference/lightning.png",
+        "runtimePath": "/assets/icons-raster-reference/lightning.png",
+        "fileSize": 377173,
+        "format": "png",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "emblem_3d_magma",
+        "element": "magma",
+        "name": "Magma 3D Emblem",
+        "nameVi": "Huy Hiệu 3D Hệ Magma",
+        "filePath": "asset/icons-raster-reference/magma.png",
+        "runtimePath": "/assets/icons-raster-reference/magma.png",
+        "fileSize": 499779,
+        "format": "png",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "emblem_3d_nature",
+        "element": "nature",
+        "name": "Nature 3D Emblem",
+        "nameVi": "Huy Hiệu 3D Hệ Nature",
+        "filePath": "asset/icons-raster-reference/nature.png",
+        "runtimePath": "/assets/icons-raster-reference/nature.png",
+        "fileSize": 393933,
+        "format": "png",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "emblem_3d_water",
+        "element": "water",
+        "name": "Water 3D Emblem",
+        "nameVi": "Huy Hiệu 3D Hệ Water",
+        "filePath": "asset/icons-raster-reference/water.png",
+        "runtimePath": "/assets/icons-raster-reference/water.png",
+        "fileSize": 495587,
+        "format": "png",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "emblem_3d_wind",
+        "element": "wind",
+        "name": "Wind 3D Emblem",
+        "nameVi": "Huy Hiệu 3D Hệ Wind",
+        "filePath": "asset/icons-raster-reference/wind.png",
+        "runtimePath": "/assets/icons-raster-reference/wind.png",
+        "fileSize": 516077,
+        "format": "png",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/evolve"
+        ]
+      }
+    ],
+    "svg_types_flat": [
+      {
+        "id": "svg_type_bug",
+        "element": "bug",
+        "name": "Vector Flat Type: bug",
+        "filePath": "asset/svg/types/bug.svg",
+        "runtimePath": "/assets/svg/types/bug.svg",
+        "fileSize": 648,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_type_dark",
+        "element": "dark",
+        "name": "Vector Flat Type: dark",
+        "filePath": "asset/svg/types/dark.svg",
+        "runtimePath": "/assets/svg/types/dark.svg",
+        "fileSize": 449,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_type_dragon",
+        "element": "dragon",
+        "name": "Vector Flat Type: dragon",
+        "filePath": "asset/svg/types/dragon.svg",
+        "runtimePath": "/assets/svg/types/dragon.svg",
+        "fileSize": 789,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_type_electric",
+        "element": "electric",
+        "name": "Vector Flat Type: electric",
+        "filePath": "asset/svg/types/electric.svg",
+        "runtimePath": "/assets/svg/types/electric.svg",
+        "fileSize": 336,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_type_fairy",
+        "element": "fairy",
+        "name": "Vector Flat Type: fairy",
+        "filePath": "asset/svg/types/fairy.svg",
+        "runtimePath": "/assets/svg/types/fairy.svg",
+        "fileSize": 1034,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_type_fighting",
+        "element": "fighting",
+        "name": "Vector Flat Type: fighting",
+        "filePath": "asset/svg/types/fighting.svg",
+        "runtimePath": "/assets/svg/types/fighting.svg",
+        "fileSize": 839,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_type_fire",
+        "element": "fire",
+        "name": "Vector Flat Type: fire",
+        "filePath": "asset/svg/types/fire.svg",
+        "runtimePath": "/assets/svg/types/fire.svg",
+        "fileSize": 697,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_type_flying",
+        "element": "flying",
+        "name": "Vector Flat Type: flying",
+        "filePath": "asset/svg/types/flying.svg",
+        "runtimePath": "/assets/svg/types/flying.svg",
+        "fileSize": 690,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_type_ghost",
+        "element": "ghost",
+        "name": "Vector Flat Type: ghost",
+        "filePath": "asset/svg/types/ghost.svg",
+        "runtimePath": "/assets/svg/types/ghost.svg",
+        "fileSize": 693,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_type_grass",
+        "element": "grass",
+        "name": "Vector Flat Type: grass",
+        "filePath": "asset/svg/types/grass.svg",
+        "runtimePath": "/assets/svg/types/grass.svg",
+        "fileSize": 749,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_type_ground",
+        "element": "ground",
+        "name": "Vector Flat Type: ground",
+        "filePath": "asset/svg/types/ground.svg",
+        "runtimePath": "/assets/svg/types/ground.svg",
+        "fileSize": 349,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_type_ice",
+        "element": "ice",
+        "name": "Vector Flat Type: ice",
+        "filePath": "asset/svg/types/ice.svg",
+        "runtimePath": "/assets/svg/types/ice.svg",
+        "fileSize": 777,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_type_normal",
+        "element": "normal",
+        "name": "Vector Flat Type: normal",
+        "filePath": "asset/svg/types/normal.svg",
+        "runtimePath": "/assets/svg/types/normal.svg",
+        "fileSize": 395,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_type_poison",
+        "element": "poison",
+        "name": "Vector Flat Type: poison",
+        "filePath": "asset/svg/types/poison.svg",
+        "runtimePath": "/assets/svg/types/poison.svg",
+        "fileSize": 673,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_type_psychic",
+        "element": "psychic",
+        "name": "Vector Flat Type: psychic",
+        "filePath": "asset/svg/types/psychic.svg",
+        "runtimePath": "/assets/svg/types/psychic.svg",
+        "fileSize": 1485,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_type_rock",
+        "element": "rock",
+        "name": "Vector Flat Type: rock",
+        "filePath": "asset/svg/types/rock.svg",
+        "runtimePath": "/assets/svg/types/rock.svg",
+        "fileSize": 465,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_type_steel",
+        "element": "steel",
+        "name": "Vector Flat Type: steel",
+        "filePath": "asset/svg/types/steel.svg",
+        "runtimePath": "/assets/svg/types/steel.svg",
+        "fileSize": 377,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_type_water",
+        "element": "water",
+        "name": "Vector Flat Type: water",
+        "filePath": "asset/svg/types/water.svg",
+        "runtimePath": "/assets/svg/types/water.svg",
+        "fileSize": 443,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      }
+    ],
+    "svg_types_badge": [
+      {
+        "id": "svg_badge_bug",
+        "element": "bug",
+        "name": "Vector Badge Type: bug",
+        "filePath": "asset/svg/types/badge/bug.svg",
+        "runtimePath": "/assets/svg/types/badge/bug.svg",
+        "fileSize": 708,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_badge_dark",
+        "element": "dark",
+        "name": "Vector Badge Type: dark",
+        "filePath": "asset/svg/types/badge/dark.svg",
+        "runtimePath": "/assets/svg/types/badge/dark.svg",
+        "fileSize": 532,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_badge_dragon",
+        "element": "dragon",
+        "name": "Vector Badge Type: dragon",
+        "filePath": "asset/svg/types/badge/dragon.svg",
+        "runtimePath": "/assets/svg/types/badge/dragon.svg",
+        "fileSize": 847,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_badge_electric",
+        "element": "electric",
+        "name": "Vector Badge Type: electric",
+        "filePath": "asset/svg/types/badge/electric.svg",
+        "runtimePath": "/assets/svg/types/badge/electric.svg",
+        "fileSize": 395,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_badge_fairy",
+        "element": "fairy",
+        "name": "Vector Badge Type: fairy",
+        "filePath": "asset/svg/types/badge/fairy.svg",
+        "runtimePath": "/assets/svg/types/badge/fairy.svg",
+        "fileSize": 1113,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_badge_fighting",
+        "element": "fighting",
+        "name": "Vector Badge Type: fighting",
+        "filePath": "asset/svg/types/badge/fighting.svg",
+        "runtimePath": "/assets/svg/types/badge/fighting.svg",
+        "fileSize": 898,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_badge_fire",
+        "element": "fire",
+        "name": "Vector Badge Type: fire",
+        "filePath": "asset/svg/types/badge/fire.svg",
+        "runtimePath": "/assets/svg/types/badge/fire.svg",
+        "fileSize": 753,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_badge_flying",
+        "element": "flying",
+        "name": "Vector Badge Type: flying",
+        "filePath": "asset/svg/types/badge/flying.svg",
+        "runtimePath": "/assets/svg/types/badge/flying.svg",
+        "fileSize": 751,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_badge_ghost",
+        "element": "ghost",
+        "name": "Vector Badge Type: ghost",
+        "filePath": "asset/svg/types/badge/ghost.svg",
+        "runtimePath": "/assets/svg/types/badge/ghost.svg",
+        "fileSize": 758,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_badge_grass",
+        "element": "grass",
+        "name": "Vector Badge Type: grass",
+        "filePath": "asset/svg/types/badge/grass.svg",
+        "runtimePath": "/assets/svg/types/badge/grass.svg",
+        "fileSize": 808,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_badge_ground",
+        "element": "ground",
+        "name": "Vector Badge Type: ground",
+        "filePath": "asset/svg/types/badge/ground.svg",
+        "runtimePath": "/assets/svg/types/badge/ground.svg",
+        "fileSize": 408,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_badge_ice",
+        "element": "ice",
+        "name": "Vector Badge Type: ice",
+        "filePath": "asset/svg/types/badge/ice.svg",
+        "runtimePath": "/assets/svg/types/badge/ice.svg",
+        "fileSize": 546,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_badge_normal",
+        "element": "normal",
+        "name": "Vector Badge Type: normal",
+        "filePath": "asset/svg/types/badge/normal.svg",
+        "runtimePath": "/assets/svg/types/badge/normal.svg",
+        "fileSize": 481,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_badge_poison",
+        "element": "poison",
+        "name": "Vector Badge Type: poison",
+        "filePath": "asset/svg/types/badge/poison.svg",
+        "runtimePath": "/assets/svg/types/badge/poison.svg",
+        "fileSize": 761,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_badge_psychic",
+        "element": "psychic",
+        "name": "Vector Badge Type: psychic",
+        "filePath": "asset/svg/types/badge/psychic.svg",
+        "runtimePath": "/assets/svg/types/badge/psychic.svg",
+        "fileSize": 1546,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_badge_rock",
+        "element": "rock",
+        "name": "Vector Badge Type: rock",
+        "filePath": "asset/svg/types/badge/rock.svg",
+        "runtimePath": "/assets/svg/types/badge/rock.svg",
+        "fileSize": 525,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_badge_steel",
+        "element": "steel",
+        "name": "Vector Badge Type: steel",
+        "filePath": "asset/svg/types/badge/steel.svg",
+        "runtimePath": "/assets/svg/types/badge/steel.svg",
+        "fileSize": 424,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "svg_badge_water",
+        "element": "water",
+        "name": "Vector Badge Type: water",
+        "filePath": "asset/svg/types/badge/water.svg",
+        "runtimePath": "/assets/svg/types/badge/water.svg",
+        "fileSize": 528,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      }
+    ],
+    "svg_controls": [
+      {
+        "id": "nav_gender-female",
+        "name": "Gender Female",
+        "filePath": "asset/svg/gender-female.svg",
+        "runtimePath": "/assets/svg/gender-female.svg",
+        "fileSize": 383,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault"
+        ]
+      },
+      {
+        "id": "nav_gender-male",
+        "name": "Gender Male",
+        "filePath": "asset/svg/gender-male.svg",
+        "runtimePath": "/assets/svg/gender-male.svg",
+        "fileSize": 430,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault"
+        ]
+      },
+      {
+        "id": "nav_pokeball-banner",
+        "name": "Pokeball Banner",
+        "filePath": "asset/svg/pokeball-banner.svg",
+        "runtimePath": "/assets/svg/pokeball-banner.svg",
+        "fileSize": 4841,
+        "format": "svg",
+        "status": "reference_and_dev_only",
+        "targetScreens": [
+          "/hunt",
+          "/vault"
+        ]
+      },
+      {
+        "id": "nav_pokeball",
+        "name": "Pokeball",
+        "filePath": "asset/svg/pokeball.svg",
+        "runtimePath": "/assets/svg/pokeball.svg",
+        "fileSize": 892,
+        "format": "svg",
+        "status": "reference_and_dev_only",
+        "targetScreens": [
+          "/hunt",
+          "/vault"
+        ]
+      },
+      {
+        "id": "nav_pokedollar",
+        "name": "Pokedollar",
+        "filePath": "asset/svg/pokedollar.svg",
+        "runtimePath": "/assets/svg/pokedollar.svg",
+        "fileSize": 312,
+        "format": "svg",
+        "status": "reference_and_dev_only",
+        "targetScreens": [
+          "/hunt",
+          "/vault"
+        ]
+      },
+      {
+        "id": "nav_search-button",
+        "name": "Search Button",
+        "filePath": "asset/svg/search-button.svg",
+        "runtimePath": "/assets/svg/search-button.svg",
+        "fileSize": 2237,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault"
+        ]
+      },
+      {
+        "id": "nav_sync-button",
+        "name": "Sync Button",
+        "filePath": "asset/svg/sync-button.svg",
+        "runtimePath": "/assets/svg/sync-button.svg",
+        "fileSize": 1297,
+        "format": "svg",
+        "status": "ui_vector_lightweight",
+        "targetScreens": [
+          "/hunt",
+          "/vault"
+        ]
+      }
+    ],
+    "backgrounds": [
+      {
+        "id": "bg_background_liyue",
+        "name": "Background Liyue",
+        "nameVi": "Phông Nền Phong Cảnh Thám Hiểm",
+        "filePath": "asset/Background_Liyue.jpg",
+        "runtimePath": "/assets/Background_Liyue.jpg",
+        "fileSize": 266768,
+        "format": "jpg",
+        "status": "ambient_backgrounds",
+        "recommendedUsage": "Atmospheric backdrop for /hunt (Waypoint Trail) and /nest (Sanctuary View)",
+        "targetScreens": [
+          "/hunt",
+          "/nest"
+        ]
+      },
+      {
+        "id": "bg_background_liyue_2",
+        "name": "Background Liyue 2",
+        "nameVi": "Phông Nền Phong Cảnh Thám Hiểm",
+        "filePath": "asset/Background_Liyue_2.jpg",
+        "runtimePath": "/assets/Background_Liyue_2.jpg",
+        "fileSize": 94849,
+        "format": "jpg",
+        "status": "ambient_backgrounds",
+        "recommendedUsage": "Atmospheric backdrop for /hunt (Waypoint Trail) and /nest (Sanctuary View)",
+        "targetScreens": [
+          "/hunt",
+          "/nest"
+        ]
+      }
+    ],
+    "rarity_system": [
+      {
+        "id": "star_rating_1",
+        "stars": 1,
+        "name": "1 Star Rating Badge",
+        "filePath": "asset/Icon_1_Stars.png",
+        "runtimePath": "/assets/Icon_1_Stars.png",
+        "fileSize": 1726,
+        "format": "png",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "star_rating_2",
+        "stars": 2,
+        "name": "2 Star Rating Badge",
+        "filePath": "asset/Icon_2_Stars.png",
+        "runtimePath": "/assets/Icon_2_Stars.png",
+        "fileSize": 1856,
+        "format": "png",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "star_rating_3",
+        "stars": 3,
+        "name": "3 Star Rating Badge",
+        "filePath": "asset/Icon_3_Stars.png",
+        "runtimePath": "/assets/Icon_3_Stars.png",
+        "fileSize": 1860,
+        "format": "png",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "star_rating_4",
+        "stars": 4,
+        "name": "4 Star Rating Badge",
+        "filePath": "asset/Icon_4_Stars.png",
+        "runtimePath": "/assets/Icon_4_Stars.png",
+        "fileSize": 1867,
+        "format": "png",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "star_rating_5",
+        "stars": 5,
+        "name": "5 Star Rating Badge",
+        "filePath": "asset/Icon_5_Stars.png",
+        "runtimePath": "/assets/Icon_5_Stars.png",
+        "fileSize": 1865,
+        "format": "png",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "rarity_bg_1",
+        "tier": "1",
+        "name": "Rarity 1 Gradient Card Background",
+        "filePath": "asset/Rarity_1_background.png",
+        "runtimePath": "/assets/Rarity_1_background.png",
+        "fileSize": 9515,
+        "format": "png",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "rarity_bg_2",
+        "tier": "2",
+        "name": "Rarity 2 Gradient Card Background",
+        "filePath": "asset/Rarity_2_background.png",
+        "runtimePath": "/assets/Rarity_2_background.png",
+        "fileSize": 8025,
+        "format": "png",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "rarity_bg_3",
+        "tier": "3",
+        "name": "Rarity 3 Gradient Card Background",
+        "filePath": "asset/Rarity_3_background.png",
+        "runtimePath": "/assets/Rarity_3_background.png",
+        "fileSize": 7221,
+        "format": "png",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "rarity_bg_4",
+        "tier": "4",
+        "name": "Rarity 4 Gradient Card Background",
+        "filePath": "asset/Rarity_4_background.png",
+        "runtimePath": "/assets/Rarity_4_background.png",
+        "fileSize": 7560,
+        "format": "png",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "rarity_bg_5",
+        "tier": "5",
+        "name": "Rarity 5 Gradient Card Background",
+        "filePath": "asset/Rarity_5_background.png",
+        "runtimePath": "/assets/Rarity_5_background.png",
+        "fileSize": 7365,
+        "format": "png",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "rarity_bg_5s",
+        "tier": "5s",
+        "name": "Rarity 5S Gradient Card Background",
+        "filePath": "asset/Rarity_5s_background.png",
+        "runtimePath": "/assets/Rarity_5s_background.png",
+        "fileSize": 10889,
+        "format": "png",
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/evolve"
+        ]
+      }
+    ],
+    "event_materials": [
+      {
+        "id": "material_item_crystalline_bloom",
+        "name": "Crystalline Bloom",
+        "nameVi": "Nguyên Liệu / Tinh Thạch Crystalline Bloom",
+        "filePath": "asset/Item_Crystalline_Bloom.png",
+        "runtimePath": "/assets/Item_Crystalline_Bloom.png",
+        "fileSize": 73679,
+        "format": "png",
+        "status": "event_materials",
+        "recommendedUsage": "Rare drop from Event GPS Hunt checkpoints or advanced evolution recipe materials",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "material_item_dew_of_repudiation",
+        "name": "Dew of Repudiation",
+        "nameVi": "Nguyên Liệu / Tinh Thạch Dew of Repudiation",
+        "filePath": "asset/Item_Dew_of_Repudiation.png",
+        "runtimePath": "/assets/Item_Dew_of_Repudiation.png",
+        "fileSize": 71146,
+        "format": "png",
+        "status": "event_materials",
+        "recommendedUsage": "Rare drop from Event GPS Hunt checkpoints or advanced evolution recipe materials",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "material_item_lightless_eye_of_the_maelstrom",
+        "name": "Lightless Eye of the Maelstrom",
+        "nameVi": "Nguyên Liệu / Tinh Thạch Lightless Eye of the Maelstrom",
+        "filePath": "asset/Item_Lightless_Eye_of_the_Maelstrom.png",
+        "runtimePath": "/assets/Item_Lightless_Eye_of_the_Maelstrom.png",
+        "fileSize": 19368,
+        "format": "png",
+        "status": "event_materials",
+        "recommendedUsage": "Rare drop from Event GPS Hunt checkpoints or advanced evolution recipe materials",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "material_item_lightless_mass",
+        "name": "Lightless Mass",
+        "nameVi": "Nguyên Liệu / Tinh Thạch Lightless Mass",
+        "filePath": "asset/Item_Lightless_Mass.png",
+        "runtimePath": "/assets/Item_Lightless_Mass.png",
+        "fileSize": 91965,
+        "format": "png",
+        "status": "event_materials",
+        "recommendedUsage": "Rare drop from Event GPS Hunt checkpoints or advanced evolution recipe materials",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "material_item_lightless_silk_string",
+        "name": "Lightless Silk String",
+        "nameVi": "Nguyên Liệu / Tinh Thạch Lightless Silk String",
+        "filePath": "asset/Item_Lightless_Silk_String.png",
+        "runtimePath": "/assets/Item_Lightless_Silk_String.png",
+        "fileSize": 101361,
+        "format": "png",
+        "status": "event_materials",
+        "recommendedUsage": "Rare drop from Event GPS Hunt checkpoints or advanced evolution recipe materials",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "material_item_lightning_prism",
+        "name": "Lightning Prism",
+        "nameVi": "Nguyên Liệu / Tinh Thạch Lightning Prism",
+        "filePath": "asset/Item_Lightning_Prism.png",
+        "runtimePath": "/assets/Item_Lightning_Prism.png",
+        "fileSize": 49052,
+        "format": "png",
+        "status": "event_materials",
+        "recommendedUsage": "Rare drop from Event GPS Hunt checkpoints or advanced evolution recipe materials",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "material_item_philosophies_of_ballad",
+        "name": "Philosophies of Ballad",
+        "nameVi": "Nguyên Liệu / Tinh Thạch Philosophies of Ballad",
+        "filePath": "asset/Item_Philosophies_of_Ballad.png",
+        "runtimePath": "/assets/Item_Philosophies_of_Ballad.png",
+        "fileSize": 58978,
+        "format": "png",
+        "status": "event_materials",
+        "recommendedUsage": "Rare drop from Event GPS Hunt checkpoints or advanced evolution recipe materials",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/evolve"
+        ]
+      },
+      {
+        "id": "material_item_philosophies_of_elegance",
+        "name": "Philosophies of Elegance",
+        "nameVi": "Nguyên Liệu / Tinh Thạch Philosophies of Elegance",
+        "filePath": "asset/Item_Philosophies_of_Elegance.png",
+        "runtimePath": "/assets/Item_Philosophies_of_Elegance.png",
+        "fileSize": 61325,
+        "format": "png",
+        "status": "event_materials",
+        "recommendedUsage": "Rare drop from Event GPS Hunt checkpoints or advanced evolution recipe materials",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/evolve"
+        ]
+      }
+    ],
+    "explorer_tomes": [
+      {
+        "id": "artifact_weapon_apprentice's_notes",
+        "name": "Apprentice's Notes",
+        "nameVi": "Pháp Khí / Sổ Tay Apprentice's Notes",
+        "filePath": "asset/Weapon_Apprentice's_Notes.png",
+        "runtimePath": "/assets/Weapon_Apprentice's_Notes.png",
+        "fileSize": 30224,
+        "format": "png",
+        "status": "reference_and_dev_only",
+        "recommendedUsage": "Field Guide artifacts / Explorer Tomes in Bestiary (rebrand before commercial publish)",
+        "targetScreens": [
+          "/vault"
+        ]
+      },
+      {
+        "id": "artifact_weapon_flowing_purity",
+        "name": "Flowing Purity",
+        "nameVi": "Pháp Khí / Sổ Tay Flowing Purity",
+        "filePath": "asset/Weapon_Flowing_Purity.png",
+        "runtimePath": "/assets/Weapon_Flowing_Purity.png",
+        "fileSize": 71189,
+        "format": "png",
+        "status": "reference_and_dev_only",
+        "recommendedUsage": "Field Guide artifacts / Explorer Tomes in Bestiary (rebrand before commercial publish)",
+        "targetScreens": [
+          "/vault"
+        ]
+      },
+      {
+        "id": "artifact_weapon_mappa_mare",
+        "name": "Mappa Mare",
+        "nameVi": "Pháp Khí / Sổ Tay Mappa Mare",
+        "filePath": "asset/Weapon_Mappa_Mare.png",
+        "runtimePath": "/assets/Weapon_Mappa_Mare.png",
+        "fileSize": 39017,
+        "format": "png",
+        "status": "reference_and_dev_only",
+        "recommendedUsage": "Field Guide artifacts / Explorer Tomes in Bestiary (rebrand before commercial publish)",
+        "targetScreens": [
+          "/vault"
+        ]
+      },
+      {
+        "id": "artifact_weapon_skyward_atlas",
+        "name": "Skyward Atlas",
+        "nameVi": "Pháp Khí / Sổ Tay Skyward Atlas",
+        "filePath": "asset/Weapon_Skyward_Atlas.png",
+        "runtimePath": "/assets/Weapon_Skyward_Atlas.png",
+        "fileSize": 39630,
+        "format": "png",
+        "status": "reference_and_dev_only",
+        "recommendedUsage": "Field Guide artifacts / Explorer Tomes in Bestiary (rebrand before commercial publish)",
+        "targetScreens": [
+          "/vault"
+        ]
+      },
+      {
+        "id": "artifact_weapon_thrilling_tales_of_dragon_slayers",
+        "name": "Thrilling Tales of Dragon Slayers",
+        "nameVi": "Pháp Khí / Sổ Tay Thrilling Tales of Dragon Slayers",
+        "filePath": "asset/Weapon_Thrilling_Tales_of_Dragon_Slayers.png",
+        "runtimePath": "/assets/Weapon_Thrilling_Tales_of_Dragon_Slayers.png",
+        "fileSize": 31049,
+        "format": "png",
+        "status": "reference_and_dev_only",
+        "recommendedUsage": "Field Guide artifacts / Explorer Tomes in Bestiary (rebrand before commercial publish)",
+        "targetScreens": [
+          "/vault"
+        ]
+      },
+      {
+        "id": "artifact_weapon_wine_and_song",
+        "name": "Wine and Song",
+        "nameVi": "Pháp Khí / Sổ Tay Wine and Song",
+        "filePath": "asset/Weapon_Wine_and_Song.png",
+        "runtimePath": "/assets/Weapon_Wine_and_Song.png",
+        "fileSize": 35070,
+        "format": "png",
+        "status": "reference_and_dev_only",
+        "recommendedUsage": "Field Guide artifacts / Explorer Tomes in Bestiary (rebrand before commercial publish)",
+        "targetScreens": [
+          "/vault"
+        ]
+      }
+    ],
+    "symbols_and_chips": {
+      "count": 131,
+      "description": "131 compact raster chips, badges, and move indicators for UI data density and quick status tags.",
+      "items": [
+        {
+          "id": "symbol_form-mega-overlay",
+          "name": "form-mega-overlay",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/form-mega-overlay.png",
+          "runtimePath": "/assets/symbols/form-mega-overlay.png",
+          "fileSize": 350
+        },
+        {
+          "id": "symbol_form-mega",
+          "name": "form-mega",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/form-mega.png",
+          "runtimePath": "/assets/symbols/form-mega.png",
+          "fileSize": 37983
+        },
+        {
+          "id": "symbol_form-mega2",
+          "name": "form-mega2",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/form-mega2.png",
+          "runtimePath": "/assets/symbols/form-mega2.png",
+          "fileSize": 2082
+        },
+        {
+          "id": "symbol_form-mega3",
+          "name": "form-mega3",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/form-mega3.png",
+          "runtimePath": "/assets/symbols/form-mega3.png",
+          "fileSize": 258
+        },
+        {
+          "id": "symbol_form-mega4",
+          "name": "form-mega4",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/form-mega4.png",
+          "runtimePath": "/assets/symbols/form-mega4.png",
+          "fileSize": 490
+        },
+        {
+          "id": "symbol_gender-female-32px",
+          "name": "gender-female-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/gender-female-32px.png",
+          "runtimePath": "/assets/symbols/gender-female-32px.png",
+          "fileSize": 584
+        },
+        {
+          "id": "symbol_gender-female",
+          "name": "gender-female",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/gender-female.png",
+          "runtimePath": "/assets/symbols/gender-female.png",
+          "fileSize": 2718
+        },
+        {
+          "id": "symbol_gender-male-32px",
+          "name": "gender-male-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/gender-male-32px.png",
+          "runtimePath": "/assets/symbols/gender-male-32px.png",
+          "fileSize": 517
+        },
+        {
+          "id": "symbol_gender-male",
+          "name": "gender-male",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/gender-male.png",
+          "runtimePath": "/assets/symbols/gender-male.png",
+          "fileSize": 2533
+        },
+        {
+          "id": "symbol_move-physical-home",
+          "name": "move-physical-home",
+          "category": "move_type_icon",
+          "filePath": "asset/symbols/move-physical-home.png",
+          "runtimePath": "/assets/symbols/move-physical-home.png",
+          "fileSize": 11515
+        },
+        {
+          "id": "symbol_move-physical",
+          "name": "move-physical",
+          "category": "move_type_icon",
+          "filePath": "asset/symbols/move-physical.png",
+          "runtimePath": "/assets/symbols/move-physical.png",
+          "fileSize": 701
+        },
+        {
+          "id": "symbol_move-special-home",
+          "name": "move-special-home",
+          "category": "move_type_icon",
+          "filePath": "asset/symbols/move-special-home.png",
+          "runtimePath": "/assets/symbols/move-special-home.png",
+          "fileSize": 10761
+        },
+        {
+          "id": "symbol_move-special",
+          "name": "move-special",
+          "category": "move_type_icon",
+          "filePath": "asset/symbols/move-special.png",
+          "runtimePath": "/assets/symbols/move-special.png",
+          "fileSize": 915
+        },
+        {
+          "id": "symbol_move-status-home",
+          "name": "move-status-home",
+          "category": "move_type_icon",
+          "filePath": "asset/symbols/move-status-home.png",
+          "runtimePath": "/assets/symbols/move-status-home.png",
+          "fileSize": 9315
+        },
+        {
+          "id": "symbol_move-status",
+          "name": "move-status",
+          "category": "move_type_icon",
+          "filePath": "asset/symbols/move-status.png",
+          "runtimePath": "/assets/symbols/move-status.png",
+          "fileSize": 625
+        },
+        {
+          "id": "symbol_pokeball-logo-32px",
+          "name": "pokeball-logo-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/pokeball-logo-32px.png",
+          "runtimePath": "/assets/symbols/pokeball-logo-32px.png",
+          "fileSize": 1403
+        },
+        {
+          "id": "symbol_pokeball-logo",
+          "name": "pokeball-logo",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/pokeball-logo.png",
+          "runtimePath": "/assets/symbols/pokeball-logo.png",
+          "fileSize": 6774
+        },
+        {
+          "id": "symbol_pokedollar-glyph-32px",
+          "name": "pokedollar-glyph-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/pokedollar-glyph-32px.png",
+          "runtimePath": "/assets/symbols/pokedollar-glyph-32px.png",
+          "fileSize": 302
+        },
+        {
+          "id": "symbol_pokedollar-glyph",
+          "name": "pokedollar-glyph",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/pokedollar-glyph.png",
+          "runtimePath": "/assets/symbols/pokedollar-glyph.png",
+          "fileSize": 878
+        },
+        {
+          "id": "symbol_type-bug-32px",
+          "name": "type-bug-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-bug-32px.png",
+          "runtimePath": "/assets/symbols/type-bug-32px.png",
+          "fileSize": 622
+        },
+        {
+          "id": "symbol_type-bug-badge-32px",
+          "name": "type-bug-badge-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-bug-badge-32px.png",
+          "runtimePath": "/assets/symbols/type-bug-badge-32px.png",
+          "fileSize": 945
+        },
+        {
+          "id": "symbol_type-bug-badge-go",
+          "name": "type-bug-badge-go",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-bug-badge-go.png",
+          "runtimePath": "/assets/symbols/type-bug-badge-go.png",
+          "fileSize": 3249
+        },
+        {
+          "id": "symbol_type-bug-badge-masters",
+          "name": "type-bug-badge-masters",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-bug-badge-masters.png",
+          "runtimePath": "/assets/symbols/type-bug-badge-masters.png",
+          "fileSize": 4701
+        },
+        {
+          "id": "symbol_type-bug-badge",
+          "name": "type-bug-badge",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-bug-badge.png",
+          "runtimePath": "/assets/symbols/type-bug-badge.png",
+          "fileSize": 5782
+        },
+        {
+          "id": "symbol_type-bug",
+          "name": "type-bug",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/type-bug.png",
+          "runtimePath": "/assets/symbols/type-bug.png",
+          "fileSize": 3387
+        },
+        {
+          "id": "symbol_type-dark-32px",
+          "name": "type-dark-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-dark-32px.png",
+          "runtimePath": "/assets/symbols/type-dark-32px.png",
+          "fileSize": 591
+        },
+        {
+          "id": "symbol_type-dark-badge-32px",
+          "name": "type-dark-badge-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-dark-badge-32px.png",
+          "runtimePath": "/assets/symbols/type-dark-badge-32px.png",
+          "fileSize": 985
+        },
+        {
+          "id": "symbol_type-dark-badge-go",
+          "name": "type-dark-badge-go",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-dark-badge-go.png",
+          "runtimePath": "/assets/symbols/type-dark-badge-go.png",
+          "fileSize": 3415
+        },
+        {
+          "id": "symbol_type-dark-badge-masters",
+          "name": "type-dark-badge-masters",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-dark-badge-masters.png",
+          "runtimePath": "/assets/symbols/type-dark-badge-masters.png",
+          "fileSize": 4232
+        },
+        {
+          "id": "symbol_type-dark-badge",
+          "name": "type-dark-badge",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-dark-badge.png",
+          "runtimePath": "/assets/symbols/type-dark-badge.png",
+          "fileSize": 5614
+        },
+        {
+          "id": "symbol_type-dark",
+          "name": "type-dark",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/type-dark.png",
+          "runtimePath": "/assets/symbols/type-dark.png",
+          "fileSize": 3274
+        },
+        {
+          "id": "symbol_type-dragon-32px",
+          "name": "type-dragon-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-dragon-32px.png",
+          "runtimePath": "/assets/symbols/type-dragon-32px.png",
+          "fileSize": 711
+        },
+        {
+          "id": "symbol_type-dragon-badge-32px",
+          "name": "type-dragon-badge-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-dragon-badge-32px.png",
+          "runtimePath": "/assets/symbols/type-dragon-badge-32px.png",
+          "fileSize": 1078
+        },
+        {
+          "id": "symbol_type-dragon-badge-go",
+          "name": "type-dragon-badge-go",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-dragon-badge-go.png",
+          "runtimePath": "/assets/symbols/type-dragon-badge-go.png",
+          "fileSize": 3030
+        },
+        {
+          "id": "symbol_type-dragon-badge-masters",
+          "name": "type-dragon-badge-masters",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-dragon-badge-masters.png",
+          "runtimePath": "/assets/symbols/type-dragon-badge-masters.png",
+          "fileSize": 4701
+        },
+        {
+          "id": "symbol_type-dragon-badge",
+          "name": "type-dragon-badge",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-dragon-badge.png",
+          "runtimePath": "/assets/symbols/type-dragon-badge.png",
+          "fileSize": 5732
+        },
+        {
+          "id": "symbol_type-dragon",
+          "name": "type-dragon",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/type-dragon.png",
+          "runtimePath": "/assets/symbols/type-dragon.png",
+          "fileSize": 2592
+        },
+        {
+          "id": "symbol_type-electric-32px",
+          "name": "type-electric-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-electric-32px.png",
+          "runtimePath": "/assets/symbols/type-electric-32px.png",
+          "fileSize": 414
+        },
+        {
+          "id": "symbol_type-electric-badge-32px",
+          "name": "type-electric-badge-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-electric-badge-32px.png",
+          "runtimePath": "/assets/symbols/type-electric-badge-32px.png",
+          "fileSize": 822
+        },
+        {
+          "id": "symbol_type-electric-badge-go",
+          "name": "type-electric-badge-go",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-electric-badge-go.png",
+          "runtimePath": "/assets/symbols/type-electric-badge-go.png",
+          "fileSize": 2411
+        },
+        {
+          "id": "symbol_type-electric-badge-masters",
+          "name": "type-electric-badge-masters",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-electric-badge-masters.png",
+          "runtimePath": "/assets/symbols/type-electric-badge-masters.png",
+          "fileSize": 3532
+        },
+        {
+          "id": "symbol_type-electric-badge",
+          "name": "type-electric-badge",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-electric-badge.png",
+          "runtimePath": "/assets/symbols/type-electric-badge.png",
+          "fileSize": 4092
+        },
+        {
+          "id": "symbol_type-electric",
+          "name": "type-electric",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/type-electric.png",
+          "runtimePath": "/assets/symbols/type-electric.png",
+          "fileSize": 1756
+        },
+        {
+          "id": "symbol_type-fairy-32px",
+          "name": "type-fairy-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-fairy-32px.png",
+          "runtimePath": "/assets/symbols/type-fairy-32px.png",
+          "fileSize": 620
+        },
+        {
+          "id": "symbol_type-fairy-badge-32px",
+          "name": "type-fairy-badge-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-fairy-badge-32px.png",
+          "runtimePath": "/assets/symbols/type-fairy-badge-32px.png",
+          "fileSize": 989
+        },
+        {
+          "id": "symbol_type-fairy-badge-go",
+          "name": "type-fairy-badge-go",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-fairy-badge-go.png",
+          "runtimePath": "/assets/symbols/type-fairy-badge-go.png",
+          "fileSize": 2572
+        },
+        {
+          "id": "symbol_type-fairy-badge-masters",
+          "name": "type-fairy-badge-masters",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-fairy-badge-masters.png",
+          "runtimePath": "/assets/symbols/type-fairy-badge-masters.png",
+          "fileSize": 4284
+        },
+        {
+          "id": "symbol_type-fairy-badge",
+          "name": "type-fairy-badge",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-fairy-badge.png",
+          "runtimePath": "/assets/symbols/type-fairy-badge.png",
+          "fileSize": 3754
+        },
+        {
+          "id": "symbol_type-fairy",
+          "name": "type-fairy",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/type-fairy.png",
+          "runtimePath": "/assets/symbols/type-fairy.png",
+          "fileSize": 2276
+        },
+        {
+          "id": "symbol_type-fighting-32px",
+          "name": "type-fighting-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-fighting-32px.png",
+          "runtimePath": "/assets/symbols/type-fighting-32px.png",
+          "fileSize": 344
+        },
+        {
+          "id": "symbol_type-fighting-badge-32px",
+          "name": "type-fighting-badge-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-fighting-badge-32px.png",
+          "runtimePath": "/assets/symbols/type-fighting-badge-32px.png",
+          "fileSize": 676
+        },
+        {
+          "id": "symbol_type-fighting-badge-go",
+          "name": "type-fighting-badge-go",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-fighting-badge-go.png",
+          "runtimePath": "/assets/symbols/type-fighting-badge-go.png",
+          "fileSize": 2741
+        },
+        {
+          "id": "symbol_type-fighting-badge-masters",
+          "name": "type-fighting-badge-masters",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-fighting-badge-masters.png",
+          "runtimePath": "/assets/symbols/type-fighting-badge-masters.png",
+          "fileSize": 4507
+        },
+        {
+          "id": "symbol_type-fighting-badge",
+          "name": "type-fighting-badge",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-fighting-badge.png",
+          "runtimePath": "/assets/symbols/type-fighting-badge.png",
+          "fileSize": 2425
+        },
+        {
+          "id": "symbol_type-fighting",
+          "name": "type-fighting",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/type-fighting.png",
+          "runtimePath": "/assets/symbols/type-fighting.png",
+          "fileSize": 899
+        },
+        {
+          "id": "symbol_type-fire-32px",
+          "name": "type-fire-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-fire-32px.png",
+          "runtimePath": "/assets/symbols/type-fire-32px.png",
+          "fileSize": 599
+        },
+        {
+          "id": "symbol_type-fire-badge-32px",
+          "name": "type-fire-badge-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-fire-badge-32px.png",
+          "runtimePath": "/assets/symbols/type-fire-badge-32px.png",
+          "fileSize": 928
+        },
+        {
+          "id": "symbol_type-fire-badge-go",
+          "name": "type-fire-badge-go",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-fire-badge-go.png",
+          "runtimePath": "/assets/symbols/type-fire-badge-go.png",
+          "fileSize": 2668
+        },
+        {
+          "id": "symbol_type-fire-badge-masters",
+          "name": "type-fire-badge-masters",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-fire-badge-masters.png",
+          "runtimePath": "/assets/symbols/type-fire-badge-masters.png",
+          "fileSize": 4336
+        },
+        {
+          "id": "symbol_type-fire-badge",
+          "name": "type-fire-badge",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-fire-badge.png",
+          "runtimePath": "/assets/symbols/type-fire-badge.png",
+          "fileSize": 3605
+        },
+        {
+          "id": "symbol_type-fire",
+          "name": "type-fire",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/type-fire.png",
+          "runtimePath": "/assets/symbols/type-fire.png",
+          "fileSize": 2268
+        },
+        {
+          "id": "symbol_type-flying-32px",
+          "name": "type-flying-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-flying-32px.png",
+          "runtimePath": "/assets/symbols/type-flying-32px.png",
+          "fileSize": 529
+        },
+        {
+          "id": "symbol_type-flying-badge-32px",
+          "name": "type-flying-badge-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-flying-badge-32px.png",
+          "runtimePath": "/assets/symbols/type-flying-badge-32px.png",
+          "fileSize": 868
+        },
+        {
+          "id": "symbol_type-flying-badge-go",
+          "name": "type-flying-badge-go",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-flying-badge-go.png",
+          "runtimePath": "/assets/symbols/type-flying-badge-go.png",
+          "fileSize": 2736
+        },
+        {
+          "id": "symbol_type-flying-badge-masters",
+          "name": "type-flying-badge-masters",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-flying-badge-masters.png",
+          "runtimePath": "/assets/symbols/type-flying-badge-masters.png",
+          "fileSize": 4292
+        },
+        {
+          "id": "symbol_type-flying-badge",
+          "name": "type-flying-badge",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-flying-badge.png",
+          "runtimePath": "/assets/symbols/type-flying-badge.png",
+          "fileSize": 3222
+        },
+        {
+          "id": "symbol_type-flying",
+          "name": "type-flying",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/type-flying.png",
+          "runtimePath": "/assets/symbols/type-flying.png",
+          "fileSize": 1731
+        },
+        {
+          "id": "symbol_type-ghost-32px",
+          "name": "type-ghost-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-ghost-32px.png",
+          "runtimePath": "/assets/symbols/type-ghost-32px.png",
+          "fileSize": 556
+        },
+        {
+          "id": "symbol_type-ghost-badge-32px",
+          "name": "type-ghost-badge-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-ghost-badge-32px.png",
+          "runtimePath": "/assets/symbols/type-ghost-badge-32px.png",
+          "fileSize": 937
+        },
+        {
+          "id": "symbol_type-ghost-badge-go",
+          "name": "type-ghost-badge-go",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-ghost-badge-go.png",
+          "runtimePath": "/assets/symbols/type-ghost-badge-go.png",
+          "fileSize": 2984
+        },
+        {
+          "id": "symbol_type-ghost-badge-masters",
+          "name": "type-ghost-badge-masters",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-ghost-badge-masters.png",
+          "runtimePath": "/assets/symbols/type-ghost-badge-masters.png",
+          "fileSize": 4972
+        },
+        {
+          "id": "symbol_type-ghost-badge",
+          "name": "type-ghost-badge",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-ghost-badge.png",
+          "runtimePath": "/assets/symbols/type-ghost-badge.png",
+          "fileSize": 4964
+        },
+        {
+          "id": "symbol_type-ghost",
+          "name": "type-ghost",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/type-ghost.png",
+          "runtimePath": "/assets/symbols/type-ghost.png",
+          "fileSize": 2070
+        },
+        {
+          "id": "symbol_type-grass-32px",
+          "name": "type-grass-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-grass-32px.png",
+          "runtimePath": "/assets/symbols/type-grass-32px.png",
+          "fileSize": 657
+        },
+        {
+          "id": "symbol_type-grass-badge-32px",
+          "name": "type-grass-badge-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-grass-badge-32px.png",
+          "runtimePath": "/assets/symbols/type-grass-badge-32px.png",
+          "fileSize": 1037
+        },
+        {
+          "id": "symbol_type-grass-badge-go",
+          "name": "type-grass-badge-go",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-grass-badge-go.png",
+          "runtimePath": "/assets/symbols/type-grass-badge-go.png",
+          "fileSize": 3380
+        },
+        {
+          "id": "symbol_type-grass-badge-masters",
+          "name": "type-grass-badge-masters",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-grass-badge-masters.png",
+          "runtimePath": "/assets/symbols/type-grass-badge-masters.png",
+          "fileSize": 4477
+        },
+        {
+          "id": "symbol_type-grass-badge",
+          "name": "type-grass-badge",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-grass-badge.png",
+          "runtimePath": "/assets/symbols/type-grass-badge.png",
+          "fileSize": 3755
+        },
+        {
+          "id": "symbol_type-grass",
+          "name": "type-grass",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/type-grass.png",
+          "runtimePath": "/assets/symbols/type-grass.png",
+          "fileSize": 2366
+        },
+        {
+          "id": "symbol_type-ground-32px",
+          "name": "type-ground-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-ground-32px.png",
+          "runtimePath": "/assets/symbols/type-ground-32px.png",
+          "fileSize": 467
+        },
+        {
+          "id": "symbol_type-ground-badge-32px",
+          "name": "type-ground-badge-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-ground-badge-32px.png",
+          "runtimePath": "/assets/symbols/type-ground-badge-32px.png",
+          "fileSize": 845
+        },
+        {
+          "id": "symbol_type-ground-badge-go",
+          "name": "type-ground-badge-go",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-ground-badge-go.png",
+          "runtimePath": "/assets/symbols/type-ground-badge-go.png",
+          "fileSize": 2816
+        },
+        {
+          "id": "symbol_type-ground-badge-masters",
+          "name": "type-ground-badge-masters",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-ground-badge-masters.png",
+          "runtimePath": "/assets/symbols/type-ground-badge-masters.png",
+          "fileSize": 3973
+        },
+        {
+          "id": "symbol_type-ground-badge",
+          "name": "type-ground-badge",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-ground-badge.png",
+          "runtimePath": "/assets/symbols/type-ground-badge.png",
+          "fileSize": 4253
+        },
+        {
+          "id": "symbol_type-ground",
+          "name": "type-ground",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/type-ground.png",
+          "runtimePath": "/assets/symbols/type-ground.png",
+          "fileSize": 1701
+        },
+        {
+          "id": "symbol_type-ice-32px",
+          "name": "type-ice-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-ice-32px.png",
+          "runtimePath": "/assets/symbols/type-ice-32px.png",
+          "fileSize": 575
+        },
+        {
+          "id": "symbol_type-ice-badge-32px",
+          "name": "type-ice-badge-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-ice-badge-32px.png",
+          "runtimePath": "/assets/symbols/type-ice-badge-32px.png",
+          "fileSize": 955
+        },
+        {
+          "id": "symbol_type-ice-badge-go",
+          "name": "type-ice-badge-go",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-ice-badge-go.png",
+          "runtimePath": "/assets/symbols/type-ice-badge-go.png",
+          "fileSize": 3149
+        },
+        {
+          "id": "symbol_type-ice-badge-masters",
+          "name": "type-ice-badge-masters",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-ice-badge-masters.png",
+          "runtimePath": "/assets/symbols/type-ice-badge-masters.png",
+          "fileSize": 4989
+        },
+        {
+          "id": "symbol_type-ice-badge",
+          "name": "type-ice-badge",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-ice-badge.png",
+          "runtimePath": "/assets/symbols/type-ice-badge.png",
+          "fileSize": 5662
+        },
+        {
+          "id": "symbol_type-ice",
+          "name": "type-ice",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/type-ice.png",
+          "runtimePath": "/assets/symbols/type-ice.png",
+          "fileSize": 2490
+        },
+        {
+          "id": "symbol_type-normal-32px",
+          "name": "type-normal-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-normal-32px.png",
+          "runtimePath": "/assets/symbols/type-normal-32px.png",
+          "fileSize": 533
+        },
+        {
+          "id": "symbol_type-normal-badge-32px",
+          "name": "type-normal-badge-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-normal-badge-32px.png",
+          "runtimePath": "/assets/symbols/type-normal-badge-32px.png",
+          "fileSize": 900
+        },
+        {
+          "id": "symbol_type-normal-badge-go",
+          "name": "type-normal-badge-go",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-normal-badge-go.png",
+          "runtimePath": "/assets/symbols/type-normal-badge-go.png",
+          "fileSize": 2835
+        },
+        {
+          "id": "symbol_type-normal-badge-masters",
+          "name": "type-normal-badge-masters",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-normal-badge-masters.png",
+          "runtimePath": "/assets/symbols/type-normal-badge-masters.png",
+          "fileSize": 4515
+        },
+        {
+          "id": "symbol_type-normal-badge",
+          "name": "type-normal-badge",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-normal-badge.png",
+          "runtimePath": "/assets/symbols/type-normal-badge.png",
+          "fileSize": 5264
+        },
+        {
+          "id": "symbol_type-normal",
+          "name": "type-normal",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/type-normal.png",
+          "runtimePath": "/assets/symbols/type-normal.png",
+          "fileSize": 2876
+        },
+        {
+          "id": "symbol_type-poison-32px",
+          "name": "type-poison-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-poison-32px.png",
+          "runtimePath": "/assets/symbols/type-poison-32px.png",
+          "fileSize": 579
+        },
+        {
+          "id": "symbol_type-poison-badge-32px",
+          "name": "type-poison-badge-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-poison-badge-32px.png",
+          "runtimePath": "/assets/symbols/type-poison-badge-32px.png",
+          "fileSize": 959
+        },
+        {
+          "id": "symbol_type-poison-badge-go",
+          "name": "type-poison-badge-go",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-poison-badge-go.png",
+          "runtimePath": "/assets/symbols/type-poison-badge-go.png",
+          "fileSize": 2969
+        },
+        {
+          "id": "symbol_type-poison-badge-masters",
+          "name": "type-poison-badge-masters",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-poison-badge-masters.png",
+          "runtimePath": "/assets/symbols/type-poison-badge-masters.png",
+          "fileSize": 4850
+        },
+        {
+          "id": "symbol_type-poison-badge",
+          "name": "type-poison-badge",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-poison-badge.png",
+          "runtimePath": "/assets/symbols/type-poison-badge.png",
+          "fileSize": 5320
+        },
+        {
+          "id": "symbol_type-poison",
+          "name": "type-poison",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/type-poison.png",
+          "runtimePath": "/assets/symbols/type-poison.png",
+          "fileSize": 2213
+        },
+        {
+          "id": "symbol_type-psychic-32px",
+          "name": "type-psychic-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-psychic-32px.png",
+          "runtimePath": "/assets/symbols/type-psychic-32px.png",
+          "fileSize": 718
+        },
+        {
+          "id": "symbol_type-psychic-badge-32px",
+          "name": "type-psychic-badge-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-psychic-badge-32px.png",
+          "runtimePath": "/assets/symbols/type-psychic-badge-32px.png",
+          "fileSize": 1061
+        },
+        {
+          "id": "symbol_type-psychic-badge-go",
+          "name": "type-psychic-badge-go",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-psychic-badge-go.png",
+          "runtimePath": "/assets/symbols/type-psychic-badge-go.png",
+          "fileSize": 3339
+        },
+        {
+          "id": "symbol_type-psychic-badge-masters",
+          "name": "type-psychic-badge-masters",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-psychic-badge-masters.png",
+          "runtimePath": "/assets/symbols/type-psychic-badge-masters.png",
+          "fileSize": 4885
+        },
+        {
+          "id": "symbol_type-psychic-badge",
+          "name": "type-psychic-badge",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-psychic-badge.png",
+          "runtimePath": "/assets/symbols/type-psychic-badge.png",
+          "fileSize": 4130
+        },
+        {
+          "id": "symbol_type-psychic",
+          "name": "type-psychic",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/type-psychic.png",
+          "runtimePath": "/assets/symbols/type-psychic.png",
+          "fileSize": 2652
+        },
+        {
+          "id": "symbol_type-rock-32px",
+          "name": "type-rock-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-rock-32px.png",
+          "runtimePath": "/assets/symbols/type-rock-32px.png",
+          "fileSize": 544
+        },
+        {
+          "id": "symbol_type-rock-badge-32px",
+          "name": "type-rock-badge-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-rock-badge-32px.png",
+          "runtimePath": "/assets/symbols/type-rock-badge-32px.png",
+          "fileSize": 912
+        },
+        {
+          "id": "symbol_type-rock-badge-go",
+          "name": "type-rock-badge-go",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-rock-badge-go.png",
+          "runtimePath": "/assets/symbols/type-rock-badge-go.png",
+          "fileSize": 2699
+        },
+        {
+          "id": "symbol_type-rock-badge-masters",
+          "name": "type-rock-badge-masters",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-rock-badge-masters.png",
+          "runtimePath": "/assets/symbols/type-rock-badge-masters.png",
+          "fileSize": 4968
+        },
+        {
+          "id": "symbol_type-rock-badge",
+          "name": "type-rock-badge",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-rock-badge.png",
+          "runtimePath": "/assets/symbols/type-rock-badge.png",
+          "fileSize": 5308
+        },
+        {
+          "id": "symbol_type-rock",
+          "name": "type-rock",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/type-rock.png",
+          "runtimePath": "/assets/symbols/type-rock.png",
+          "fileSize": 2924
+        },
+        {
+          "id": "symbol_type-steel-32px",
+          "name": "type-steel-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-steel-32px.png",
+          "runtimePath": "/assets/symbols/type-steel-32px.png",
+          "fileSize": 546
+        },
+        {
+          "id": "symbol_type-steel-badge-32px",
+          "name": "type-steel-badge-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-steel-badge-32px.png",
+          "runtimePath": "/assets/symbols/type-steel-badge-32px.png",
+          "fileSize": 876
+        },
+        {
+          "id": "symbol_type-steel-badge-go",
+          "name": "type-steel-badge-go",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-steel-badge-go.png",
+          "runtimePath": "/assets/symbols/type-steel-badge-go.png",
+          "fileSize": 2951
+        },
+        {
+          "id": "symbol_type-steel-badge-masters",
+          "name": "type-steel-badge-masters",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-steel-badge-masters.png",
+          "runtimePath": "/assets/symbols/type-steel-badge-masters.png",
+          "fileSize": 4786
+        },
+        {
+          "id": "symbol_type-steel-badge",
+          "name": "type-steel-badge",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-steel-badge.png",
+          "runtimePath": "/assets/symbols/type-steel-badge.png",
+          "fileSize": 4853
+        },
+        {
+          "id": "symbol_type-steel",
+          "name": "type-steel",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/type-steel.png",
+          "runtimePath": "/assets/symbols/type-steel.png",
+          "fileSize": 2523
+        },
+        {
+          "id": "symbol_type-water-32px",
+          "name": "type-water-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-water-32px.png",
+          "runtimePath": "/assets/symbols/type-water-32px.png",
+          "fileSize": 493
+        },
+        {
+          "id": "symbol_type-water-badge-32px",
+          "name": "type-water-badge-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/type-water-badge-32px.png",
+          "runtimePath": "/assets/symbols/type-water-badge-32px.png",
+          "fileSize": 850
+        },
+        {
+          "id": "symbol_type-water-badge-go",
+          "name": "type-water-badge-go",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-water-badge-go.png",
+          "runtimePath": "/assets/symbols/type-water-badge-go.png",
+          "fileSize": 2880
+        },
+        {
+          "id": "symbol_type-water-badge-masters",
+          "name": "type-water-badge-masters",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-water-badge-masters.png",
+          "runtimePath": "/assets/symbols/type-water-badge-masters.png",
+          "fileSize": 3501
+        },
+        {
+          "id": "symbol_type-water-badge",
+          "name": "type-water-badge",
+          "category": "type_badge_png",
+          "filePath": "asset/symbols/type-water-badge.png",
+          "runtimePath": "/assets/symbols/type-water-badge.png",
+          "fileSize": 4786
+        },
+        {
+          "id": "symbol_type-water",
+          "name": "type-water",
+          "category": "misc_symbol",
+          "filePath": "asset/symbols/type-water.png",
+          "runtimePath": "/assets/symbols/type-water.png",
+          "fileSize": 2641
+        },
+        {
+          "id": "symbol_ui-search-32px",
+          "name": "ui-search-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/ui-search-32px.png",
+          "runtimePath": "/assets/symbols/ui-search-32px.png",
+          "fileSize": 1447
+        },
+        {
+          "id": "symbol_ui-search",
+          "name": "ui-search",
+          "category": "ui_control_icon",
+          "filePath": "asset/symbols/ui-search.png",
+          "runtimePath": "/assets/symbols/ui-search.png",
+          "fileSize": 5907
+        },
+        {
+          "id": "symbol_ui-sync-32px",
+          "name": "ui-sync-32px",
+          "category": "type_chip_32px",
+          "filePath": "asset/symbols/ui-sync-32px.png",
+          "runtimePath": "/assets/symbols/ui-sync-32px.png",
+          "fileSize": 1045
+        },
+        {
+          "id": "symbol_ui-sync",
+          "name": "ui-sync",
+          "category": "ui_control_icon",
+          "filePath": "asset/symbols/ui-sync.png",
+          "runtimePath": "/assets/symbols/ui-sync.png",
+          "fileSize": 4345
+        }
+      ]
+    }
+  },
+  "indexes": {
+    "bySpeciesCode": {
+      "301": {
+        "id": "pet_301_earth_s1_normal",
+        "speciesCode": 301,
+        "assetKey": "earth_s1_normal",
+        "name": "Mossy Pebble",
+        "nameVi": "Hòn Đá Rêu Phong",
+        "element": "earth",
+        "stage": 1,
+        "rarity": "Common",
+        "role": "Starter Pet",
+        "description": "Ancient stone creature covered in resilient moss.",
+        "filePath": "asset/art/earth_s1_normal.png",
+        "runtimePath": "/assets/art/earth_s1_normal.png",
+        "fileSize": 1170959,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      "302": {
+        "id": "pet_302_earth_s2_normal",
+        "speciesCode": 302,
+        "assetKey": "earth_s2_normal",
+        "name": "Boulder Boar",
+        "nameVi": "Heo Rừng Nham Thạch",
+        "element": "earth",
+        "stage": 2,
+        "rarity": "Rare",
+        "role": "Evolution",
+        "description": "Sturdy boar encased in impenetrable rock armor.",
+        "filePath": "asset/art/earth_s2_normal.png",
+        "runtimePath": "/assets/art/earth_s2_normal.png",
+        "fileSize": 1554979,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      "303": {
+        "id": "pet_303_earth_s3_normal",
+        "speciesCode": 303,
+        "assetKey": "earth_s3_normal",
+        "name": "Quartz Gorilla",
+        "nameVi": "Vượn Đột Biến Thạch Anh",
+        "element": "earth",
+        "stage": 3,
+        "rarity": "Epic",
+        "role": "Final Evolution",
+        "description": "Colossal quartz guardian endowed with crystal fury.",
+        "filePath": "asset/art/earth_s3_normal.png",
+        "runtimePath": "/assets/art/earth_s3_normal.png",
+        "fileSize": 1523746,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/nest"
+        ]
+      },
+      "101": {
+        "id": "pet_101_fire_s1_normal",
+        "speciesCode": 101,
+        "assetKey": "fire_s1_normal",
+        "name": "Ember Sprite",
+        "nameVi": "Tinh Linh Lửa",
+        "element": "fire",
+        "stage": 1,
+        "rarity": "Common",
+        "role": "Starter Pet",
+        "description": "Small flame spirit found in warm volcanic clearings. Fast energy collector.",
+        "filePath": "asset/art/fire_s1_normal.png",
+        "runtimePath": "/assets/art/fire_s1_normal.png",
+        "fileSize": 757166,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      "102": {
+        "id": "pet_102_fire_s2_normal",
+        "speciesCode": 102,
+        "assetKey": "fire_s2_normal",
+        "name": "Flare Fox",
+        "nameVi": "Hồ Ly Lửa",
+        "element": "fire",
+        "stage": 2,
+        "rarity": "Rare",
+        "role": "Target Evolution (Demo MVP)",
+        "description": "Evolved fox spirit with blazing tails. Target outcome of 2 Ember Sprite + 8 Essence recipe.",
+        "filePath": "asset/art/fire_s2_normal.png",
+        "runtimePath": "/assets/art/fire_s2_normal.png",
+        "fileSize": 1378794,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/nest",
+          "/evolve",
+          "/reward"
+        ]
+      },
+      "103": {
+        "id": "pet_103_fire_s3_normal",
+        "speciesCode": 103,
+        "assetKey": "fire_s3_normal",
+        "name": "Pyromane Lion",
+        "nameVi": "Sư Tử Hỏa Diệm",
+        "element": "fire",
+        "stage": 3,
+        "rarity": "Epic",
+        "role": "Final Evolution",
+        "description": "Majestic fire lion with blazing mane. Apex fire predator.",
+        "filePath": "asset/art/fire_s3_normal.png",
+        "runtimePath": "/assets/art/fire_s3_normal.png",
+        "fileSize": 1167838,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/nest"
+        ]
+      },
+      "501": {
+        "id": "pet_501_ice_s1_normal",
+        "speciesCode": 501,
+        "assetKey": "ice_s1_normal",
+        "name": "Avalanche Pet",
+        "nameVi": "Linh Thú Avalanche",
+        "element": "ice",
+        "stage": 1,
+        "rarity": "Rare",
+        "role": "Event GPS Exclusive (Avalanche Summit / Hackathon)",
+        "description": "Linh thú biểu tượng của sự kiện Avalanche Build Web3, kết tinh từ đỉnh tuyết sơn băng giá Avalanche.",
+        "filePath": "asset/art/ice_s1_normal.png",
+        "runtimePath": "/assets/art/ice_s1_normal.png",
+        "fileSize": 955891,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "event_gps_exclusive",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest"
+        ]
+      },
+      "701": {
+        "id": "pet_701_lightning_s1_normal",
+        "speciesCode": 701,
+        "assetKey": "lightning_s1_normal",
+        "name": "KHTN Pet",
+        "nameVi": "Linh Thú KHTN",
+        "element": "lightning",
+        "stage": 1,
+        "rarity": "Rare",
+        "role": "Event GPS Exclusive (ĐH Khoa Học Tự Nhiên)",
+        "description": "Linh thú công nghệ tia chớp đại diện cho đối tác Đại học Khoa học Tự nhiên (HCMUS).",
+        "filePath": "asset/art/lightning_s1_normal.png",
+        "runtimePath": "/assets/art/lightning_s1_normal.png",
+        "fileSize": 931621,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "event_gps_exclusive",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest"
+        ]
+      },
+      "601": {
+        "id": "pet_601_magma_s1_normal",
+        "speciesCode": 601,
+        "assetKey": "magma_s1_normal",
+        "name": "Emberstone",
+        "nameVi": "Nham Thạch Nung Đỏ",
+        "element": "magma",
+        "stage": 1,
+        "rarity": "Rare",
+        "role": "Upcoming Season 2 Expansion",
+        "description": "Lõi nham thạch nóng chảy, dự kiến xuất hiện trong bản đồ viễn chinh Mùa 2.",
+        "filePath": "asset/art/magma_s1_normal.png",
+        "runtimePath": "/assets/art/magma_s1_normal.png",
+        "fileSize": 1002296,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest"
+        ]
+      },
+      "801": {
+        "id": "pet_801_nature_s1_normal",
+        "speciesCode": 801,
+        "assetKey": "nature_s1_normal",
+        "name": "Greenwich Pet",
+        "nameVi": "Linh Thú Greenwich",
+        "element": "nature",
+        "stage": 1,
+        "rarity": "Rare",
+        "role": "Event GPS Exclusive (ĐH Greenwich Việt Nam)",
+        "description": "Linh thú chồi xanh sinh thái đại diện cho đối tác Đại học Greenwich Việt Nam.",
+        "filePath": "asset/art/nature_s1_normal.png",
+        "runtimePath": "/assets/art/nature_s1_normal.png",
+        "fileSize": 1152465,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "event_gps_exclusive",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest"
+        ]
+      },
+      "201": {
+        "id": "pet_201_water_s1_normal",
+        "speciesCode": 201,
+        "assetKey": "water_s1_normal",
+        "name": "Aqua Drop",
+        "nameVi": "Giọt Nước Tinh Nghịch",
+        "element": "water",
+        "stage": 1,
+        "rarity": "Common",
+        "role": "Starter Pet",
+        "description": "Playful water spirit hovering over natural springs and streams.",
+        "filePath": "asset/art/water_s1_normal.png",
+        "runtimePath": "/assets/art/water_s1_normal.png",
+        "fileSize": 906295,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      "202": {
+        "id": "pet_202_water_s2_normal",
+        "speciesCode": 202,
+        "assetKey": "water_s2_normal",
+        "name": "Crested Shark",
+        "nameVi": "Cá Mập Triều Dâng",
+        "element": "water",
+        "stage": 2,
+        "rarity": "Rare",
+        "role": "Evolution",
+        "description": "Streamlined aqua predator adept at tidal navigation.",
+        "filePath": "asset/art/water_s2_normal.png",
+        "runtimePath": "/assets/art/water_s2_normal.png",
+        "fileSize": 903289,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      "203": {
+        "id": "pet_203_water_s3_normal",
+        "speciesCode": 203,
+        "assetKey": "water_s3_normal",
+        "name": "Tidal Serpent",
+        "nameVi": "Giao Long Hải Lưu",
+        "element": "water",
+        "stage": 3,
+        "rarity": "Epic",
+        "role": "Final Evolution",
+        "description": "Legendary sea serpent commanding tidal waves.",
+        "filePath": "asset/art/water_s3_normal.png",
+        "runtimePath": "/assets/art/water_s3_normal.png",
+        "fileSize": 1077428,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/nest"
+        ]
+      },
+      "401": {
+        "id": "pet_401_wind_s1_normal",
+        "speciesCode": 401,
+        "assetKey": "wind_s1_normal",
+        "name": "Zephyr Cloud",
+        "nameVi": "Đám Mây Tinh Linh",
+        "element": "wind",
+        "stage": 1,
+        "rarity": "Common",
+        "role": "Starter Pet",
+        "description": "Breezy cloud entity drifting across highland meadows.",
+        "filePath": "asset/art/wind_s1_normal.png",
+        "runtimePath": "/assets/art/wind_s1_normal.png",
+        "fileSize": 905283,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/hunt",
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      "402": {
+        "id": "pet_402_wind_s2_normal",
+        "speciesCode": 402,
+        "assetKey": "wind_s2_normal",
+        "name": "Gale Hawk",
+        "nameVi": "Ưng Bão Tố",
+        "element": "wind",
+        "stage": 2,
+        "rarity": "Rare",
+        "role": "Evolution",
+        "description": "Keen-eyed raptor slicing through turbulent gale winds.",
+        "filePath": "asset/art/wind_s2_normal.png",
+        "runtimePath": "/assets/art/wind_s2_normal.png",
+        "fileSize": 1099195,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/nest",
+          "/evolve"
+        ]
+      },
+      "403": {
+        "id": "pet_403_wind_s3_normal",
+        "speciesCode": 403,
+        "assetKey": "wind_s3_normal",
+        "name": "Storm Griffin",
+        "nameVi": "Điểu Sư Cuồng Phong",
+        "element": "wind",
+        "stage": 3,
+        "rarity": "Epic",
+        "role": "Final Evolution",
+        "description": "Noble aerial predator wielding storm lightning and whirlwind.",
+        "filePath": "asset/art/wind_s3_normal.png",
+        "runtimePath": "/assets/art/wind_s3_normal.png",
+        "fileSize": 1724696,
+        "format": "png",
+        "dimensions": "1254x1254",
+        "hasAlpha": true,
+        "status": "core_production_ready",
+        "targetScreens": [
+          "/vault",
+          "/nest"
+        ]
+      }
+    },
+    "byElement": {
+      "earth": [
+        "pet_301_earth_s1_normal",
+        "pet_302_earth_s2_normal",
+        "pet_303_earth_s3_normal",
+        "emblem_3d_earth"
+      ],
+      "fire": [
+        "pet_101_fire_s1_normal",
+        "pet_102_fire_s2_normal",
+        "pet_103_fire_s3_normal",
+        "emblem_3d_fire"
+      ],
+      "ice": [
+        "pet_501_ice_s1_normal",
+        "emblem_3d_ice"
+      ],
+      "lightning": [
+        "pet_701_lightning_s1_normal",
+        "emblem_3d_lightning"
+      ],
+      "magma": [
+        "pet_601_magma_s1_normal",
+        "emblem_3d_magma"
+      ],
+      "nature": [
+        "pet_801_nature_s1_normal",
+        "emblem_3d_nature"
+      ],
+      "water": [
+        "pet_201_water_s1_normal",
+        "pet_202_water_s2_normal",
+        "pet_203_water_s3_normal",
+        "emblem_3d_water"
+      ],
+      "wind": [
+        "pet_401_wind_s1_normal",
+        "pet_402_wind_s2_normal",
+        "pet_403_wind_s3_normal",
+        "emblem_3d_wind"
+      ]
+    },
+    "byScreen": {
+      "/hunt": [
+        "pet_301_earth_s1_normal",
+        "pet_101_fire_s1_normal",
+        "pet_501_ice_s1_normal",
+        "pet_701_lightning_s1_normal",
+        "pet_601_magma_s1_normal",
+        "pet_801_nature_s1_normal",
+        "pet_201_water_s1_normal",
+        "pet_401_wind_s1_normal",
+        "frame_common",
+        "card_back_fallback",
+        "ui_essence_vial",
+        "bg_background_liyue",
+        "bg_background_liyue_2",
+        "material_item_crystalline_bloom",
+        "material_item_dew_of_repudiation",
+        "material_item_lightless_eye_of_the_maelstrom",
+        "material_item_lightless_mass",
+        "material_item_lightless_silk_string",
+        "material_item_lightning_prism",
+        "material_item_philosophies_of_ballad",
+        "material_item_philosophies_of_elegance"
+      ],
+      "/vault": [
+        "pet_301_earth_s1_normal",
+        "pet_302_earth_s2_normal",
+        "pet_303_earth_s3_normal",
+        "pet_101_fire_s1_normal",
+        "pet_102_fire_s2_normal",
+        "pet_103_fire_s3_normal",
+        "pet_501_ice_s1_normal",
+        "pet_701_lightning_s1_normal",
+        "pet_601_magma_s1_normal",
+        "pet_801_nature_s1_normal",
+        "pet_201_water_s1_normal",
+        "pet_202_water_s2_normal",
+        "pet_203_water_s3_normal",
+        "pet_401_wind_s1_normal",
+        "pet_402_wind_s2_normal",
+        "pet_403_wind_s3_normal",
+        "frame_common",
+        "frame_rare",
+        "card_back_fallback",
+        "ui_cage",
+        "material_item_crystalline_bloom",
+        "material_item_dew_of_repudiation",
+        "material_item_lightless_eye_of_the_maelstrom",
+        "material_item_lightless_mass",
+        "material_item_lightless_silk_string",
+        "material_item_lightning_prism",
+        "material_item_philosophies_of_ballad",
+        "material_item_philosophies_of_elegance"
+      ],
+      "/nest": [
+        "pet_301_earth_s1_normal",
+        "pet_302_earth_s2_normal",
+        "pet_303_earth_s3_normal",
+        "pet_101_fire_s1_normal",
+        "pet_102_fire_s2_normal",
+        "pet_103_fire_s3_normal",
+        "pet_501_ice_s1_normal",
+        "pet_701_lightning_s1_normal",
+        "pet_601_magma_s1_normal",
+        "pet_801_nature_s1_normal",
+        "pet_201_water_s1_normal",
+        "pet_202_water_s2_normal",
+        "pet_203_water_s3_normal",
+        "pet_401_wind_s1_normal",
+        "pet_402_wind_s2_normal",
+        "pet_403_wind_s3_normal",
+        "ui_cage",
+        "ui_essence_vial",
+        "bg_background_liyue",
+        "bg_background_liyue_2"
+      ],
+      "/evolve": [
+        "pet_301_earth_s1_normal",
+        "pet_302_earth_s2_normal",
+        "pet_101_fire_s1_normal",
+        "pet_102_fire_s2_normal",
+        "pet_201_water_s1_normal",
+        "pet_202_water_s2_normal",
+        "pet_401_wind_s1_normal",
+        "pet_402_wind_s2_normal",
+        "frame_rare",
+        "ui_craft_altar",
+        "ui_essence_vial",
+        "material_item_crystalline_bloom",
+        "material_item_dew_of_repudiation",
+        "material_item_lightless_eye_of_the_maelstrom",
+        "material_item_lightless_mass",
+        "material_item_lightless_silk_string",
+        "material_item_lightning_prism",
+        "material_item_philosophies_of_ballad",
+        "material_item_philosophies_of_elegance"
+      ],
+      "/reward": [
+        "pet_102_fire_s2_normal",
+        "frame_rare",
+        "ui_voucher_entitlement"
+      ],
+      "/landing": [
+        "landing_hero_banner"
+      ]
+    },
+    "integrationStatus": {
+      "core_production_ready": [
+        "pet_301_earth_s1_normal",
+        "pet_302_earth_s2_normal",
+        "pet_303_earth_s3_normal",
+        "pet_101_fire_s1_normal",
+        "pet_102_fire_s2_normal",
+        "pet_103_fire_s3_normal",
+        "pet_601_magma_s1_normal",
+        "pet_201_water_s1_normal",
+        "pet_202_water_s2_normal",
+        "pet_203_water_s3_normal",
+        "pet_401_wind_s1_normal",
+        "pet_402_wind_s2_normal",
+        "pet_403_wind_s3_normal",
+        "frame_common",
+        "frame_rare",
+        "card_back_fallback",
+        "ui_cage",
+        "ui_craft_altar",
+        "ui_essence_vial",
+        "ui_voucher_entitlement",
+        "landing_hero_banner",
+        "emblem_3d_earth",
+        "emblem_3d_fire",
+        "emblem_3d_ice",
+        "emblem_3d_lightning",
+        "emblem_3d_magma",
+        "emblem_3d_nature",
+        "emblem_3d_water",
+        "emblem_3d_wind",
+        "star_rating_1",
+        "star_rating_2",
+        "star_rating_3",
+        "star_rating_4",
+        "star_rating_5",
+        "rarity_bg_1",
+        "rarity_bg_2",
+        "rarity_bg_3",
+        "rarity_bg_4",
+        "rarity_bg_5",
+        "rarity_bg_5s"
+      ],
+      "event_gps_exclusive": [
+        "pet_501_ice_s1_normal",
+        "pet_701_lightning_s1_normal",
+        "pet_801_nature_s1_normal"
+      ],
+      "ui_vector_lightweight": [
+        "svg_type_bug",
+        "svg_type_dark",
+        "svg_type_dragon",
+        "svg_type_electric",
+        "svg_type_fairy",
+        "svg_type_fighting",
+        "svg_type_fire",
+        "svg_type_flying",
+        "svg_type_ghost",
+        "svg_type_grass",
+        "svg_type_ground",
+        "svg_type_ice",
+        "svg_type_normal",
+        "svg_type_poison",
+        "svg_type_psychic",
+        "svg_type_rock",
+        "svg_type_steel",
+        "svg_type_water",
+        "svg_badge_bug",
+        "svg_badge_dark",
+        "svg_badge_dragon",
+        "svg_badge_electric",
+        "svg_badge_fairy",
+        "svg_badge_fighting",
+        "svg_badge_fire",
+        "svg_badge_flying",
+        "svg_badge_ghost",
+        "svg_badge_grass",
+        "svg_badge_ground",
+        "svg_badge_ice",
+        "svg_badge_normal",
+        "svg_badge_poison",
+        "svg_badge_psychic",
+        "svg_badge_rock",
+        "svg_badge_steel",
+        "svg_badge_water",
+        "nav_gender-female",
+        "nav_gender-male",
+        "nav_search-button",
+        "nav_sync-button"
+      ],
+      "ambient_backgrounds": [
+        "bg_background_liyue",
+        "bg_background_liyue_2"
+      ],
+      "event_materials": [
+        "material_item_crystalline_bloom",
+        "material_item_dew_of_repudiation",
+        "material_item_lightless_eye_of_the_maelstrom",
+        "material_item_lightless_mass",
+        "material_item_lightless_silk_string",
+        "material_item_lightning_prism",
+        "material_item_philosophies_of_ballad",
+        "material_item_philosophies_of_elegance"
+      ],
+      "reference_and_dev_only": [
+        "nav_pokeball-banner",
+        "nav_pokeball",
+        "nav_pokedollar",
+        "artifact_weapon_apprentice's_notes",
+        "artifact_weapon_flowing_purity",
+        "artifact_weapon_mappa_mare",
+        "artifact_weapon_skyward_atlas",
+        "artifact_weapon_thrilling_tales_of_dragon_slayers",
+        "artifact_weapon_wine_and_song"
+      ]
+    }
+  }
+}

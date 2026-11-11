@@ -87,12 +87,12 @@ Chưa duyệt toàn bộ viền/mỹ thuật; cần kiểm tra trên nền sáng
 | 401 | wind_s1_normal | Zephyr Cloud |
 | 402 | wind_s2_normal | Gale Hawk |
 | 403 | wind_s3_normal | Storm Griffin |
-| 501 | ice_s1_normal | Frost Crystal |
-| 601 | magma_s1_normal | Emberstone |
-| 701 | lightning_s1_normal | Static Orb |
-| 801 | nature_s1_normal | Sproutling |
+| 501 | ice_s1_normal | Avalanche Pet (Sự kiện Avalanche Build Web3) |
+| 601 | magma_s1_normal | Emberstone (Dự trữ mở rộng Mùa 2) |
+| 701 | lightning_s1_normal | KHTN Pet (Đối tác ĐH Khoa học Tự nhiên) |
+| 801 | nature_s1_normal | Greenwich Pet (Đối tác ĐH Greenwich Việt Nam) |
 
-Nguồn artwork: art/{assetKey}.png. Bốn Rare baseline không tự thành pet collaboration.
+Nguồn artwork: art/{assetKey}.png. 3 Linh thú sự kiện độc quyền (Avalanche Pet #501, KHTN Pet #701, Greenwich Pet #801) phục vụ săn thú GPS tại sự kiện và gian hàng đối tác.
 - frame/common frames.png, frame/rare frames.png: 1024×1536, tâm trong suốt;
   map rõ sang runtime frames/common.webp và frames/rare.webp.
 - fallback/card-back.png: 1024×1536 RGB.
