@@ -5,7 +5,7 @@ Target: `C:\Users\Lenovo\Documents\3.1.Cuộc Thi\Cuộc Thi Avalance Build Web3
 This brief is internal grounding for the Archify skill. The skill should use it to write root-level `archify.md` as an upload-ready multi-role architecture prompt document.
 
 ## Grounded Summary
-Yield Go Project contains 126 subsystems, 454 cross-subsystem flows, 0 processed documents, and 1071 external dependencies derived from 2589 extracted code nodes.
+Yield Go Project contains 154 subsystems, 625 cross-subsystem flows, 0 processed documents, and 1420 external dependencies derived from 3443 extracted code nodes.
 
 ## Confirmed Priorities
 - Subsystem: `packages/contracts-cchain`
@@ -16,17 +16,17 @@ Yield Go Project contains 126 subsystems, 454 cross-subsystem flows, 0 processed
 
 ## Inferred Priorities
 - calls x1
+- calls x10
+- calls x10
 - calls x2
-- calls x40
-- imports x1
-- imports x1
+- calls x1
 
 ## Open Questions
-- Does `subsystem-10-0-apps-web` really depend on `subsystem-2-0-apps-web` through `calls`?
-- Does `subsystem-10-0-apps-web` really depend on `subsystem-25-0-apps-web` through `calls`?
-- Does `subsystem-10-0-apps-web` really depend on `subsystem-3-0-apps-web` through `calls`?
-- Does `subsystem-100-0-apps-web` really depend on `subsystem-3-0-apps-web` through `calls`?
-- Does `subsystem-101-0-apps-web` really depend on `subsystem-2-0-apps-web` through `calls`?
+- Does `subsystem-1-0-apps-web` really depend on `subsystem-13-0-apps-web` through `calls`?
+- Does `subsystem-1-0-apps-web` really depend on `subsystem-14-0-apps-web` through `calls`?
+- Does `subsystem-1-0-apps-web` really depend on `subsystem-15-0-apps-web` through `calls`?
+- Does `subsystem-1-0-apps-web` really depend on `subsystem-18-0-apps-web` through `calls`?
+- Does `subsystem-1-0-apps-web` really depend on `subsystem-25-0-apps-web` through `calls`?
 
 ## Writing Rules
 - Start from `.archify/docs/archify/packet.json` and only read the referenced artifacts.

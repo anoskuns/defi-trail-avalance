@@ -1,56 +1,19 @@
-# DEFI TRAIL GAME EVOLUTION RULES
+Làm việc tại C:/Users/Lenovo/Documents/3.1.Cuộc Thi/Cuộc Thi Avalance Build Web3/Yield Go Project.
+Đọc AGENTS.md, docs/ELEMENTAL_TRAIL_PRD.md, docs/ELEMENTAL_TRAIL_ARCHITECTURE.md và docs/ELEMENTAL_TRAIL_VIBE_CODING.md và IMPLEMENTATION_STATUS.md nếu có.
+Không dùng PRD GE/ET/PW cũ làm yêu cầu hiện hành, không clone thêm repo.
 
-Bạn đang mở rộng DeFi Trail theo:
-- DeFi-Trail-PRD.md
-- docs/DEFI_TRAIL_GAME_EVOLUTION_PRD.md
-- docs/ARCHITECTURE_AI.md
+Thực hiện đúng version được giao bên dưới. Kiểm tra code và working tree trước.
+Nêu ngắn hiện trạng, mục tiêu, file dự kiến sửa và dependency thật rồi làm việc.
+Với source code: kiểm tra Archify status, đọc packet/guide khi fresh,
+query Graphify cho module liên quan rồi xác minh source.
+Theo quy trình Graphify/Archify ở mục 7; báo stale/blocker trung thực.
+Giữ quyết định Accepted. Điểm Open cần hỏi theo nhóm nhỏ; tiếp tục phần độc lập.
+Không tự đổi config hoặc thêm tính năng để làm demo/test đẹp hơn.
+Đọc nested AGENTS.md và tài liệu framework cài local trước khi sửa app.
 
-## SOURCE OF TRUTH
-- Economic/game claim truth: contracts và authenticated ICM state.
-- Target gameplay scope: Game Evolution PRD.
-- Module boundaries: fresh Archify artifacts + ARCHITECTURE_AI.md.
-- Code navigation: Graphify trước khi đọc/sửa.
-
-## FORBIDDEN
-- Không thay đổi smart contract trong GE-01 đến GE-07.
-- Không lưu raw GPS, QR secret, email, private key hoặc OTP.
-- Không biến engagement DB thành source of truth cho balance/chest/quest economic completion.
-- Không báo success trước authenticated terminal evidence.
-- Không tăng điểm/stamp/perk hai lần cho duplicate event hoặc retry cùng requestId.
-- Không import server secret vào client component.
-- Không sửa file ngoài Allowed Files của task nếu chưa nêu lý do và cập nhật plan.
-- Không trộn refactor lớn với feature.
-
-## REQUIRED LOOP
-1. Đọc đúng section PRD của task.
-2. Kiểm tra Archify status và boundary liên quan.
-3. Chạy Graphify query/path/explain để định vị code.
-4. Nêu plan, Allowed Files, Forbidden Files và tests trước khi sửa.
-5. Xây vertical slice nhỏ nhất.
-6. Chạy unit/integration/typecheck/lint phù hợp.
-7. Chạy `graphify . --update` sau khi test pass.
-8. Kiểm tra git diff và báo evidence, uncertainty, remaining work.
-
-### 3.2 Thứ tự đọc bắt buộc cho AI
-
-Trước khi phân tích kiến trúc hoặc sửa code:
-1. Chạy `npx archify-cli status --doc-type archify`.
-2. Chỉ tiếp tục khi knowledge và design packet không stale.
-3. Đọc `.archify/docs/archify/packet.json` trước.
-4. Đọc `.archify/docs/archify/guide.json` thứ hai.
-5. Đọc các artifact tiếp theo theo trường `readOrder` trong `guide.json`.
-6. Xem `.archify/` là nguồn chính cho các fact đã xác nhận.
-7. Tách biệt rõ:
-  - Confirmed From Codebase;
-  - Inferred Architecture;
-  - Open Questions / Uncertainty.
-8. README và tài liệu phụ chỉ dùng để bổ sung ngữ cảnh, không được ghi đè bằng chứng từ `.archify/`.
-
-### 3.3 Quy tắc ADR (Architecture Decision Record)
-
-Chỉ tạo ADR khi task chạm vào một trong các trigger kiến trúc lớn (sửa contract, thêm DB, đổi API auth, đổi canonical schema...). Quy trình:
-1. Phát hiện task chạm trigger ADR -> Dừng triển khai code.
-2. Tạo file ADR mới ở trạng thái `Proposed` (bắt đầu từ `docs/adr/ADR-001-...`).
-3. Ghi rõ: Context, Decision, Alternatives, Consequences, Security/Data Impact, Migration Plan, Rollback Plan.
-4. Chỉ triển khai code sau khi ADR được chấp thuận.
-5. Triển khai xong, chuyển trạng thái sang `Accepted`.
+Mỗi thay đổi cần kiểm tra phù hợp; báo lệnh đã chạy, exit/result, cách tự thử.
+Không bịa pass, deployment, transaction hoặc screenshot đã quan sát.
+Mock/local/testnet phải phân biệt. Không log secrets hoặc stage file không liên quan.
+Cập nhật IMPLEMENTATION_STATUS.md: version, trạng thái, evidence, blocker, việc tiếp theo.
+Quyết định mới cập nhật Decision log của PRD; không sinh PRD cạnh tranh.
+Chỉ commit/push/deploy khi lượt này có yêu cầu tương ứng; nếu chưa, đưa tên commit đề xuất.

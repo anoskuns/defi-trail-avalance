@@ -12,6 +12,14 @@
   },
   "detectedDocs": [
     {
+      "path": "AGENTS.md",
+      "fileType": "document",
+      "detectionReason": "extension:.md",
+      "evidence": [
+        "file:AGENTS.md"
+      ]
+    },
+    {
       "path": "DeFi-Trail-PRD.md",
       "fileType": "document",
       "detectionReason": "extension:.md",
@@ -28,35 +36,35 @@
       ]
     },
     {
-      "path": "docs/ARCHITECTURE_AI.md",
+      "path": "docs/ELEMENTAL_TRAIL_ARCHITECTURE.md",
       "fileType": "document",
       "detectionReason": "extension:.md",
       "evidence": [
-        "file:docs/ARCHITECTURE_AI.md"
+        "file:docs/ELEMENTAL_TRAIL_ARCHITECTURE.md"
       ]
     },
     {
-      "path": "docs/DEFI_TRAIL_GAME_EVOLUTION_PRD.md",
+      "path": "docs/ELEMENTAL_TRAIL_MASTER.md",
       "fileType": "document",
       "detectionReason": "extension:.md",
       "evidence": [
-        "file:docs/DEFI_TRAIL_GAME_EVOLUTION_PRD.md"
+        "file:docs/ELEMENTAL_TRAIL_MASTER.md"
       ]
     },
     {
-      "path": "docs/DEFI_TRAIL_GAME_EVOLUTION_VIBE_CODING_PLAYBOOK.md",
+      "path": "docs/ELEMENTAL_TRAIL_PRD.md",
       "fileType": "document",
       "detectionReason": "extension:.md",
       "evidence": [
-        "file:docs/DEFI_TRAIL_GAME_EVOLUTION_VIBE_CODING_PLAYBOOK.md"
+        "file:docs/ELEMENTAL_TRAIL_PRD.md"
       ]
     },
     {
-      "path": "docs/adr/ADR-001-engagement-storage-and-repository-boundary.md",
+      "path": "docs/ELEMENTAL_TRAIL_VIBE_CODING.md",
       "fileType": "document",
       "detectionReason": "extension:.md",
       "evidence": [
-        "file:docs/adr/ADR-001-engagement-storage-and-repository-boundary.md"
+        "file:docs/ELEMENTAL_TRAIL_VIBE_CODING.md"
       ]
     },
     {
@@ -336,7 +344,7 @@
     "unresolvedDocuments": []
   },
   "summary": {
-    "detectedDocumentCount": 36,
+    "detectedDocumentCount": 37,
     "processedDocumentCount": 0,
     "skippedDocumentCount": 0,
     "alignedDocumentCount": 0,
